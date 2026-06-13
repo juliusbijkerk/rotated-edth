@@ -86,6 +86,11 @@ def get_preset(ao_id: str):
     return _load_preset(ao_id)
 
 
+@app.get("/api/state")
+def get_state():
+    return _state_message()
+
+
 # ----- Static + page routes -----
 
 @app.get("/")
@@ -253,10 +258,19 @@ async def ws_unit(ws: WebSocket, unit_id: str):
 
 async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> None:
     ts = int(time.time() * 1000)
+    if len(audio_bytes) < 1024:
+        await _send(ws, {
+            "type": "error",
+            "stage": "audio",
+            "error": "no usable audio captured; hold push-to-talk longer or use typed report",
+        })
+        return
+
     path = TMP_DIR / f"{unit_id}-{ts}.webm"  # ffmpeg detects container regardless of ext
     path.write_bytes(audio_bytes)
 
     try:
+        await _send(ws, {"type": "status", "stage": "stt", "message": "transcribing audio"})
         transcript = await asyncio.to_thread(stt.transcribe, path)
     except Exception as e:
         traceback.print_exc()
@@ -286,6 +300,7 @@ async def _handle_transcript(ws: WebSocket, unit_id: str, transcript: str, ts: i
         return
 
     try:
+        await _send(ws, {"type": "status", "stage": "parse", "message": "parsing report"})
         parsed = await asyncio.to_thread(
             llm_parser.parse,
             transcript,
@@ -300,6 +315,7 @@ async def _handle_transcript(ws: WebSocket, unit_id: str, transcript: str, ts: i
         return
 
     try:
+        await _send(ws, {"type": "status", "stage": "ground", "message": "resolving location"})
         resolved = grounding.ground(parsed, current_ao, units, unit_id)
     except Exception as e:
         traceback.print_exc()

@@ -207,7 +207,12 @@ html, body {
   border: 1px solid #34586b; border-radius: 8px; background: #1f526d; color: #fff;
   font-weight: 700; letter-spacing: 0; padding: 0 12px;
 }
-.status { text-align: center; font-size: 14px; color: #8aa1b1; }
+.status {
+  min-height: 36px; display: flex; align-items: center; justify-content: center;
+  text-align: center; font-size: 14px; color: #b9c8d3;
+  background: #111a20; border: 1px solid #25343f; border-radius: 8px;
+  padding: 8px 10px;
+}
 
 @media (max-width: 900px) {
   .layout { flex-direction: column; }

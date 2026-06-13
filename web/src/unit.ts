@@ -63,6 +63,8 @@ async function joinAs(unit: string) {
         `<div class="echo-head">${escapeText(headText)}</div>` +
         `<div class="echo-text">${escapeText(r.transcript || '')}</div>`;
       setStatus(`ready · ${res.method || '—'}`);
+    } else if (m.type === 'status') {
+      setStatus(m.message || m.stage || 'processing…');
     } else if (m.type === 'error') {
       setStatus(`error: ${m.stage} ${m.error}`);
     }
