@@ -69,3 +69,21 @@ export function unitMarker(unit: string, lat: number, lon: number): L.Marker {
     }),
   });
 }
+
+export function drawAO(map: L.Map, bbox: [number, number, number, number]): L.LayerGroup {
+  const [w, s, e, n] = bbox;
+  const layer = L.layerGroup();
+  // Dim everything OUTSIDE the AO so the operational box reads at a glance:
+  // a world-covering polygon with the AO cut out as a hole.
+  const world: L.LatLngExpression[] = [[-89, -179], [89, -179], [89, 179], [-89, 179]];
+  const hole: L.LatLngExpression[] = [[s, w], [s, e], [n, e], [n, w]];
+  L.polygon([world, hole], {
+    stroke: false, fillColor: '#04070a', fillOpacity: 0.4, interactive: false,
+  }).addTo(layer);
+  // Bright dashed border marking the AO edge.
+  L.rectangle([[s, w], [n, e]], {
+    color: '#ffffff', weight: 1.5, opacity: 0.85, fill: false, dashArray: '6 5', interactive: false,
+  }).addTo(layer);
+  layer.addTo(map);
+  return layer;
+}

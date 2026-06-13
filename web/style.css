@@ -101,13 +101,15 @@ html, body {
 .unit-pick.unit-bravo { background: #1565c0; }
 .unit-pick.unit-charlie { background: #c0461f; }
 .session { flex: 1; display: flex; flex-direction: column; padding: 16px; gap: 16px; }
-.last { background: #131b21; padding: 12px; border-radius: 8px; min-height: 60px; }
+.last { background: #131b21; padding: 12px; border-radius: 8px; min-height: 60px; flex: 1; overflow-y: auto; }
 .echo-head {
   font-size: 11px; color: #80cbc4; letter-spacing: 1px; text-transform: uppercase;
 }
 .echo-text { font-size: 14px; margin-top: 4px; word-break: break-word; }
 .ptt {
-  flex: 1; font-size: 32px; letter-spacing: 4px; border: none; border-radius: 24px;
+  /* Capped height (not flex:1) leaves room above for info/buttons; works iPhone 13 mini → 17 Pro Max. */
+  flex: 0 0 auto; height: 30vh; min-height: 150px; max-height: 300px;
+  font-size: 26px; letter-spacing: 3px; border: none; border-radius: 24px;
   background: #2a3e4d; color: #fff;
   user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
   cursor: pointer; touch-action: manipulation;

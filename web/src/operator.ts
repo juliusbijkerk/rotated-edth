@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { createMap, renderPOIs, unitMarker, UNIT_COLORS, Preset } from './map';
+import { createMap, renderPOIs, unitMarker, drawAO, UNIT_COLORS, Preset } from './map';
 import { connect } from './ws';
 
 const mapEl = document.getElementById('map')!;
@@ -11,6 +11,7 @@ const aoTitleEl = document.getElementById('ao-title')!;
 
 let map: L.Map | null = null;
 let poiLayer: L.LayerGroup | null = null;
+let aoLayer: L.LayerGroup | null = null;
 const trailsLayer: L.LayerGroup = L.layerGroup();
 const unitMarkers: Record<string, L.Marker> = {};
 const unitTrails: Record<string, L.Polyline> = {};
@@ -44,11 +45,13 @@ async function loadPreset(id: string) {
   if (!map) {
     map = createMap('map', [lat, lon], preset.zoom);
     trailsLayer.addTo(map);
-  } else {
-    map.setView([lat, lon], preset.zoom);
   }
+  // Frame the whole AO so its dashed border + dimmed surroundings are visible (clear focus area).
+  map.fitBounds([[preset.bbox[1], preset.bbox[0]], [preset.bbox[3], preset.bbox[2]]], { padding: [30, 30] });
   if (poiLayer) poiLayer.remove();
   poiLayer = renderPOIs(map, preset.pois);
+  if (aoLayer) aoLayer.remove();
+  aoLayer = drawAO(map, preset.bbox);
   ws.send({ type: 'set_ao', ao_id: id });
 }
 
