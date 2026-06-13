@@ -13,7 +13,7 @@ from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import grounding, parser as llm_parser, stt
+from . import grounding, parser as llm_parser, routing, stt
 from .units import UnitRegistry
 
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -189,9 +189,19 @@ async def ws_unit(ws: WebSocket, unit_id: str):
             if frame.get("type") == "websocket.disconnect":
                 break
             data = frame.get("bytes")
-            if not data:
-                continue  # ignore text frames for now
-            await _handle_utterance(ws, unit_id, data)
+            if data:
+                await _handle_utterance(ws, unit_id, data)
+                continue
+            text = frame.get("text")
+            if not text:
+                continue
+            try:
+                msg = json.loads(text)
+            except Exception:
+                continue
+            if msg.get("type") == "text_report":
+                await _handle_text(ws, unit_id, msg.get("transcript", ""))
+            # other text frames (e.g. audio_meta) are advisory — ignored
     except WebSocketDisconnect:
         pass
 
@@ -209,6 +219,17 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
         await _send(ws, {"type": "error", "stage": "stt", "error": str(e)})
         return
 
+    await _process(ws, unit_id, transcript, ts)
+
+
+async def _handle_text(ws: WebSocket, unit_id: str, transcript: str) -> None:
+    """Typed-report fallback (when the phone mic is blocked) — same pipeline, minus STT."""
+    if not transcript.strip():
+        return
+    await _process(ws, unit_id, transcript.strip(), int(time.time() * 1000))
+
+
+async def _process(ws: WebSocket, unit_id: str, transcript: str, ts: int) -> None:
     await _send(ws, {"type": "progress", "stage": "transcribed", "transcript": transcript})
     if current_ao is None:
         await _send(ws, {"type": "error", "stage": "ao", "error": "no AO loaded — pick one in the operator dashboard"})
@@ -237,8 +258,17 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
         await _send(ws, {"type": "error", "stage": "ground", "error": str(e)})
         return
 
+    route = None
     if not resolved.get("needs_review"):
-        units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time())
+        prev = units.last_position(unit_id)
+        if prev:
+            # Snap the leg from the unit's last fix to roads so the trail follows streets,
+            # not a straight line over buildings. Best-effort — falls back to a straight line.
+            await _send(ws, {"type": "progress", "stage": "routing"})
+            route = await asyncio.to_thread(
+                routing.route, prev["lat"], prev["lon"], resolved["lat"], resolved["lon"],
+            )
+        units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time(), route=route)
     units.set_last_report(unit_id, transcript)
 
     report = {

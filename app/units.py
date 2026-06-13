@@ -17,7 +17,8 @@ class UnitRegistry:
 
     def append_position(self, unit_id: str, lat: float, lon: float,
                         heading_deg: Optional[float] = None,
-                        ts: Optional[float] = None) -> None:
+                        ts: Optional[float] = None,
+                        route: Optional[list] = None) -> None:
         with self._lock:
             if unit_id not in self._units:
                 self._units[unit_id] = {"id": unit_id, "positions": [], "last_report": None}
@@ -26,6 +27,7 @@ class UnitRegistry:
                 "lat": lat,
                 "lon": lon,
                 "heading": heading_deg,
+                "route": route,  # routed path [[lat,lon],...] from the previous fix, or None
             })
 
     def set_last_report(self, unit_id: str, text: str) -> None:

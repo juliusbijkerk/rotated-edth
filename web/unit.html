@@ -9,6 +9,7 @@
 <body class="unit">
   <div class="topbar">
     <h1>ARGUS · <span class="unit-label-display">UNIT</span></h1>
+    <button id="change-unit" class="change-unit" type="button" style="display:none">CHANGE</button>
   </div>
   <div id="picker" class="picker"></div>
   <div id="session" class="session" style="display:none">
@@ -16,8 +17,12 @@
       <div class="echo-head">last detection</div>
       <div class="echo-text">—</div>
     </div>
-    <button id="ptt" class="ptt">PUSH&nbsp;TO&nbsp;TALK</button>
     <div id="status" class="status">ready</div>
+    <button id="ptt" class="ptt">PUSH&nbsp;TO&nbsp;TALK</button>
+    <form id="manual-report" class="manual-report">
+      <textarea id="manual-text" rows="2" placeholder="…or type a report if the mic is blocked"></textarea>
+      <button id="manual-send" type="submit">SEND TYPED REPORT</button>
+    </form>
   </div>
   <script type="module" src="./src/unit.ts"></script>
 </body>

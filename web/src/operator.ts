@@ -103,15 +103,27 @@ function renderUnits(units: Record<string, any>) {
       } else {
         unitMarkers[uid] = unitMarker(uid, lp.lat, lp.lon).addTo(map);
       }
-      const positions: L.LatLngExpression[] = (u.positions || []).map((p: any) => [p.lat, p.lon] as L.LatLngExpression);
-      if (positions.length > 1) {
-        if (unitTrails[uid]) {
-          unitTrails[uid].setLatLngs(positions);
+      // Build the trail from routed legs: each fix carries `route` (street path from the
+      // previous fix). Concatenate those so the line follows roads; fall back to a straight
+      // segment when a leg wasn't routed.
+      const rawPositions: any[] = u.positions || [];
+      const trailLatLngs: L.LatLngExpression[] = [];
+      rawPositions.forEach((p: any, i: number) => {
+        if (i === 0) { trailLatLngs.push([p.lat, p.lon]); return; }
+        if (Array.isArray(p.route) && p.route.length > 1) {
+          for (const c of p.route) trailLatLngs.push([c[0], c[1]] as L.LatLngExpression);
         } else {
-          unitTrails[uid] = L.polyline(positions, {
+          trailLatLngs.push([p.lat, p.lon]);
+        }
+      });
+      if (trailLatLngs.length > 1) {
+        if (unitTrails[uid]) {
+          unitTrails[uid].setLatLngs(trailLatLngs);
+        } else {
+          unitTrails[uid] = L.polyline(trailLatLngs, {
             color: UNIT_COLORS[uid] ?? '#ffcc00',
             weight: 3,
-            opacity: 0.7,
+            opacity: 0.75,
           }).addTo(trailsLayer);
         }
       }

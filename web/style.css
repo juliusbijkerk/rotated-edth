@@ -116,3 +116,18 @@ html, body {
 }
 .ptt:active, .ptt.live { background: #d32f2f; box-shadow: 0 0 24px rgba(255, 80, 80, 0.4); }
 .status { text-align: center; font-size: 14px; color: #8aa1b1; }
+.change-unit {
+  background: transparent; color: #8aa1b1; border: 1px solid #2c3a46;
+  border-radius: 6px; padding: 5px 10px; font-size: 11px; letter-spacing: 1px; cursor: pointer;
+}
+.change-unit:active { background: #1a242b; }
+.manual-report { display: flex; flex-direction: column; gap: 8px; }
+.manual-report textarea {
+  width: 100%; resize: none; background: #0e1418; color: #e6edf2;
+  border: 1px solid #2c3a46; border-radius: 8px; padding: 10px; font: inherit; font-size: 14px;
+}
+.manual-report button {
+  border: none; border-radius: 8px; padding: 10px; font-size: 13px; letter-spacing: 1px;
+  background: #1c2730; color: #cdd9e2; cursor: pointer;
+}
+.manual-report button:active { background: #243441; }
