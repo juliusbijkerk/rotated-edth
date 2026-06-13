@@ -569,9 +569,9 @@ body {
         <circle cx="12" cy="12" r="3" fill="var(--green)"/>
         <path d="M12 2v20M2 12h20" stroke="var(--green)" opacity="0.3"/>
       </svg>
-      <span>OPS</span>CENTER
+      <span>ARGUS</span>
     </div>
-    <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.5px;">SITUATIONAL AWARENESS TERMINAL v2.1</div>
+    <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.5px;"></div>
     <div class="mission">MISSION: <span style="color:var(--amber);">OP DNIPRO SHIELD</span></div>
     <div class="clock" id="clock">--:--:--</div>
   </div>
@@ -596,7 +596,8 @@ body {
       <div id="layers-panel">
         <div class="sidebar-header">
           <span>Map Layers</span>
-          <span class="count" id="layer-count">0 ACTIVE</span>
+          <button id="poi-all" class="filter-btn" style="margin-left:auto">SELECT ALL</button>
+          <span class="count" id="layer-count" style="margin-left:8px">0 ACTIVE</span>
         </div>
 
         <div class="layer-group">
@@ -821,11 +822,7 @@ body {
         </div>
       </div>
 
-      <!-- Geofence info -->
-      <div class="map-overlay geofence-info">
-        <div><strong>AO:</strong> <span id="ao-name">KYIV</span></div>
-        <div><strong>ACTIVE GEOFENCES:</strong> <span id="geofence-count">2</span></div>
-      </div>
+      <!-- AO overlay removed (overlapped the toggles) --><span id="ao-name" style="display:none"></span>
     </div>
   </div>
 
@@ -1191,12 +1188,12 @@ function addOvertureLayer(subcategory, color) {
       paint: {
         'circle-radius': [
           'interpolate', ['linear'], ['zoom'],
-          12, 3,
-          16, 8
+          12, 2,
+          16, 5
         ],
         'circle-color': color,
-        'circle-opacity': 0.85,
-        'circle-stroke-width': 1,
+        'circle-opacity': 0.5,
+        'circle-stroke-width': 0.5,
         'circle-stroke-color': '#ffffff'
       }
     });
@@ -2500,5 +2497,17 @@ function initInteraction() {
 })();
 </script>
 
+<script>
+(function () {
+  var btn = document.getElementById('poi-all');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var boxes = document.querySelectorAll('input[data-subcategory]');
+    var anyOff = Array.prototype.some.call(boxes, function (b) { return !b.checked; });
+    boxes.forEach(function (b) { if (b.checked !== anyOff) { b.checked = anyOff; b.dispatchEvent(new Event('change')); } });
+    btn.textContent = anyOff ? 'CLEAR ALL' : 'SELECT ALL';
+  });
+})();
+</script>
 </body>
 </html>
