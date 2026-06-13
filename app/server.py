@@ -200,6 +200,7 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
     ts = int(time.time() * 1000)
     path = TMP_DIR / f"{unit_id}-{ts}.webm"  # ffmpeg detects container regardless of ext
     path.write_bytes(audio_bytes)
+    await _send(ws, {"type": "progress", "stage": "received"})
 
     try:
         transcript = await asyncio.to_thread(stt.transcribe, path)
@@ -208,10 +209,12 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
         await _send(ws, {"type": "error", "stage": "stt", "error": str(e)})
         return
 
+    await _send(ws, {"type": "progress", "stage": "transcribed", "transcript": transcript})
     if current_ao is None:
         await _send(ws, {"type": "error", "stage": "ao", "error": "no AO loaded — pick one in the operator dashboard"})
         return
 
+    await _send(ws, {"type": "progress", "stage": "understanding"})
     try:
         parsed = await asyncio.to_thread(
             llm_parser.parse,
@@ -226,6 +229,7 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
         await _send(ws, {"type": "error", "stage": "parse", "error": str(e)})
         return
 
+    await _send(ws, {"type": "progress", "stage": "locating"})
     try:
         resolved = grounding.ground(parsed, current_ao, units, unit_id)
     except Exception as e:

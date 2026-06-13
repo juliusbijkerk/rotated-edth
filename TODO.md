@@ -31,3 +31,15 @@ Get the first working demo solid; these are deliberately deferred.
 ## Ops
 - Named cloudflared tunnel (stable URL) instead of the quick tunnel, if wanted.
 - QR for the tunnel URL so phones scan instead of type.
+
+## From live testing (Jun 13)
+- **Live pipeline feedback** (DONE): unit shows received → understanding → placing → placed.
+- **WS auto-reconnect:** operator/unit sockets don't recover from a dropped connection
+  (tunnel blips) — add exponential-backoff reconnect in `web/src/ws.ts`. Top robustness fix.
+- **Operator-defined AOs:** draw a box (or type a place name) → live Overpass fetch at runtime,
+  instead of the fixed presets. Clamp box size. (Supersedes the curated preset list.)
+- **Street-following trails:** snap the trail between fixes to roads via a routing engine
+  (OSRM / Valhalla / GraphHopper) instead of straight lines over buildings.
+- **More precise POIs:** big features ("Hoog Catharijne" mall) ground to a vague centroid.
+  Use entrance nodes / addresses / a richer dataset (Overture Maps, OSM entrances) for
+  point-precise, better-described locations — also improves text→POI matching.

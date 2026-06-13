@@ -68,6 +68,17 @@ async function joinAs(unit: string) {
         `<div class="echo-head">${escapeText(headText)}</div>` +
         `<div class="echo-text">${escapeText(r.transcript || '')}</div>`;
       setStatus(`ready · ${res.method || '—'}`);
+    } else if (m.type === 'progress') {
+      const labels: Record<string, string> = {
+        received: 'received ✓', transcribed: 'heard you — understanding…',
+        understanding: 'understanding…', locating: 'placing on map…',
+      };
+      setStatus(labels[m.stage] || m.stage);
+      if (m.stage === 'transcribed' && m.transcript) {
+        lastEl.innerHTML =
+          `<div class="echo-head">transcript</div>` +
+          `<div class="echo-text">${escapeText(m.transcript)}</div>`;
+      }
     } else if (m.type === 'error') {
       setStatus(`error: ${m.stage} ${m.error}`);
     }
