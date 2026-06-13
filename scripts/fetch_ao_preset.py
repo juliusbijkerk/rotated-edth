@@ -47,6 +47,20 @@ AO_DEFS = {
         "zoom": 14,
         "type": "rural",
     },
+    "utrecht": {
+        "name": "Utrecht (city centre)",
+        "bbox": [5.105, 52.082, 5.135, 52.100],  # ~2 km box around the Dom
+        "center": [5.120, 52.091],
+        "zoom": 15,
+        "type": "urban",
+    },
+    "de_bilt": {
+        "name": "De Bilt (rural)",
+        "bbox": [5.150, 52.085, 5.220, 52.130],  # ~5 km: town + A27/A28 + green
+        "center": [5.185, 52.107],
+        "zoom": 14,
+        "type": "rural",
+    },
 }
 
 # Overpass query categories. Each line is a separate query, summed via the (…) union.

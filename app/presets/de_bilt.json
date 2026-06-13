@@ -1,0 +1,8724 @@
+{
+  "id": "de_bilt",
+  "name": "De Bilt (rural)",
+  "bbox": [
+    5.15,
+    52.085,
+    5.22,
+    52.13
+  ],
+  "center": [
+    5.185,
+    52.107
+  ],
+  "zoom": 14,
+  "type": "rural",
+  "pois": [
+    {
+      "id": "node/45284363",
+      "name": "De Bilt",
+      "aliases": [],
+      "type": "place=town",
+      "coords": [
+        5.178706,
+        52.109701
+      ]
+    },
+    {
+      "id": "node/45347315",
+      "name": "Groenekan",
+      "aliases": [],
+      "type": "place=village",
+      "coords": [
+        5.151341,
+        52.123419
+      ]
+    },
+    {
+      "id": "node/2090011802",
+      "name": "Landgoed Klein Vollenhoven",
+      "aliases": [],
+      "type": "place=locality",
+      "coords": [
+        5.201458,
+        52.090292
+      ]
+    },
+    {
+      "id": "node/3482828199",
+      "name": "Bilthoven",
+      "aliases": [],
+      "type": "place=town",
+      "coords": [
+        5.204613,
+        52.128969
+      ]
+    },
+    {
+      "id": "node/6772675239",
+      "name": "Rijnsweerd",
+      "aliases": [],
+      "type": "place=neighbourhood",
+      "coords": [
+        5.154418,
+        52.09007
+      ]
+    },
+    {
+      "id": "way/280469727",
+      "name": "Vinkenplein",
+      "aliases": [],
+      "type": "place=square",
+      "coords": [
+        5.206241,
+        52.128608
+      ]
+    },
+    {
+      "id": "relation/18936437",
+      "name": "Oost",
+      "aliases": [],
+      "type": "place=suburb",
+      "coords": [
+        5.158784,
+        52.07758
+      ]
+    },
+    {
+      "id": "relation/18936438",
+      "name": "Noordoost",
+      "aliases": [],
+      "type": "place=suburb",
+      "coords": [
+        5.13586,
+        52.105108
+      ]
+    },
+    {
+      "id": "relation/19099161",
+      "name": "Wilhelminapark, Rijnsweerd",
+      "aliases": [],
+      "type": "place=quarter",
+      "coords": [
+        5.166222,
+        52.087297
+      ]
+    },
+    {
+      "id": "relation/19099172",
+      "name": "De Uithof - Utrecht Science Park",
+      "aliases": [
+        "De Uithof",
+        "Utrecht Science Park"
+      ],
+      "type": "place=neighbourhood",
+      "coords": [
+        5.175779,
+        52.087266
+      ]
+    },
+    {
+      "id": "relation/19099208",
+      "name": "Tuindorp, Voordorp",
+      "aliases": [],
+      "type": "place=quarter",
+      "coords": [
+        5.138187,
+        52.105646
+      ]
+    },
+    {
+      "id": "relation/19101344",
+      "name": "Voordorp/voorveldsepolder",
+      "aliases": [],
+      "type": "place=neighbourhood",
+      "coords": [
+        5.15115,
+        52.105646
+      ]
+    },
+    {
+      "id": "node/45236491",
+      "name": "Winkelcentrum Vollenhove",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.219886,
+        52.098675
+      ]
+    },
+    {
+      "id": "node/45252464",
+      "name": "De Biltsche Hoek",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.194862,
+        52.102525
+      ]
+    },
+    {
+      "id": "node/45254381",
+      "name": "KNMI",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.182826,
+        52.103016
+      ]
+    },
+    {
+      "id": "node/565471372",
+      "name": "Kerklaan",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.170622,
+        52.101709
+      ]
+    },
+    {
+      "id": "node/643040507",
+      "name": "Rijnsweerd-Noord",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.150007,
+        52.092109
+      ]
+    },
+    {
+      "id": "node/643040511",
+      "name": "Rijnsweerd-Zuid",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.157654,
+        52.087687
+      ]
+    },
+    {
+      "id": "node/643040516",
+      "name": "Padualaan",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.168106,
+        52.085875
+      ]
+    },
+    {
+      "id": "node/643040527",
+      "name": "UMC Utrecht",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.179597,
+        52.085161
+      ]
+    },
+    {
+      "id": "node/645600000",
+      "name": "Jordanlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.212105,
+        52.098149
+      ]
+    },
+    {
+      "id": "node/646407911",
+      "name": "Looydijk",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.180362,
+        52.108698
+      ]
+    },
+    {
+      "id": "node/646407915",
+      "name": "Doctor Letteplein",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.183611,
+        52.113169
+      ]
+    },
+    {
+      "id": "node/646407917",
+      "name": "Groenekanseweg",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.17992,
+        52.115012
+      ]
+    },
+    {
+      "id": "node/646407920",
+      "name": "Zonneplein",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.18065,
+        52.118015
+      ]
+    },
+    {
+      "id": "node/646407922",
+      "name": "Poolsterlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.183263,
+        52.121483
+      ]
+    },
+    {
+      "id": "node/646407968",
+      "name": "Duivenlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.186766,
+        52.122154
+      ]
+    },
+    {
+      "id": "node/646407970",
+      "name": "Konijnenlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.1929,
+        52.123503
+      ]
+    },
+    {
+      "id": "node/646407973",
+      "name": "2e Brandenburgerweg",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.195266,
+        52.125407
+      ]
+    },
+    {
+      "id": "node/646407977",
+      "name": "Leyenseweg",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.19958,
+        52.125561
+      ]
+    },
+    {
+      "id": "node/646746434",
+      "name": "Kromme-Rijnlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.21562,
+        52.093679
+      ]
+    },
+    {
+      "id": "node/646860823",
+      "name": "Alfred Nobellaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.170745,
+        52.107158
+      ]
+    },
+    {
+      "id": "node/646860827",
+      "name": "Hessenweg",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.177662,
+        52.105678
+      ]
+    },
+    {
+      "id": "node/646860867",
+      "name": "Kromhoutkwartier",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.18399,
+        52.125283
+      ]
+    },
+    {
+      "id": "node/646860883",
+      "name": "Elzenlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.185781,
+        52.129762
+      ]
+    },
+    {
+      "id": "node/646860886",
+      "name": "Friedhoffkwartier",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.188856,
+        52.12797
+      ]
+    },
+    {
+      "id": "node/646860887",
+      "name": "Walnootlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.193007,
+        52.129032
+      ]
+    },
+    {
+      "id": "node/646860895",
+      "name": "Boslaan",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.208308,
+        52.126174
+      ]
+    },
+    {
+      "id": "node/646860897",
+      "name": "De Kwinkelier",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.210294,
+        52.12806
+      ]
+    },
+    {
+      "id": "node/646860901",
+      "name": "Sperwerlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.212073,
+        52.128546
+      ]
+    },
+    {
+      "id": "node/646860903",
+      "name": "Leeuweriklaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.215073,
+        52.125112
+      ]
+    },
+    {
+      "id": "node/646860905",
+      "name": "Kwikstaartlaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.213731,
+        52.126589
+      ]
+    },
+    {
+      "id": "node/647094353",
+      "name": "Holle Bilt",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.186479,
+        52.105187
+      ]
+    },
+    {
+      "id": "node/647094357",
+      "name": "Houdringe",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.188787,
+        52.108514
+      ]
+    },
+    {
+      "id": "node/1018177907",
+      "name": "Archimedeslaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.153482,
+        52.097974
+      ]
+    },
+    {
+      "id": "node/1711705473",
+      "name": "Steinenburglaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.16075,
+        52.099503
+      ]
+    },
+    {
+      "id": "node/1723135767",
+      "name": "Uppsalalaan",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.176705,
+        52.08752
+      ]
+    },
+    {
+      "id": "node/1723135782",
+      "name": "WKZ/Universiteitsweg",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.179771,
+        52.089536
+      ]
+    },
+    {
+      "id": "node/2264803243",
+      "name": "WKZ/PMC",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.182626,
+        52.09019
+      ]
+    },
+    {
+      "id": "node/2563062605",
+      "name": "P+R Science Park",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.17814,
+        52.0919
+      ]
+    },
+    {
+      "id": "node/2618283991",
+      "name": "Gemeentehuis",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.197236,
+        52.120131
+      ]
+    },
+    {
+      "id": "node/2618287390",
+      "name": "RIVM/Soestdijkseweg",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.194823,
+        52.116995
+      ]
+    },
+    {
+      "id": "node/5370104131",
+      "name": "Blauwkapel Oost aansl.",
+      "aliases": [],
+      "type": "railway=junction",
+      "coords": [
+        5.161454,
+        52.118629
+      ]
+    },
+    {
+      "id": "node/7039594813",
+      "name": "Rembrandtlaan",
+      "aliases": [],
+      "type": "public_transport=stop_position",
+      "coords": [
+        5.196981,
+        52.128828
+      ]
+    },
+    {
+      "id": "node/9344027906",
+      "name": "d'Amandelboom",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.200351,
+        52.120536
+      ]
+    },
+    {
+      "id": "node/11405209612",
+      "name": "Noordweg",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.211926,
+        52.09021
+      ]
+    },
+    {
+      "id": "way/60363656",
+      "name": "Spoor 2",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.20386,
+        52.129934
+      ]
+    },
+    {
+      "id": "way/145564855",
+      "name": "Oude Spoorbaan",
+      "aliases": [],
+      "type": "railway=abandoned",
+      "coords": [
+        5.224814,
+        52.124079
+      ]
+    },
+    {
+      "id": "way/217188533",
+      "name": "Uithoflijn",
+      "aliases": [],
+      "type": "railway=light_rail",
+      "coords": [
+        5.177871,
+        52.091835
+      ]
+    },
+    {
+      "id": "way/225182690",
+      "name": "Rijnsweerd Noord",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.150366,
+        52.092145
+      ]
+    },
+    {
+      "id": "way/549106563",
+      "name": "Spoor 1",
+      "aliases": [],
+      "type": "public_transport=platform",
+      "coords": [
+        5.203875,
+        52.129996
+      ]
+    },
+    {
+      "id": "node/34050697",
+      "name": "Museum Bleulandinum - Anatomisch Museum",
+      "aliases": [
+        "Museum Bleulandinum",
+        "Anatomisch Museum"
+      ],
+      "type": "tourism=museum",
+      "coords": [
+        5.177183,
+        52.086339
+      ]
+    },
+    {
+      "id": "node/1809324000",
+      "name": "Herdenkingsmonument van Bilthoven",
+      "aliases": [],
+      "type": "historic=memorial",
+      "coords": [
+        5.197052,
+        52.121234
+      ]
+    },
+    {
+      "id": "node/2618304912",
+      "name": "Biltse Muziekschool",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.184802,
+        52.120515
+      ]
+    },
+    {
+      "id": "node/2669387905",
+      "name": "Daltonschool Rijnsweerd",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.153102,
+        52.086602
+      ]
+    },
+    {
+      "id": "node/2787484503",
+      "name": "VSO Heuvelrug College",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.217726,
+        52.089834
+      ]
+    },
+    {
+      "id": "node/2787520378",
+      "name": "SO Noorderlicht",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.219084,
+        52.089638
+      ]
+    },
+    {
+      "id": "node/3004386317",
+      "name": "Brandweerkazerne De Bilt",
+      "aliases": [],
+      "type": "amenity=fire_station",
+      "coords": [
+        5.17311,
+        52.110404
+      ]
+    },
+    {
+      "id": "node/3004612717",
+      "name": "'t Winkeltje van Oostbroek",
+      "aliases": [],
+      "type": "tourism=information",
+      "coords": [
+        5.188652,
+        52.090981
+      ]
+    },
+    {
+      "id": "node/3004671901",
+      "name": "Centrumkerk",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        5.209335,
+        52.129212
+      ]
+    },
+    {
+      "id": "node/3004763301",
+      "name": "Gemeentehuis De Bilt",
+      "aliases": [],
+      "type": "amenity=townhall",
+      "coords": [
+        5.196539,
+        52.121615
+      ]
+    },
+    {
+      "id": "node/3004766051",
+      "name": "Barlo Ballonvaarten",
+      "aliases": [],
+      "type": "tourism=tours",
+      "coords": [
+        5.173387,
+        52.116364
+      ]
+    },
+    {
+      "id": "node/3004768260",
+      "name": "Brandweer Bilthoven",
+      "aliases": [],
+      "type": "amenity=fire_station",
+      "coords": [
+        5.193958,
+        52.126941
+      ]
+    },
+    {
+      "id": "node/3042024357",
+      "name": "Wilhelmina Kinderziekenhuis (WKZ)",
+      "aliases": [
+        "Wilhelmina Children's Hospital (WKZ)"
+      ],
+      "type": "amenity=hospital",
+      "coords": [
+        5.181182,
+        52.089464
+      ]
+    },
+    {
+      "id": "node/3043051934",
+      "name": "Star Lodge Hotel",
+      "aliases": [],
+      "type": "tourism=hotel",
+      "coords": [
+        5.152032,
+        52.098356
+      ]
+    },
+    {
+      "id": "node/3657646954",
+      "name": "Haasje over",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.212923,
+        52.127208
+      ]
+    },
+    {
+      "id": "node/3772017958",
+      "name": "Bijenhotel",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.172599,
+        52.087247
+      ]
+    },
+    {
+      "id": "node/3772017959",
+      "name": "Bamboebos",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.169759,
+        52.089214
+      ]
+    },
+    {
+      "id": "node/3772017960",
+      "name": "Rotstuin",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.170365,
+        52.088249
+      ]
+    },
+    {
+      "id": "node/3772017961",
+      "name": "Evolutietuin",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.173298,
+        52.088284
+      ]
+    },
+    {
+      "id": "node/3772017963",
+      "name": "Ontdektuin",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.172328,
+        52.088502
+      ]
+    },
+    {
+      "id": "node/4288413815",
+      "name": "B-17 Monument Groenekan",
+      "aliases": [],
+      "type": "historic=memorial",
+      "coords": [
+        5.152613,
+        52.123034
+      ]
+    },
+    {
+      "id": "node/4953327328",
+      "name": "Godebaldprieel",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.192573,
+        52.0898
+      ]
+    },
+    {
+      "id": "node/5525410832",
+      "name": "UU4U",
+      "aliases": [],
+      "type": "tourism=information",
+      "coords": [
+        5.174106,
+        52.085162
+      ]
+    },
+    {
+      "id": "node/5728468898",
+      "name": "1917",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.176605,
+        52.116009
+      ]
+    },
+    {
+      "id": "node/7796529024",
+      "name": "Oude Rivierbedding Kromme Rijn",
+      "aliases": [],
+      "type": "tourism=information",
+      "coords": [
+        5.191674,
+        52.087889
+      ]
+    },
+    {
+      "id": "node/7796541161",
+      "name": "Mathildebrug",
+      "aliases": [],
+      "type": "tourism=information",
+      "coords": [
+        5.189583,
+        52.088379
+      ]
+    },
+    {
+      "id": "node/7876621153",
+      "name": "Knooppunt 45",
+      "aliases": [],
+      "type": "tourism=information",
+      "coords": [
+        5.16522,
+        52.089323
+      ]
+    },
+    {
+      "id": "node/7876621154",
+      "name": "Ringslangenbos - Milieumonitor",
+      "aliases": [
+        "Ringslangenbos",
+        "Milieumonitor"
+      ],
+      "type": "tourism=information",
+      "coords": [
+        5.165153,
+        52.08933
+      ]
+    },
+    {
+      "id": "node/8442837552",
+      "name": "Hoogste es van Nederland",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.193278,
+        52.090462
+      ]
+    },
+    {
+      "id": "node/9054249825",
+      "name": "Moskee Arrahman",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        5.180685,
+        52.123176
+      ]
+    },
+    {
+      "id": "node/9937275952",
+      "name": "Noord-Amerikaanse bostuin",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.168886,
+        52.088714
+      ]
+    },
+    {
+      "id": "node/11117559983",
+      "name": "Politiepost De Bilt",
+      "aliases": [],
+      "type": "amenity=police",
+      "coords": [
+        5.196469,
+        52.121499
+      ]
+    },
+    {
+      "id": "node/11641090914",
+      "name": "Europa en de stier",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.180816,
+        52.109242
+      ]
+    },
+    {
+      "id": "node/11641310924",
+      "name": "De Grondwerker",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.189801,
+        52.107409
+      ]
+    },
+    {
+      "id": "node/11641310925",
+      "name": "Evenwicht",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.173821,
+        52.110134
+      ]
+    },
+    {
+      "id": "node/11641829581",
+      "name": "Meisje",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.155673,
+        52.12247
+      ]
+    },
+    {
+      "id": "node/11641829582",
+      "name": "Vrouw met boodschappenmand",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.185051,
+        52.120218
+      ]
+    },
+    {
+      "id": "node/11813725992",
+      "name": "Kruidentuin",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.188579,
+        52.090563
+      ]
+    },
+    {
+      "id": "way/45062628",
+      "name": "Beelden op Beerschoten",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        5.201388,
+        52.106187
+      ]
+    },
+    {
+      "id": "way/57809563",
+      "name": "Landgoed Vollenhoven",
+      "aliases": [],
+      "type": "historic=manor",
+      "coords": [
+        5.203752,
+        52.10062
+      ]
+    },
+    {
+      "id": "way/52994722",
+      "name": "Camping Bos Park Bilthoven",
+      "aliases": [],
+      "type": "tourism=camp_site",
+      "coords": [
+        5.224101,
+        52.130326
+      ]
+    },
+    {
+      "id": "way/57788392",
+      "name": "Remains of TCC Bunker",
+      "aliases": [],
+      "type": "historic=bunker",
+      "coords": [
+        5.177048,
+        52.118424
+      ]
+    },
+    {
+      "id": "way/57802283",
+      "name": "Hersteld Hervormde Gemeente Blauwkapel-Groenekan",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        5.152019,
+        52.122884
+      ]
+    },
+    {
+      "id": "way/57802376",
+      "name": "Paviljoen Beerschoten",
+      "aliases": [],
+      "type": "tourism=information",
+      "coords": [
+        5.200787,
+        52.106345
+      ]
+    },
+    {
+      "id": "way/57802917",
+      "name": "Dorpskerk De Bilt",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        5.181771,
+        52.104475
+      ]
+    },
+    {
+      "id": "way/57808161",
+      "name": "Michaelkerk",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        5.171379,
+        52.103617
+      ]
+    },
+    {
+      "id": "way/153055591",
+      "name": "Werk aan de Hoofddijk",
+      "aliases": [],
+      "type": "historic=fort",
+      "coords": [
+        5.170405,
+        52.088075
+      ]
+    },
+    {
+      "id": "way/154678464",
+      "name": "Julianaschool",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.210249,
+        52.129692
+      ]
+    },
+    {
+      "id": "way/173368525",
+      "name": "Fort Voordorp",
+      "aliases": [
+        "Fort op de Voordorpse dijk"
+      ],
+      "type": "historic=fort",
+      "coords": [
+        5.158118,
+        52.109269
+      ]
+    },
+    {
+      "id": "way/202389897",
+      "name": "Botanische Tuinen Universiteit Utrecht",
+      "aliases": [],
+      "type": "tourism=attraction",
+      "coords": [
+        5.171386,
+        52.088634
+      ]
+    },
+    {
+      "id": "way/208908587",
+      "name": "De Uithof / Utrecht Science Park",
+      "aliases": [],
+      "type": "amenity=university",
+      "coords": [
+        5.175518,
+        52.084532
+      ]
+    },
+    {
+      "id": "way/296646350",
+      "name": "Sandwijck",
+      "aliases": [],
+      "type": "historic=castle",
+      "coords": [
+        5.17366,
+        52.101978
+      ]
+    },
+    {
+      "id": "way/296655897",
+      "name": "Oostbroek",
+      "aliases": [],
+      "type": "historic=manor",
+      "coords": [
+        5.19181,
+        52.090488
+      ]
+    },
+    {
+      "id": "way/296663215",
+      "name": "Zuiderkapel",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        5.205743,
+        52.126178
+      ]
+    },
+    {
+      "id": "way/296671987",
+      "name": "Gereformeerde Gemeente in Nederland Utrecht-De Bilt",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        5.18091,
+        52.117972
+      ]
+    },
+    {
+      "id": "way/296672068",
+      "name": "Oosterlichtkerk",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        5.18531,
+        52.1162
+      ]
+    },
+    {
+      "id": "way/300094968",
+      "name": "Kazerne A",
+      "aliases": [],
+      "type": "historic=building",
+      "coords": [
+        5.170431,
+        52.08806
+      ]
+    },
+    {
+      "id": "way/300110610",
+      "name": "Fritz Redlschool",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.183219,
+        52.088132
+      ]
+    },
+    {
+      "id": "way/745644054",
+      "name": "Universitair Medisch Centrum Utrecht",
+      "aliases": [
+        "University Medical Centre Utrecht"
+      ],
+      "type": "amenity=hospital",
+      "coords": [
+        5.180251,
+        52.086984
+      ]
+    },
+    {
+      "id": "way/809917962",
+      "name": "De Nijepoort",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.152249,
+        52.121916
+      ]
+    },
+    {
+      "id": "way/1137593758",
+      "name": "Kinderboerderij De Schaapskooi",
+      "aliases": [],
+      "type": "tourism=zoo",
+      "coords": [
+        5.18549,
+        52.121449
+      ]
+    },
+    {
+      "id": "way/1300544728",
+      "name": "Patioschool De Kleine Prins",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.171789,
+        52.111296
+      ]
+    },
+    {
+      "id": "way/1300546609",
+      "name": "Het Zonnewiel",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.171377,
+        52.110782
+      ]
+    },
+    {
+      "id": "way/1309446298",
+      "name": "Groen van Prinstererschool",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.178076,
+        52.10671
+      ]
+    },
+    {
+      "id": "way/1495778223",
+      "name": "De Rietakker",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.184982,
+        52.112588
+      ]
+    },
+    {
+      "id": "way/1495991281",
+      "name": "De Regenboog",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.180465,
+        52.111524
+      ]
+    },
+    {
+      "id": "way/1506870946",
+      "name": "Michaëlschool",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.171946,
+        52.103867
+      ]
+    },
+    {
+      "id": "way/1506876218",
+      "name": "Wereldwijs",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        5.183828,
+        52.120785
+      ]
+    },
+    {
+      "id": "relation/5918380",
+      "name": "Prinses Máxima Centrum Utrecht",
+      "aliases": [],
+      "type": "amenity=hospital",
+      "coords": [
+        5.183728,
+        52.090183
+      ]
+    },
+    {
+      "id": "node/13834354180",
+      "name": "Taxus baccata",
+      "aliases": [],
+      "type": "natural=tree",
+      "coords": [
+        5.192499,
+        52.090047
+      ]
+    },
+    {
+      "id": "way/71398985",
+      "name": "Waterlelievijver",
+      "aliases": [],
+      "type": "natural=water",
+      "coords": [
+        5.170714,
+        52.089476
+      ]
+    },
+    {
+      "id": "way/71581487",
+      "name": "Biltse duinen",
+      "aliases": [],
+      "type": "natural=sand",
+      "coords": [
+        5.221033,
+        52.126808
+      ]
+    },
+    {
+      "id": "way/71596468",
+      "name": "Beerschoter Vliet",
+      "aliases": [],
+      "type": "waterway=stream",
+      "coords": [
+        5.204082,
+        52.098931
+      ]
+    },
+    {
+      "id": "way/206289066",
+      "name": "Biltsche Grift",
+      "aliases": [],
+      "type": "waterway=canal",
+      "coords": [
+        5.158234,
+        52.097846
+      ]
+    },
+    {
+      "id": "way/206307544",
+      "name": "Zeister Grift",
+      "aliases": [],
+      "type": "waterway=canal",
+      "coords": [
+        5.203849,
+        52.089128
+      ]
+    },
+    {
+      "id": "way/488457286",
+      "name": "Biltse Grift",
+      "aliases": [],
+      "type": "waterway=canal",
+      "coords": [
+        5.21438,
+        52.084989
+      ]
+    },
+    {
+      "id": "way/808055126",
+      "name": "Bisschopswetering",
+      "aliases": [],
+      "type": "waterway=ditch",
+      "coords": [
+        5.191331,
+        52.08613
+      ]
+    },
+    {
+      "id": "way/995822431",
+      "name": "Ridderschapsvaart",
+      "aliases": [],
+      "type": "waterway=canal",
+      "coords": [
+        5.150139,
+        52.085131
+      ]
+    },
+    {
+      "id": "way/1359152523",
+      "name": "Randsloot",
+      "aliases": [],
+      "type": "waterway=canal",
+      "coords": [
+        5.206827,
+        52.086335
+      ]
+    },
+    {
+      "id": "relation/17935807",
+      "name": "Hooge Kampse Plas",
+      "aliases": [],
+      "type": "natural=water",
+      "coords": [
+        5.162419,
+        52.113929
+      ]
+    },
+    {
+      "id": "relation/1117512",
+      "name": "Het Biltse Meertje",
+      "aliases": [],
+      "type": "natural=water",
+      "coords": [
+        5.193247,
+        52.113334
+      ]
+    },
+    {
+      "id": "node/583510005",
+      "name": "Sportcafé Olympos",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.17485,
+        52.091154
+      ]
+    },
+    {
+      "id": "node/717021612",
+      "name": "Tennisvereniging FAK",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.16712,
+        52.108747
+      ]
+    },
+    {
+      "id": "node/1245439239",
+      "name": "TotalEnergies Express Sandwyck",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        5.16477,
+        52.100112
+      ]
+    },
+    {
+      "id": "node/1245439248",
+      "name": "Esso Express De Bilt",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        5.163834,
+        52.100264
+      ]
+    },
+    {
+      "id": "node/1717580504",
+      "name": "Berkman",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        5.215834,
+        52.08582
+      ]
+    },
+    {
+      "id": "node/1763266413",
+      "name": "Apotheek Planetenbaan",
+      "aliases": [],
+      "type": "amenity=pharmacy",
+      "coords": [
+        5.184671,
+        52.119836
+      ]
+    },
+    {
+      "id": "node/1763266414",
+      "name": "Tango",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        5.18773,
+        52.121833
+      ]
+    },
+    {
+      "id": "node/2298912620",
+      "name": "Geldmaat",
+      "aliases": [],
+      "type": "amenity=atm",
+      "coords": [
+        5.181175,
+        52.109294
+      ]
+    },
+    {
+      "id": "node/2669385876",
+      "name": "Bar Beton Rijnsweerd",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.1501,
+        52.092584
+      ]
+    },
+    {
+      "id": "node/2669387727",
+      "name": "De kliniek voor Tandheelkunde",
+      "aliases": [],
+      "type": "amenity=dentist",
+      "coords": [
+        5.152346,
+        52.086329
+      ]
+    },
+    {
+      "id": "node/2669389029",
+      "name": "Napata",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.150772,
+        52.090917
+      ]
+    },
+    {
+      "id": "node/2669389241",
+      "name": "De Buitenkamer",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.157192,
+        52.093277
+      ]
+    },
+    {
+      "id": "node/2785604439",
+      "name": "Rabobank",
+      "aliases": [],
+      "type": "amenity=bank",
+      "coords": [
+        5.215319,
+        52.097282
+      ]
+    },
+    {
+      "id": "node/2785609099",
+      "name": "Villa Blanda",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.216226,
+        52.096645
+      ]
+    },
+    {
+      "id": "node/2785613038",
+      "name": "GGD",
+      "aliases": [],
+      "type": "amenity=clinic",
+      "coords": [
+        5.217247,
+        52.096997
+      ]
+    },
+    {
+      "id": "node/2787480003",
+      "name": "Foodmaster",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.219872,
+        52.089282
+      ]
+    },
+    {
+      "id": "node/2787480264",
+      "name": "Gymzaal Noordweg",
+      "aliases": [],
+      "type": "leisure=sports_hall",
+      "coords": [
+        5.218646,
+        52.08961
+      ]
+    },
+    {
+      "id": "node/2787484484",
+      "name": "Kwikstaart fuels&more",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        5.210189,
+        52.088295
+      ]
+    },
+    {
+      "id": "node/2787487597",
+      "name": "Kinderdagverblijf De Kroost",
+      "aliases": [],
+      "type": "amenity=childcare",
+      "coords": [
+        5.216844,
+        52.091504
+      ]
+    },
+    {
+      "id": "node/2787510266",
+      "name": "Jungle Gemz",
+      "aliases": [],
+      "type": "leisure=indoor_play",
+      "coords": [
+        5.213375,
+        52.088525
+      ]
+    },
+    {
+      "id": "node/2910654569",
+      "name": "Meneer Vink",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.151253,
+        52.09778
+      ]
+    },
+    {
+      "id": "node/3004277280",
+      "name": "BP",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        5.150669,
+        52.128947
+      ]
+    },
+    {
+      "id": "node/3004285833",
+      "name": "Naast de buren",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.161276,
+        52.120413
+      ]
+    },
+    {
+      "id": "node/3004287269",
+      "name": "Mijnmondzorg",
+      "aliases": [],
+      "type": "amenity=dentist",
+      "coords": [
+        5.197403,
+        52.12843
+      ]
+    },
+    {
+      "id": "node/3004375074",
+      "name": "Eetcafé Joos",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.178269,
+        52.105915
+      ]
+    },
+    {
+      "id": "node/3004375079",
+      "name": "Tand in zicht",
+      "aliases": [],
+      "type": "amenity=dentist",
+      "coords": [
+        5.182147,
+        52.104695
+      ]
+    },
+    {
+      "id": "node/3004375102",
+      "name": "Weltevreden",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.177146,
+        52.113808
+      ]
+    },
+    {
+      "id": "node/3004376023",
+      "name": "Mosa",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.180038,
+        52.108514
+      ]
+    },
+    {
+      "id": "node/3004376450",
+      "name": "Ko Shing",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.180082,
+        52.108568
+      ]
+    },
+    {
+      "id": "node/3004376647",
+      "name": "Rinnebeek",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.185862,
+        52.112247
+      ]
+    },
+    {
+      "id": "node/3004376667",
+      "name": "Pizza Academy",
+      "aliases": [],
+      "type": "amenity=training",
+      "coords": [
+        5.181245,
+        52.109514
+      ]
+    },
+    {
+      "id": "node/3004377042",
+      "name": "Proefwerk",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.180313,
+        52.108901
+      ]
+    },
+    {
+      "id": "node/3004377054",
+      "name": "Yeemei",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.181404,
+        52.109792
+      ]
+    },
+    {
+      "id": "node/3004377065",
+      "name": "I Love Sushi",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.181394,
+        52.108939
+      ]
+    },
+    {
+      "id": "node/3004377180",
+      "name": "Reeg",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.180792,
+        52.109612
+      ]
+    },
+    {
+      "id": "node/3004377196",
+      "name": "Pizzeria Mamma Mia",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.182694,
+        52.108644
+      ]
+    },
+    {
+      "id": "node/3004377539",
+      "name": "Domino's",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.18175,
+        52.109144
+      ]
+    },
+    {
+      "id": "node/3004377544",
+      "name": "Lunchroom Bosporus",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.181363,
+        52.109235
+      ]
+    },
+    {
+      "id": "node/3004378097",
+      "name": "Kwalitaria",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.18127,
+        52.110403
+      ]
+    },
+    {
+      "id": "node/3004378115",
+      "name": "Lin Fa",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.181331,
+        52.110464
+      ]
+    },
+    {
+      "id": "node/3004379224",
+      "name": "Bu!ten",
+      "aliases": [],
+      "type": "amenity=bar",
+      "coords": [
+        5.181985,
+        52.110575
+      ]
+    },
+    {
+      "id": "node/3004379333",
+      "name": "Yamas",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.182028,
+        52.110629
+      ]
+    },
+    {
+      "id": "node/3004379546",
+      "name": "Mika",
+      "aliases": [],
+      "type": "leisure=fitness_centre",
+      "coords": [
+        5.182605,
+        52.112248
+      ]
+    },
+    {
+      "id": "node/3004379549",
+      "name": "New York Pizza",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.182347,
+        52.111115
+      ]
+    },
+    {
+      "id": "node/3004379939",
+      "name": "Tandartspraktijk Hagesteijn",
+      "aliases": [],
+      "type": "amenity=dentist",
+      "coords": [
+        5.181297,
+        52.110961
+      ]
+    },
+    {
+      "id": "node/3004379942",
+      "name": "Gezondheidscentrum De Bilt",
+      "aliases": [],
+      "type": "amenity=doctors",
+      "coords": [
+        5.186594,
+        52.111437
+      ]
+    },
+    {
+      "id": "node/3004379970",
+      "name": "Blos",
+      "aliases": [],
+      "type": "amenity=childcare",
+      "coords": [
+        5.176977,
+        52.110621
+      ]
+    },
+    {
+      "id": "node/3004380371",
+      "name": "Hayashide",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.182826,
+        52.111772
+      ]
+    },
+    {
+      "id": "node/3004384080",
+      "name": "Partou",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        5.172017,
+        52.103822
+      ]
+    },
+    {
+      "id": "node/3004384120",
+      "name": "Gelato Burano",
+      "aliases": [],
+      "type": "amenity=ice_cream",
+      "coords": [
+        5.183852,
+        52.104512
+      ]
+    },
+    {
+      "id": "node/3004384379",
+      "name": "Zorgvilla Steinenburgh",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.161269,
+        52.099849
+      ]
+    },
+    {
+      "id": "node/3004384706",
+      "name": "Pomp 41",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.183685,
+        52.1042
+      ]
+    },
+    {
+      "id": "node/3004384807",
+      "name": "H.F. Witte Centrum",
+      "aliases": [],
+      "type": "amenity=community_centre",
+      "coords": [
+        5.173772,
+        52.110713
+      ]
+    },
+    {
+      "id": "node/3004384813",
+      "name": "Allround Gym",
+      "aliases": [],
+      "type": "leisure=fitness_centre",
+      "coords": [
+        5.183694,
+        52.103999
+      ]
+    },
+    {
+      "id": "node/3004385556",
+      "name": "JKE Sports",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.181135,
+        52.10812
+      ]
+    },
+    {
+      "id": "node/3004385903",
+      "name": "Studio Sunshine",
+      "aliases": [],
+      "type": "leisure=tanning_salon",
+      "coords": [
+        5.181192,
+        52.108219
+      ]
+    },
+    {
+      "id": "node/3004386250",
+      "name": "Het Dorpscafé",
+      "aliases": [],
+      "type": "amenity=pub",
+      "coords": [
+        5.182962,
+        52.104348
+      ]
+    },
+    {
+      "id": "node/3004386288",
+      "name": "Het Oude Dorp",
+      "aliases": [],
+      "type": "amenity=dentist",
+      "coords": [
+        5.183159,
+        52.104196
+      ]
+    },
+    {
+      "id": "node/3004386394",
+      "name": "Amis",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.181869,
+        52.103924
+      ]
+    },
+    {
+      "id": "node/3004386854",
+      "name": "'t Mereltje",
+      "aliases": [],
+      "type": "amenity=childcare",
+      "coords": [
+        5.187552,
+        52.11286
+      ]
+    },
+    {
+      "id": "node/3004388021",
+      "name": "Stichtse Apotheek",
+      "aliases": [],
+      "type": "amenity=pharmacy",
+      "coords": [
+        5.178552,
+        52.105267
+      ]
+    },
+    {
+      "id": "node/3004389146",
+      "name": "Koninklijke Biltse Harmonie",
+      "aliases": [],
+      "type": "amenity=music_school",
+      "coords": [
+        5.183461,
+        52.105598
+      ]
+    },
+    {
+      "id": "node/3004390174",
+      "name": "Cafetaria de Artisjok",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.183803,
+        52.108646
+      ]
+    },
+    {
+      "id": "node/3004390552",
+      "name": "Omega",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.185172,
+        52.104484
+      ]
+    },
+    {
+      "id": "node/3004391583",
+      "name": "Sushi Time",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        5.178333,
+        52.106072
+      ]
+    },
+    {
+      "id": "node/3004612709",
+      "name": "Stal Écurie de la Fontaine",
+      "aliases": [],
+      "type": "leisure=horse_riding",
+      "coords": [
+        5.208078,
+        52.093952
+      ]
+    },
+    {
+      "id": "node/3004612727",
+      "name": "Koetshuis Beerschoten",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.200775,
+        52.106328
+      ]
+    },
+    {
+      "id": "node/3004666671",
+      "name": "Restaurant Norra",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.20525,
+        52.129397
+      ]
+    },
+    {
+      "id": "node/3004666678",
+      "name": "PK Bilthoven",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.206425,
+        52.129355
+      ]
+    },
+    {
+      "id": "node/3004668618",
+      "name": "Basic-Fit",
+      "aliases": [],
+      "type": "leisure=fitness_centre",
+      "coords": [
+        5.208988,
+        52.12789
+      ]
+    },
+    {
+      "id": "node/3004669285",
+      "name": "Brasserie Olivier",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.205097,
+        52.129133
+      ]
+    },
+    {
+      "id": "node/3004670670",
+      "name": "Bubbles & Blessings",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.207097,
+        52.128546
+      ]
+    },
+    {
+      "id": "node/3004671023",
+      "name": "Osaka",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.205782,
+        52.129661
+      ]
+    },
+    {
+      "id": "node/3004671049",
+      "name": "De Koperwiek",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.211852,
+        52.129103
+      ]
+    },
+    {
+      "id": "node/3004758830",
+      "name": "Dental Clinics",
+      "aliases": [],
+      "type": "amenity=dentist",
+      "coords": [
+        5.193898,
+        52.12408
+      ]
+    },
+    {
+      "id": "node/3004759570",
+      "name": "Mondzorg Planetenbaan",
+      "aliases": [],
+      "type": "amenity=dentist",
+      "coords": [
+        5.184794,
+        52.119712
+      ]
+    },
+    {
+      "id": "node/3004760219",
+      "name": "De Wasstraat",
+      "aliases": [],
+      "type": "amenity=car_wash",
+      "coords": [
+        5.175024,
+        52.116954
+      ]
+    },
+    {
+      "id": "node/3004760557",
+      "name": "Vereniging voor Samenlevingsopbouw WVT",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.187143,
+        52.124896
+      ]
+    },
+    {
+      "id": "node/3004761655",
+      "name": "SportCity",
+      "aliases": [],
+      "type": "leisure=fitness_centre",
+      "coords": [
+        5.190207,
+        52.1252
+      ]
+    },
+    {
+      "id": "node/3004762906",
+      "name": "LTV Meijenhagen",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.174558,
+        52.11591
+      ]
+    },
+    {
+      "id": "node/3004763205",
+      "name": "TotalEnergies Larenstein",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        5.175798,
+        52.116367
+      ]
+    },
+    {
+      "id": "node/3004766358",
+      "name": "Manege Stal van Brenk",
+      "aliases": [],
+      "type": "leisure=horse_riding",
+      "coords": [
+        5.151269,
+        52.113157
+      ]
+    },
+    {
+      "id": "node/3004766428",
+      "name": "Huisartsenpraktijk Orion",
+      "aliases": [],
+      "type": "amenity=doctors",
+      "coords": [
+        5.183018,
+        52.118918
+      ]
+    },
+    {
+      "id": "node/3004767139",
+      "name": "Van Miltenburg",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.19017,
+        52.124171
+      ]
+    },
+    {
+      "id": "node/3004768965",
+      "name": "Pizzeria La Piazza",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.184711,
+        52.119606
+      ]
+    },
+    {
+      "id": "node/3004770515",
+      "name": "TV Toss",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.187336,
+        52.125328
+      ]
+    },
+    {
+      "id": "node/3042021231",
+      "name": "Sportcentrum Olympos",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.175155,
+        52.091278
+      ]
+    },
+    {
+      "id": "node/3042024334",
+      "name": "Ronald McDonald huis",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.178798,
+        52.088609
+      ]
+    },
+    {
+      "id": "node/3042083913",
+      "name": "UMC Kinderdagverblijf",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        5.187538,
+        52.089383
+      ]
+    },
+    {
+      "id": "node/3043051828",
+      "name": "Manege Groenesteyn",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.152905,
+        52.098484
+      ]
+    },
+    {
+      "id": "node/3043051949",
+      "name": "Sporting '70",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.150222,
+        52.105227
+      ]
+    },
+    {
+      "id": "node/3204889889",
+      "name": "Kajuit en Anker Dagbehandeling",
+      "aliases": [],
+      "type": "amenity=doctors",
+      "coords": [
+        5.182488,
+        52.087642
+      ]
+    },
+    {
+      "id": "node/3975548955",
+      "name": "Tuincafé Botanica",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.169072,
+        52.087981
+      ]
+    },
+    {
+      "id": "node/4151770161",
+      "name": "Kalymnos",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.177082,
+        52.091441
+      ]
+    },
+    {
+      "id": "node/4413663089",
+      "name": "Bij de Tijd",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        5.176418,
+        52.113961
+      ]
+    },
+    {
+      "id": "node/4690121989",
+      "name": "Goliath",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.175783,
+        52.086506
+      ]
+    },
+    {
+      "id": "node/4701300499",
+      "name": "Sanquin",
+      "aliases": [],
+      "type": "amenity=blood_bank",
+      "coords": [
+        5.181088,
+        52.090347
+      ]
+    },
+    {
+      "id": "node/4988600868",
+      "name": "Bibliotheek Bilthoven",
+      "aliases": [],
+      "type": "amenity=library",
+      "coords": [
+        5.184391,
+        52.120575
+      ]
+    },
+    {
+      "id": "node/5508116524",
+      "name": "Vogelkijkhut",
+      "aliases": [
+        "Bird watching cabin"
+      ],
+      "type": "leisure=bird_hide",
+      "coords": [
+        5.172019,
+        52.087483
+      ]
+    },
+    {
+      "id": "node/5642316869",
+      "name": "Jazzmans Minnaert",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.167473,
+        52.086779
+      ]
+    },
+    {
+      "id": "node/5883000551",
+      "name": "Paviljoen Bloeyendael Binnen",
+      "aliases": [],
+      "type": "amenity=community_centre",
+      "coords": [
+        5.150591,
+        52.095298
+      ]
+    },
+    {
+      "id": "node/6258473844",
+      "name": "La Terrazza",
+      "aliases": [
+        "terrazza"
+      ],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.206083,
+        52.128923
+      ]
+    },
+    {
+      "id": "node/6258473845",
+      "name": "'t Zusje",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.2063,
+        52.128858
+      ]
+    },
+    {
+      "id": "node/6258473846",
+      "name": "Loft 88",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.20678,
+        52.128706
+      ]
+    },
+    {
+      "id": "node/6329421217",
+      "name": "Irene Beach",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.1796,
+        52.122397
+      ]
+    },
+    {
+      "id": "node/6898179860",
+      "name": "Topkids",
+      "aliases": [],
+      "type": "amenity=childcare",
+      "coords": [
+        5.180205,
+        52.111725
+      ]
+    },
+    {
+      "id": "node/7837774951",
+      "name": "Rustpunt Geitenhouderij De Hooge Kamp",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.153444,
+        52.111903
+      ]
+    },
+    {
+      "id": "node/7899575672",
+      "name": "ChargePoint",
+      "aliases": [],
+      "type": "amenity=charging_station",
+      "coords": [
+        5.150077,
+        52.087078
+      ]
+    },
+    {
+      "id": "node/8617438804",
+      "name": "Zwembad Brandenburg",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.189047,
+        52.125188
+      ]
+    },
+    {
+      "id": "node/8779678061",
+      "name": "Biltse Boer",
+      "aliases": [],
+      "type": "amenity=ice_cream",
+      "coords": [
+        5.199873,
+        52.101897
+      ]
+    },
+    {
+      "id": "node/8809255488",
+      "name": "Koffie bij Maria",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.157026,
+        52.108548
+      ]
+    },
+    {
+      "id": "node/8857120646",
+      "name": "Johanne Niemeijer Tuin",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        5.179881,
+        52.087888
+      ]
+    },
+    {
+      "id": "node/8857755372",
+      "name": "Apotheek UMC Utrecht",
+      "aliases": [],
+      "type": "amenity=pharmacy",
+      "coords": [
+        5.179568,
+        52.08674
+      ]
+    },
+    {
+      "id": "node/8914760994",
+      "name": "De Brink",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.179259,
+        52.086063
+      ]
+    },
+    {
+      "id": "node/9668058473",
+      "name": "FC De Bilt",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.171769,
+        52.113766
+      ]
+    },
+    {
+      "id": "node/10114699386",
+      "name": "Calisthenics",
+      "aliases": [],
+      "type": "leisure=fitness_station",
+      "coords": [
+        5.171341,
+        52.086465
+      ]
+    },
+    {
+      "id": "node/10114699392",
+      "name": "Inundatiebank",
+      "aliases": [],
+      "type": "amenity=bench",
+      "coords": [
+        5.171375,
+        52.086561
+      ]
+    },
+    {
+      "id": "node/10604094599",
+      "name": "Theater Het Lichtruim",
+      "aliases": [],
+      "type": "amenity=theatre",
+      "coords": [
+        5.184509,
+        52.120533
+      ]
+    },
+    {
+      "id": "node/10631218736",
+      "name": "Huisartsenpraktijk Daltonlaan",
+      "aliases": [],
+      "type": "amenity=doctors",
+      "coords": [
+        5.160524,
+        52.087701
+      ]
+    },
+    {
+      "id": "node/10708957017",
+      "name": "Lili's Proto Lab",
+      "aliases": [],
+      "type": "amenity=workshop",
+      "coords": [
+        5.164254,
+        52.087142
+      ]
+    },
+    {
+      "id": "node/11061825650",
+      "name": "De Vagant",
+      "aliases": [],
+      "type": "amenity=events_venue",
+      "coords": [
+        5.168217,
+        52.087319
+      ]
+    },
+    {
+      "id": "node/11251853556",
+      "name": "Grand Café Living",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        5.167289,
+        52.085077
+      ]
+    },
+    {
+      "id": "node/11420618431",
+      "name": "Minibieb De Bilt",
+      "aliases": [],
+      "type": "amenity=public_bookcase",
+      "coords": [
+        5.182838,
+        52.110666
+      ]
+    },
+    {
+      "id": "node/11711893453",
+      "name": "Wash",
+      "aliases": [],
+      "type": "amenity=car_wash",
+      "coords": [
+        5.175441,
+        52.1165
+      ]
+    },
+    {
+      "id": "node/11933227440",
+      "name": "Vattenfall InCharge",
+      "aliases": [],
+      "type": "amenity=charging_station",
+      "coords": [
+        5.213994,
+        52.093988
+      ]
+    },
+    {
+      "id": "node/11939135489",
+      "name": "Shell Recharge",
+      "aliases": [],
+      "type": "amenity=charging_station",
+      "coords": [
+        5.179524,
+        52.103648
+      ]
+    },
+    {
+      "id": "node/11939859823",
+      "name": "Circle K",
+      "aliases": [],
+      "type": "amenity=charging_station",
+      "coords": [
+        5.17609,
+        52.116333
+      ]
+    },
+    {
+      "id": "node/12328650017",
+      "name": "Snowsports Bilthoven",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.200837,
+        52.129436
+      ]
+    },
+    {
+      "id": "node/12367347531",
+      "name": "Stal Den Eijck",
+      "aliases": [],
+      "type": "amenity=events_venue",
+      "coords": [
+        5.210699,
+        52.101807
+      ]
+    },
+    {
+      "id": "node/12460871754",
+      "name": "DHL pakketpunt",
+      "aliases": [],
+      "type": "amenity=post_office",
+      "coords": [
+        5.21032,
+        52.088271
+      ]
+    },
+    {
+      "id": "node/13173860405",
+      "name": "Informatie",
+      "aliases": [],
+      "type": "amenity=reception_desk",
+      "coords": [
+        5.179819,
+        52.086261
+      ]
+    },
+    {
+      "id": "node/13173860411",
+      "name": "Expositie zorg van morgen",
+      "aliases": [],
+      "type": "amenity=exhibition",
+      "coords": [
+        5.179596,
+        52.086251
+      ]
+    },
+    {
+      "id": "node/13359618283",
+      "name": "bp pulse",
+      "aliases": [],
+      "type": "amenity=charging_station",
+      "coords": [
+        5.150943,
+        52.129263
+      ]
+    },
+    {
+      "id": "node/13775759253",
+      "name": "DPD  pakketpunt",
+      "aliases": [
+        "dpd pakketpunt"
+      ],
+      "type": "amenity=post_office",
+      "coords": [
+        5.210266,
+        52.088272
+      ]
+    },
+    {
+      "id": "node/13775759254",
+      "name": "PostNL Pakketautomaat",
+      "aliases": [],
+      "type": "amenity=parcel_locker",
+      "coords": [
+        5.210551,
+        52.088141
+      ]
+    },
+    {
+      "id": "way/104385891",
+      "name": "Leuvenlaan",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.17084,
+        52.086213
+      ]
+    },
+    {
+      "id": "way/6320886",
+      "name": "Utrechtse Golfclub 'De Pan'",
+      "aliases": [],
+      "type": "leisure=golf_course",
+      "coords": [
+        5.223819,
+        52.118071
+      ]
+    },
+    {
+      "id": "way/6320888",
+      "name": "Golfpark De Biltse Duinen",
+      "aliases": [],
+      "type": "leisure=golf_course",
+      "coords": [
+        5.217931,
+        52.129681
+      ]
+    },
+    {
+      "id": "way/510077812",
+      "name": "Spoorlaan",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.20315,
+        52.129569
+      ]
+    },
+    {
+      "id": "way/707081449",
+      "name": "Soestdijkseweg Zuid",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.191528,
+        52.112156
+      ]
+    },
+    {
+      "id": "way/7005415",
+      "name": "Bisschopsweg",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.200507,
+        52.089736
+      ]
+    },
+    {
+      "id": "way/131743082",
+      "name": "Crosestein",
+      "aliases": [],
+      "type": "leisure=pitch",
+      "coords": [
+        5.217571,
+        52.092023
+      ]
+    },
+    {
+      "id": "way/1001488819",
+      "name": "Utrechtseweg",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.158553,
+        52.098647
+      ]
+    },
+    {
+      "id": "way/471812630",
+      "name": "Oude Bunnikseweg",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.182629,
+        52.102196
+      ]
+    },
+    {
+      "id": "way/7006881",
+      "name": "Universiteitsweg",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.179785,
+        52.092643
+      ]
+    },
+    {
+      "id": "way/24325167",
+      "name": "Bunnikseweg",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.186298,
+        52.09246
+      ]
+    },
+    {
+      "id": "way/7006510",
+      "name": "Wilhelminalaan",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.177279,
+        52.102973
+      ]
+    },
+    {
+      "id": "way/7006980",
+      "name": "Jan Muschlaan",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.153278,
+        52.085957
+      ]
+    },
+    {
+      "id": "way/7007153",
+      "name": "Nel Stantsbrug",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.155393,
+        52.08784
+      ]
+    },
+    {
+      "id": "way/7007468",
+      "name": "Veldzichtstraat",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.161802,
+        52.099368
+      ]
+    },
+    {
+      "id": "way/1055385841",
+      "name": "Voorveldselaan",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.150151,
+        52.103243
+      ]
+    },
+    {
+      "id": "way/8041736",
+      "name": "Tennisvereniging Ultc-Iduna",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.151309,
+        52.101694
+      ]
+    },
+    {
+      "id": "way/16376753",
+      "name": "P6-Padualaan",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.167225,
+        52.085614
+      ]
+    },
+    {
+      "id": "way/23855553",
+      "name": "P10-Olympos",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.17566,
+        52.090427
+      ]
+    },
+    {
+      "id": "way/28779620",
+      "name": "P9-Budapestlaan",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.168232,
+        52.087951
+      ]
+    },
+    {
+      "id": "way/70156701",
+      "name": "Lo Bruntpad",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.150986,
+        52.100828
+      ]
+    },
+    {
+      "id": "way/36728355",
+      "name": "Voorveldse Polder",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        5.149104,
+        52.100188
+      ]
+    },
+    {
+      "id": "way/36728707",
+      "name": "Zeven Stroompjes",
+      "aliases": [
+        "Zeven Slootjes"
+      ],
+      "type": "leisure=playground",
+      "coords": [
+        5.151946,
+        52.10022
+      ]
+    },
+    {
+      "id": "way/45192904",
+      "name": "Olympos",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.17306,
+        52.091062
+      ]
+    },
+    {
+      "id": "way/46242206",
+      "name": "Landgoed Oostbroek",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        5.193653,
+        52.088928
+      ]
+    },
+    {
+      "id": "way/46709760",
+      "name": "Restaurant De Biltsche Hoek",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.194869,
+        52.10279
+      ]
+    },
+    {
+      "id": "way/57910363",
+      "name": "Mooi Zeist",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        5.215271,
+        52.098714
+      ]
+    },
+    {
+      "id": "way/75066266",
+      "name": "Leyense Pad",
+      "aliases": [],
+      "type": "bridge=yes",
+      "coords": [
+        5.171826,
+        52.129095
+      ]
+    },
+    {
+      "id": "way/71399745",
+      "name": "Sportpark Saestum",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        5.208163,
+        52.08971
+      ]
+    },
+    {
+      "id": "way/71411588",
+      "name": "Gees Linnebankplantsoen",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        5.156077,
+        52.088047
+      ]
+    },
+    {
+      "id": "way/71582129",
+      "name": "Hendricks boomgaard",
+      "aliases": [],
+      "type": "leisure=playground",
+      "coords": [
+        5.190461,
+        52.127369
+      ]
+    },
+    {
+      "id": "way/72131982",
+      "name": "Buitenplaats Sandwijck",
+      "aliases": [],
+      "type": "leisure=nature_reserve",
+      "coords": [
+        5.170333,
+        52.098201
+      ]
+    },
+    {
+      "id": "way/130411588",
+      "name": "P5-Leuvenlaan",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.174349,
+        52.086103
+      ]
+    },
+    {
+      "id": "way/141640563",
+      "name": "P15-Genèvelaan",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.172062,
+        52.085516
+      ]
+    },
+    {
+      "id": "way/292276600",
+      "name": "Herenweg",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.182466,
+        52.109255
+      ]
+    },
+    {
+      "id": "way/157564709",
+      "name": "TinQ",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        5.210547,
+        52.088263
+      ]
+    },
+    {
+      "id": "way/221600198",
+      "name": "Bezoekers CMH",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.178728,
+        52.088333
+      ]
+    },
+    {
+      "id": "way/222910375",
+      "name": "oefenbaan draverij",
+      "aliases": [],
+      "type": "leisure=track",
+      "coords": [
+        5.186137,
+        52.098506
+      ]
+    },
+    {
+      "id": "way/273756145",
+      "name": "Noorderpunt",
+      "aliases": [],
+      "type": "amenity=community_centre",
+      "coords": [
+        5.22014,
+        52.099342
+      ]
+    },
+    {
+      "id": "way/273969002",
+      "name": "Kwikstraat carwash XXXL",
+      "aliases": [],
+      "type": "amenity=car_wash",
+      "coords": [
+        5.213507,
+        52.087111
+      ]
+    },
+    {
+      "id": "way/296672027",
+      "name": "VVSO WVT",
+      "aliases": [],
+      "type": "amenity=community_centre",
+      "coords": [
+        5.187255,
+        52.125004
+      ]
+    },
+    {
+      "id": "way/306272633",
+      "name": "Boetzelaerpark",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        5.174881,
+        52.104081
+      ]
+    },
+    {
+      "id": "way/318341955",
+      "name": "Parkeren SEH en radiotherapie",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.18248,
+        52.087037
+      ]
+    },
+    {
+      "id": "way/318362542",
+      "name": "fietsenstalling radiotherapie",
+      "aliases": [],
+      "type": "amenity=bicycle_parking",
+      "coords": [
+        5.182438,
+        52.08724
+      ]
+    },
+    {
+      "id": "way/530395860",
+      "name": "Milieustraat De Bilt",
+      "aliases": [],
+      "type": "amenity=recycling",
+      "coords": [
+        5.17337,
+        52.113705
+      ]
+    },
+    {
+      "id": "way/583012681",
+      "name": "P2 (WKZ)",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.181883,
+        52.089842
+      ]
+    },
+    {
+      "id": "way/583012682",
+      "name": "P1 (WKZ)",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.181935,
+        52.089014
+      ]
+    },
+    {
+      "id": "way/729798320",
+      "name": "Weekmarkt",
+      "aliases": [],
+      "type": "amenity=marketplace",
+      "coords": [
+        5.183872,
+        52.120381
+      ]
+    },
+    {
+      "id": "way/952625806",
+      "name": "De Leyen",
+      "aliases": [],
+      "type": "leisure=nature_reserve",
+      "coords": [
+        5.18163,
+        52.129255
+      ]
+    },
+    {
+      "id": "way/1000339513",
+      "name": "Natuurpark Bloeyendael",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        5.149922,
+        52.095218
+      ]
+    },
+    {
+      "id": "way/1001354806",
+      "name": "OV-fiets",
+      "aliases": [],
+      "type": "amenity=bicycle_rental",
+      "coords": [
+        5.152862,
+        52.092441
+      ]
+    },
+    {
+      "id": "way/1001488824",
+      "name": "ATV Stadion",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.156182,
+        52.095398
+      ]
+    },
+    {
+      "id": "way/1033721822",
+      "name": "Beerschoten, Houdringe en Panbos",
+      "aliases": [],
+      "type": "leisure=nature_reserve",
+      "coords": [
+        5.21361,
+        52.113433
+      ]
+    },
+    {
+      "id": "way/1176590952",
+      "name": "Theetuin Kansrijk",
+      "aliases": [],
+      "type": "leisure=outdoor_seating",
+      "coords": [
+        5.159751,
+        52.120009
+      ]
+    },
+    {
+      "id": "way/1209775954",
+      "name": "P9-Princetonlaan",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.165715,
+        52.087888
+      ]
+    },
+    {
+      "id": "way/1265284692",
+      "name": "P+R Bilthoven",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        5.202254,
+        52.129868
+      ]
+    },
+    {
+      "id": "way/1324179673",
+      "name": "Beukenburg",
+      "aliases": [],
+      "type": "leisure=nature_reserve",
+      "coords": [
+        5.170368,
+        52.131754
+      ]
+    },
+    {
+      "id": "way/1456939349",
+      "name": "Allego",
+      "aliases": [],
+      "type": "amenity=charging_station",
+      "coords": [
+        5.193859,
+        52.102562
+      ]
+    },
+    {
+      "id": "way/1470123785",
+      "name": "Noord-Houdringe",
+      "aliases": [],
+      "type": "leisure=nature_reserve",
+      "coords": [
+        5.213297,
+        52.119312
+      ]
+    },
+    {
+      "id": "way/1498407379",
+      "name": "Werken bij Griftenstein",
+      "aliases": [],
+      "type": "leisure=nature_reserve",
+      "coords": [
+        5.161827,
+        52.101076
+      ]
+    },
+    {
+      "id": "way/1498408838",
+      "name": "Voordaanse Bos",
+      "aliases": [
+        "Voordaan"
+      ],
+      "type": "leisure=nature_reserve",
+      "coords": [
+        5.15828,
+        52.129185
+      ]
+    },
+    {
+      "id": "relation/3649520",
+      "name": "Science Park Zeist",
+      "aliases": [],
+      "type": "amenity=research_institute",
+      "coords": [
+        5.221112,
+        52.091677
+      ]
+    },
+    {
+      "id": "node/45204186",
+      "name": "Knooppunt Rijnsweerd",
+      "aliases": [],
+      "type": "highway=motorway_junction",
+      "coords": [
+        5.155296,
+        52.090551
+      ]
+    },
+    {
+      "id": "node/45210786",
+      "name": "Utrecht-Science Park",
+      "aliases": [],
+      "type": "highway=motorway_junction",
+      "coords": [
+        5.180346,
+        52.092405
+      ]
+    },
+    {
+      "id": "node/857421568",
+      "name": "Utrecht-Rijnsweerd",
+      "aliases": [],
+      "type": "highway=motorway_junction",
+      "coords": [
+        5.159214,
+        52.094172
+      ]
+    },
+    {
+      "id": "node/857463053",
+      "name": "Utrecht-Oost",
+      "aliases": [],
+      "type": "highway=motorway_junction",
+      "coords": [
+        5.156381,
+        52.098759
+      ]
+    },
+    {
+      "id": "way/4701512",
+      "name": "Pythagoraslaan",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.149375,
+        52.092072
+      ]
+    },
+    {
+      "id": "way/6991586",
+      "name": "Amersfoortseweg",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.213602,
+        52.104464
+      ]
+    },
+    {
+      "id": "way/6991652",
+      "name": "Comeniuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.220982,
+        52.101634
+      ]
+    },
+    {
+      "id": "way/6998573",
+      "name": "Burgemeester Van der Borchlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.219706,
+        52.130178
+      ]
+    },
+    {
+      "id": "way/6998697",
+      "name": "Amandelboom",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.200663,
+        52.121787
+      ]
+    },
+    {
+      "id": "way/6998708",
+      "name": "Jan van Eycklaan",
+      "aliases": [],
+      "type": "highway=tertiary",
+      "coords": [
+        5.197444,
+        52.131137
+      ]
+    },
+    {
+      "id": "way/6998776",
+      "name": "Noord-Houdringelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.20106,
+        52.122034
+      ]
+    },
+    {
+      "id": "way/6998778",
+      "name": "Valkenierlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.197872,
+        52.124381
+      ]
+    },
+    {
+      "id": "way/6998779",
+      "name": "Weidmanlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.198564,
+        52.124342
+      ]
+    },
+    {
+      "id": "way/6998781",
+      "name": "Jachthoornlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.197457,
+        52.124415
+      ]
+    },
+    {
+      "id": "way/6998783",
+      "name": "Kooikersplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.197832,
+        52.125238
+      ]
+    },
+    {
+      "id": "way/6998786",
+      "name": "Waterhoenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.212817,
+        52.126001
+      ]
+    },
+    {
+      "id": "way/6998788",
+      "name": "Drijverslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.196928,
+        52.124487
+      ]
+    },
+    {
+      "id": "way/6998797",
+      "name": "Tureluurlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.213948,
+        52.125375
+      ]
+    },
+    {
+      "id": "way/6998951",
+      "name": "Spreeuwlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.210507,
+        52.129318
+      ]
+    },
+    {
+      "id": "way/6998954",
+      "name": "Goudhaantjeslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.213837,
+        52.127547
+      ]
+    },
+    {
+      "id": "way/6998956",
+      "name": "Bosuillaan",
+      "aliases": [],
+      "type": "highway=pedestrian",
+      "coords": [
+        5.21642,
+        52.1292
+      ]
+    },
+    {
+      "id": "way/6998959",
+      "name": "Plein Vogelzang",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.206078,
+        52.126696
+      ]
+    },
+    {
+      "id": "way/6998963",
+      "name": "Koekoeklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.207326,
+        52.127662
+      ]
+    },
+    {
+      "id": "way/6998964",
+      "name": "Merellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.20748,
+        52.127044
+      ]
+    },
+    {
+      "id": "way/6998972",
+      "name": "Goudvinklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.211926,
+        52.127891
+      ]
+    },
+    {
+      "id": "way/6998997",
+      "name": "Koppellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.198844,
+        52.127814
+      ]
+    },
+    {
+      "id": "way/6999014",
+      "name": "Groenlinglaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.21148,
+        52.128337
+      ]
+    },
+    {
+      "id": "way/6999015",
+      "name": "Kramsvogellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.211009,
+        52.128837
+      ]
+    },
+    {
+      "id": "way/6999016",
+      "name": "Koperwieklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.213505,
+        52.126728
+      ]
+    },
+    {
+      "id": "way/6999024",
+      "name": "Kruisbeklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.211685,
+        52.126968
+      ]
+    },
+    {
+      "id": "way/6999027",
+      "name": "Kruislaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.20004,
+        52.127432
+      ]
+    },
+    {
+      "id": "way/6999029",
+      "name": "Geelgorslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.212439,
+        52.127348
+      ]
+    },
+    {
+      "id": "way/6999031",
+      "name": "Nachtegaallaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.204532,
+        52.127069
+      ]
+    },
+    {
+      "id": "way/6999036",
+      "name": "Prins Hendriklaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.203688,
+        52.128504
+      ]
+    },
+    {
+      "id": "way/6999037",
+      "name": "Lijsterlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.212988,
+        52.128534
+      ]
+    },
+    {
+      "id": "way/6999043",
+      "name": "Overboslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.202801,
+        52.124458
+      ]
+    },
+    {
+      "id": "way/6999045",
+      "name": "Middellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.198659,
+        52.12661
+      ]
+    },
+    {
+      "id": "way/6999054",
+      "name": "Korte Boslaan",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.205635,
+        52.125624
+      ]
+    },
+    {
+      "id": "way/6999069",
+      "name": "Meerkoetlaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.210883,
+        52.126294
+      ]
+    },
+    {
+      "id": "way/6999071",
+      "name": "Meutelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.196979,
+        52.125253
+      ]
+    },
+    {
+      "id": "way/6999075",
+      "name": "Drift",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.196615,
+        52.125606
+      ]
+    },
+    {
+      "id": "way/6999076",
+      "name": "Spotvogellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.215081,
+        52.126416
+      ]
+    },
+    {
+      "id": "way/6999078",
+      "name": "Staartmeeslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.214466,
+        52.126397
+      ]
+    },
+    {
+      "id": "way/6999080",
+      "name": "Wissellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.198157,
+        52.126379
+      ]
+    },
+    {
+      "id": "way/6999084",
+      "name": "Putterlaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.209271,
+        52.126598
+      ]
+    },
+    {
+      "id": "way/6999097",
+      "name": "Tortellaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.211328,
+        52.125904
+      ]
+    },
+    {
+      "id": "way/6999104",
+      "name": "Prins Bernhardlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.205773,
+        52.130129
+      ]
+    },
+    {
+      "id": "way/6999135",
+      "name": "Nimrodlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.196916,
+        52.124035
+      ]
+    },
+    {
+      "id": "way/6999137",
+      "name": "Kortelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.199851,
+        52.124167
+      ]
+    },
+    {
+      "id": "way/6999138",
+      "name": "Parklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.203823,
+        52.12397
+      ]
+    },
+    {
+      "id": "way/6999142",
+      "name": "Hoflaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.20191,
+        52.123627
+      ]
+    },
+    {
+      "id": "way/6999157",
+      "name": "Julianalaan",
+      "aliases": [],
+      "type": "highway=tertiary",
+      "coords": [
+        5.208414,
+        52.12972
+      ]
+    },
+    {
+      "id": "way/6999494",
+      "name": "Grote Beer",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.186624,
+        52.120785
+      ]
+    },
+    {
+      "id": "way/6999499",
+      "name": "Burgemeester Fabiuspark",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.193695,
+        52.121183
+      ]
+    },
+    {
+      "id": "way/6999503",
+      "name": "Anne Franklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.193495,
+        52.125527
+      ]
+    },
+    {
+      "id": "way/6999518",
+      "name": "Tweelingen",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.180329,
+        52.121942
+      ]
+    },
+    {
+      "id": "way/6999522",
+      "name": "Dudokkwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185471,
+        52.12681
+      ]
+    },
+    {
+      "id": "way/6999529",
+      "name": "Hendrick de Keyserkwartier",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.188459,
+        52.126976
+      ]
+    },
+    {
+      "id": "way/6999534",
+      "name": "Berlagelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.187736,
+        52.126282
+      ]
+    },
+    {
+      "id": "way/6999543",
+      "name": "Weegschaal",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.183887,
+        52.122135
+      ]
+    },
+    {
+      "id": "way/6999545",
+      "name": "Noorderkroon",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.17994,
+        52.122635
+      ]
+    },
+    {
+      "id": "way/6999548",
+      "name": "Hazenlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.191687,
+        52.122513
+      ]
+    },
+    {
+      "id": "way/6999551",
+      "name": "Oude Brandenburgerweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.188381,
+        52.122433
+      ]
+    },
+    {
+      "id": "way/6999558",
+      "name": "Pieter Postkwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.186674,
+        52.125929
+      ]
+    },
+    {
+      "id": "way/6999576",
+      "name": "Fazantenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.191367,
+        52.123526
+      ]
+    },
+    {
+      "id": "way/6999578",
+      "name": "Snippenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.190295,
+        52.12298
+      ]
+    },
+    {
+      "id": "way/6999581",
+      "name": "Waterman",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.185855,
+        52.123515
+      ]
+    },
+    {
+      "id": "way/6999582",
+      "name": "Iepenlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.18795,
+        52.128517
+      ]
+    },
+    {
+      "id": "way/6999583",
+      "name": "Rogier van der Weydenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.19566,
+        52.129017
+      ]
+    },
+    {
+      "id": "way/6999587",
+      "name": "Jachtlaan",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.196418,
+        52.122705
+      ]
+    },
+    {
+      "id": "way/6999588",
+      "name": "Zwanenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.187398,
+        52.122972
+      ]
+    },
+    {
+      "id": "way/6999663",
+      "name": "Talinglaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.188125,
+        52.124468
+      ]
+    },
+    {
+      "id": "way/6999670",
+      "name": "Kuifeendlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.190779,
+        52.125225
+      ]
+    },
+    {
+      "id": "way/6999675",
+      "name": "Sterrenplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.18669,
+        52.124974
+      ]
+    },
+    {
+      "id": "way/6999676",
+      "name": "Jacob van Campenkwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184785,
+        52.125632
+      ]
+    },
+    {
+      "id": "way/6999679",
+      "name": "Korhoenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.18778,
+        52.123761
+      ]
+    },
+    {
+      "id": "way/6999699",
+      "name": "Melkweg",
+      "aliases": [],
+      "type": "highway=tertiary",
+      "coords": [
+        5.182536,
+        52.121023
+      ]
+    },
+    {
+      "id": "way/6999702",
+      "name": "Pluvierenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.186364,
+        52.122169
+      ]
+    },
+    {
+      "id": "way/6999708",
+      "name": "Eikenlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.186679,
+        52.128861
+      ]
+    },
+    {
+      "id": "way/6999713",
+      "name": "Hugo van der Goeslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.192905,
+        52.12948
+      ]
+    },
+    {
+      "id": "way/6999715",
+      "name": "Apollovlinder",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.194278,
+        52.12951
+      ]
+    },
+    {
+      "id": "way/6999716",
+      "name": "Bongerdlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.191283,
+        52.127753
+      ]
+    },
+    {
+      "id": "way/6999723",
+      "name": "Pieter de Swartkwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184326,
+        52.126857
+      ]
+    },
+    {
+      "id": "way/6999726",
+      "name": "Geertgen tot Sint Janslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.192929,
+        52.127919
+      ]
+    },
+    {
+      "id": "way/6999736",
+      "name": "Justus van Gentlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.19402,
+        52.128697
+      ]
+    },
+    {
+      "id": "way/6999738",
+      "name": "Acacialaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.189064,
+        52.128923
+      ]
+    },
+    {
+      "id": "way/6999740",
+      "name": "Goudenregenlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.185947,
+        52.128631
+      ]
+    },
+    {
+      "id": "way/6999745",
+      "name": "Haagbeuklaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.189225,
+        52.128938
+      ]
+    },
+    {
+      "id": "way/6999759",
+      "name": "Sparrenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.18553,
+        52.13011
+      ]
+    },
+    {
+      "id": "way/6999764",
+      "name": "Pieter Breughellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.194111,
+        52.130771
+      ]
+    },
+    {
+      "id": "way/6999767",
+      "name": "Lindelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.1885,
+        52.130078
+      ]
+    },
+    {
+      "id": "way/6999779",
+      "name": "Prunuslaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.184944,
+        52.12868
+      ]
+    },
+    {
+      "id": "way/6999795",
+      "name": "Bakemakwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185677,
+        52.127357
+      ]
+    },
+    {
+      "id": "way/6999798",
+      "name": "Pieter Noorwitskwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184479,
+        52.127451
+      ]
+    },
+    {
+      "id": "way/6999810",
+      "name": "Berkenlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.186474,
+        52.129393
+      ]
+    },
+    {
+      "id": "way/6999819",
+      "name": "Kleine Beer",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.186354,
+        52.121878
+      ]
+    },
+    {
+      "id": "way/6999820",
+      "name": "Steenbokplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.182157,
+        52.123436
+      ]
+    },
+    {
+      "id": "way/6999825",
+      "name": "Patrijzenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.191866,
+        52.123225
+      ]
+    },
+    {
+      "id": "way/6999829",
+      "name": "Schorpioen",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184018,
+        52.123335
+      ]
+    },
+    {
+      "id": "way/6999837",
+      "name": "Jacob Romankwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.187171,
+        52.126617
+      ]
+    },
+    {
+      "id": "way/6999850",
+      "name": "Sint Hubertuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.19554,
+        52.123773
+      ]
+    },
+    {
+      "id": "way/6999856",
+      "name": "Boogschutterplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.183732,
+        52.123855
+      ]
+    },
+    {
+      "id": "way/6999881",
+      "name": "Larikslaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.185047,
+        52.129656
+      ]
+    },
+    {
+      "id": "way/6999885",
+      "name": "Donsvlinder",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.19142,
+        52.12977
+      ]
+    },
+    {
+      "id": "way/6999903",
+      "name": "Dudoklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184319,
+        52.127142
+      ]
+    },
+    {
+      "id": "way/6999919",
+      "name": "Magnolialaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.185938,
+        52.129313
+      ]
+    },
+    {
+      "id": "way/6999939",
+      "name": "Orionlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185453,
+        52.123069
+      ]
+    },
+    {
+      "id": "way/6999955",
+      "name": "Hertenlaan",
+      "aliases": [],
+      "type": "highway=tertiary",
+      "coords": [
+        5.191203,
+        52.122976
+      ]
+    },
+    {
+      "id": "way/7002703",
+      "name": "Versteeglaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.150467,
+        52.121493
+      ]
+    },
+    {
+      "id": "way/7002718",
+      "name": "Veldlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.158995,
+        52.1242
+      ]
+    },
+    {
+      "id": "way/7002722",
+      "name": "Vijverlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.155924,
+        52.125575
+      ]
+    },
+    {
+      "id": "way/7002727",
+      "name": "Kastanjelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.153367,
+        52.1252
+      ]
+    },
+    {
+      "id": "way/7002770",
+      "name": "Lindenlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.15546,
+        52.128412
+      ]
+    },
+    {
+      "id": "way/7002773",
+      "name": "Grothelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.15579,
+        52.123635
+      ]
+    },
+    {
+      "id": "way/7002775",
+      "name": "Eiklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.157248,
+        52.124294
+      ]
+    },
+    {
+      "id": "way/7002785",
+      "name": "Copijnlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.148748,
+        52.122851
+      ]
+    },
+    {
+      "id": "way/7002831",
+      "name": "Beukenburgerlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.165613,
+        52.12381
+      ]
+    },
+    {
+      "id": "way/7004931",
+      "name": "Brugakker",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.208258,
+        52.084886
+      ]
+    },
+    {
+      "id": "way/7004944",
+      "name": "Nijenheim",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.217447,
+        52.085014
+      ]
+    },
+    {
+      "id": "way/7004987",
+      "name": "Koppelweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.216256,
+        52.086582
+      ]
+    },
+    {
+      "id": "way/7005042",
+      "name": "Nijenheim 90-98",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.219018,
+        52.085273
+      ]
+    },
+    {
+      "id": "way/7005085",
+      "name": "Nijenheim 80-88",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.217793,
+        52.08502
+      ]
+    },
+    {
+      "id": "way/7005171",
+      "name": "Lepelaarlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.212689,
+        52.089084
+      ]
+    },
+    {
+      "id": "way/7005183",
+      "name": "Vinkenlaag",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.215278,
+        52.09483
+      ]
+    },
+    {
+      "id": "way/7005188",
+      "name": "Kroostweg-Noord",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.213652,
+        52.095394
+      ]
+    },
+    {
+      "id": "way/7005195",
+      "name": "Roerdomplaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.216013,
+        52.087435
+      ]
+    },
+    {
+      "id": "way/7005244",
+      "name": "Kievitlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.216108,
+        52.088108
+      ]
+    },
+    {
+      "id": "way/7005251",
+      "name": "Aalscholverlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.212487,
+        52.088497
+      ]
+    },
+    {
+      "id": "way/7005261",
+      "name": "Pijlstaartlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.211461,
+        52.089274
+      ]
+    },
+    {
+      "id": "way/7005267",
+      "name": "Schorteldoeksesteeg",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.208953,
+        52.095994
+      ]
+    },
+    {
+      "id": "way/7005286",
+      "name": "Zeisteroever",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.214402,
+        52.090326
+      ]
+    },
+    {
+      "id": "way/7005294",
+      "name": "De Gooyertiend",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.214072,
+        52.089584
+      ]
+    },
+    {
+      "id": "way/7005297",
+      "name": "Duifhuis",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.214774,
+        52.094954
+      ]
+    },
+    {
+      "id": "way/7005312",
+      "name": "Scholeksterlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.212054,
+        52.088637
+      ]
+    },
+    {
+      "id": "way/7005331",
+      "name": "Nijenheim 52",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.219908,
+        52.085718
+      ]
+    },
+    {
+      "id": "way/7005340",
+      "name": "Kwartellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.213699,
+        52.093038
+      ]
+    },
+    {
+      "id": "way/7005354",
+      "name": "Graskamp",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.214585,
+        52.095444
+      ]
+    },
+    {
+      "id": "way/7005380",
+      "name": "Fuutlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.212703,
+        52.087979
+      ]
+    },
+    {
+      "id": "way/7005397",
+      "name": "Griffensteijnselaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.21947,
+        52.088062
+      ]
+    },
+    {
+      "id": "way/7005416",
+      "name": "Noordweg-Noord",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.210294,
+        52.090959
+      ]
+    },
+    {
+      "id": "way/7005436",
+      "name": "De Dreef",
+      "aliases": [],
+      "type": "highway=secondary",
+      "coords": [
+        5.217379,
+        52.096074
+      ]
+    },
+    {
+      "id": "way/7005476",
+      "name": "De Holle Bilt",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.195728,
+        52.103075
+      ]
+    },
+    {
+      "id": "way/7005481",
+      "name": "Soestdijkseweg",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.197271,
+        52.12048
+      ]
+    },
+    {
+      "id": "way/7005497",
+      "name": "Bachlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.216158,
+        52.098885
+      ]
+    },
+    {
+      "id": "way/7005499",
+      "name": "Lisztplein",
+      "aliases": [],
+      "type": "highway=pedestrian",
+      "coords": [
+        5.217294,
+        52.099063
+      ]
+    },
+    {
+      "id": "way/7005505",
+      "name": "Beethovenlaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.21756,
+        52.097648
+      ]
+    },
+    {
+      "id": "way/7005519",
+      "name": "Daltonlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.217881,
+        52.101429
+      ]
+    },
+    {
+      "id": "way/7005520",
+      "name": "Jan Ligthartplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.219049,
+        52.101183
+      ]
+    },
+    {
+      "id": "way/7005549",
+      "name": "Koepellaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.218957,
+        52.096361
+      ]
+    },
+    {
+      "id": "way/7005560",
+      "name": "Montessorilaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.216743,
+        52.100516
+      ]
+    },
+    {
+      "id": "way/7005561",
+      "name": "Fröbellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.218039,
+        52.100482
+      ]
+    },
+    {
+      "id": "way/7005569",
+      "name": "Laan van Vollenhove",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.219889,
+        52.099485
+      ]
+    },
+    {
+      "id": "way/7005586",
+      "name": "Chopinlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.217669,
+        52.099342
+      ]
+    },
+    {
+      "id": "way/7005600",
+      "name": "Warande",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.219989,
+        52.097382
+      ]
+    },
+    {
+      "id": "way/7005612",
+      "name": "Strausslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.216132,
+        52.09974
+      ]
+    },
+    {
+      "id": "way/7005613",
+      "name": "Schubertlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.214955,
+        52.099544
+      ]
+    },
+    {
+      "id": "way/7005699",
+      "name": "Jasmijnstraat",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.183048,
+        52.106266
+      ]
+    },
+    {
+      "id": "way/7005700",
+      "name": "Burgemeester De Withstraat",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.181261,
+        52.105015
+      ]
+    },
+    {
+      "id": "way/7005710",
+      "name": "Kamperfoeliestraat",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.184367,
+        52.104856
+      ]
+    },
+    {
+      "id": "way/7005711",
+      "name": "De Witte Swaen",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185847,
+        52.104696
+      ]
+    },
+    {
+      "id": "way/7005730",
+      "name": "Seringstraat",
+      "aliases": [],
+      "type": "highway=construction",
+      "coords": [
+        5.184785,
+        52.10743
+      ]
+    },
+    {
+      "id": "way/7005731",
+      "name": "Lathyrusstraat",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.18311,
+        52.107869
+      ]
+    },
+    {
+      "id": "way/7005734",
+      "name": "Meidoornpad",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.184524,
+        52.106303
+      ]
+    },
+    {
+      "id": "way/7005737",
+      "name": "Akker",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.187905,
+        52.110337
+      ]
+    },
+    {
+      "id": "way/7005739",
+      "name": "Ambachtstraat",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185361,
+        52.108935
+      ]
+    },
+    {
+      "id": "way/7005750",
+      "name": "Dorpsstraat vanouds Steenstraat",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184198,
+        52.104433
+      ]
+    },
+    {
+      "id": "way/7005782",
+      "name": "Doctor Schaepmanweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.183745,
+        52.108921
+      ]
+    },
+    {
+      "id": "way/7005786",
+      "name": "Abraham Kuyperweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184241,
+        52.110916
+      ]
+    },
+    {
+      "id": "way/7005790",
+      "name": "Steenen Camer",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.183066,
+        52.116182
+      ]
+    },
+    {
+      "id": "way/7005797",
+      "name": "1e Brandenburgerweg",
+      "aliases": [
+        "Eerste Brandenburgerweg"
+      ],
+      "type": "highway=residential",
+      "coords": [
+        5.185628,
+        52.117602
+      ]
+    },
+    {
+      "id": "way/7005804",
+      "name": "Bildzigt",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.184698,
+        52.114233
+      ]
+    },
+    {
+      "id": "way/7005805",
+      "name": "Sint Laurensweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.186955,
+        52.112904
+      ]
+    },
+    {
+      "id": "way/7005808",
+      "name": "Runnebeek",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185544,
+        52.11369
+      ]
+    },
+    {
+      "id": "way/7005809",
+      "name": "Beatrixlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.186199,
+        52.115007
+      ]
+    },
+    {
+      "id": "way/7005811",
+      "name": "Planetenbaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184672,
+        52.120196
+      ]
+    },
+    {
+      "id": "way/7005827",
+      "name": "Van Hogendorpweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.189002,
+        52.110405
+      ]
+    },
+    {
+      "id": "way/7005829",
+      "name": "Vestalaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185524,
+        52.118765
+      ]
+    },
+    {
+      "id": "way/7005846",
+      "name": "Plutolaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185227,
+        52.119511
+      ]
+    },
+    {
+      "id": "way/7005862",
+      "name": "Meyenhagen",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184733,
+        52.116026
+      ]
+    },
+    {
+      "id": "way/7005866",
+      "name": "Abt Ludolfweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184317,
+        52.113032
+      ]
+    },
+    {
+      "id": "way/7005870",
+      "name": "Postlaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.189062,
+        52.117486
+      ]
+    },
+    {
+      "id": "way/7005885",
+      "name": "Van der Duyn van Maasdamweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.188208,
+        52.109769
+      ]
+    },
+    {
+      "id": "way/7005890",
+      "name": "Thorbeckeweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.18461,
+        52.112946
+      ]
+    },
+    {
+      "id": "way/7005906",
+      "name": "Meester S. van Houtenweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185214,
+        52.110697
+      ]
+    },
+    {
+      "id": "way/7005913",
+      "name": "Troelstraweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185986,
+        52.109744
+      ]
+    },
+    {
+      "id": "way/7005917",
+      "name": "De Mamuchetweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.188475,
+        52.112411
+      ]
+    },
+    {
+      "id": "way/7005925",
+      "name": "Uranuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184282,
+        52.119234
+      ]
+    },
+    {
+      "id": "way/7005936",
+      "name": "Saturnuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.183708,
+        52.118404
+      ]
+    },
+    {
+      "id": "way/7005939",
+      "name": "Antonie van Leeuwenhoeklaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.189718,
+        52.117733
+      ]
+    },
+    {
+      "id": "way/7005950",
+      "name": "Van Limburg Stirumweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.187926,
+        52.109364
+      ]
+    },
+    {
+      "id": "way/7005961",
+      "name": "De Savornin Lohmanweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.186207,
+        52.110733
+      ]
+    },
+    {
+      "id": "way/7005963",
+      "name": "Henrica van Erpweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.185487,
+        52.111367
+      ]
+    },
+    {
+      "id": "way/7006003",
+      "name": "Biltse Rading",
+      "aliases": [],
+      "type": "highway=secondary",
+      "coords": [
+        5.171571,
+        52.110058
+      ]
+    },
+    {
+      "id": "way/7006006",
+      "name": "François Mauriacweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.171292,
+        52.108533
+      ]
+    },
+    {
+      "id": "way/7006007",
+      "name": "Burgemeester Van Heemstrakwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.178153,
+        52.108313
+      ]
+    },
+    {
+      "id": "way/7006009",
+      "name": "Albert Einsteinweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.172338,
+        52.109253
+      ]
+    },
+    {
+      "id": "way/7006012",
+      "name": "Henri Dunantplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.173703,
+        52.109085
+      ]
+    },
+    {
+      "id": "way/7006014",
+      "name": "Nieuwstraat",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.182452,
+        52.108437
+      ]
+    },
+    {
+      "id": "way/7006021",
+      "name": "Kometenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.17948,
+        52.11873
+      ]
+    },
+    {
+      "id": "way/7006024",
+      "name": "Buys Ballotweg",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.182775,
+        52.114409
+      ]
+    },
+    {
+      "id": "way/7006028",
+      "name": "Professor doctor H. Kamerlingh Onnesweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.17778,
+        52.113419
+      ]
+    },
+    {
+      "id": "way/7006031",
+      "name": "Professor doctor J.D. van der Waalsweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.177316,
+        52.112455
+      ]
+    },
+    {
+      "id": "way/7006036",
+      "name": "Nimbusweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.181382,
+        52.112919
+      ]
+    },
+    {
+      "id": "way/7006041",
+      "name": "Professor doctor P. Zeemanweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.176813,
+        52.112023
+      ]
+    },
+    {
+      "id": "way/7006043",
+      "name": "Professor doctor P.J.W. Debijeweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.177137,
+        52.114073
+      ]
+    },
+    {
+      "id": "way/7006045",
+      "name": "Jupiterlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.182054,
+        52.116783
+      ]
+    },
+    {
+      "id": "way/7006048",
+      "name": "Professor doctor W. Einthovenweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.176706,
+        52.113366
+      ]
+    },
+    {
+      "id": "way/7006049",
+      "name": "Tempellaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.178815,
+        52.115844
+      ]
+    },
+    {
+      "id": "way/7006063",
+      "name": "Halleylaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.180365,
+        52.118069
+      ]
+    },
+    {
+      "id": "way/7006070",
+      "name": "Donatilaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.18101,
+        52.11941
+      ]
+    },
+    {
+      "id": "way/7006077",
+      "name": "Bielalaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.180574,
+        52.118739
+      ]
+    },
+    {
+      "id": "way/7006097",
+      "name": "Enckelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.181451,
+        52.120088
+      ]
+    },
+    {
+      "id": "way/7006111",
+      "name": "Aardelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.18123,
+        52.116751
+      ]
+    },
+    {
+      "id": "way/7006112",
+      "name": "Zephyrusweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.179979,
+        52.112716
+      ]
+    },
+    {
+      "id": "way/7006118",
+      "name": "Professor doctor P.J. Crutzenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.17376,
+        52.112334
+      ]
+    },
+    {
+      "id": "way/7006119",
+      "name": "Venuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.180728,
+        52.116046
+      ]
+    },
+    {
+      "id": "way/7006127",
+      "name": "Professor doctor J.H. van 't Hoffweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.177917,
+        52.115078
+      ]
+    },
+    {
+      "id": "way/7006131",
+      "name": "Aeolusweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.18004,
+        52.111787
+      ]
+    },
+    {
+      "id": "way/7006156",
+      "name": "Notusweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.179513,
+        52.109983
+      ]
+    },
+    {
+      "id": "way/7006164",
+      "name": "Stratusplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.181635,
+        52.113436
+      ]
+    },
+    {
+      "id": "way/7006167",
+      "name": "Professor doctor H.A. Lorentzweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.176721,
+        52.111276
+      ]
+    },
+    {
+      "id": "way/7006184",
+      "name": "Professor doctor C. Eijkmanweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.175558,
+        52.111728
+      ]
+    },
+    {
+      "id": "way/7006185",
+      "name": "Professor doctor J. Tinbergenweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.17535,
+        52.108882
+      ]
+    },
+    {
+      "id": "way/7006215",
+      "name": "Professor doctor T.M.C. Asserweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.176443,
+        52.110406
+      ]
+    },
+    {
+      "id": "way/7006245",
+      "name": "Professor doctor F. Zernikeweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.1785,
+        52.114021
+      ]
+    },
+    {
+      "id": "way/7006247",
+      "name": "Cumulusweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.179654,
+        52.110366
+      ]
+    },
+    {
+      "id": "way/7006261",
+      "name": "Hessenhof",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.179967,
+        52.109119
+      ]
+    },
+    {
+      "id": "way/7006262",
+      "name": "Cirrusweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.180711,
+        52.111892
+      ]
+    },
+    {
+      "id": "way/7006316",
+      "name": "Park Arenberg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.17085,
+        52.105026
+      ]
+    },
+    {
+      "id": "way/7006334",
+      "name": "Molenkamp",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.180808,
+        52.107369
+      ]
+    },
+    {
+      "id": "way/7006335",
+      "name": "Narcisstraat",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.182515,
+        52.105383
+      ]
+    },
+    {
+      "id": "way/7006336",
+      "name": "Waterweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.175311,
+        52.10689
+      ]
+    },
+    {
+      "id": "way/7006338",
+      "name": "Kerksteeg",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.182093,
+        52.104732
+      ]
+    },
+    {
+      "id": "way/7006340",
+      "name": "Dominee Sanderuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.180662,
+        52.104849
+      ]
+    },
+    {
+      "id": "way/7006343",
+      "name": "Lester Pearsonweg",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.172205,
+        52.108066
+      ]
+    },
+    {
+      "id": "way/7006346",
+      "name": "Dahliastraat",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.182745,
+        52.107342
+      ]
+    },
+    {
+      "id": "way/7006348",
+      "name": "Bilthovenseweg",
+      "aliases": [],
+      "type": "highway=busway",
+      "coords": [
+        5.176825,
+        52.103263
+      ]
+    },
+    {
+      "id": "way/7006352",
+      "name": "Essenkamp",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.179642,
+        52.105901
+      ]
+    },
+    {
+      "id": "way/7006356",
+      "name": "Prinsenlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.179958,
+        52.10274
+      ]
+    },
+    {
+      "id": "way/7006359",
+      "name": "Emmalaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.180996,
+        52.102393
+      ]
+    },
+    {
+      "id": "way/7006360",
+      "name": "Kerkdwarslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.172174,
+        52.104571
+      ]
+    },
+    {
+      "id": "way/7006373",
+      "name": "Torenstraat",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.181603,
+        52.105615
+      ]
+    },
+    {
+      "id": "way/7006384",
+      "name": "Westerlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.172218,
+        52.105712
+      ]
+    },
+    {
+      "id": "way/7006399",
+      "name": "Schoolstraat",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.18197,
+        52.106163
+      ]
+    },
+    {
+      "id": "way/7006400",
+      "name": "Rozenstraat",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.182328,
+        52.106711
+      ]
+    },
+    {
+      "id": "way/7006415",
+      "name": "Zorgvliet",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.178702,
+        52.104495
+      ]
+    },
+    {
+      "id": "way/7006428",
+      "name": "Marie Curieweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.17445,
+        52.108295
+      ]
+    },
+    {
+      "id": "way/7006432",
+      "name": "Robert Kochweg",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.174277,
+        52.108141
+      ]
+    },
+    {
+      "id": "way/7006445",
+      "name": "Kapelweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.183927,
+        52.103894
+      ]
+    },
+    {
+      "id": "way/7006451",
+      "name": "Groen van Prinstererweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.176919,
+        52.106696
+      ]
+    },
+    {
+      "id": "way/7006459",
+      "name": "Kloosterlaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.178866,
+        52.101013
+      ]
+    },
+    {
+      "id": "way/7006460",
+      "name": "Ralph Buncheweg",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.173717,
+        52.1075
+      ]
+    },
+    {
+      "id": "way/7006464",
+      "name": "Frederick G. Hopkinsweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.173377,
+        52.107301
+      ]
+    },
+    {
+      "id": "way/7006471",
+      "name": "Leliestraat",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.182525,
+        52.10703
+      ]
+    },
+    {
+      "id": "way/7006498",
+      "name": "Blauwkapelseweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.173817,
+        52.106505
+      ]
+    },
+    {
+      "id": "way/7006539",
+      "name": "Lundlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.178201,
+        52.087976
+      ]
+    },
+    {
+      "id": "way/7006548",
+      "name": "Münsterlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.189876,
+        52.084144
+      ]
+    },
+    {
+      "id": "way/7006567",
+      "name": "Hoofddijk",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.180062,
+        52.087927
+      ]
+    },
+    {
+      "id": "way/7006596",
+      "name": "Genèvelaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.17127,
+        52.085601
+      ]
+    },
+    {
+      "id": "way/7006615",
+      "name": "Heidelberglaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.178813,
+        52.085329
+      ]
+    },
+    {
+      "id": "way/7006677",
+      "name": "Marburglaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.185956,
+        52.084148
+      ]
+    },
+    {
+      "id": "way/7006767",
+      "name": "R.G.E. Campschroerlaantje",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.183349,
+        52.087492
+      ]
+    },
+    {
+      "id": "way/7006949",
+      "name": "Esther de Boer-van Rijklaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.153268,
+        52.087168
+      ]
+    },
+    {
+      "id": "way/7006953",
+      "name": "Louis Davidslaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.158302,
+        52.086749
+      ]
+    },
+    {
+      "id": "way/7006958",
+      "name": "Paul Huflaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.151737,
+        52.0863
+      ]
+    },
+    {
+      "id": "way/7006966",
+      "name": "Ovidiuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.154503,
+        52.085989
+      ]
+    },
+    {
+      "id": "way/7006976",
+      "name": "Louis Bouwmeesterlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.150751,
+        52.086823
+      ]
+    },
+    {
+      "id": "way/7006978",
+      "name": "Xenophonlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.156627,
+        52.085718
+      ]
+    },
+    {
+      "id": "way/7006983",
+      "name": "Louis Saalbornlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.151542,
+        52.085537
+      ]
+    },
+    {
+      "id": "way/7006996",
+      "name": "Fie Carelsenlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.152021,
+        52.0874
+      ]
+    },
+    {
+      "id": "way/7006999",
+      "name": "Magda Janssenslaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.154103,
+        52.087489
+      ]
+    },
+    {
+      "id": "way/7007006",
+      "name": "Sorbonnelaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.163625,
+        52.088032
+      ]
+    },
+    {
+      "id": "way/7007016",
+      "name": "Fien de la Marlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.158674,
+        52.085853
+      ]
+    },
+    {
+      "id": "way/7007018",
+      "name": "Herodotuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.15389,
+        52.085563
+      ]
+    },
+    {
+      "id": "way/7007044",
+      "name": "Dirk Wittelaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.158242,
+        52.085878
+      ]
+    },
+    {
+      "id": "way/7007065",
+      "name": "Vergiliuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.157147,
+        52.085134
+      ]
+    },
+    {
+      "id": "way/7007085",
+      "name": "Sophocleslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.153827,
+        52.084888
+      ]
+    },
+    {
+      "id": "way/7007088",
+      "name": "Caesarlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.156513,
+        52.084726
+      ]
+    },
+    {
+      "id": "way/7007130",
+      "name": "Albert van Dalsumlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.152362,
+        52.087576
+      ]
+    },
+    {
+      "id": "way/7007137",
+      "name": "Eduard Verkadelaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.152203,
+        52.08836
+      ]
+    },
+    {
+      "id": "way/7007143",
+      "name": "Pisuisselaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.156726,
+        52.08786
+      ]
+    },
+    {
+      "id": "way/7007145",
+      "name": "Varrolaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.151583,
+        52.091639
+      ]
+    },
+    {
+      "id": "way/7007158",
+      "name": "Euclideslaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.150566,
+        52.090495
+      ]
+    },
+    {
+      "id": "way/7007166",
+      "name": "Johan Buziaulaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.156927,
+        52.086998
+      ]
+    },
+    {
+      "id": "way/7007177",
+      "name": "Princetonplein",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.165303,
+        52.087897
+      ]
+    },
+    {
+      "id": "way/7007180",
+      "name": "Rika Hopperlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.15308,
+        52.087913
+      ]
+    },
+    {
+      "id": "way/7007220",
+      "name": "Budapestlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.168714,
+        52.087297
+      ]
+    },
+    {
+      "id": "way/7007446",
+      "name": "Biltsestraatweg",
+      "aliases": [],
+      "type": "highway=primary",
+      "coords": [
+        5.150492,
+        52.097368
+      ]
+    },
+    {
+      "id": "way/7007515",
+      "name": "Voordorpsedijk",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.167968,
+        52.108203
+      ]
+    },
+    {
+      "id": "way/7652962",
+      "name": "Roodborstlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.213268,
+        52.128449
+      ]
+    },
+    {
+      "id": "way/7652965",
+      "name": "Esdoornlaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.18882,
+        52.12847
+      ]
+    },
+    {
+      "id": "way/14486794",
+      "name": "Hoogekampse Pad",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.162509,
+        52.114864
+      ]
+    },
+    {
+      "id": "way/23486860",
+      "name": "Uppsalapad",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.176254,
+        52.092092
+      ]
+    },
+    {
+      "id": "way/23728016",
+      "name": "Voordaansepad",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.157014,
+        52.12835
+      ]
+    },
+    {
+      "id": "way/26764337",
+      "name": "Princetonlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.165196,
+        52.088881
+      ]
+    },
+    {
+      "id": "way/27462569",
+      "name": "Voorveldse Pad",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.155077,
+        52.106535
+      ]
+    },
+    {
+      "id": "way/44785590",
+      "name": "Schaapsdrift",
+      "aliases": [],
+      "type": "highway=track",
+      "coords": [
+        5.200635,
+        52.11113
+      ]
+    },
+    {
+      "id": "way/45672427",
+      "name": "Visserssteeg",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.194768,
+        52.104799
+      ]
+    },
+    {
+      "id": "way/46342441",
+      "name": "Tuinstraat",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.184982,
+        52.106254
+      ]
+    },
+    {
+      "id": "way/46421436",
+      "name": "Martin Luther Kingweg",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.172987,
+        52.111384
+      ]
+    },
+    {
+      "id": "way/48001565",
+      "name": "Twislaan",
+      "aliases": [],
+      "type": "highway=track",
+      "coords": [
+        5.172914,
+        52.124184
+      ]
+    },
+    {
+      "id": "way/48439796",
+      "name": "Koldeweylaan",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.186382,
+        52.126497
+      ]
+    },
+    {
+      "id": "way/48991313",
+      "name": "Wim Sonneveldlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.158214,
+        52.086355
+      ]
+    },
+    {
+      "id": "way/50737103",
+      "name": "Hans Memlinglaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.193982,
+        52.130417
+      ]
+    },
+    {
+      "id": "way/50737106",
+      "name": "Kees Boekelaan",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.191555,
+        52.128743
+      ]
+    },
+    {
+      "id": "way/51547938",
+      "name": "Neptunuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.183414,
+        52.119009
+      ]
+    },
+    {
+      "id": "way/66828789",
+      "name": "Wildlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.196108,
+        52.12374
+      ]
+    },
+    {
+      "id": "way/75066256",
+      "name": "Eijkensteinse Laan",
+      "aliases": [],
+      "type": "highway=track",
+      "coords": [
+        5.182195,
+        52.129508
+      ]
+    },
+    {
+      "id": "way/82954103",
+      "name": "Sniplaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.214236,
+        52.088397
+      ]
+    },
+    {
+      "id": "way/107031423",
+      "name": "Liviuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.155477,
+        52.085747
+      ]
+    },
+    {
+      "id": "way/143367731",
+      "name": "Weteringlaan",
+      "aliases": [],
+      "type": "highway=tertiary",
+      "coords": [
+        5.212575,
+        52.084265
+      ]
+    },
+    {
+      "id": "way/145509977",
+      "name": "Lipsplein",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.215508,
+        52.089522
+      ]
+    },
+    {
+      "id": "way/145674059",
+      "name": "Eikensteinselaantje",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.21911,
+        52.097032
+      ]
+    },
+    {
+      "id": "way/147400758",
+      "name": "Eurusweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.181423,
+        52.111058
+      ]
+    },
+    {
+      "id": "way/154839727",
+      "name": "Biltstein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.182318,
+        52.103628
+      ]
+    },
+    {
+      "id": "way/158672010",
+      "name": "Harvardlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.176288,
+        52.090036
+      ]
+    },
+    {
+      "id": "way/159384443",
+      "name": "Uilenpad",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.209128,
+        52.128801
+      ]
+    },
+    {
+      "id": "way/164703125",
+      "name": "Lagegrond",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.204493,
+        52.084922
+      ]
+    },
+    {
+      "id": "way/166555665",
+      "name": "Reigerlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.215408,
+        52.087952
+      ]
+    },
+    {
+      "id": "way/177467929",
+      "name": "Ooievaarlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.191521,
+        52.125723
+      ]
+    },
+    {
+      "id": "way/181281477",
+      "name": "Spechtlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.216331,
+        52.124794
+      ]
+    },
+    {
+      "id": "way/195687815",
+      "name": "C. de Haasweg",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.176243,
+        52.117943
+      ]
+    },
+    {
+      "id": "way/195808484",
+      "name": "P.C. Staalweg",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.177814,
+        52.120553
+      ]
+    },
+    {
+      "id": "way/198487735",
+      "name": "Mozartlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.216286,
+        52.099391
+      ]
+    },
+    {
+      "id": "way/202512660",
+      "name": "Jacobssteeg",
+      "aliases": [],
+      "type": "highway=track",
+      "coords": [
+        5.187234,
+        52.093562
+      ]
+    },
+    {
+      "id": "way/203326092",
+      "name": "Beukenlaantje",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.177874,
+        52.11872
+      ]
+    },
+    {
+      "id": "way/203987383",
+      "name": "Dravik",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.187377,
+        52.130334
+      ]
+    },
+    {
+      "id": "way/204128820",
+      "name": "Cor Ruyslaan",
+      "aliases": [],
+      "type": "highway=living_street",
+      "coords": [
+        5.150697,
+        52.08563
+      ]
+    },
+    {
+      "id": "way/207870991",
+      "name": "Meuteplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.196414,
+        52.124512
+      ]
+    },
+    {
+      "id": "way/207870992",
+      "name": "Schutterslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.196462,
+        52.124983
+      ]
+    },
+    {
+      "id": "way/210729887",
+      "name": "Plevierpad",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.21552,
+        52.088869
+      ]
+    },
+    {
+      "id": "way/210729891",
+      "name": "Gruttolaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.217526,
+        52.08825
+      ]
+    },
+    {
+      "id": "way/211439456",
+      "name": "Perenlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.191905,
+        52.127342
+      ]
+    },
+    {
+      "id": "way/211877738",
+      "name": "Appellaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.190713,
+        52.128862
+      ]
+    },
+    {
+      "id": "way/211877739",
+      "name": "Kersenlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.190157,
+        52.128711
+      ]
+    },
+    {
+      "id": "way/212378978",
+      "name": "Tuinfluiterlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.215669,
+        52.125864
+      ]
+    },
+    {
+      "id": "way/212378979",
+      "name": "Pimpelmeeslaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.215731,
+        52.126172
+      ]
+    },
+    {
+      "id": "way/212378981",
+      "name": "Zwartkoplaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.215461,
+        52.126109
+      ]
+    },
+    {
+      "id": "way/212380098",
+      "name": "Zwaluwlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.213984,
+        52.128226
+      ]
+    },
+    {
+      "id": "way/212380100",
+      "name": "Winterkoninglaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.213877,
+        52.127902
+      ]
+    },
+    {
+      "id": "way/212380102",
+      "name": "Fitislaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.213681,
+        52.12813
+      ]
+    },
+    {
+      "id": "way/214108504",
+      "name": "Rietzangerlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.21182,
+        52.12599
+      ]
+    },
+    {
+      "id": "way/214108507",
+      "name": "Karekietlaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.211438,
+        52.126077
+      ]
+    },
+    {
+      "id": "way/214782257",
+      "name": "Albert Schweitzerweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.175484,
+        52.109472
+      ]
+    },
+    {
+      "id": "way/214782892",
+      "name": "Cornelius Heymansweg",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.175296,
+        52.109653
+      ]
+    },
+    {
+      "id": "way/219882398",
+      "name": "Otto Hahnweg",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.173252,
+        52.107647
+      ]
+    },
+    {
+      "id": "way/219943882",
+      "name": "Maurice Maeterlinckweg",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.173019,
+        52.108964
+      ]
+    },
+    {
+      "id": "way/222830287",
+      "name": "Massijslaan",
+      "aliases": [],
+      "type": "highway=tertiary",
+      "coords": [
+        5.193455,
+        52.129089
+      ]
+    },
+    {
+      "id": "way/242187458",
+      "name": "Soestdijkseweg Noord",
+      "aliases": [],
+      "type": "highway=secondary",
+      "coords": [
+        5.203536,
+        52.130035
+      ]
+    },
+    {
+      "id": "way/242570478",
+      "name": "Emmaplein",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.204717,
+        52.129364
+      ]
+    },
+    {
+      "id": "way/263984489",
+      "name": "Fazantenplein",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.21278,
+        52.092832
+      ]
+    },
+    {
+      "id": "way/296927842",
+      "name": "Planetenplein",
+      "aliases": [],
+      "type": "highway=pedestrian",
+      "coords": [
+        5.18409,
+        52.120732
+      ]
+    },
+    {
+      "id": "way/318362234",
+      "name": "Stellenboschlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.183511,
+        52.087788
+      ]
+    },
+    {
+      "id": "way/321987673",
+      "name": "Leuvenplein",
+      "aliases": [],
+      "type": "highway=pedestrian",
+      "coords": [
+        5.1735,
+        52.08528
+      ]
+    },
+    {
+      "id": "way/340899420",
+      "name": "Offerhausweg",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.14841,
+        52.095661
+      ]
+    },
+    {
+      "id": "way/361449779",
+      "name": "Vinkenlaan",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.20686,
+        52.128781
+      ]
+    },
+    {
+      "id": "way/363819866",
+      "name": "Enny Vredelaan",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.160483,
+        52.085574
+      ]
+    },
+    {
+      "id": "way/421608739",
+      "name": "Laan 1813",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.188818,
+        52.109391
+      ]
+    },
+    {
+      "id": "way/438272823",
+      "name": "Rietveldlaan",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.18704,
+        52.127727
+      ]
+    },
+    {
+      "id": "way/442059703",
+      "name": "Breesteegh",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.220547,
+        52.088709
+      ]
+    },
+    {
+      "id": "way/442059704",
+      "name": "Landlust",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.219872,
+        52.088772
+      ]
+    },
+    {
+      "id": "way/443075671",
+      "name": "De Snep",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.220371,
+        52.088886
+      ]
+    },
+    {
+      "id": "way/465406500",
+      "name": "Perziklaan",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.190013,
+        52.128552
+      ]
+    },
+    {
+      "id": "way/484169285",
+      "name": "Alexander Vosmaerlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.194831,
+        52.126268
+      ]
+    },
+    {
+      "id": "way/519411702",
+      "name": "Van Heukelomlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.181427,
+        52.124713
+      ]
+    },
+    {
+      "id": "way/523277549",
+      "name": "UMC Ambulancetunnel",
+      "aliases": [],
+      "type": "highway=service",
+      "coords": [
+        5.181468,
+        52.087067
+      ]
+    },
+    {
+      "id": "way/663807531",
+      "name": "Centenlaantje",
+      "aliases": [],
+      "type": "highway=proposed",
+      "coords": [
+        5.16691,
+        52.104179
+      ]
+    },
+    {
+      "id": "way/727900865",
+      "name": "Voordaan",
+      "aliases": [],
+      "type": "highway=services",
+      "coords": [
+        5.151153,
+        52.130012
+      ]
+    },
+    {
+      "id": "way/806187212",
+      "name": "Olberslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.181781,
+        52.121042
+      ]
+    },
+    {
+      "id": "way/834702928",
+      "name": "Zeister Eng",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.21706,
+        52.094181
+      ]
+    },
+    {
+      "id": "way/834702930",
+      "name": "Mijnhardtweg",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.218928,
+        52.094329
+      ]
+    },
+    {
+      "id": "way/842588398",
+      "name": "Galileïlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.15079,
+        52.09403
+      ]
+    },
+    {
+      "id": "way/916828566",
+      "name": "Tolakkerlaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.193244,
+        52.084611
+      ]
+    },
+    {
+      "id": "way/961621452",
+      "name": "Maanzicht",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.18533,
+        52.122448
+      ]
+    },
+    {
+      "id": "way/961621465",
+      "name": "Sterrenhof",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.181992,
+        52.121408
+      ]
+    },
+    {
+      "id": "way/1001488883",
+      "name": "Oostbroekselaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.156666,
+        52.094203
+      ]
+    },
+    {
+      "id": "way/1019583992",
+      "name": "Mijnhardt-tunnel",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.217116,
+        52.095559
+      ]
+    },
+    {
+      "id": "way/1050106342",
+      "name": "Tunnel UMC-WKZ",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.180718,
+        52.088701
+      ]
+    },
+    {
+      "id": "way/1078068401",
+      "name": "Melchiorlaan",
+      "aliases": [],
+      "type": "highway=tertiary",
+      "coords": [
+        5.206125,
+        52.129168
+      ]
+    },
+    {
+      "id": "way/1095894018",
+      "name": "J.J.P. Oudkwartier",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.182466,
+        52.125343
+      ]
+    },
+    {
+      "id": "way/1134125462",
+      "name": "Horatiuslaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.153238,
+        52.085191
+      ]
+    },
+    {
+      "id": "way/1285561884",
+      "name": "Weg tot de Wetenschap",
+      "aliases": [],
+      "type": "highway=cycleway",
+      "coords": [
+        5.167308,
+        52.085069
+      ]
+    },
+    {
+      "id": "way/1359084599",
+      "name": "Ariënslaan",
+      "aliases": [],
+      "type": "highway=unclassified",
+      "coords": [
+        5.149897,
+        52.101036
+      ]
+    },
+    {
+      "id": "way/1430485685",
+      "name": "Graspieperlaan",
+      "aliases": [],
+      "type": "highway=residential",
+      "coords": [
+        5.216028,
+        52.08884
+      ]
+    },
+    {
+      "id": "way/1433379558",
+      "name": "Zonnestraat - West",
+      "aliases": [
+        "Zonnestraat",
+        "West"
+      ],
+      "type": "highway=footway",
+      "coords": [
+        5.178797,
+        52.086183
+      ]
+    },
+    {
+      "id": "way/1433379559",
+      "name": "Hoofdpassage",
+      "aliases": [],
+      "type": "highway=footway",
+      "coords": [
+        5.179666,
+        52.086561
+      ]
+    },
+    {
+      "id": "way/1480656554",
+      "name": "Haverakker",
+      "aliases": [],
+      "type": "highway=construction",
+      "coords": [
+        5.219943,
+        52.094632
+      ]
+    },
+    {
+      "id": "way/1480656557",
+      "name": "Boekweitakker",
+      "aliases": [],
+      "type": "highway=construction",
+      "coords": [
+        5.220588,
+        52.096306
+      ]
+    },
+    {
+      "id": "way/1494634545",
+      "name": "Abt  Ludolfweg",
+      "aliases": [
+        "abt ludolfweg"
+      ],
+      "type": "highway=footway",
+      "coords": [
+        5.183908,
+        52.113211
+      ]
+    },
+    {
+      "id": "node/467095940",
+      "name": "Etos",
+      "aliases": [],
+      "type": "shop=chemist",
+      "coords": [
+        5.180962,
+        52.109827
+      ]
+    },
+    {
+      "id": "node/1606274241",
+      "name": "Dirk",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.180654,
+        52.108616
+      ]
+    },
+    {
+      "id": "node/1668008731",
+      "name": "De Mol Dranken",
+      "aliases": [],
+      "type": "shop=alcohol",
+      "coords": [
+        5.205088,
+        52.128759
+      ]
+    },
+    {
+      "id": "node/1668010424",
+      "name": "De Bilthovense Boekhandel",
+      "aliases": [],
+      "type": "shop=books",
+      "coords": [
+        5.207013,
+        52.129186
+      ]
+    },
+    {
+      "id": "node/1668014021",
+      "name": "Bike Totaal Van Weelden",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.205087,
+        52.129235
+      ]
+    },
+    {
+      "id": "node/1671779809",
+      "name": "Broekhuis Fietsen Bilthoven",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.211392,
+        52.129583
+      ]
+    },
+    {
+      "id": "node/1763266415",
+      "name": "Bloemsierkunst Haasjes",
+      "aliases": [],
+      "type": "shop=florist",
+      "coords": [
+        5.184827,
+        52.120009
+      ]
+    },
+    {
+      "id": "node/1763266417",
+      "name": "Bakker Roel",
+      "aliases": [],
+      "type": "shop=bakery",
+      "coords": [
+        5.184556,
+        52.120023
+      ]
+    },
+    {
+      "id": "node/2499067524",
+      "name": "Groen Flora",
+      "aliases": [],
+      "type": "shop=florist",
+      "coords": [
+        5.205303,
+        52.128673
+      ]
+    },
+    {
+      "id": "node/2787497782",
+      "name": "Snelmotoren",
+      "aliases": [],
+      "type": "shop=motorcycle",
+      "coords": [
+        5.212143,
+        52.088478
+      ]
+    },
+    {
+      "id": "node/2787498212",
+      "name": "Welkoop",
+      "aliases": [],
+      "type": "shop=garden_centre",
+      "coords": [
+        5.211081,
+        52.088946
+      ]
+    },
+    {
+      "id": "node/2787506835",
+      "name": "Auto Materialen Centrum Zeist",
+      "aliases": [
+        "AMC Zeist"
+      ],
+      "type": "shop=car_parts",
+      "coords": [
+        5.211897,
+        52.088171
+      ]
+    },
+    {
+      "id": "node/2787510878",
+      "name": "Q1 Sanitair",
+      "aliases": [],
+      "type": "shop=bathroom_furnishing",
+      "coords": [
+        5.210726,
+        52.088817
+      ]
+    },
+    {
+      "id": "node/2787518843",
+      "name": "Peter de Bree Fietsen",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.219654,
+        52.089369
+      ]
+    },
+    {
+      "id": "node/2883157635",
+      "name": "Albert Heijn",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.182193,
+        52.109354
+      ]
+    },
+    {
+      "id": "node/3004287010",
+      "name": "PLUS",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.190469,
+        52.129399
+      ]
+    },
+    {
+      "id": "node/3004357274",
+      "name": "Zandbergen",
+      "aliases": [],
+      "type": "shop=shoes",
+      "coords": [
+        5.181274,
+        52.109595
+      ]
+    },
+    {
+      "id": "node/3004357290",
+      "name": "Q-Vignes",
+      "aliases": [],
+      "type": "shop=wine",
+      "coords": [
+        5.181671,
+        52.108885
+      ]
+    },
+    {
+      "id": "node/3004357304",
+      "name": "Moris",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        5.181332,
+        52.109667
+      ]
+    },
+    {
+      "id": "node/3004357317",
+      "name": "China Health Center",
+      "aliases": [],
+      "type": "shop=massage",
+      "coords": [
+        5.181598,
+        52.108903
+      ]
+    },
+    {
+      "id": "node/3004357331",
+      "name": "Bijou & Me",
+      "aliases": [],
+      "type": "shop=jewelry",
+      "coords": [
+        5.181375,
+        52.10973
+      ]
+    },
+    {
+      "id": "node/3004375072",
+      "name": "C'est ça",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.182119,
+        52.109938
+      ]
+    },
+    {
+      "id": "node/3004375073",
+      "name": "The Hair Hub",
+      "aliases": [
+        "hair hub"
+      ],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.180355,
+        52.109082
+      ]
+    },
+    {
+      "id": "node/3004375223",
+      "name": "HEMA",
+      "aliases": [],
+      "type": "shop=department_store",
+      "coords": [
+        5.182006,
+        52.109071
+      ]
+    },
+    {
+      "id": "node/3004375540",
+      "name": "Kringloopcentrum Tegen Armoede",
+      "aliases": [],
+      "type": "shop=charity",
+      "coords": [
+        5.174926,
+        52.109197
+      ]
+    },
+    {
+      "id": "node/3004376010",
+      "name": "Wise Telecom",
+      "aliases": [],
+      "type": "shop=mobile_phone",
+      "coords": [
+        5.181041,
+        52.109036
+      ]
+    },
+    {
+      "id": "node/3004376451",
+      "name": "Van der Meyden",
+      "aliases": [],
+      "type": "shop=shoe_repair",
+      "coords": [
+        5.181934,
+        52.108832
+      ]
+    },
+    {
+      "id": "node/3004376464",
+      "name": "Wibra",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.18126,
+        52.109445
+      ]
+    },
+    {
+      "id": "node/3004377043",
+      "name": "TravelXL Brouwer",
+      "aliases": [],
+      "type": "shop=travel_agency",
+      "coords": [
+        5.181496,
+        52.108921
+      ]
+    },
+    {
+      "id": "node/3004377070",
+      "name": "Bakker van Eekeren",
+      "aliases": [],
+      "type": "shop=bakery",
+      "coords": [
+        5.180779,
+        52.109471
+      ]
+    },
+    {
+      "id": "node/3004377204",
+      "name": "Ambiance zonwering",
+      "aliases": [],
+      "type": "shop=window_blind",
+      "coords": [
+        5.18085,
+        52.109684
+      ]
+    },
+    {
+      "id": "node/3004377226",
+      "name": "Familie Markt",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        5.180879,
+        52.109747
+      ]
+    },
+    {
+      "id": "node/3004377560",
+      "name": "EP Hairstyling",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.184497,
+        52.11342
+      ]
+    },
+    {
+      "id": "node/3004377670",
+      "name": "Bike Totaal Rene",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.181001,
+        52.109882
+      ]
+    },
+    {
+      "id": "node/3004377715",
+      "name": "Scapino",
+      "aliases": [],
+      "type": "shop=shoes",
+      "coords": [
+        5.181053,
+        52.110079
+      ]
+    },
+    {
+      "id": "node/3004377717",
+      "name": "ReadShop",
+      "aliases": [],
+      "type": "shop=books",
+      "coords": [
+        5.181036,
+        52.109983
+      ]
+    },
+    {
+      "id": "node/3004377732",
+      "name": "Ekoplaza",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.181067,
+        52.110187
+      ]
+    },
+    {
+      "id": "node/3004377766",
+      "name": "Eye Wish",
+      "aliases": [],
+      "type": "shop=optician",
+      "coords": [
+        5.181125,
+        52.110286
+      ]
+    },
+    {
+      "id": "node/3004377803",
+      "name": "Garage Irik",
+      "aliases": [],
+      "type": "shop=car_repair",
+      "coords": [
+        5.181239,
+        52.107734
+      ]
+    },
+    {
+      "id": "node/3004377978",
+      "name": "Ringfoto Brouwer",
+      "aliases": [],
+      "type": "shop=photo",
+      "coords": [
+        5.181502,
+        52.110727
+      ]
+    },
+    {
+      "id": "node/3004377987",
+      "name": "Freewear",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.181636,
+        52.110071
+      ]
+    },
+    {
+      "id": "node/3004377997",
+      "name": "Kooklust",
+      "aliases": [],
+      "type": "shop=houseware",
+      "coords": [
+        5.18156,
+        52.110808
+      ]
+    },
+    {
+      "id": "node/3004378006",
+      "name": "Kruidvat",
+      "aliases": [],
+      "type": "shop=chemist",
+      "coords": [
+        5.18168,
+        52.110152
+      ]
+    },
+    {
+      "id": "node/3004378079",
+      "name": "De Ambachterij",
+      "aliases": [],
+      "type": "shop=bakery",
+      "coords": [
+        5.181139,
+        52.11034
+      ]
+    },
+    {
+      "id": "node/3004378383",
+      "name": "Mode atelier Bettina",
+      "aliases": [],
+      "type": "shop=fabric",
+      "coords": [
+        5.182712,
+        52.104689
+      ]
+    },
+    {
+      "id": "node/3004378828",
+      "name": "De Koopman",
+      "aliases": [],
+      "type": "shop=greengrocer",
+      "coords": [
+        5.181752,
+        52.110251
+      ]
+    },
+    {
+      "id": "node/3004378918",
+      "name": "Wierda Scoots and Bikes",
+      "aliases": [],
+      "type": "shop=scooter",
+      "coords": [
+        5.179244,
+        52.106706
+      ]
+    },
+    {
+      "id": "node/3004379042",
+      "name": "Cigo",
+      "aliases": [],
+      "type": "shop=newsagent",
+      "coords": [
+        5.181796,
+        52.110306
+      ]
+    },
+    {
+      "id": "node/3004379050",
+      "name": "Slotencenter",
+      "aliases": [],
+      "type": "shop=locksmith",
+      "coords": [
+        5.18185,
+        52.111177
+      ]
+    },
+    {
+      "id": "node/3004379084",
+      "name": "Giant",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.181996,
+        52.111348
+      ]
+    },
+    {
+      "id": "node/3004379092",
+      "name": "Wereldwinkel",
+      "aliases": [],
+      "type": "shop=gift",
+      "coords": [
+        5.181897,
+        52.110458
+      ]
+    },
+    {
+      "id": "node/3004379343",
+      "name": "Krijger",
+      "aliases": [],
+      "type": "shop=bakery",
+      "coords": [
+        5.182057,
+        52.110683
+      ]
+    },
+    {
+      "id": "node/3004379360",
+      "name": "Emmaus De Bilt",
+      "aliases": [],
+      "type": "shop=second_hand",
+      "coords": [
+        5.182614,
+        52.104926
+      ]
+    },
+    {
+      "id": "node/3004379413",
+      "name": "Wiesje",
+      "aliases": [],
+      "type": "shop=toys",
+      "coords": [
+        5.182256,
+        52.11178
+      ]
+    },
+    {
+      "id": "node/3004379417",
+      "name": "Van Wageningen & De Lange",
+      "aliases": [],
+      "type": "shop=wine",
+      "coords": [
+        5.1823,
+        52.111924
+      ]
+    },
+    {
+      "id": "node/3004379419",
+      "name": "Ploeger",
+      "aliases": [],
+      "type": "shop=deli",
+      "coords": [
+        5.182217,
+        52.110917
+      ]
+    },
+    {
+      "id": "node/3004379425",
+      "name": "Van Loo",
+      "aliases": [],
+      "type": "shop=butcher",
+      "coords": [
+        5.18227,
+        52.112032
+      ]
+    },
+    {
+      "id": "node/3004379538",
+      "name": "De Botter",
+      "aliases": [],
+      "type": "shop=seafood",
+      "coords": [
+        5.182515,
+        52.112143
+      ]
+    },
+    {
+      "id": "node/3004379540",
+      "name": "Van Eijken",
+      "aliases": [],
+      "type": "shop=optician",
+      "coords": [
+        5.182289,
+        52.111025
+      ]
+    },
+    {
+      "id": "node/3004379762",
+      "name": "Medi Scin Care",
+      "aliases": [],
+      "type": "shop=beauty",
+      "coords": [
+        5.182419,
+        52.111223
+      ]
+    },
+    {
+      "id": "node/3004379770",
+      "name": "Bij Daan",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.18251,
+        52.111317
+      ]
+    },
+    {
+      "id": "node/3004379772",
+      "name": "Hizi Hair",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.182586,
+        52.111438
+      ]
+    },
+    {
+      "id": "node/3004379774",
+      "name": "Zonneveld",
+      "aliases": [],
+      "type": "shop=pet",
+      "coords": [
+        5.182772,
+        52.111447
+      ]
+    },
+    {
+      "id": "node/3004379775",
+      "name": "Electro World",
+      "aliases": [],
+      "type": "shop=electronics",
+      "coords": [
+        5.182841,
+        52.11145
+      ]
+    },
+    {
+      "id": "node/3004379944",
+      "name": "Ann's Massage",
+      "aliases": [],
+      "type": "shop=massage",
+      "coords": [
+        5.178722,
+        52.105869
+      ]
+    },
+    {
+      "id": "node/3004379983",
+      "name": "Ranzijn tuin & dier",
+      "aliases": [],
+      "type": "shop=garden_centre",
+      "coords": [
+        5.184391,
+        52.101757
+      ]
+    },
+    {
+      "id": "node/3004380364",
+      "name": "Dilia",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.182797,
+        52.111727
+      ]
+    },
+    {
+      "id": "node/3004383754",
+      "name": "De Biltse Barbier",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.184945,
+        52.104197
+      ]
+    },
+    {
+      "id": "node/3004383822",
+      "name": "GJ Fabrics",
+      "aliases": [],
+      "type": "shop=fabric",
+      "coords": [
+        5.180699,
+        52.107634
+      ]
+    },
+    {
+      "id": "node/3004384354",
+      "name": "Retro-Recherche",
+      "aliases": [],
+      "type": "shop=antiques",
+      "coords": [
+        5.184524,
+        52.104243
+      ]
+    },
+    {
+      "id": "node/3004384810",
+      "name": "Hazekamp Parket",
+      "aliases": [],
+      "type": "shop=flooring",
+      "coords": [
+        5.178755,
+        52.105931
+      ]
+    },
+    {
+      "id": "node/3004385631",
+      "name": "Charlie en Peet",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.181134,
+        52.10812
+      ]
+    },
+    {
+      "id": "node/3004386649",
+      "name": "Mantel Servicepunt",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.180377,
+        52.109118
+      ]
+    },
+    {
+      "id": "node/3004388024",
+      "name": "Kunst & Licht & Glas",
+      "aliases": [],
+      "type": "shop=lighting",
+      "coords": [
+        5.182671,
+        52.104051
+      ]
+    },
+    {
+      "id": "node/3004388087",
+      "name": "Exotic",
+      "aliases": [],
+      "type": "shop=cannabis",
+      "coords": [
+        5.183249,
+        52.104617
+      ]
+    },
+    {
+      "id": "node/3004388114",
+      "name": "Gall & Gall",
+      "aliases": [],
+      "type": "shop=alcohol",
+      "coords": [
+        5.182317,
+        52.10956
+      ]
+    },
+    {
+      "id": "node/3004388535",
+      "name": "Londen",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.180462,
+        52.105297
+      ]
+    },
+    {
+      "id": "node/3004389180",
+      "name": "Armang Barbershop",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.178308,
+        52.106034
+      ]
+    },
+    {
+      "id": "node/3004390209",
+      "name": "Bloemenboutique Fonville",
+      "aliases": [],
+      "type": "shop=florist",
+      "coords": [
+        5.18338,
+        52.108762
+      ]
+    },
+    {
+      "id": "node/3004390963",
+      "name": "Kringloop 't Groene Hart",
+      "aliases": [],
+      "type": "shop=second_hand",
+      "coords": [
+        5.182972,
+        52.10884
+      ]
+    },
+    {
+      "id": "node/3004612663",
+      "name": "Planta",
+      "aliases": [],
+      "type": "shop=garden_centre",
+      "coords": [
+        5.189684,
+        52.101665
+      ]
+    },
+    {
+      "id": "node/3004665981",
+      "name": "Hubo Bilthoven",
+      "aliases": [],
+      "type": "shop=doityourself",
+      "coords": [
+        5.211314,
+        52.129658
+      ]
+    },
+    {
+      "id": "node/3004665988",
+      "name": "Van de Pol Meubelen",
+      "aliases": [],
+      "type": "shop=furniture",
+      "coords": [
+        5.205435,
+        52.129029
+      ]
+    },
+    {
+      "id": "node/3004667678",
+      "name": "By Dennis",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.207695,
+        52.128399
+      ]
+    },
+    {
+      "id": "node/3004667729",
+      "name": "Wijnhuiszuid",
+      "aliases": [],
+      "type": "shop=wine",
+      "coords": [
+        5.20591,
+        52.129568
+      ]
+    },
+    {
+      "id": "node/3004670220",
+      "name": "Emmaus Bilthoven",
+      "aliases": [],
+      "type": "shop=second_hand",
+      "coords": [
+        5.207387,
+        52.129533
+      ]
+    },
+    {
+      "id": "node/3004670965",
+      "name": "Klumper Kaas & Delicatessen",
+      "aliases": [],
+      "type": "shop=cheese",
+      "coords": [
+        5.207994,
+        52.129069
+      ]
+    },
+    {
+      "id": "node/3004671231",
+      "name": "Veldhoven Interieurs",
+      "aliases": [],
+      "type": "shop=furniture",
+      "coords": [
+        5.206949,
+        52.128298
+      ]
+    },
+    {
+      "id": "node/3004671272",
+      "name": "Berg&Berg",
+      "aliases": [],
+      "type": "shop=furniture",
+      "coords": [
+        5.206654,
+        52.128264
+      ]
+    },
+    {
+      "id": "node/3004671286",
+      "name": "Solange",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.208388,
+        52.129006
+      ]
+    },
+    {
+      "id": "node/3004671340",
+      "name": "Pearle",
+      "aliases": [],
+      "type": "shop=optician",
+      "coords": [
+        5.209119,
+        52.128402
+      ]
+    },
+    {
+      "id": "node/3004671352",
+      "name": "Lidl",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.209004,
+        52.128518
+      ]
+    },
+    {
+      "id": "node/3004671356",
+      "name": "Oogwereld Meijer",
+      "aliases": [],
+      "type": "shop=optician",
+      "coords": [
+        5.20867,
+        52.129193
+      ]
+    },
+    {
+      "id": "node/3004671853",
+      "name": "Koopjefatbike",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.208277,
+        52.128859
+      ]
+    },
+    {
+      "id": "node/3004671865",
+      "name": "Bakkerij Krijger",
+      "aliases": [],
+      "type": "shop=bakery",
+      "coords": [
+        5.208798,
+        52.129267
+      ]
+    },
+    {
+      "id": "node/3004672391",
+      "name": "Hartmann Optiek",
+      "aliases": [],
+      "type": "shop=optician",
+      "coords": [
+        5.208602,
+        52.128201
+      ]
+    },
+    {
+      "id": "node/3004672406",
+      "name": "Primera",
+      "aliases": [],
+      "type": "shop=newsagent",
+      "coords": [
+        5.208595,
+        52.128221
+      ]
+    },
+    {
+      "id": "node/3004672407",
+      "name": "Makker",
+      "aliases": [],
+      "type": "shop=hearing_aids",
+      "coords": [
+        5.208332,
+        52.129595
+      ]
+    },
+    {
+      "id": "node/3004672939",
+      "name": "Keurslager Van Schie",
+      "aliases": [],
+      "type": "shop=butcher",
+      "coords": [
+        5.208536,
+        52.128253
+      ]
+    },
+    {
+      "id": "node/3004672951",
+      "name": "HOOFT Kaas Delicatesse",
+      "aliases": [],
+      "type": "shop=cheese",
+      "coords": [
+        5.208511,
+        52.128274
+      ]
+    },
+    {
+      "id": "node/3004673842",
+      "name": "Tesoro",
+      "aliases": [],
+      "type": "shop=jewelry",
+      "coords": [
+        5.207632,
+        52.128574
+      ]
+    },
+    {
+      "id": "node/3004673915",
+      "name": "Barbier Derda",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.207571,
+        52.128602
+      ]
+    },
+    {
+      "id": "node/3004675134",
+      "name": "Stoer & Lief",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.205998,
+        52.129519
+      ]
+    },
+    {
+      "id": "node/3004761358",
+      "name": "Autobedrijf De Rooij",
+      "aliases": [],
+      "type": "shop=car",
+      "coords": [
+        5.175146,
+        52.117158
+      ]
+    },
+    {
+      "id": "node/3004761398",
+      "name": "Ford Broekhuis",
+      "aliases": [],
+      "type": "shop=car",
+      "coords": [
+        5.1724,
+        52.112203
+      ]
+    },
+    {
+      "id": "node/3004761677",
+      "name": "ALDI",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.189383,
+        52.125749
+      ]
+    },
+    {
+      "id": "node/3004762139",
+      "name": "Hoogvliet",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.189273,
+        52.125518
+      ]
+    },
+    {
+      "id": "node/3004762891",
+      "name": "Van Walraven",
+      "aliases": [],
+      "type": "shop=hardware",
+      "coords": [
+        5.173113,
+        52.112717
+      ]
+    },
+    {
+      "id": "node/3004766040",
+      "name": "Jan van Vulpen Boomkwekerij",
+      "aliases": [],
+      "type": "shop=garden_centre",
+      "coords": [
+        5.170405,
+        52.117267
+      ]
+    },
+    {
+      "id": "node/3004766379",
+      "name": "Whisky- en Wijnhandel Verhaar",
+      "aliases": [],
+      "type": "shop=alcohol",
+      "coords": [
+        5.185262,
+        52.120177
+      ]
+    },
+    {
+      "id": "node/3004768218",
+      "name": "Bike Totaal Mastwijk Tweewielers",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.188673,
+        52.122575
+      ]
+    },
+    {
+      "id": "node/3004770071",
+      "name": "Vakgarage De Bilt",
+      "aliases": [],
+      "type": "shop=car_repair",
+      "coords": [
+        5.177152,
+        52.118406
+      ]
+    },
+    {
+      "id": "node/3004770532",
+      "name": "Stam",
+      "aliases": [],
+      "type": "shop=car",
+      "coords": [
+        5.176739,
+        52.117618
+      ]
+    },
+    {
+      "id": "node/3004771052",
+      "name": "Broekhuis Volvo Centraal Magazijn",
+      "aliases": [],
+      "type": "shop=car",
+      "coords": [
+        5.176138,
+        52.116689
+      ]
+    },
+    {
+      "id": "node/3008418632",
+      "name": "Bike In",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.178053,
+        52.085697
+      ]
+    },
+    {
+      "id": "node/3600044755",
+      "name": "De Hooierij",
+      "aliases": [],
+      "type": "shop=farm",
+      "coords": [
+        5.185344,
+        52.100482
+      ]
+    },
+    {
+      "id": "node/4344847712",
+      "name": "Tuinmarkt Bilthoven",
+      "aliases": [],
+      "type": "shop=garden_centre",
+      "coords": [
+        5.211257,
+        52.129712
+      ]
+    },
+    {
+      "id": "node/5884129588",
+      "name": "SPAR university",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.167199,
+        52.087157
+      ]
+    },
+    {
+      "id": "node/6258473019",
+      "name": "Top's Edelgebak",
+      "aliases": [],
+      "type": "shop=confectionery",
+      "coords": [
+        5.206091,
+        52.1295
+      ]
+    },
+    {
+      "id": "node/6258473797",
+      "name": "Mooi+Gezond",
+      "aliases": [],
+      "type": "shop=chemist",
+      "coords": [
+        5.20689,
+        52.129274
+      ]
+    },
+    {
+      "id": "node/6258473852",
+      "name": "Xenos",
+      "aliases": [],
+      "type": "shop=houseware",
+      "coords": [
+        5.206717,
+        52.129268
+      ]
+    },
+    {
+      "id": "node/6432514880",
+      "name": "Van Weelden Profile",
+      "aliases": [],
+      "type": "shop=bicycle",
+      "coords": [
+        5.197166,
+        52.128702
+      ]
+    },
+    {
+      "id": "node/6898314768",
+      "name": "Albert Heijn to go",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        5.15088,
+        52.129155
+      ]
+    },
+    {
+      "id": "node/7393105119",
+      "name": "Anna van Toor",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.208868,
+        52.128346
+      ]
+    },
+    {
+      "id": "node/8826967641",
+      "name": "Jumbo",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        5.183623,
+        52.119649
+      ]
+    },
+    {
+      "id": "node/9309074306",
+      "name": "Die Weinbar",
+      "aliases": [],
+      "type": "shop=wine",
+      "coords": [
+        5.205953,
+        52.128741
+      ]
+    },
+    {
+      "id": "node/9741771768",
+      "name": "Loui",
+      "aliases": [],
+      "type": "shop=furniture",
+      "coords": [
+        5.178622,
+        52.120682
+      ]
+    },
+    {
+      "id": "node/9949493574",
+      "name": "Quickspanner",
+      "aliases": [],
+      "type": "shop=motorcycle_repair",
+      "coords": [
+        5.177096,
+        52.118051
+      ]
+    },
+    {
+      "id": "node/10931228423",
+      "name": "Bijenkans",
+      "aliases": [],
+      "type": "shop=garden_centre",
+      "coords": [
+        5.159399,
+        52.119598
+      ]
+    },
+    {
+      "id": "node/10931604737",
+      "name": "'n Groene Kans",
+      "aliases": [],
+      "type": "shop=farm",
+      "coords": [
+        5.159861,
+        52.120167
+      ]
+    },
+    {
+      "id": "node/11068254164",
+      "name": "Yns Mode",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        5.181248,
+        52.108999
+      ]
+    },
+    {
+      "id": "node/12326706065",
+      "name": "Autobedrijf De Bilt",
+      "aliases": [],
+      "type": "shop=car_repair",
+      "coords": [
+        5.178139,
+        52.106079
+      ]
+    },
+    {
+      "id": "node/12585814989",
+      "name": "Action",
+      "aliases": [],
+      "type": "shop=variety_store",
+      "coords": [
+        5.209145,
+        52.127792
+      ]
+    },
+    {
+      "id": "node/12624186580",
+      "name": "BabySpa Utrecht",
+      "aliases": [],
+      "type": "shop=beauty",
+      "coords": [
+        5.219922,
+        52.099896
+      ]
+    },
+    {
+      "id": "node/12669902914",
+      "name": "Hans Anders",
+      "aliases": [],
+      "type": "shop=optician",
+      "coords": [
+        5.208635,
+        52.129654
+      ]
+    },
+    {
+      "id": "node/13173860407",
+      "name": "Hairstudio UMC",
+      "aliases": [],
+      "type": "shop=hairdresser",
+      "coords": [
+        5.179601,
+        52.086407
+      ]
+    },
+    {
+      "id": "node/13173860408",
+      "name": "Bloemen",
+      "aliases": [],
+      "type": "shop=florist",
+      "coords": [
+        5.179599,
+        52.086488
+      ]
+    },
+    {
+      "id": "node/13173860409",
+      "name": "Cadeauwinkel",
+      "aliases": [],
+      "type": "shop=gift",
+      "coords": [
+        5.179569,
+        52.08662
+      ]
+    },
+    {
+      "id": "node/13651458609",
+      "name": "Kaaiman Reizen",
+      "aliases": [],
+      "type": "shop=travel_agency",
+      "coords": [
+        5.178225,
+        52.120783
+      ]
+    }
+  ]
+}
