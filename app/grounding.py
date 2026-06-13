@@ -68,6 +68,14 @@ def ground(parsed: dict, ao: dict, units: UnitRegistry, speaker: str) -> dict:
                                              float(bearing), float(distance))
             return _ok("relative_to_self", lat, lon)
 
+    # 5. Salvage: the parser extracted a bearing+distance but mis-typed the reference — e.g. a
+    # position relative to a landmark that isn't in the POI list ("400m SW of the crossroads").
+    # Keep the geometry as relative-to-self rather than dropping it, as long as we have an anchor.
+    if speaker_pos and loc.get("bearing_deg") is not None and loc.get("distance_m") is not None:
+        lat, lon = haversine_destination(speaker_pos["lat"], speaker_pos["lon"],
+                                         float(loc["bearing_deg"]), float(loc["distance_m"]))
+        return _ok("relative_to_self", lat, lon)
+
     # Fallback: AO center, flagged for review.
     center_lon, center_lat = ao["center"]
     return {

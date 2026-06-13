@@ -148,6 +148,34 @@ def parse_elements(elements: list[dict]) -> list[dict]:
     return pois
 
 
+# Prominence ranking so the truncated LLM prompt + map overlay favour landmarks/transit
+# over shops, and so a name with many nodes is represented by its most relevant one.
+_PROM = {"place": 0, "railway": 1, "public_transport": 1, "aeroway": 1,
+         "historic": 2, "tourism": 2, "natural": 3, "waterway": 3,
+         "leisure": 4, "highway": 5, "shop": 6}
+_AMENITY_PROMINENT = {"place_of_worship", "hospital", "school", "university",
+                      "townhall", "police", "fire_station"}
+
+
+def prominence(poi_type: str) -> int:
+    """Lower = more prominent."""
+    key, _, sub = (poi_type or "").partition("=")
+    if key == "amenity":
+        return 2 if sub in _AMENITY_PROMINENT else 4
+    return _PROM.get(key, 4)
+
+
+def dedupe_pois(pois: list[dict]) -> list[dict]:
+    """Collapse same-named POIs (OSM has 100+ 'Madeleine' nodes) to one prominent
+    representative, then order prominent-first so truncation keeps landmarks."""
+    best: dict[str, dict] = {}
+    for p in pois:
+        name = p["name"]
+        if name not in best or prominence(p["type"]) < prominence(best[name]["type"]):
+            best[name] = p
+    return sorted(best.values(), key=lambda p: prominence(p["type"]))
+
+
 def fetch(ao_id: str) -> dict:
     ao = AO_DEFS[ao_id]
     query = build_query(ao["bbox"])
@@ -166,8 +194,8 @@ def fetch(ao_id: str) -> dict:
             last_err = e
     if data is None:
         raise RuntimeError(f"all Overpass mirrors failed; last error: {last_err}")
-    pois = parse_elements(data.get("elements", []))
-    print(f"[{ao_id}] {len(pois)} POIs after dedup", flush=True)
+    pois = dedupe_pois(parse_elements(data.get("elements", [])))
+    print(f"[{ao_id}] {len(pois)} unique POIs (name-deduped, prominent-first)", flush=True)
     return {
         "id": ao_id,
         "name": ao["name"],
