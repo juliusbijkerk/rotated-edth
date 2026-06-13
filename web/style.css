@@ -12,9 +12,9 @@ html, body {
   background: #11181d;
   border-bottom: 1px solid #1f2a32;
 }
-.topbar h1 { margin: 0; font-size: 18px; letter-spacing: 2px; }
+.topbar h1 { margin: 0; font-size: 18px; letter-spacing: 0; }
 .ao-control { display: flex; gap: 8px; align-items: center; font-size: 14px; }
-.ao-control label { color: #8aa1b1; letter-spacing: 2px; font-size: 11px; }
+.ao-control label { color: #8aa1b1; letter-spacing: 0; font-size: 11px; }
 .ao-control select {
   background: #1a242b; color: #e6edf2;
   border: 1px solid #2c3a46; padding: 4px 8px; border-radius: 4px;
@@ -24,14 +24,32 @@ html, body {
 /* --- Operator --- */
 .operator { display: flex; flex-direction: column; height: 100vh; }
 .layout { display: flex; flex: 1; min-height: 0; }
-#map { flex: 1; background: #000; }
+.map-shell { flex: 1; position: relative; min-width: 0; }
+#map { width: 100%; height: 100%; background: #000; }
+.map-tools {
+  position: absolute; z-index: 500; top: 12px; left: 12px;
+  display: flex; flex-wrap: wrap; gap: 6px; max-width: calc(100% - 24px);
+  background: rgba(8, 13, 17, .86); border: 1px solid rgba(160, 178, 191, .25);
+  padding: 8px; border-radius: 6px; backdrop-filter: blur(4px);
+}
+.map-tools button, .map-tools select {
+  height: 30px; background: #17232b; color: #e6edf2; border: 1px solid #344652;
+  border-radius: 4px; padding: 0 8px; font-size: 11px; letter-spacing: 0;
+}
+.map-tools button { cursor: pointer; background: #233847; }
+.operator-status {
+  position: absolute; z-index: 500; left: 12px; bottom: 12px;
+  background: rgba(8, 13, 17, .86); color: #d7e4ed;
+  border: 1px solid rgba(160, 178, 191, .25); border-radius: 6px;
+  padding: 7px 9px; font-size: 11px; letter-spacing: 0;
+}
 .sidebar {
   width: 380px; display: flex; flex-direction: column;
   background: #0e1418; border-left: 1px solid #1f2a32; min-height: 0;
 }
-.unit-panel { padding: 10px 14px; border-bottom: 1px solid #1f2a32; }
-.unit-panel h2, .transcript-panel h2 {
-  margin: 0 0 8px; font-size: 11px; letter-spacing: 2px; color: #8aa1b1;
+.unit-panel, .target-panel { padding: 10px 14px; border-bottom: 1px solid #1f2a32; }
+.unit-panel h2, .target-panel h2, .transcript-panel h2 {
+  margin: 0 0 8px; font-size: 11px; letter-spacing: 0; color: #8aa1b1;
 }
 .unit-row {
   display: flex; justify-content: space-between; padding: 4px 0;
@@ -43,6 +61,20 @@ html, body {
   font-size: 12px; color: #b6c5d2;
 }
 .unit-coord.stale { color: #5f6b73; }
+.target-panel { max-height: 190px; overflow: hidden; }
+#target-list {
+  display: flex; flex-direction: column; gap: 6px; max-height: 150px; overflow-y: auto;
+}
+.target-row {
+  width: 100%; text-align: left; background: #141d23; color: #e6edf2;
+  border: 1px solid #263640; border-left: 4px solid #d7c84f;
+  border-radius: 5px; padding: 7px 8px; cursor: pointer;
+}
+.target-row-hostile { border-left-color: #f25555; }
+.target-row-friendly { border-left-color: #4c8dff; }
+.target-row-neutral { border-left-color: #48b06a; }
+.target-row-main { display: block; font-size: 12px; font-weight: 700; }
+.target-row-meta { display: block; margin-top: 2px; color: #8aa1b1; font-size: 11px; }
 .transcript-panel {
   flex: 1; display: flex; flex-direction: column; min-height: 0;
   padding: 10px 14px;
@@ -60,11 +92,12 @@ html, body {
   display: flex; justify-content: space-between;
   font-size: 11px; color: #8aa1b1;
 }
-.report-unit { font-weight: bold; color: #fff; letter-spacing: 1px; }
+.report-unit { font-weight: bold; color: #fff; letter-spacing: 0; }
 .report-method { text-transform: uppercase; font-size: 10px; }
 .report-method.unresolved { color: #ffb74d; }
 .report-transcript { margin-top: 4px; font-size: 13px; line-height: 1.35; }
 .report-poi { margin-top: 2px; font-size: 11px; color: #80cbc4; }
+.report-target { margin-top: 4px; font-size: 11px; color: #ffd36a; letter-spacing: 0; }
 
 /* --- POI overlay --- */
 .poi-icon { pointer-events: none; }
@@ -90,12 +123,56 @@ html, body {
   text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
 }
 
+/* --- Operator + tactical target overlays --- */
+.operator-pin {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid #fff; background: #00a7d8;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .85);
+  display: grid; place-items: center;
+}
+.operator-pin span {
+  color: #061117; font-size: 10px; font-weight: 800;
+}
+.target-wrap {
+  position: relative; width: 34px; height: 34px;
+  --target-color: #d7c84f; --target-fill: rgba(215, 200, 79, .24);
+}
+.target-friendly { --target-color: #4c8dff; --target-fill: rgba(76, 141, 255, .25); }
+.target-hostile { --target-color: #f25555; --target-fill: rgba(242, 85, 85, .24); }
+.target-neutral { --target-color: #48b06a; --target-fill: rgba(72, 176, 106, .24); }
+.target-unknown { --target-color: #d7c84f; --target-fill: rgba(215, 200, 79, .24); }
+.target-frame {
+  width: 30px; height: 24px; margin: 5px 2px 0;
+  border: 2px solid var(--target-color); background: var(--target-fill);
+  display: grid; place-items: center; box-shadow: 0 0 8px rgba(0, 0, 0, .9);
+}
+.target-hostile .target-frame {
+  width: 24px; height: 24px; margin: 5px;
+  transform: rotate(45deg);
+}
+.target-unknown .target-frame {
+  border-radius: 45% 45% 45% 0;
+  transform: rotate(-45deg);
+}
+.target-frame span {
+  color: #fff; font-size: 8px; font-weight: 900; letter-spacing: 0;
+  text-shadow: 0 0 2px #000;
+}
+.target-hostile .target-frame span { transform: rotate(-45deg); }
+.target-unknown .target-frame span { transform: rotate(45deg); }
+.target-review .target-frame { border-style: dashed; }
+.target-map-label {
+  position: absolute; left: 36px; top: 8px; white-space: nowrap;
+  color: #fff; font-size: 11px; font-weight: 700;
+  text-shadow: 0 0 3px #000, 0 0 3px #000;
+}
+
 /* --- Unit phone UI --- */
 .unit { display: flex; flex-direction: column; height: 100vh; }
 .picker { display: flex; flex-direction: column; gap: 12px; padding: 24px; flex: 1; justify-content: center; }
 .unit-pick {
   font-size: 28px; padding: 24px; border: none; border-radius: 12px;
-  color: #fff; background: #1c2730; cursor: pointer; letter-spacing: 2px;
+  color: #fff; background: #1c2730; cursor: pointer; letter-spacing: 0;
 }
 .unit-pick.unit-alpha { background: #186a3b; }
 .unit-pick.unit-bravo { background: #1565c0; }
@@ -103,14 +180,43 @@ html, body {
 .session { flex: 1; display: flex; flex-direction: column; padding: 16px; gap: 16px; }
 .last { background: #131b21; padding: 12px; border-radius: 8px; min-height: 60px; }
 .echo-head {
-  font-size: 11px; color: #80cbc4; letter-spacing: 1px; text-transform: uppercase;
+  font-size: 11px; color: #80cbc4; letter-spacing: 0; text-transform: uppercase;
 }
 .echo-text { font-size: 14px; margin-top: 4px; word-break: break-word; }
 .ptt {
-  flex: 1; font-size: 32px; letter-spacing: 4px; border: none; border-radius: 24px;
+  flex: 1; font-size: 32px; letter-spacing: 0; border: none; border-radius: 24px;
   background: #2a3e4d; color: #fff;
   user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
   cursor: pointer; touch-action: manipulation;
 }
 .ptt:active, .ptt.live { background: #d32f2f; box-shadow: 0 0 24px rgba(255, 80, 80, 0.4); }
+.ptt.disabled { opacity: .45; cursor: not-allowed; }
+.manual-report {
+  display: grid; grid-template-columns: 1fr auto; gap: 8px;
+}
+.manual-report textarea {
+  min-height: 72px; resize: none; border-radius: 8px; border: 1px solid #263640;
+  background: #111a20; color: #e6edf2; padding: 10px;
+  font: 15px -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+}
+.manual-report button {
+  border: 1px solid #34586b; border-radius: 8px; background: #1f526d; color: #fff;
+  font-weight: 700; letter-spacing: 0; padding: 0 12px;
+}
 .status { text-align: center; font-size: 14px; color: #8aa1b1; }
+
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; height: 42vh; border-left: 0; border-top: 1px solid #1f2a32; }
+  .map-shell { min-height: 58vh; }
+}
+
+@media (max-width: 520px) {
+  .topbar { align-items: flex-start; gap: 8px; flex-direction: column; }
+  .ao-control { width: 100%; flex-wrap: wrap; }
+  #ao-title { display: none; }
+  .map-tools { top: 8px; left: 8px; right: 8px; }
+  .map-tools button, .map-tools select { flex: 1 1 auto; min-width: 84px; }
+  .manual-report { grid-template-columns: 1fr; }
+  .manual-report button { min-height: 44px; }
+}

@@ -16,11 +16,45 @@
     </div>
   </div>
   <div class="layout">
-    <div id="map"></div>
+    <div class="map-shell">
+      <div id="map"></div>
+      <div class="map-tools">
+        <button id="locate-operator" type="button">LOCATE</button>
+        <select id="map-action">
+          <option value="pan">PAN</option>
+          <option value="set_unit">SET UNIT</option>
+          <option value="manual_target">DROP TARGET</option>
+        </select>
+        <select id="manual-unit">
+          <option>Alpha</option>
+          <option>Bravo</option>
+          <option>Charlie</option>
+        </select>
+        <select id="manual-affiliation">
+          <option value="unknown">UNKNOWN</option>
+          <option value="hostile">HOSTILE</option>
+          <option value="friendly">FRIENDLY</option>
+          <option value="neutral">NEUTRAL</option>
+        </select>
+        <select id="manual-entity">
+          <option value="person">PERSON</option>
+          <option value="group">GROUP</option>
+          <option value="vehicle">VEHICLE</option>
+          <option value="tank">TANK</option>
+          <option value="drone">DRONE</option>
+          <option value="unknown">UNKNOWN</option>
+        </select>
+      </div>
+      <div id="operator-status" class="operator-status">READY</div>
+    </div>
     <div class="sidebar">
       <div class="unit-panel">
         <h2>UNITS</h2>
         <div id="unit-list"></div>
+      </div>
+      <div class="target-panel">
+        <h2>TARGETS</h2>
+        <div id="target-list"></div>
       </div>
       <div class="transcript-panel">
         <h2>REPORTS</h2>

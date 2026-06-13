@@ -7,6 +7,8 @@ const ptBtn = document.getElementById('ptt') as HTMLButtonElement;
 const statusEl = document.getElementById('status')!;
 const lastEl = document.getElementById('last')!;
 const sessionEl = document.getElementById('session')!;
+const manualForm = document.getElementById('manual-report') as HTMLFormElement;
+const manualText = document.getElementById('manual-text') as HTMLTextAreaElement;
 
 let selectedUnit: string | null = null;
 let ws: ReturnType<typeof connect> | null = null;
@@ -47,13 +49,6 @@ async function joinAs(unit: string) {
   picker.style.display = 'none';
   sessionEl.style.display = 'flex';
   document.querySelectorAll('.unit-label-display').forEach((el) => (el.textContent = unit));
-  setStatus('requesting mic…');
-  try {
-    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-  } catch (e: any) {
-    setStatus(`mic denied: ${e.message}`);
-    return;
-  }
   ws = connect(`/ws/unit/${unit}`);
   ws.onOpen(() => setStatus(`connected as ${unit}`));
   ws.onClose(() => setStatus('disconnected'));
@@ -72,11 +67,36 @@ async function joinAs(unit: string) {
       setStatus(`error: ${m.stage} ${m.error}`);
     }
   });
+  await requestMic();
 }
 
 function escapeText(s: string): string {
   return String(s).replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+}
+
+async function requestMic() {
+  if (!navigator.mediaDevices?.getUserMedia) {
+    ptBtn.disabled = true;
+    ptBtn.classList.add('disabled');
+    setStatus('mic requires HTTPS or localhost; use typed report or open the HTTPS tunnel URL');
+    return;
+  }
+  setStatus('requesting mic…');
+  try {
+    mediaStream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
+      },
+    });
+  } catch (e: any) {
+    const msg = e?.message || e?.name || 'permission denied';
+    ptBtn.disabled = true;
+    ptBtn.classList.add('disabled');
+    setStatus(`mic unavailable: ${msg}; use typed report`);
+  }
 }
 
 function startRec() {
@@ -111,9 +131,25 @@ function stopRec() {
   }
 }
 
+function sendTypedReport() {
+  const transcript = manualText.value.trim();
+  if (!transcript) return;
+  if (!ws || ws.ws.readyState !== WebSocket.OPEN) {
+    setStatus('not connected');
+    return;
+  }
+  ws.send({ type: 'text_report', transcript });
+  manualText.value = '';
+  setStatus('processing typed report…');
+}
+
 ptBtn.addEventListener('mousedown', startRec);
 ptBtn.addEventListener('mouseup', stopRec);
 ptBtn.addEventListener('mouseleave', stopRec);
 ptBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startRec(); });
 ptBtn.addEventListener('touchend', (e) => { e.preventDefault(); stopRec(); });
 ptBtn.addEventListener('touchcancel', stopRec);
+manualForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  sendTypedReport();
+});

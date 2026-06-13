@@ -26,6 +26,7 @@ app = FastAPI(title="Argus")
 
 units = UnitRegistry()
 reports: list[dict] = []
+targets: list[dict] = []
 current_ao_id: Optional[str] = None
 current_ao: Optional[dict] = None
 operator_sockets: set[WebSocket] = set()
@@ -144,6 +145,7 @@ def _state_message() -> dict:
         "type": "state",
         "ao_id": current_ao_id,
         "units": units.snapshot(),
+        "targets": targets[-100:],
         "reports": reports[-50:],
     }
 
@@ -172,6 +174,18 @@ async def ws_operator(ws: WebSocket):
                         await broadcast({"type": "ao_changed", "ao_id": ao_id})
                     except HTTPException as e:
                         await ws.send_text(json.dumps({"type": "error", "stage": "ao", "error": e.detail}))
+            elif msg.get("type") == "set_unit_position":
+                unit_id = msg.get("unit_id")
+                lat = msg.get("lat")
+                lon = msg.get("lon")
+                if unit_id and lat is not None and lon is not None:
+                    units.append_position(str(unit_id), float(lat), float(lon), ts=time.time())
+                    await broadcast({"type": "units", "units": units.snapshot()})
+            elif msg.get("type") == "manual_target":
+                target = _manual_target(msg)
+                if target:
+                    targets.append(target)
+                    await broadcast({"type": "target", "target": target, "targets": targets[-100:]})
     except WebSocketDisconnect:
         pass
     finally:
@@ -189,9 +203,12 @@ async def ws_unit(ws: WebSocket, unit_id: str):
             if frame.get("type") == "websocket.disconnect":
                 break
             data = frame.get("bytes")
-            if not data:
-                continue  # ignore text frames for now
-            await _handle_utterance(ws, unit_id, data)
+            if data:
+                await _handle_utterance(ws, unit_id, data)
+                continue
+            text = frame.get("text")
+            if text:
+                await _handle_unit_text(ws, unit_id, text)
     except WebSocketDisconnect:
         pass
 
@@ -208,6 +225,24 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
         await _send(ws, {"type": "error", "stage": "stt", "error": str(e)})
         return
 
+    await _handle_transcript(ws, unit_id, transcript, ts)
+
+
+async def _handle_unit_text(ws: WebSocket, unit_id: str, text: str) -> None:
+    try:
+        msg = json.loads(text)
+    except Exception:
+        msg = {"type": "text_report", "transcript": text}
+    if msg.get("type") != "text_report":
+        return
+    transcript = (msg.get("transcript") or "").strip()
+    if not transcript:
+        await _send(ws, {"type": "error", "stage": "input", "error": "empty report"})
+        return
+    await _handle_transcript(ws, unit_id, transcript, int(time.time() * 1000))
+
+
+async def _handle_transcript(ws: WebSocket, unit_id: str, transcript: str, ts: int) -> None:
     if current_ao is None:
         await _send(ws, {"type": "error", "stage": "ao", "error": "no AO loaded — pick one in the operator dashboard"})
         return
@@ -233,7 +268,8 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
         await _send(ws, {"type": "error", "stage": "ground", "error": str(e)})
         return
 
-    if not resolved.get("needs_review"):
+    action = parsed.get("action")
+    if action == "position_update" and not resolved.get("needs_review"):
         units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time())
     units.set_last_report(unit_id, transcript)
 
@@ -245,9 +281,86 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
         "resolved": resolved,
         "timestamp": time.time(),
     }
+    target = _target_from_report(report)
+    if target:
+        targets.append(target)
+        report["target"] = target
     reports.append(report)
     await _send(ws, {"type": "report_echo", "report": report})
-    await broadcast({"type": "report", "report": report, "units": units.snapshot()})
+    await broadcast({
+        "type": "report",
+        "report": report,
+        "units": units.snapshot(),
+        "targets": targets[-100:],
+    })
+
+
+def _target_from_report(report: dict) -> Optional[dict]:
+    parsed = report.get("parsed") or {}
+    action = parsed.get("action")
+    if action not in {"observation", "contact"}:
+        return None
+    resolved = report.get("resolved") or {}
+    if "lat" not in resolved or "lon" not in resolved:
+        return None
+    raw_target = parsed.get("target") or {}
+    observed = parsed.get("observed") or ""
+    affiliation = (raw_target.get("affiliation") or ("hostile" if action == "contact" else "unknown")).lower()
+    if affiliation not in {"friendly", "hostile", "neutral", "unknown"}:
+        affiliation = "unknown"
+    entity_type = (raw_target.get("entity_type") or _entity_from_text(observed) or "unknown").lower()
+    echelon = (raw_target.get("echelon") or "unknown").lower()
+    label = raw_target.get("label") or observed or entity_type
+    return {
+        "id": f"t-{report['id']}",
+        "report_id": report["id"],
+        "source_unit": report["unit"],
+        "lat": resolved["lat"],
+        "lon": resolved["lon"],
+        "affiliation": affiliation,
+        "entity_type": entity_type,
+        "count": raw_target.get("count"),
+        "echelon": echelon,
+        "label": label,
+        "description": observed,
+        "confidence": parsed.get("confidence", 0.0),
+        "needs_review": bool(resolved.get("needs_review")) or float(parsed.get("confidence", 0.0) or 0.0) < 0.7,
+        "timestamp": report["timestamp"],
+    }
+
+
+def _manual_target(msg: dict) -> Optional[dict]:
+    lat = msg.get("lat")
+    lon = msg.get("lon")
+    if lat is None or lon is None:
+        return None
+    ts = int(time.time() * 1000)
+    affiliation = (msg.get("affiliation") or "unknown").lower()
+    if affiliation not in {"friendly", "hostile", "neutral", "unknown"}:
+        affiliation = "unknown"
+    return {
+        "id": f"manual-{ts}",
+        "source_unit": "operator",
+        "lat": float(lat),
+        "lon": float(lon),
+        "affiliation": affiliation,
+        "entity_type": (msg.get("entity_type") or "unknown").lower(),
+        "count": msg.get("count"),
+        "echelon": (msg.get("echelon") or "unknown").lower(),
+        "label": msg.get("label") or msg.get("entity_type") or "Manual target",
+        "description": msg.get("description") or "",
+        "confidence": 1.0,
+        "needs_review": False,
+        "timestamp": time.time(),
+    }
+
+
+def _entity_from_text(text: str) -> str:
+    lower = text.lower()
+    for word in ("tank", "drone", "vehicle", "infantry", "person", "group"):
+        if word in lower:
+            return word
+    return "unknown"
 
 
 async def _send(ws: WebSocket, payload: dict) -> None:

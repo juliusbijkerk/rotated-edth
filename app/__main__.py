@@ -36,14 +36,23 @@ def main():
     load_dotenv()
     port = int(os.environ.get("ARGUS_PORT", "8000"))
     ip = get_local_ip()
+    public_base_url = (
+        os.environ.get("ARGUS_PUBLIC_BASE_URL")
+        or os.environ.get("PUBLIC_BASE_URL")
+        or ""
+    ).rstrip("/")
 
     if not (DIST_DIR / "operator.html").exists():
         print("\n[argus] web/dist/operator.html is missing — run `npm run build` first.\n",
               file=sys.stderr)
         # Continue anyway; the server's /operator route will report 503 with a helpful message.
 
-    operator_url = f"http://{ip}:{port}/operator"
-    unit_url = f"http://{ip}:{port}/unit"
+    if public_base_url:
+        operator_url = f"{public_base_url}/operator"
+        unit_url = f"{public_base_url}/unit"
+    else:
+        operator_url = f"http://{ip}:{port}/operator"
+        unit_url = f"http://{ip}:{port}/unit"
 
     bar = "=" * 68
     print()
@@ -53,6 +62,8 @@ def main():
     print(f"  Operator:  {operator_url}")
     print(f"  Unit URL:  {unit_url}")
     print(f"  Localhost: http://127.0.0.1:{port}/operator")
+    if not public_base_url:
+        print("  Phone mic: use HTTPS tunnel URL if LAN HTTP blocks microphone access.")
     print(bar)
     if not os.environ.get("ANTHROPIC_API_KEY"):
         print("  ! WARNING: ANTHROPIC_API_KEY not set; parsing will fail.")

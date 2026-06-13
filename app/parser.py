@@ -42,6 +42,27 @@ _TOOL = {
                 "required": ["type", "raw_text"],
             },
             "observed": {"type": "string", "description": "What the unit reports observing (e.g. 'two figures'). Empty string if none."},
+            "target": {
+                "type": "object",
+                "description": "Observed tactical entity/contact, only when action is observation or contact.",
+                "properties": {
+                    "affiliation": {
+                        "type": "string",
+                        "enum": ["friendly", "hostile", "neutral", "unknown"],
+                        "description": "Use hostile only when the transcript clearly says enemy/hostile or implies hostile contact; otherwise use unknown.",
+                    },
+                    "entity_type": {
+                        "type": "string",
+                        "enum": ["person", "group", "infantry", "vehicle", "tank", "drone", "building", "other", "unknown"],
+                    },
+                    "count": {"type": "number", "description": "Number observed if stated; omit if unknown."},
+                    "echelon": {
+                        "type": "string",
+                        "enum": ["individual", "team", "squad", "platoon", "company", "battalion", "brigade", "division", "unknown"],
+                    },
+                    "label": {"type": "string", "description": "Short map label, e.g. 'tank', '3 persons', 'enemy squad'."},
+                },
+            },
             "confidence": {"type": "number", "description": "0.0–1.0 confidence in your interpretation."},
         },
         "required": ["entity", "action", "location_reference", "confidence"],
@@ -68,6 +89,9 @@ def _system_blocks(ao: dict) -> list:
         '- relative_to_self: relative to the speaker ("moving north 200 meters").\n'
         "- unresolved: cannot determine.\n\n"
         "For relative references, set bearing_deg (0=N, 90=E, 180=S, 270=W) and distance_m. "
+        "For observation/contact reports, do not treat the observed object's location as the speaker's own position; "
+        "fill target with affiliation, entity_type, count, echelon, and a short label when possible. "
+        "Classify as hostile only if enemy/hostile/contact is explicit or strongly implied; otherwise unknown. "
         "Default entity to the speaker unless the transcript clearly attributes the report to another unit. "
         'When the speaker names a landmark or station (e.g. "the Madeleine metro"), prefer the POI whose '
         "name IS that landmark over a nearby street or entrance name, and copy poi_name exactly as listed."
