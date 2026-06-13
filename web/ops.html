@@ -1,0 +1,2504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C2 SITMAP - Command & Control</title>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/milsymbol@3.0.4/dist/milsymbol.js"></script>
+<script src="https://unpkg.com/pmtiles@3.0.3/dist/pmtiles.js"></script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1a2332;
+  --bg-card: #1e293b;
+  --bg-hover: #243044;
+  --border: #2d3a4a;
+  --border-light: #3d4a5a;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --blue: #3b82f6;
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+  --cyan: #06b6d4;
+  --sidebar-width: 320px;
+  --statusbar-height: 32px;
+  --header-height: 44px;
+}
+html, body { height: 100%; width: 100%; min-height: 0; overflow: hidden; }
+body {
+  font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Layout */
+#app { display: flex; flex-direction: column; height: 100vh; width: 100vw; min-height: 0; }
+#header {
+  height: var(--header-height);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 16px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+#header .logo { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; letter-spacing: 1px; }
+#header .logo svg { width: 20px; height: 20px; }
+#header .logo span { color: var(--green); }
+#header .mission { color: var(--text-secondary); font-size: 11px; margin-left: auto; }
+#header .clock { color: var(--cyan); font-size: 11px; min-width: 60px; text-align: right; }
+
+#main { display: flex; flex: 1; min-height: 0; overflow: hidden; position: relative; }
+#sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  min-height: 0;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 5;
+}
+#sidebar .sidebar-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  background: var(--bg-tertiary);
+}
+#sidebar .sidebar-header .count { margin-left: auto; color: var(--text-secondary); letter-spacing: 0; }
+#sidebar .filter-bar {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex; gap: 4px;
+  background: var(--bg-primary);
+}
+.filter-btn {
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.filter-btn:hover { border-color: var(--text-muted); }
+.filter-btn.active { background: var(--bg-card); color: var(--text-primary); border-color: var(--text-muted); }
+
+#unit-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+#unit-list::-webkit-scrollbar { width: 4px; }
+#unit-list::-webkit-scrollbar-track { background: transparent; }
+#unit-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.unit-group-label {
+  padding: 6px 12px 3px;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+.unit-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-left: 2px solid transparent;
+}
+.unit-item:hover { background: var(--bg-hover); }
+.unit-item.active { background: var(--bg-tertiary); border-left-color: var(--blue); }
+.unit-item .sym { width: 22px; height: 22px; flex-shrink: 0; }
+.unit-item .sym svg { width: 22px; height: 22px; }
+.unit-item .info { flex: 1; min-width: 0; }
+.unit-item .name { font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.unit-item .meta { font-size: 9px; color: var(--text-muted); }
+.unit-item .status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.unit-item .status-dot.active { background: var(--green); box-shadow: 0 0 4px var(--green); }
+.unit-item .status-dot.engaged { background: var(--amber); box-shadow: 0 0 4px var(--amber); }
+.unit-item .status-dot.damaged { background: var(--red); box-shadow: 0 0 4px var(--red); }
+
+#map-container { flex: 1; min-height: 0; min-width: 0; position: relative; }
+#map { width: 100%; height: 100%; position: absolute; }
+
+.maplibregl-ctrl-attrib { display: none !important; }
+.maplibregl-ctrl-bottom-right { display: none !important; }
+.maplibregl-ctrl-top-right { top: 8px; right: 8px; }
+.maplibregl-ctrl-group { background: var(--bg-card) !important; border: 1px solid var(--border) !important; border-radius: 4px !important; }
+.maplibregl-ctrl-group button { background: transparent !important; border: none !important; }
+.maplibregl-ctrl-group button span { filter: invert(0.8); }
+
+#statusbar {
+  height: var(--statusbar-height);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 16px;
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+#statusbar .stat { display: flex; align-items: center; gap: 4px; }
+#statusbar .stat .val { color: var(--text-secondary); font-weight: 500; }
+#statusbar .stat.friendly .val { color: var(--blue); }
+#statusbar .stat.hostile .val { color: var(--red); }
+#statusbar .stat.unknown .val { color: var(--amber); }
+#statusbar .spacer { flex: 1; }
+#statusbar .coords-label, #statusbar .zoom-label { color: var(--text-muted); }
+#statusbar .coords, #statusbar .zoom { color: var(--cyan); }
+#statusbar .updated { font-style: italic; }
+
+/* Unit marker styles */
+.unit-marker {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.unit-marker:hover { opacity: 0.85; }
+.unit-marker .label {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-family: inherit;
+  white-space: nowrap;
+  color: var(--text-primary);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8), 0 0 6px rgba(0,0,0,0.6);
+  pointer-events: none;
+  letter-spacing: 0.3px;
+}
+.unit-marker.friendly .label { color: var(--blue); }
+.unit-marker.hostile .label { color: var(--red); }
+.unit-marker.unknown .label { color: var(--amber); }
+
+/* Trail lines */
+.unit-marker .trail {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 2px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Popup */
+.maplibregl-popup-content {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  font-family: inherit !important;
+  font-size: 11px !important;
+  padding: 0 !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+}
+.maplibregl-popup-tip { border-top-color: var(--border) !important; }
+.popup-content {
+  padding: 10px 12px;
+  min-width: 180px;
+}
+.popup-content .popup-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.popup-content .popup-header .sym { width: 28px; height: 28px; }
+.popup-content .popup-header .sym svg { width: 28px; height: 28px; }
+.popup-content .popup-header .name { font-weight: 600; font-size: 12px; }
+.popup-content .popup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 0;
+  font-size: 10px;
+}
+.popup-content .popup-row .label { color: var(--text-muted); }
+.popup-content .popup-row .value { color: var(--text-secondary); }
+
+/* Overlay info panels on map */
+.map-overlay {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+.map-overlay > * { pointer-events: auto; }
+.map-overlay.top-right { top: 8px; right: 8px; }
+.map-overlay.legend {
+  bottom: 8px;
+  left: 8px;
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 10px;
+  backdrop-filter: blur(4px);
+}
+.map-overlay.legend .legend-row { display: flex; align-items: center; gap: 6px; }
+.map-overlay.legend .legend-row .swatch { width: 12px; height: 12px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 8px; }
+.map-overlay.legend .legend-row .swatch svg { width: 12px; height: 12px; }
+.map-overlay.legend .legend-row .swatch.friendly { background: rgba(59,130,246,0.2); border: 1px solid var(--blue); }
+.map-overlay.legend .legend-row .swatch.hostile { background: rgba(239,68,68,0.2); border: 1px solid var(--red); }
+.map-overlay.legend .legend-row .swatch.unknown { background: rgba(245,158,11,0.2); border: 1px solid var(--amber); }
+
+.map-overlay.geofence-info {
+  top: 48px;
+  right: 8px;
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 10px;
+  backdrop-filter: blur(4px);
+}
+.map-overlay.geofence-info div { color: var(--text-muted); }
+.map-overlay.geofence-info strong { color: var(--text-secondary); }
+
+/* Loading */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 0.5s;
+}
+#loading.hidden { opacity: 0; pointer-events: none; }
+#loading .spinner {
+  width: 32px; height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading p { margin-top: 12px; color: var(--text-muted); font-size: 11px; letter-spacing: 1px; }
+
+/* Layer toggle (Dark / Satellite) */
+.layer-toggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 4;
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+.layer-btn {
+  padding: 4px 10px;
+  font-size: 10px;
+  font-family: inherit;
+  letter-spacing: 1px;
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.layer-btn:not(:last-child) { border-right: 1px solid var(--border); }
+.layer-btn:hover { color: var(--text-primary); }
+.layer-btn.active { background: var(--blue); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+
+/* 3D View Toggle */
+.view-toggle {
+  position: absolute;
+  top: 38px;
+  right: 8px;
+  z-index: 3;
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+.view-btn {
+  padding: 4px 10px;
+  font-size: 10px;
+  font-family: inherit;
+  letter-spacing: 1px;
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.view-btn:not(:last-child) { border-right: 1px solid var(--border); }
+.view-btn:hover { color: var(--text-primary); }
+.view-btn.active { background: var(--blue); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.view-btn.active-3d { background: var(--cyan); color: #000; }
+
+/* Fusion Opacity Slider */
+.opacity-slider {
+  position: absolute;
+  top: 68px;
+  right: 8px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  backdrop-filter: blur(4px);
+}
+.opacity-label {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.opacity-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.opacity-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyan);
+  cursor: pointer;
+  border: none;
+}
+.opacity-val {
+  font-size: 10px;
+  color: var(--cyan);
+  min-width: 28px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.el-status {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+.el-status.on { background: var(--green); box-shadow: 0 0 4px var(--green); }
+.el-status.off { background: var(--text-muted); opacity: 0.4; }
+
+/* Elevation in popup */
+.popup-3d-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 5px 0;
+  border: 1px solid var(--cyan);
+  border-radius: 3px;
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--cyan);
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.popup-3d-btn:hover { background: rgba(6, 182, 212, 0.2); }
+.popup-3d-btn .icon { margin-right: 4px; }
+
+/* Terrain wireframe for visual feedback */
+.terrain-active .maplibregl-canvas {
+  cursor: crosshair;
+}
+
+/* Layers Panel */
+#layers-panel {
+  border-top: 1px solid var(--border);
+  max-height: 600px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+#layers-panel::-webkit-scrollbar { width: 4px; }
+#layers-panel::-webkit-scrollbar-track { background: transparent; }
+#layers-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.layer-group { border-bottom: 1px solid var(--border); }
+.layer-group:last-child { border-bottom: none; }
+
+.layer-group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  transition: background 0.15s;
+  user-select: none;
+}
+.layer-group-header:hover { background: var(--bg-hover); }
+
+.layer-group-header .toggle-icon {
+  font-size: 8px;
+  color: var(--text-muted);
+  width: 10px;
+  transition: transform 0.15s;
+}
+.layer-group-header.open .toggle-icon { transform: rotate(90deg); }
+
+.layer-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.layer-group-header .group-name { flex: 1; }
+
+.layer-group-header input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--blue);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.layer-group-items {
+  display: none;
+  padding: 2px 12px 6px 28px;
+}
+.layer-group-items.open { display: block; }
+
+.layer-group-items label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  font-size: 9px;
+  color: var(--text-muted);
+  cursor: pointer;
+  letter-spacing: 0.3px;
+}
+.layer-group-items label:hover { color: var(--text-secondary); }
+
+.layer-group-items input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+
+.layer-count-badge {
+  font-size: 8px;
+  color: var(--text-muted);
+  background: var(--bg-tertiary);
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-left: auto;
+}
+
+.layer-loading {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--text-muted);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-left: auto;
+}
+
+.layer-error {
+  color: var(--red);
+  font-size: 8px;
+  margin-left: auto;
+}
+</style>
+</head>
+<body>
+
+<div id="loading">
+  <div class="spinner"></div>
+  <p>INITIALIZING C2 TERMINAL</p>
+</div>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10" stroke="var(--green)"/>
+        <circle cx="12" cy="12" r="3" fill="var(--green)"/>
+        <path d="M12 2v20M2 12h20" stroke="var(--green)" opacity="0.3"/>
+      </svg>
+      <span>OPS</span>CENTER
+    </div>
+    <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.5px;">SITUATIONAL AWARENESS TERMINAL v2.1</div>
+    <div class="mission">MISSION: <span style="color:var(--amber);">OP DNIPRO SHIELD</span></div>
+    <div class="clock" id="clock">--:--:--</div>
+  </div>
+
+  <!-- Main -->
+  <div id="main">
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <div class="sidebar-header">
+        <span>Unit Roster</span>
+        <span class="count" id="unit-count">0 UNITS</span>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="FRIENDLY" style="color:var(--blue);">Friendly</button>
+        <button class="filter-btn" data-filter="HOSTILE" style="color:var(--red);">Hostile</button>
+        <button class="filter-btn" data-filter="UNKNOWN" style="color:var(--amber);">Unknown</button>
+      </div>
+      <div id="unit-list"></div>
+
+      <!-- Layers Panel -->
+      <div id="layers-panel">
+        <div class="sidebar-header">
+          <span>Map Layers</span>
+          <span class="count" id="layer-count">0 ACTIVE</span>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="critical">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#ef4444;"></span>
+            <span class="group-name">Critical Infrastructure</span>
+            <input type="checkbox" class="group-toggle" data-category="critical">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="hospital"> Hospitals</label>
+            <label><input type="checkbox" data-subcategory="school"> Schools</label>
+            <label><input type="checkbox" data-subcategory="university"> Universities</label>
+            <label><input type="checkbox" data-subcategory="government"> Government</label>
+            <label><input type="checkbox" data-subcategory="fire_station"> Fire Stations</label>
+            <label><input type="checkbox" data-subcategory="police"> Police</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="commercial">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#3b82f6;"></span>
+            <span class="group-name">Commercial</span>
+            <input type="checkbox" class="group-toggle" data-category="commercial">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="restaurant"> Restaurants</label>
+            <label><input type="checkbox" data-subcategory="cafe"> Cafes</label>
+            <label><input type="checkbox" data-subcategory="shop"> Shops</label>
+            <label><input type="checkbox" data-subcategory="supermarket"> Supermarkets</label>
+            <label><input type="checkbox" data-subcategory="bank"> Banks</label>
+            <label><input type="checkbox" data-subcategory="office"> Offices</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="industrial">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#f59e0b;"></span>
+            <span class="group-name">Industrial</span>
+            <input type="checkbox" class="group-toggle" data-category="industrial">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="industrial"> Industrial</label>
+            <label><input type="checkbox" data-subcategory="warehouse"> Warehouses</label>
+            <label><input type="checkbox" data-subcategory="factory"> Factories</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="transport">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#22c55e;"></span>
+            <span class="group-name">Transportation</span>
+            <input type="checkbox" class="group-toggle" data-category="transport">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="bus_station"> Bus Stations</label>
+            <label><input type="checkbox" data-subcategory="train_station"> Train Stations</label>
+            <label><input type="checkbox" data-subcategory="airport"> Airports</label>
+            <label><input type="checkbox" data-subcategory="ferry_terminal"> Ferry Terminals</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="services">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#8b5cf6;"></span>
+            <span class="group-name">Services</span>
+            <input type="checkbox" class="group-toggle" data-category="services">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="post_office"> Post Offices</label>
+            <label><input type="checkbox" data-subcategory="pharmacy"> Pharmacies</label>
+            <label><input type="checkbox" data-subcategory="fuel"> Fuel Stations</label>
+            <label><input type="checkbox" data-subcategory="parking"> Parking</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="accommodation">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#06b6d4;"></span>
+            <span class="group-name">Accommodation</span>
+            <input type="checkbox" class="group-toggle" data-category="accommodation">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="hotel"> Hotels</label>
+            <label><input type="checkbox" data-subcategory="motel"> Motels</label>
+            <label><input type="checkbox" data-subcategory="hostel"> Hostels</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="power">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#ff6b35;"></span>
+            <span class="group-name">Power Infrastructure</span>
+            <input type="checkbox" class="group-toggle" data-category="power">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="power_plant"> Power Plants</label>
+            <label><input type="checkbox" data-subcategory="substation"> Substations</label>
+            <label><input type="checkbox" data-subcategory="power_line"> Power Lines</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="transport_infra">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#8b4513;"></span>
+            <span class="group-name">Transport Infrastructure</span>
+            <input type="checkbox" class="group-toggle" data-category="transport_infra">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="railway_station"> Railway Stations</label>
+            <label><input type="checkbox" data-subcategory="airport"> Airports</label>
+            <label><input type="checkbox" data-subcategory="bridge"> Bridges</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="admin">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#9370db;"></span>
+            <span class="group-name">Admin Boundaries</span>
+            <input type="checkbox" class="group-toggle" data-category="admin">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="oblast"> Oblasts</label>
+            <label><input type="checkbox" data-subcategory="raion"> Raions</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="humanitarian">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#dc143c;"></span>
+            <span class="group-name">Humanitarian</span>
+            <input type="checkbox" class="group-toggle" data-category="humanitarian">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="idp_camp"> IDP Camps</label>
+            <label><input type="checkbox" data-subcategory="shelter"> Shelters</label>
+            <label><input type="checkbox" data-subcategory="aid_point"> Aid Points</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="military_osm">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#8b0000;"></span>
+            <span class="group-name">Military (OSM)</span>
+            <input type="checkbox" class="group-toggle" data-category="military_osm">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="military_base"> Bases</label>
+            <label><input type="checkbox" data-subcategory="military_training"> Training Areas</label>
+            <label><input type="checkbox" data-subcategory="military_airfield"> Airfields</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
+          <div class="layer-group-header" data-group="telecom">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#00ff7f;"></span>
+            <span class="group-name">Telecom</span>
+            <input type="checkbox" class="group-toggle" data-category="telecom">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" data-subcategory="comm_tower"> Comm Towers</label>
+            <label><input type="checkbox" data-subcategory="mobile_tower"> Mobile Towers</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div id="map-container">
+      <div id="map"></div>
+
+      <!-- Layer Toggle (Dark / Satellite) -->
+      <div class="layer-toggle">
+        <button class="layer-btn active" id="btn-dark" data-layer="dark">DARK</button>
+        <button class="layer-btn" id="btn-satellite" data-layer="satellite">SATELLITE</button>
+        <button class="layer-btn" id="btn-fusion" data-layer="fusion">FUSION</button>
+      </div>
+
+      <!-- 3D View Toggle -->
+      <div class="view-toggle">
+        <button class="view-btn active" id="btn-2d" data-mode="2d">2D</button>
+        <button class="view-btn" id="btn-3d" data-mode="3d">3D</button>
+      </div>
+
+      <!-- Fusion Opacity Slider -->
+      <div class="opacity-slider" id="opacity-slider" style="display:none;">
+        <label class="opacity-label">OVERLAY</label>
+        <input type="range" id="opacity-range" class="opacity-range" min="0" max="100" value="55">
+        <span class="opacity-val" id="opacity-val">55%</span>
+      </div>
+
+      <!-- Legend -->
+      <div class="map-overlay legend" id="legend">
+        <div class="legend-row">
+          <div class="swatch friendly">
+            <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4" fill="#3b82f6"/></svg>
+          </div>
+          <span style="color:var(--blue);">FRIENDLY</span>
+        </div>
+        <div class="legend-row">
+          <div class="swatch hostile">
+            <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4" fill="#ef4444"/></svg>
+          </div>
+          <span style="color:var(--red);">HOSTILE</span>
+        </div>
+        <div class="legend-row">
+          <div class="swatch unknown">
+            <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4" fill="#f59e0b"/></svg>
+          </div>
+          <span style="color:var(--amber);">UNKNOWN</span>
+        </div>
+      </div>
+
+      <!-- Geofence info -->
+      <div class="map-overlay geofence-info">
+        <div><strong>AO:</strong> <span id="ao-name">KYIV</span></div>
+        <div><strong>ACTIVE GEOFENCES:</strong> <span id="geofence-count">2</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Bar -->
+  <div id="statusbar">
+    <span class="stat friendly"><span class="val" id="stat-friendly">0</span> FRIENDLY</span>
+    <span class="stat hostile"><span class="val" id="stat-hostile">0</span> HOSTILE</span>
+    <span class="stat unknown"><span class="val" id="stat-unknown">0</span> UNKNOWN</span>
+    <span class="spacer"></span>
+    <span class="coords-label">POS:</span>
+    <span class="coords" id="status-coords">--.--, --.--</span>
+    <span class="zoom-label">ZOOM:</span>
+    <span class="zoom" id="status-zoom">--</span>
+    <span class="coords-label" style="margin-left:4px;">ELEV:</span>
+    <span class="coords" id="status-elev">---</span><span class="coords-label">m</span>
+    <span id="status-3d-indicator" style="display:none;color:var(--cyan);font-size:10px;letter-spacing:1px;">
+      <span class="el-status on"></span>3D
+    </span>
+    <span class="updated" id="status-updated">UPDATED: --:--:--</span>
+  </div>
+</div>
+
+<script>
+// ========== Clock ==========
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toUTCString().slice(17, 25) + 'Z';
+  document.getElementById('status-updated').textContent = 'UPDATED: ' + now.toUTCString().slice(17, 25) + 'Z';
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ========== Mock Data ==========
+const UNITS = [];
+
+const GEOFENCES = [];
+
+// ========== Layer Styles ==========
+const DARK_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+
+const SATELLITE_STYLE = {
+  version: 8,
+  name: 'Satellite',
+  sources: {
+    'satellite': {
+      type: 'raster',
+      tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+      tileSize: 256,
+      attribution: '&copy; Esri, Maxar, Earthstar Geographics'
+    }
+  },
+  layers: [
+    { id: 'background', type: 'background', paint: { 'background-color': '#000000' } },
+    { id: 'satellite-layer', type: 'raster', source: 'satellite' }
+  ]
+};
+
+const FUSION_STYLE = {
+  version: 8,
+  name: 'Fusion',
+  sources: {
+    'satellite': {
+      type: 'raster',
+      tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+      tileSize: 256,
+      attribution: '&copy; Esri, Maxar, Earthstar Geographics'
+    },
+    'carto': {
+      type: 'vector',
+      url: 'https://tiles.basemaps.cartocdn.com/vector/carto.streets/v1/tiles.json'
+    }
+  },
+  layers: [
+    { id: 'background', type: 'background', paint: { 'background-color': '#000000' } },
+    { id: 'satellite-layer', type: 'raster', source: 'satellite' },
+    { 
+      id: 'building-walls',
+      type: 'fill-extrusion',
+      source: 'carto',
+      'source-layer': 'building',
+      minzoom: 14,
+      paint: {
+        'fill-extrusion-color': '#7a8ba0',
+        'fill-extrusion-height': ['get', 'render_height'],
+        'fill-extrusion-base': ['get', 'render_min_height'],
+        'fill-extrusion-opacity': 0.55
+      }
+    }
+  ]
+};
+
+var map;
+let is3D = false;
+let terrainSource = null;
+let currentLayer = 'dark';
+let lastZoom = 10;
+
+// ========== Init Map (deferred for layout stability) ==========
+function initMap() {
+  const container = document.getElementById('map');
+  if (!container || container.offsetWidth === 0 || container.offsetHeight === 0) {
+    requestAnimationFrame(initMap);
+    return;
+  }
+
+  const pmtilesProtocol = new pmtiles.Protocol();
+  maplibregl.addProtocol('pmtiles', pmtilesProtocol.tile);
+
+  map = new maplibregl.Map({
+    container: 'map',
+    style: DARK_STYLE,
+    center: [30.52, 50.45],
+    zoom: 10,
+    minZoom: 3,
+    maxZoom: 20,
+    attributionControl: false,
+    dragRotate: true,
+    pitchWithRotate: false,
+  });
+
+  // Initial load of the first style
+  map.on('load', () => {
+    document.getElementById('loading').classList.add('hidden');
+    document.getElementById('status-elev').parentElement.style.display = 'none';
+    initUnits();
+    initInteraction();
+    initOvertureUI();
+    initOverturePopup();
+    initOpenDataUI();
+    initOpenDataPopup();
+    updateUI();
+  });
+
+  map.on('style.load', () => {
+    initGeofences();
+    
+    if (currentLayer === 'dark') {
+      addBuildings();
+      if (map.getLayer(BUILDINGS_LAYER)) {
+        map.setPaintProperty(BUILDINGS_LAYER, 'fill-extrusion-opacity', 0.65);
+      }
+    }
+    
+    if (is3D) {
+      if (!map.getSource('terrain-source')) setupTerrain();
+      map.setTerrain({ source: 'terrain-source', exaggeration: 0.8 });
+    }
+    
+    restoreOvertureLayers();
+    restoreOpenDataLayers();
+  });
+
+  map.on('mousemove', (e) => {
+    document.getElementById('status-coords').textContent =
+      e.lngLat.lat.toFixed(4) + ', ' + e.lngLat.lng.toFixed(4);
+    clearTimeout(elevQueryTimer);
+    elevQueryTimer = setTimeout(() => queryElevation(e.lngLat), 50);
+  });
+  map.on('zoom', () => {
+    const z = map.getZoom();
+    document.getElementById('status-zoom').textContent = z.toFixed(1);
+    if (z > 14 && lastZoom <= 14 && !is3D) {
+      enable3D();
+    }
+    lastZoom = z;
+  });
+
+  // 3D toggle buttons
+  document.getElementById('btn-2d').addEventListener('click', disable3D);
+  document.getElementById('btn-3d').addEventListener('click', enable3D);
+
+  // Layer toggle buttons
+  document.getElementById('btn-dark').addEventListener('click', () => switchLayer('dark'));
+  document.getElementById('btn-satellite').addEventListener('click', () => switchLayer('satellite'));
+  document.getElementById('btn-fusion').addEventListener('click', () => switchLayer('fusion'));
+
+  // Opacity slider
+  document.getElementById('opacity-range').addEventListener('input', updateOverlayOpacity);
+
+  // Kick off renderSidebar and sim after map is ready
+  renderSidebar();
+  setInterval(simulateMovement, 3000);
+  setTimeout(updateUI, 100);
+}
+
+function switchLayer(layer) {
+  if (layer === currentLayer) return;
+  if (!map.isStyleLoaded()) { setTimeout(() => switchLayer(layer), 200); return; }
+  currentLayer = layer;
+  
+  if (layer === 'fusion') {
+    map.setStyle(FUSION_STYLE);
+    map.setMaxZoom(18);
+  } else {
+    map.setStyle(layer === 'dark' ? DARK_STYLE : SATELLITE_STYLE);
+    map.setMaxZoom(layer === 'dark' ? 20 : 18);
+  }
+  
+  document.getElementById('opacity-slider').style.display = layer === 'fusion' ? 'flex' : 'none';
+  document.getElementById('btn-dark').classList.toggle('active', layer === 'dark');
+  document.getElementById('btn-satellite').classList.toggle('active', layer === 'satellite');
+  document.getElementById('btn-fusion').classList.toggle('active', layer === 'fusion');
+}
+
+const BUILDINGS_LAYER = '3d-buildings';
+
+function addBuildings() {
+  if (map.getLayer(BUILDINGS_LAYER)) return;
+  try {
+    const before = map.getStyle().layers.find(l => l.type === 'symbol')?.id;
+    map.addLayer({
+      id: BUILDINGS_LAYER,
+      type: 'fill-extrusion',
+        source: 'carto',
+      'source-layer': 'building',
+      minzoom: 14,
+      paint: {
+        'fill-extrusion-color': [
+          'interpolate', ['linear'], ['get', 'render_height'],
+          0, '#334155',
+          50, '#475569',
+          100, '#1e293b'
+        ],
+        'fill-extrusion-height': ['get', 'render_height'],
+        'fill-extrusion-base': ['get', 'render_min_height'],
+        'fill-extrusion-opacity': 0
+      },
+      layout: { visibility: is3D ? 'visible' : 'none' }
+    }, before);
+  } catch (_) { /* building source not available */ }
+}
+
+function updateOverlayOpacity() {
+  const slider = document.getElementById('opacity-range');
+  const val = slider.value / 100;
+  document.getElementById('opacity-val').textContent = Math.round(val * 100) + '%';
+  
+  if (currentLayer === 'fusion' && map.getLayer('building-walls')) {
+    map.setPaintProperty('building-walls', 'fill-extrusion-opacity', val * 0.8);
+  }
+}
+
+// ========== Overture Maps Places ==========
+const OVERTURE_PLACES_URL = 'pmtiles://https://tiles.overturemaps.org/2026-05-20.0/places.pmtiles';
+
+// Debug: Test if PMTiles URL is accessible
+fetch('https://tiles.overturemaps.org/2026-05-20.0/places.pmtiles', { method: 'HEAD' })
+  .then(r => console.log(`[Overture] PMTiles URL accessible: ${r.status} ${r.statusText}`))
+  .catch(e => console.error('[Overture] PMTiles URL not accessible:', e));
+
+const PLACE_CATEGORIES = {
+  critical: {
+    color: '#ef4444',
+    subcategories: ['hospital', 'school', 'university', 'government', 'fire_station', 'police']
+  },
+  commercial: {
+    color: '#3b82f6',
+    subcategories: ['restaurant', 'cafe', 'shop', 'supermarket', 'bank', 'office']
+  },
+  industrial: {
+    color: '#f59e0b',
+    subcategories: ['industrial', 'warehouse', 'factory']
+  },
+  transport: {
+    color: '#22c55e',
+    subcategories: ['bus_station', 'train_station', 'airport', 'ferry_terminal']
+  },
+  services: {
+    color: '#8b5cf6',
+    subcategories: ['post_office', 'pharmacy', 'fuel', 'parking']
+  },
+  accommodation: {
+    color: '#06b6d4',
+    subcategories: ['hotel', 'motel', 'hostel']
+  }
+};
+
+const enabledSubcategories = new Set();
+
+function ensureOvertureSource() {
+  if (map.getSource('overture-places')) return;
+  
+  map.addSource('overture-places', {
+    type: 'vector',
+    url: OVERTURE_PLACES_URL,
+    attribution: '&copy; Overture Maps Foundation'
+  });
+  
+  const source = map.getSource('overture-places');
+  
+  source.on('data', (e) => {
+    if (e.dataType === 'source' && e.isSourceLoaded) {
+      console.log('[Overture] Source loaded successfully');
+      
+      // Debug: Try to detect available source layers
+      map.once('idle', () => {
+        const layers = map.getStyle().layers.filter(l => l.source === 'overture-places');
+        console.log('[Overture] Available layers from source:', layers.map(l => l['source-layer']));
+        
+        // Try querying features without filter to see what's available
+        const testFeatures = map.querySourceFeatures('overture-places', { sourceLayer: 'place' });
+        console.log(`[Overture] Test query for 'place' layer: ${testFeatures.length} features`);
+        
+        if (testFeatures.length > 0) {
+          const sampleFeature = testFeatures[0];
+          console.log('[Overture] Sample feature:', sampleFeature);
+          console.log('[Overture] Sample feature properties:', sampleFeature.properties);
+          
+          // Log all property keys and their types
+          const propKeys = Object.keys(sampleFeature.properties);
+          console.log('[Overture] Property keys:', propKeys);
+          
+          // Log detailed property info
+          const propDetails = {};
+          propKeys.forEach(key => {
+            const value = sampleFeature.properties[key];
+            propDetails[key] = {
+              value: value,
+              type: typeof value,
+              isArray: Array.isArray(value),
+              isString: typeof value === 'string',
+              preview: typeof value === 'string' ? value.substring(0, 100) : value
+            };
+          });
+          console.log('[Overture] Detailed property info:', propDetails);
+        }
+        
+        // Try 'places' (plural) as alternative
+        const testFeatures2 = map.querySourceFeatures('overture-places', { sourceLayer: 'places' });
+        console.log(`[Overture] Test query for 'places' layer: ${testFeatures2.length} features`);
+      });
+    }
+  });
+  
+  source.on('error', (e) => {
+    console.error('[Overture] Source error:', e.error);
+  });
+}
+
+function addOvertureLayer(subcategory, color) {
+  const layerId = `overture-${subcategory}`;
+  if (map.getLayer(layerId)) return;
+  
+  ensureOvertureSource();
+  
+  // Try different filter approaches based on how Overture stores categories
+  // In PMTiles, nested objects are often flattened with dot notation
+  const filter = [
+    'any',
+    ['==', ['get', 'categories.primary'], subcategory],
+    ['==', ['get', 'categories'], subcategory],
+    ['in', subcategory, ['get', 'categories']]
+  ];
+  
+  try {
+    map.addLayer({
+      id: layerId,
+      type: 'circle',
+      source: 'overture-places',
+      'source-layer': 'place',
+      minzoom: 12,
+      filter: filter,
+      paint: {
+        'circle-radius': [
+          'interpolate', ['linear'], ['zoom'],
+          12, 3,
+          16, 8
+        ],
+        'circle-color': color,
+        'circle-opacity': 0.85,
+        'circle-stroke-width': 1,
+        'circle-stroke-color': '#ffffff'
+      }
+    });
+    
+    console.log(`[Overture] Added layer: ${layerId} for category: ${subcategory}`);
+    
+    // Debug: Log first feature properties when layer is added
+    map.once('idle', () => {
+      const features = map.queryRenderedFeatures({ layers: [layerId] });
+      if (features.length > 0) {
+        const sampleFeature = features[0];
+        console.log(`[Overture] Sample feature for ${subcategory}:`, sampleFeature);
+        console.log(`[Overture] Sample feature properties for ${subcategory}:`, sampleFeature.properties);
+        
+        // Log detailed property info
+        const propKeys = Object.keys(sampleFeature.properties);
+        console.log(`[Overture] Property keys for ${subcategory}:`, propKeys);
+        
+        const propDetails = {};
+        propKeys.forEach(key => {
+          const value = sampleFeature.properties[key];
+          propDetails[key] = {
+            value: value,
+            type: typeof value,
+            isArray: Array.isArray(value),
+            preview: typeof value === 'string' ? value.substring(0, 100) : value
+          };
+        });
+        console.log(`[Overture] Detailed property info for ${subcategory}:`, propDetails);
+      } else {
+        console.warn(`[Overture] No features found for ${subcategory}. Check filter or zoom level.`);
+      }
+    });
+  } catch (err) {
+    console.error(`[Overture] Error adding layer ${layerId}:`, err);
+  }
+}
+
+function removeOvertureLayer(subcategory) {
+  const layerId = `overture-${subcategory}`;
+  if (map.getLayer(layerId)) {
+    map.removeLayer(layerId);
+  }
+}
+
+function toggleSubcategory(subcategory, enabled) {
+  let category = null;
+  let color = null;
+  
+  for (const [cat, data] of Object.entries(PLACE_CATEGORIES)) {
+    if (data.subcategories.includes(subcategory)) {
+      category = cat;
+      color = data.color;
+      break;
+    }
+  }
+  
+  if (!category) return;
+  
+  if (enabled) {
+    enabledSubcategories.add(subcategory);
+    addOvertureLayer(subcategory, color);
+  } else {
+    enabledSubcategories.delete(subcategory);
+    removeOvertureLayer(subcategory);
+  }
+  
+  updateLayerCount();
+  updateGroupCheckbox(category);
+}
+
+function toggleCategory(category, enabled) {
+  const data = PLACE_CATEGORIES[category];
+  if (!data) return;
+  
+  data.subcategories.forEach(sub => {
+    toggleSubcategory(sub, enabled);
+    const checkbox = document.querySelector(`input[data-subcategory="${sub}"]`);
+    if (checkbox) checkbox.checked = enabled;
+  });
+}
+
+function updateGroupCheckbox(category) {
+  const data = PLACE_CATEGORIES[category];
+  if (!data) return;
+  
+  const enabledCount = data.subcategories.filter(s => enabledSubcategories.has(s)).length;
+  const groupCheckbox = document.querySelector(`input.group-toggle[data-category="${category}"]`);
+  
+  if (groupCheckbox) {
+    groupCheckbox.checked = enabledCount > 0;
+    groupCheckbox.indeterminate = enabledCount > 0 && enabledCount < data.subcategories.length;
+  }
+}
+
+function updateLayerCount() {
+  const total = enabledSubcategories.size + enabledOpenDataLayers.size;
+  document.getElementById('layer-count').textContent = `${total} ACTIVE`;
+}
+
+function restoreOvertureLayers() {
+  if (enabledSubcategories.size === 0) return;
+  
+  ensureOvertureSource();
+  
+  enabledSubcategories.forEach(subcategory => {
+    let color = null;
+    for (const data of Object.values(PLACE_CATEGORIES)) {
+      if (data.subcategories.includes(subcategory)) {
+        color = data.color;
+        break;
+      }
+    }
+    if (color) {
+      addOvertureLayer(subcategory, color);
+    }
+  });
+}
+
+function initOvertureUI() {
+  document.querySelectorAll('.layer-group-header').forEach(header => {
+    header.addEventListener('click', (e) => {
+      if (e.target.type === 'checkbox') return;
+      
+      const group = header.dataset.group;
+      const items = header.nextElementSibling;
+      
+      header.classList.toggle('open');
+      items.classList.toggle('open');
+    });
+  });
+  
+  document.querySelectorAll('.group-toggle').forEach(checkbox => {
+    checkbox.addEventListener('change', (e) => {
+      const category = e.target.dataset.category;
+      toggleCategory(category, e.target.checked);
+    });
+  });
+  
+  document.querySelectorAll('input[data-subcategory]').forEach(checkbox => {
+    checkbox.addEventListener('change', (e) => {
+      const subcategory = e.target.dataset.subcategory;
+      toggleSubcategory(subcategory, e.target.checked);
+    });
+  });
+}
+
+function initOverturePopup() {
+  // Helper to parse JSON string if needed
+  function parseJson(value) {
+    if (value === null || value === undefined) return null;
+    if (typeof value === 'string' && (value.startsWith('{') || value.startsWith('['))) {
+      try {
+        return JSON.parse(value);
+      } catch (e) {
+        console.warn('[Overture] Failed to parse JSON:', value);
+        return null;
+      }
+    }
+    return value;
+  }
+  
+  // Helper to extract nested value using dot notation
+  function extractNested(obj, path) {
+    if (obj === null || obj === undefined) return null;
+    if (!path) return obj;
+    
+    const parts = path.split('.');
+    let current = obj;
+    
+    for (const part of parts) {
+      if (current === null || current === undefined) return null;
+      
+      // Handle array notation like [0]
+      const arrayMatch = part.match(/^(\w+)\[(\d+)\]$/);
+      if (arrayMatch) {
+        const [, key, index] = arrayMatch;
+        current = current[key];
+        if (Array.isArray(current)) {
+          current = current[parseInt(index)];
+        } else {
+          return null;
+        }
+      } else {
+        current = current[part];
+      }
+    }
+    
+    return current;
+  }
+  
+  // Helper to get first item from array or string
+  function getFirstValue(value) {
+    if (value === null || value === undefined) return '';
+    if (Array.isArray(value) && value.length > 0) {
+      return value[0];
+    }
+    return value;
+  }
+  
+  map.on('click', (e) => {
+    const layers = Array.from(enabledSubcategories).map(s => `overture-${s}`);
+    if (layers.length === 0) return;
+    
+    const features = map.queryRenderedFeatures(e.point, { layers });
+    
+    if (features.length === 0) return;
+    
+    const feature = features[0];
+    const props = feature.properties;
+    
+    // Enhanced logging - show all properties with their types
+    console.log('[Overture] Clicked feature properties:', props);
+    console.log('[Overture] Property keys:', Object.keys(props));
+    const propDetails = {};
+    Object.keys(props).forEach(key => {
+      propDetails[key] = {
+        value: props[key],
+        type: typeof props[key],
+        isArray: Array.isArray(props[key])
+      };
+    });
+    console.log('[Overture] Property details:', propDetails);
+    
+    // Extract name - try @name first, then parse names JSON
+    let name = props['@name'];
+    if (!name) {
+      const namesObj = parseJson(props['names']);
+      if (namesObj) {
+        name = namesObj.primary || namesObj.common;
+      }
+    }
+    name = name || 'Unknown';
+    
+    // Extract category - try basic_category first, then parse categories JSON
+    let category = props['basic_category'];
+    if (!category) {
+      const categoriesObj = parseJson(props['categories']);
+      if (categoriesObj) {
+        category = categoriesObj.primary;
+      }
+    }
+    category = category || 'Unknown';
+    
+    // Extract address - parse addresses JSON array
+    let address = '';
+    const addressesArray = parseJson(props['addresses']);
+    if (Array.isArray(addressesArray) && addressesArray.length > 0) {
+      address = addressesArray[0].freeform || '';
+    }
+    
+    // Extract phone - parse phones JSON array
+    let phone = '';
+    const phonesArray = parseJson(props['phones']);
+    if (Array.isArray(phonesArray) && phonesArray.length > 0) {
+      phone = phonesArray[0];
+    }
+    
+    // Extract website - parse websites JSON array
+    let website = '';
+    const websitesArray = parseJson(props['websites']);
+    if (Array.isArray(websitesArray) && websitesArray.length > 0) {
+      website = websitesArray[0];
+    }
+    
+    // Extract email - parse emails JSON array
+    let email = '';
+    const emailsArray = parseJson(props['emails']);
+    if (Array.isArray(emailsArray) && emailsArray.length > 0) {
+      email = emailsArray[0];
+    }
+    
+    // Extract social media - parse socials JSON array
+    let social = '';
+    const socialsArray = parseJson(props['socials']);
+    if (Array.isArray(socialsArray) && socialsArray.length > 0) {
+      social = socialsArray[0];
+    }
+    
+    // Extract brand - parse brand JSON object
+    let brand = '';
+    const brandObj = parseJson(props['brand']);
+    if (brandObj && brandObj.names) {
+      brand = brandObj.names.primary || brandObj.names.common || '';
+    }
+    
+    // Extract operating status
+    const status = props['operating_status'] || props['status'] || '';
+    
+    // Extract confidence
+    const confidence = props['confidence'];
+    
+    // Build popup HTML
+    let html = `<div class="popup-content">`;
+    html += `<div class="popup-header"><div class="name">${name}</div></div>`;
+    
+    if (brand && brand !== name) {
+      html += `<div class="popup-row"><span class="label">Brand</span><span class="value">${brand}</span></div>`;
+    }
+    
+    html += `<div class="popup-row"><span class="label">Category</span><span class="value">${category}</span></div>`;
+    
+    if (status) {
+      html += `<div class="popup-row"><span class="label">Status</span><span class="value">${status}</span></div>`;
+    }
+    
+    if (confidence !== undefined) {
+      html += `<div class="popup-row"><span class="label">Confidence</span><span class="value">${(confidence * 100).toFixed(1)}%</span></div>`;
+    }
+    
+    if (address) {
+      html += `<div class="popup-row"><span class="label">Address</span><span class="value">${address}</span></div>`;
+    }
+    if (phone) {
+      html += `<div class="popup-row"><span class="label">Phone</span><span class="value">${phone}</span></div>`;
+    }
+    if (email) {
+      html += `<div class="popup-row"><span class="label">Email</span><span class="value"><a href="mailto:${email}" style="color:var(--cyan);">${email}</a></span></div>`;
+    }
+    if (website) {
+      html += `<div class="popup-row"><span class="label">Website</span><span class="value"><a href="${website}" target="_blank" style="color:var(--cyan);">View</a></span></div>`;
+    }
+    if (social) {
+      html += `<div class="popup-row"><span class="label">Social</span><span class="value"><a href="${social}" target="_blank" style="color:var(--cyan);">View</a></span></div>`;
+    }
+    
+    // Add collapsible "All Properties" section for debugging
+    html += `<details style="margin-top:8px;border-top:1px solid var(--border);padding-top:6px;">`;
+    html += `<summary style="cursor:pointer;font-size:9px;color:var(--text-muted);letter-spacing:0.5px;">ALL PROPERTIES</summary>`;
+    html += `<div style="margin-top:6px;font-size:9px;max-height:200px;overflow-y:auto;">`;
+    
+    // Show all properties
+    const propKeys = Object.keys(props).sort();
+    propKeys.forEach(key => {
+      let value = props[key];
+      let displayValue = '';
+      
+      // Format value for display
+      if (value === null || value === undefined) {
+        displayValue = '<em style="color:var(--text-muted);">null</em>';
+      } else if (typeof value === 'object') {
+        displayValue = `<span style="color:var(--amber);">${JSON.stringify(value).substring(0, 150)}${JSON.stringify(value).length > 150 ? '...' : ''}</span>`;
+      } else if (typeof value === 'string') {
+        if (value.length > 100) {
+          displayValue = `<span style="color:var(--green);">"${value.substring(0, 100)}..."</span>`;
+        } else {
+          displayValue = `<span style="color:var(--green);">"${value}"</span>`;
+        }
+      } else {
+        displayValue = `<span style="color:var(--cyan);">${value}</span>`;
+      }
+      
+      html += `<div style="margin-bottom:3px;"><span style="color:var(--text-secondary);">${key}:</span> ${displayValue}</div>`;
+    });
+    
+    html += `</div></details>`;
+    
+    html += `</div>`;
+    
+    new maplibregl.Popup({ offset: 10, closeButton: true, maxWidth: '350px' })
+      .setLngLat(e.lngLat)
+      .setHTML(html)
+      .addTo(map);
+  });
+  
+  map.on('mouseenter', (e) => {
+    const layers = Array.from(enabledSubcategories).map(s => `overture-${s}`);
+    const features = map.queryRenderedFeatures(e.point, { layers });
+    map.getCanvas().style.cursor = features.length > 0 ? 'pointer' : '';
+  });
+}
+
+// ========== Open Data Layers (OSM + HDX) ==========
+const OVERPASS_API = 'https://overpass-api.de/api/interpreter';
+const UKRAINE_BBOX = '(44.0,22.0,52.4,40.2)';
+
+const OPEN_DATA_DATASETS = {
+  power: {
+    power_plant: {
+      color: '#ff6b35',
+      label: 'Power Plants',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["power"="plant"]["plant:source"](area.a);way["power"="plant"]["plant:source"](area.a);relation["power"="plant"]["plant:source"](area.a);));out geom;`,
+      layerType: 'point'
+    },
+    substation: {
+      color: '#ffa500',
+      label: 'Substations',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["power"="substation"](area.a);way["power"="substation"](area.a);relation["power"="substation"](area.a);));out geom;`,
+      layerType: 'point'
+    },
+    power_line: {
+      color: '#ff4500',
+      label: 'Power Lines',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;(way["power"="line"](area.a););out geom;`,
+      layerType: 'line'
+    }
+  },
+  transport_infra: {
+    railway_station: {
+      color: '#8b4513',
+      label: 'Railway Stations',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["railway"="station"](area.a);way["railway"="station"](area.a);relation["railway"="station"](area.a);));out geom;`,
+      layerType: 'point'
+    },
+    airport: {
+      color: '#4169e1',
+      label: 'Airports',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["aeroway"="aerodrome"](area.a);way["aeroway"="aerodrome"](area.a);relation["aeroway"="aerodrome"](area.a);));out geom;`,
+      layerType: 'point'
+    },
+    bridge: {
+      color: '#708090',
+      label: 'Bridges',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;(way["bridge"="yes"](area.a););out geom;`,
+      layerType: 'line'
+    }
+  },
+  admin: {
+    oblast: {
+      color: '#9370db',
+      label: 'Oblasts',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;(relation["admin_level"="4"](area.a););out geom;`,
+      layerType: 'boundary'
+    },
+    raion: {
+      color: '#ba55d3',
+      label: 'Raions',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;(relation["admin_level"="6"](area.a););out geom;`,
+      layerType: 'boundary'
+    }
+  },
+  humanitarian: {
+    idp_camp: {
+      color: '#dc143c',
+      label: 'IDP Camps',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["refugee"="yes"](area.a);way["refugee"="yes"](area.a);relation["refugee"="yes"](area.a););(node["idp"="yes"](area.a);way["idp"="yes"](area.a);relation["idp"="yes"](area.a););(node["camp"="idp"](area.a);way["camp"="idp"](area.a);relation["camp"="idp"](area.a);););out geom;`,
+      layerType: 'point'
+    },
+    shelter: {
+      color: '#48d1cc',
+      label: 'Shelters',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["shelter"="yes"](area.a);way["shelter"="yes"](area.a);relation["shelter"="yes"](area.a););(node["emergency_shelter"](area.a);way["emergency_shelter"](area.a);relation["emergency_shelter"](area.a);););out geom;`,
+      layerType: 'point'
+    },
+    aid_point: {
+      color: '#00ced1',
+      label: 'Aid Points',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["amenity"="social_facility"]["social_facility"="food_bank"](area.a);way["amenity"="social_facility"]["social_facility"="food_bank"](area.a);relation["amenity"="social_facility"]["social_facility"="food_bank"](area.a););(node["amenity"="social_facility"]["social_facility"="outreach"](area.a);way["amenity"="social_facility"]["social_facility"="outreach"](area.a);relation["amenity"="social_facility"]["social_facility"="outreach"](area.a);););out geom;`,
+      layerType: 'point'
+    }
+  },
+  military_osm: {
+    military_base: {
+      color: '#8b0000',
+      label: 'Military Bases',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["military"="base"](area.a);way["military"="base"](area.a);relation["military"="base"](area.a););(node["military"="barracks"](area.a);way["military"="barracks"](area.a);relation["military"="barracks"](area.a);););out geom;`,
+      layerType: 'point'
+    },
+    military_training: {
+      color: '#a52a2a',
+      label: 'Training Areas',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["military"="training_area"](area.a);way["military"="training_area"](area.a);relation["military"="training_area"](area.a););(node["military"="range"](area.a);way["military"="range"](area.a);relation["military"="range"](area.a);););out geom;`,
+      layerType: 'point'
+    },
+    military_airfield: {
+      color: '#b22222',
+      label: 'Airfields',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["military"="airfield"](area.a);way["military"="airfield"](area.a);relation["military"="airfield"](area.a);));out geom;`,
+      layerType: 'point'
+    }
+  },
+  telecom: {
+    comm_tower: {
+      color: '#00ff7f',
+      label: 'Comm Towers',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["man_made"="communications_tower"](area.a);way["man_made"="communications_tower"](area.a);relation["man_made"="communications_tower"](area.a););(node["man_made"="tower"]["tower:type"="communication"](area.a);way["man_made"="tower"]["tower:type"="communication"](area.a);relation["man_made"="tower"]["tower:type"="communication"](area.a);););out geom;`,
+      layerType: 'point'
+    },
+    mobile_tower: {
+      color: '#32cd32',
+      label: 'Mobile Towers',
+      query: `[out:json][timeout:30];area["ISO3166-1"="UA"]->.a;((node["man_made"="mast"](area.a);way["man_made"="mast"](area.a);relation["man_made"="mast"](area.a););(node["communication:mobile_phone"="yes"](area.a);way["communication:mobile_phone"="yes"](area.a);relation["communication:mobile_phone"="yes"](area.a);););out geom;`,
+      layerType: 'point'
+    }
+  }
+};
+
+const openDataCache = {};
+const enabledOpenDataLayers = new Set();
+
+function osmJsonToGeoJson(data) {
+  const features = [];
+  if (!data.elements) return { type: 'FeatureCollection', features };
+
+  for (const el of data.elements) {
+    if (el.type === 'node') {
+      features.push({
+        type: 'Feature',
+        properties: el.tags || {},
+        geometry: { type: 'Point', coordinates: [el.lon, el.lat] }
+      });
+    } else if (el.type === 'way' && el.geometry) {
+      const coords = el.geometry.map(n => [n.lon, n.lat]);
+      if (coords.length > 1) {
+        const isClosed = coords[0][0] === coords[coords.length-1][0] && coords[0][1] === coords[coords.length-1][1];
+        features.push({
+          type: 'Feature',
+          properties: el.tags || {},
+          geometry: { type: isClosed ? 'Polygon' : 'LineString', coordinates: isClosed ? [coords] : coords }
+        });
+      }
+    } else if (el.type === 'relation' && el.members) {
+      const outerCoords = [];
+      for (const member of el.members) {
+        if (member.role === 'outer' && member.geometry) {
+          member.geometry.forEach(n => outerCoords.push([n.lon, n.lat]));
+        }
+      }
+      if (outerCoords.length > 2) {
+        const name = (el.tags || {}).name || '';
+        features.push({
+          type: 'Feature',
+          properties: { ...el.tags, name },
+          geometry: { type: 'Polygon', coordinates: [outerCoords] }
+        });
+      }
+    }
+  }
+  return { type: 'FeatureCollection', features };
+}
+
+const requestQueue = [];
+let isProcessingQueue = false;
+
+async function processQueue() {
+  if (isProcessingQueue || requestQueue.length === 0) return;
+  isProcessingQueue = true;
+  
+  while (requestQueue.length > 0) {
+    const { query, resolve, reject } = requestQueue.shift();
+    try {
+      const result = await executeOverpassRequest(query);
+      resolve(result);
+    } catch (err) {
+      reject(err);
+    }
+    
+    if (requestQueue.length > 0) {
+      await new Promise(r => setTimeout(r, 5000));
+    }
+  }
+  
+  isProcessingQueue = false;
+}
+
+function queueOverpassRequest(query) {
+  return new Promise((resolve, reject) => {
+    requestQueue.push({ query, resolve, reject });
+    processQueue();
+  });
+}
+
+async function executeOverpassRequest(query) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 60000);
+
+  try {
+    const resp = await fetch(OVERPASS_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'data=' + encodeURIComponent(query),
+      signal: controller.signal
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!resp.ok) {
+      throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+    }
+
+    return await resp.json();
+  } catch (err) {
+    clearTimeout(timeoutId);
+    throw err;
+  }
+}
+
+async function fetchOpenData(dataset, subcategory) {
+  const cacheKey = `${dataset}_${subcategory}`;
+  if (openDataCache[cacheKey]) return openDataCache[cacheKey];
+
+  const config = OPEN_DATA_DATASETS[dataset][subcategory];
+  if (!config) return null;
+
+  const maxRetries = 3;
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const data = await queueOverpassRequest(config.query);
+      const geojson = osmJsonToGeoJson(data);
+      openDataCache[cacheKey] = geojson;
+      console.log(`[OpenData] Loaded ${cacheKey}: ${geojson.features.length} features`);
+      return geojson;
+    } catch (err) {
+      lastError = err;
+      const isTimeout = err.name === 'AbortError';
+      const isNetworkError = err.message === 'Failed to fetch' || err.message.includes('connection');
+      
+      console.warn(`[OpenData] Attempt ${attempt}/${maxRetries} failed for ${cacheKey}:`, 
+        isTimeout ? 'Request timeout' : isNetworkError ? 'Network error' : err.message);
+
+      if (attempt < maxRetries) {
+        const delay = Math.min(5000 * Math.pow(2, attempt - 1), 15000);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+  }
+
+  console.error(`[OpenData] Failed to load ${cacheKey} after ${maxRetries} attempts:`, lastError);
+  return null;
+}
+
+function addOpenDataLayer(dataset, subcategory, geojson) {
+  const layerId = `od-${dataset}-${subcategory}`;
+  const sourceId = `od-src-${dataset}-${subcategory}`;
+  if (map.getLayer(layerId)) return;
+
+  const config = OPEN_DATA_DATASETS[dataset][subcategory];
+  if (!config) return;
+
+  if (!map.getSource(sourceId)) {
+    map.addSource(sourceId, { type: 'geojson', data: geojson });
+  }
+
+  if (config.layerType === 'line') {
+    map.addLayer({
+      id: layerId,
+      type: 'line',
+      source: sourceId,
+      minzoom: 8,
+      paint: {
+        'line-color': config.color,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 8, 1, 14, 3],
+        'line-opacity': 0.7
+      }
+    });
+  } else if (config.layerType === 'boundary') {
+    map.addLayer({
+      id: layerId,
+      type: 'line',
+      source: sourceId,
+      minzoom: 6,
+      paint: {
+        'line-color': config.color,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 6, 1.5, 12, 3],
+        'line-opacity': 0.6,
+        'line-dasharray': [4, 3]
+      }
+    });
+  } else {
+    map.addLayer({
+      id: layerId,
+      type: 'circle',
+      source: sourceId,
+      minzoom: 8,
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 3, 14, 7],
+        'circle-color': config.color,
+        'circle-opacity': 0.85,
+        'circle-stroke-width': 1,
+        'circle-stroke-color': '#ffffff'
+      }
+    });
+  }
+}
+
+function removeOpenDataLayer(dataset, subcategory) {
+  const layerId = `od-${dataset}-${subcategory}`;
+  const sourceId = `od-src-${dataset}-${subcategory}`;
+  if (map.getLayer(layerId)) map.removeLayer(layerId);
+  if (map.getSource(sourceId)) map.removeSource(sourceId);
+}
+
+async function toggleOpenDataSubcategory(dataset, subcategory, enabled) {
+  if (enabled) {
+    const header = document.querySelector(`.layer-group-header[data-group="${dataset}"]`);
+    if (header) {
+      const existing = header.querySelector('.layer-loading');
+      if (!existing) {
+        const spinner = document.createElement('span');
+        spinner.className = 'layer-loading';
+        header.appendChild(spinner);
+      }
+    }
+
+    const geojson = await fetchOpenData(dataset, subcategory);
+    if (geojson && geojson.features.length > 0) {
+      addOpenDataLayer(dataset, subcategory, geojson);
+      enabledOpenDataLayers.add(`${dataset}_${subcategory}`);
+    } else {
+      console.warn(`[OpenData] No features for ${dataset}/${subcategory}`);
+    }
+
+    if (header) {
+      const spinner = header.querySelector('.layer-loading');
+      if (spinner) spinner.remove();
+    }
+  } else {
+    removeOpenDataLayer(dataset, subcategory);
+    enabledOpenDataLayers.delete(`${dataset}_${subcategory}`);
+  }
+  updateLayerCount();
+  updateOpenDataGroupCheckbox(dataset);
+}
+
+async function toggleOpenDataCategory(dataset, enabled) {
+  const subs = OPEN_DATA_DATASETS[dataset];
+  if (!subs) return;
+  
+  const subKeys = Object.keys(subs);
+  for (let i = 0; i < subKeys.length; i++) {
+    const sub = subKeys[i];
+    await toggleOpenDataSubcategory(dataset, sub, enabled);
+    const cb = document.querySelector(`input[data-subcategory="${sub}"]`);
+    if (cb) cb.checked = enabled;
+  }
+}
+
+function updateOpenDataGroupCheckbox(dataset) {
+  const subs = OPEN_DATA_DATASETS[dataset];
+  if (!subs) return;
+  const subKeys = Object.keys(subs);
+  const enabledCount = subKeys.filter(s => enabledOpenDataLayers.has(`${dataset}_${s}`)).length;
+  const cb = document.querySelector(`input.group-toggle[data-category="${dataset}"]`);
+  if (cb) {
+    cb.checked = enabledCount > 0;
+    cb.indeterminate = enabledCount > 0 && enabledCount < subKeys.length;
+  }
+}
+
+function restoreOpenDataLayers() {
+  enabledOpenDataLayers.forEach(key => {
+    const [dataset, subcategory] = key.split('_');
+    const geojson = openDataCache[key];
+    if (geojson) {
+      addOpenDataLayer(dataset, subcategory, geojson);
+    }
+  });
+}
+
+function initOpenDataUI() {
+  document.querySelectorAll('.group-toggle').forEach(cb => {
+    if (cb.dataset.category && OPEN_DATA_DATASETS[cb.dataset.category]) {
+      cb.addEventListener('change', async (e) => {
+        await toggleOpenDataCategory(e.target.dataset.category, e.target.checked);
+      });
+    }
+  });
+
+  document.querySelectorAll('input[data-subcategory]').forEach(cb => {
+    const sub = cb.dataset.subcategory;
+    for (const [dataset, subs] of Object.entries(OPEN_DATA_DATASETS)) {
+      if (subs[sub]) {
+        cb.addEventListener('change', async (e) => {
+          await toggleOpenDataSubcategory(dataset, sub, e.target.checked);
+        });
+        break;
+      }
+    }
+  });
+}
+
+function initOpenDataPopup() {
+  map.on('click', (e) => {
+    const odLayers = [];
+    enabledOpenDataLayers.forEach(key => {
+      const [ds, sub] = key.split('_');
+      odLayers.push(`od-${ds}-${sub}`);
+    });
+    if (odLayers.length === 0) return;
+
+    const validLayers = odLayers.filter(l => map.getLayer(l));
+    if (validLayers.length === 0) return;
+
+    const features = map.queryRenderedFeatures(e.point, { layers: validLayers });
+    if (features.length === 0) return;
+
+    const feature = features[0];
+    const props = feature.properties;
+
+    const name = props.name || props['name:en'] || props['name:uk'] || 'Unknown';
+    const type = props.power || props.railway || props.aeroway || props.military || props.man_made || props.admin_level || props.amenity || props.social_facility || feature.layer.id.replace('od-', '').split('-').slice(1).join('-');
+
+    let html = `<div class="popup-content">`;
+    html += `<div class="popup-header"><div class="name">${name}</div></div>`;
+    html += `<div class="popup-row"><span class="label">Type</span><span class="value">${type}</span></div>`;
+
+    if (props.operator) html += `<div class="popup-row"><span class="label">Operator</span><span class="value">${props.operator}</span></div>`;
+    if (props['plant:source']) html += `<div class="popup-row"><span class="label">Source</span><span class="value">${props['plant:source']}</span></div>`;
+    if (props['plant:output:electricity']) html += `<div class="popup-row"><span class="label">Output</span><span class="value">${props['plant:output:electricity']}</span></div>`;
+    if (props.voltage) html += `<div class="popup-row"><span class="label">Voltage</span><span class="value">${props.voltage}</span></div>`;
+    if (props.substation) html += `<div class="popup-row"><span class="label">Substation</span><span class="value">${props.substation}</span></div>`;
+    if (props['aeroway:aerodrome_type']) html += `<div class="popup-row"><span class="label">Aerodrome</span><span class="value">${props['aeroway:aerodrome_type']}</span></div>`;
+    if (props.iata) html += `<div class="popup-row"><span class="label">IATA</span><span class="value">${props.iata}</span></div>`;
+    if (props['tower:construction']) html += `<div class="popup-row"><span class="label">Construction</span><span class="value">${props['tower:construction']}</span></div>`;
+    if (props.height) html += `<div class="popup-row"><span class="label">Height</span><span class="value">${props.height}m</span></div>`;
+    if (props['communication:mobile_phone']) html += `<div class="popup-row"><span class="label">Mobile</span><span class="value">${props['communication:mobile_phone']}</span></div>`;
+    if (props.description) html += `<div class="popup-row"><span class="label">Info</span><span class="value">${props.description}</span></div>`;
+    if (props.opening_hours) html += `<div class="popup-row"><span class="label">Hours</span><span class="value">${props.opening_hours}</span></div>`;
+    if (props.phone) html += `<div class="popup-row"><span class="label">Phone</span><span class="value">${props.phone}</span></div>`;
+    if (props.website) html += `<div class="popup-row"><span class="label">Web</span><span class="value"><a href="${props.website}" target="_blank" style="color:var(--cyan);">View</a></span></div>`;
+
+    html += `<details style="margin-top:8px;border-top:1px solid var(--border);padding-top:6px;">`;
+    html += `<summary style="cursor:pointer;font-size:9px;color:var(--text-muted);letter-spacing:0.5px;">ALL PROPERTIES</summary>`;
+    html += `<div style="margin-top:6px;font-size:9px;max-height:200px;overflow-y:auto;">`;
+    Object.keys(props).sort().forEach(key => {
+      let val = props[key];
+      if (val === null || val === undefined) {
+        val = '<em style="color:var(--text-muted);">null</em>';
+      } else if (typeof val === 'object') {
+        val = `<span style="color:var(--amber);">${JSON.stringify(val).substring(0, 150)}</span>`;
+      } else if (typeof val === 'string' && val.length > 100) {
+        val = `<span style="color:var(--green);">"${val.substring(0, 100)}..."</span>`;
+      } else {
+        val = `<span style="color:var(--cyan);">${val}</span>`;
+      }
+      html += `<div style="margin-bottom:3px;"><span style="color:var(--text-secondary);">${key}:</span> ${val}</div>`;
+    });
+    html += `</div></details>`;
+    html += `</div>`;
+
+    new maplibregl.Popup({ offset: 10, closeButton: true, maxWidth: '350px' })
+      .setLngLat(e.lngLat)
+      .setHTML(html)
+      .addTo(map);
+  });
+
+  map.on('mouseenter', (e) => {
+    const odLayers = [];
+    enabledOpenDataLayers.forEach(key => {
+      const [ds, sub] = key.split('_');
+      odLayers.push(`od-${ds}-${sub}`);
+    });
+    const validLayers = odLayers.filter(l => map.getLayer(l));
+    if (validLayers.length === 0) return;
+    const features = map.queryRenderedFeatures(e.point, { layers: validLayers });
+    map.getCanvas().style.cursor = features.length > 0 ? 'pointer' : '';
+  });
+}
+
+let elevQueryTimer = null;
+initMap();
+
+function setupTerrain() {
+  if (map.getSource('terrain-source')) return;
+  map.addSource('terrain-source', {
+    type: 'raster-dem',
+    tiles: [
+      'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'
+    ],
+    tileSize: 256,
+    maxzoom: 15,
+    encoding: 'terrarium',
+    attribution: 'TERRAIN &copy; AWS Open Data'
+  });
+  terrainSource = 'terrain-source';
+}
+
+function enable3D() {
+  if (is3D) return;
+  if (!terrainSource) setupTerrain();
+  map.setTerrain({ source: terrainSource, exaggeration: 0.8 });
+  map.setPitch(60);
+  map.setBearing(map.getBearing() || 15);
+  map.dragRotate.enable();
+  map.touchZoomRotate.enableRotation();
+  is3D = true;
+  map.setMaxZoom(15);
+  if (map.getLayer(BUILDINGS_LAYER)) map.setLayoutProperty(BUILDINGS_LAYER, 'visibility', 'visible');
+  document.getElementById('btn-2d').classList.remove('active');
+  document.getElementById('btn-3d').classList.add('active-3d');
+  document.getElementById('map-container').classList.add('terrain-active');
+  document.getElementById('status-elev').parentElement.style.display = '';
+  document.getElementById('status-3d-indicator').style.display = '';
+}
+
+function disable3D() {
+  if (!is3D) return;
+  map.setTerrain(null);
+  map.setPitch(0);
+  map.setBearing(0);
+  map.dragRotate.disable();
+  map.touchZoomRotate.disableRotation();
+  is3D = false;
+  map.setMaxZoom(currentLayer === 'dark' ? 20 : 18);
+  if (map.getLayer(BUILDINGS_LAYER)) map.setLayoutProperty(BUILDINGS_LAYER, 'visibility', 'none');
+  document.getElementById('btn-3d').classList.remove('active-3d');
+  document.getElementById('btn-2d').classList.add('active');
+  document.getElementById('map-container').classList.remove('terrain-active');
+  document.getElementById('status-elev').parentElement.style.display = 'none';
+  document.getElementById('status-3d-indicator').style.display = 'none';
+}
+
+function toggle3D() {
+  is3D ? disable3D() : enable3D();
+}
+
+function queryElevation(lngLat) {
+  if (!is3D || !terrainSource) {
+    document.getElementById('status-elev').textContent = '---';
+    return;
+  }
+  const elev = map.queryTerrainElevation(lngLat, { exaggerated: false });
+  if (elev !== null && elev !== undefined) {
+    document.getElementById('status-elev').textContent = elev.toFixed(0);
+  } else {
+    document.getElementById('status-elev').textContent = '---';
+  }
+}
+
+// ========== Geofences ==========
+function initGeofences() {
+  GEOFENCES.forEach((gf, i) => {
+    const id = 'geofence-' + i;
+    if (map.getSource(id)) return;
+    const fillId = id + '-fill';
+    const outlineId = id + '-outline';
+
+    map.addSource(id, {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        properties: { name: gf.name },
+        geometry: { type: 'Polygon', coordinates: [gf.coords] }
+      }
+    });
+
+    map.addLayer({
+      id: fillId,
+      type: 'fill',
+      source: id,
+      paint: {
+        'fill-color': i === 0 ? '#3b82f6' : '#ef4444',
+        'fill-opacity': 0.06
+      }
+    });
+
+    map.addLayer({
+      id: outlineId,
+      type: 'line',
+      source: id,
+      paint: {
+        'line-color': i === 0 ? '#3b82f6' : '#ef4444',
+        'line-opacity': 0.4,
+        'line-width': 1.5,
+        'line-dasharray': [4, 3]
+      }
+    });
+  });
+}
+
+// ========== Unit Markers ==========
+let markers = {};
+let activeUnitId = null;
+
+function createMarker(unit) {
+  if (!ms) return;
+  const sym = new ms.Symbol(unit.sidc, { size: 28 });
+  const svg = sym.asSVG();
+  const anchor = sym.getAnchor();
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'unit-marker ' + unit.affil.toLowerCase();
+  wrapper.dataset.unitId = unit.id;
+
+  const svgWrapper = document.createElement('div');
+  svgWrapper.style.width = '28px';
+  svgWrapper.style.height = '28px';
+  svgWrapper.style.position = 'relative';
+  svgWrapper.innerHTML = svg;
+  const svgEl = svgWrapper.querySelector('svg');
+  if (svgEl) {
+    svgEl.style.display = 'block';
+    svgEl.style.width = '28px';
+    svgEl.style.height = '28px';
+  }
+
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = unit.name;
+
+  wrapper.appendChild(svgWrapper);
+  wrapper.appendChild(label);
+
+  const marker = new maplibregl.Marker({ element: wrapper })
+    .setLngLat([unit.lng, unit.lat])
+    .addTo(map);
+
+  marker.getElement().addEventListener('click', (e) => {
+    e.stopPropagation();
+    setActiveUnit(unit.id);
+    openUnitPopup(unit);
+  });
+
+  markers[unit.id] = marker;
+}
+
+function initUnits() {
+  UNITS.forEach(createMarker);
+}
+
+function setActiveUnit(id) {
+  activeUnitId = id;
+  document.querySelectorAll('.unit-item').forEach(el => el.classList.toggle('active', el.dataset.unitId === id));
+}
+
+// ========== Sidebar ==========
+function renderSidebar() {
+  const list = document.getElementById('unit-list');
+  list.innerHTML = '';
+
+  const groups = { FRIENDLY: [], HOSTILE: [], UNKNOWN: [] };
+  UNITS.forEach(u => groups[u.affil].push(u));
+
+  const order = ['FRIENDLY', 'HOSTILE', 'UNKNOWN'];
+  const labels = { FRIENDLY: 'Friendly Forces', HOSTILE: 'Hostile Forces', UNKNOWN: 'Unknown Contacts' };
+
+  order.forEach(affil => {
+    if (groups[affil].length === 0) return;
+    const section = document.createElement('div');
+    const label = document.createElement('div');
+    label.className = 'unit-group-label';
+    label.textContent = labels[affil] + ' (' + groups[affil].length + ')';
+    section.appendChild(label);
+
+    groups[affil].forEach(u => {
+      const item = document.createElement('div');
+      item.className = 'unit-item';
+      item.dataset.unitId = u.id;
+      item.dataset.affil = u.affil;
+
+      if (!ms) return;
+      const sym = new ms.Symbol(u.sidc, { size: 18 });
+      const symDiv = document.createElement('div');
+      symDiv.className = 'sym';
+      symDiv.innerHTML = sym.asSVG();
+
+      const info = document.createElement('div');
+      info.className = 'info';
+      info.innerHTML = `<div class="name">${u.name}</div><div class="meta">${u.type} &middot; ${u.status}</div>`;
+
+      const dot = document.createElement('div');
+      dot.className = 'status-dot ' + u.status;
+
+      item.appendChild(symDiv);
+      item.appendChild(info);
+      item.appendChild(dot);
+
+      item.addEventListener('click', () => {
+        setActiveUnit(u.id);
+        map.flyTo({ center: [u.lng, u.lat], zoom: 12, duration: 800 });
+        setTimeout(() => openUnitPopup(u), 400);
+      });
+
+      section.appendChild(item);
+    });
+
+    list.appendChild(section);
+  });
+
+  updateUI();
+}
+
+function updateUI() {
+  const counts = { FRIENDLY: 0, HOSTILE: 0, UNKNOWN: 0 };
+  UNITS.forEach(u => counts[u.affil]++);
+  document.getElementById('stat-friendly').textContent = counts.FRIENDLY;
+  document.getElementById('stat-hostile').textContent = counts.HOSTILE;
+  document.getElementById('stat-unknown').textContent = counts.UNKNOWN;
+  document.getElementById('unit-count').textContent = UNITS.length + ' UNITS';
+}
+
+// ========== Real-time Simulation ==========
+function simulateMovement() {
+  UNITS.forEach(u => {
+    if (u.speed > 0) {
+      const rad = u.heading * Math.PI / 180;
+      const dist = u.speed * 0.0005;
+      u.lat += dist * Math.cos(rad);
+      u.lng += dist * Math.sin(rad);
+      if (markers[u.id]) {
+        markers[u.id].setLngLat([u.lng, u.lat]);
+      }
+    }
+  });
+  updateClock();
+}
+
+// ========== Filter Buttons ==========
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.unit-item').forEach(item => {
+      if (filter === 'all') {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = item.dataset.affil === filter ? 'flex' : 'none';
+      }
+    });
+    Object.entries(markers).forEach(([id, marker]) => {
+      const unit = UNITS.find(u => u.id === id);
+      if (!unit) return;
+      if (filter === 'all' || unit.affil === filter) {
+        marker.getElement().style.display = '';
+      } else {
+        marker.getElement().style.display = 'none';
+      }
+    });
+  });
+});
+
+// ========== Popup Management ==========
+let openPopup = null;
+
+function closeAllPopups() {
+  if (openPopup) {
+    openPopup.remove();
+    openPopup = null;
+  }
+}
+
+function openUnitPopup(unit) {
+  closeAllPopups();
+  const sym = new ms.Symbol(unit.sidc, { size: 28 });
+  const affilColor = unit.affil === 'FRIENDLY' ? '#3b82f6' : unit.affil === 'HOSTILE' ? '#ef4444' : '#f59e0b';
+  const popupEl = document.createElement('div');
+  popupEl.className = 'popup-content';
+  popupEl.innerHTML = `
+    <div class="popup-header">
+      <div class="sym">${sym.asSVG()}</div>
+      <div class="name" style="color:${affilColor};">${unit.name}</div>
+    </div>
+    <div class="popup-row"><span class="label">Type</span><span class="value">${unit.type}</span></div>
+    <div class="popup-row"><span class="label">Affiliation</span><span class="value" style="color:${affilColor};">${unit.affil}</span></div>
+    <div class="popup-row"><span class="label">Status</span><span class="value">${unit.status.toUpperCase()}</span></div>
+    <div class="popup-row"><span class="label">Heading</span><span class="value">${unit.heading}&deg;</span></div>
+    <div class="popup-row"><span class="label">Speed</span><span class="value">${unit.speed} km/h</span></div>
+    <div class="popup-row"><span class="label">Position</span><span class="value">${unit.lat.toFixed(4)}, ${unit.lng.toFixed(4)}</span></div>
+    <button class="popup-3d-btn" id="popup-3d-go"><span class="icon">&#9650;</span> VIEW IN 3D</button>
+  `;
+  openPopup = new maplibregl.Popup({
+    offset: [0, -10],
+    closeButton: true,
+    closeOnClick: false,
+    maxWidth: '220px'
+  }).setDOMContent(popupEl).setLngLat([unit.lng, unit.lat]).addTo(map);
+
+  // Wire up the 3D button after the popup is added to the DOM
+  requestAnimationFrame(() => {
+    const btn = document.getElementById('popup-3d-go');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        if (!is3D) enable3D();
+        map.flyTo({
+          center: [unit.lng, unit.lat],
+          zoom: 15,
+          pitch: 70,
+          bearing: 30,
+          duration: 1500
+        });
+        closeAllPopups();
+      });
+    }
+  });
+}
+
+// ========== 3D Keyboard Shortcut ==========
+document.addEventListener('keydown', (e) => {
+  if (e.key === '3' && !e.ctrlKey && !e.metaKey) {
+    toggle3D();
+  }
+});
+
+// ========== Interaction ==========
+function initInteraction() {
+  map.on('click', () => closeAllPopups());
+}
+</script>
+<script>
+/* ===== ARGUS live wiring: drive this C2 map from our FastAPI /ws/operator ===== */
+(function () {
+  var FRIENDLY = 'SFGPUCI----', HOSTILE = 'SHGPUCI----';
+  var unitMarkers = {}, contactMarkers = {}, lastUnits = {}, lastContacts = [], aoBbox = null;
+
+  function symbolEl(sidc, label, color) {
+    var wrap = document.createElement('div');
+    wrap.className = 'unit-marker';
+    try {
+      wrap.innerHTML = new ms.Symbol(sidc, { size: 26 }).asSVG() +
+        '<div class="label" style="color:' + color + '">' + label + '</div>';
+    } catch (e) {
+      wrap.innerHTML = '<div style="width:14px;height:14px;border-radius:50%;background:' + color +
+        ';border:2px solid #fff"></div><div class="label" style="color:' + color + '">' + label + '</div>';
+    }
+    return wrap;
+  }
+
+  function trailCoords(positions) {
+    var coords = [];
+    (positions || []).forEach(function (p, i) {
+      if (i === 0) { coords.push([p.lon, p.lat]); return; }
+      if (Array.isArray(p.route) && p.route.length > 1) {
+        p.route.forEach(function (rc) { coords.push([rc[1], rc[0]]); });  // [lat,lon] -> [lng,lat]
+      } else { coords.push([p.lon, p.lat]); }
+    });
+    return coords;
+  }
+
+  function drawTrail(uid, positions) {
+    var coords = trailCoords(positions);
+    if (coords.length < 2 || !map.isStyleLoaded()) return;
+    var id = 'trail-' + uid;
+    var data = { type: 'Feature', geometry: { type: 'LineString', coordinates: coords } };
+    if (map.getSource(id)) { map.getSource(id).setData(data); return; }
+    map.addSource(id, { type: 'geojson', data: data });
+    map.addLayer({ id: id, type: 'line', source: id,
+      paint: { 'line-color': '#22c55e', 'line-width': 3, 'line-opacity': 0.85 } });
+  }
+
+  function renderUnits(units) {
+    lastUnits = units || {};
+    var friendly = 0, roster = document.getElementById('unit-list');
+    if (roster) roster.innerHTML = '';
+    Object.keys(lastUnits).forEach(function (uid) {
+      var u = lastUnits[uid], lp = u.last_position;
+      if (lp) {
+        friendly++;
+        if (unitMarkers[uid]) unitMarkers[uid].setLngLat([lp.lon, lp.lat]);
+        else unitMarkers[uid] = new maplibregl.Marker({ element: symbolEl(FRIENDLY, uid, '#3b82f6') })
+          .setLngLat([lp.lon, lp.lat]).addTo(map);
+        drawTrail(uid, u.positions);
+      }
+      if (roster) {
+        var row = document.createElement('div');
+        row.className = 'unit-item';
+        row.innerHTML =
+          '<span class="status-dot ' + (lp ? 'active' : '') + '"></span>' +
+          '<div class="info"><div class="name" style="color:#3b82f6">' + uid + '</div>' +
+          '<div class="meta">' + (lp ? lp.lat.toFixed(4) + ', ' + lp.lon.toFixed(4) : 'no fix') + '</div></div>';
+        roster.appendChild(row);
+      }
+    });
+    var uc = document.getElementById('unit-count'); if (uc) uc.textContent = friendly + ' UNITS';
+    var sf = document.getElementById('stat-friendly'); if (sf) sf.textContent = friendly;
+  }
+
+  function renderContacts(contacts) {
+    lastContacts = contacts || [];
+    lastContacts.forEach(function (c) {
+      if (contactMarkers[c.id]) { contactMarkers[c.id].setLngLat([c.lon, c.lat]); return; }
+      contactMarkers[c.id] = new maplibregl.Marker({ element: symbolEl(HOSTILE, c.observed || 'contact', '#ef4444') })
+        .setLngLat([c.lon, c.lat]).addTo(map);
+    });
+    var sh = document.getElementById('stat-hostile'); if (sh) sh.textContent = lastContacts.length;
+  }
+
+  function reattach() { Object.keys(lastUnits).forEach(function (uid) { drawTrail(uid, lastUnits[uid].positions || []); }); }
+
+  function connect() {
+    var proto = location.protocol === 'https:' ? 'wss' : 'ws';
+    var ws = new WebSocket(proto + '://' + location.host + '/ws/operator');
+    ws.onopen = function () {
+      fetch('/api/presets').then(function (r) { return r.json(); }).then(function (ps) {
+        if (!ps.length) return;
+        ws.send(JSON.stringify({ type: 'set_ao', ao_id: ps[0].id }));
+        aoBbox = ps[0].bbox;
+        var an = document.getElementById('ao-name'); if (an) an.textContent = (ps[0].name || '').toUpperCase();
+        if (aoBbox) map.fitBounds([[aoBbox[0], aoBbox[1]], [aoBbox[2], aoBbox[3]]], { padding: 50, duration: 800 });
+      }).catch(function () {});
+    };
+    ws.onmessage = function (ev) {
+      var m; try { m = JSON.parse(ev.data); } catch (e) { return; }
+      if (m.units) renderUnits(m.units);
+      if (m.contacts) renderContacts(m.contacts);
+      if (m.type === 'report' && m.report && m.report.resolved && typeof m.report.resolved.lat === 'number') {
+        map.flyTo({ center: [m.report.resolved.lon, m.report.resolved.lat], zoom: Math.max(map.getZoom(), 15), duration: 900 });
+      }
+    };
+    ws.onclose = function () { setTimeout(connect, 1500); };  // auto-reconnect over the tunnel
+  }
+
+  function whenReady() {
+    if (typeof map === 'undefined' || !map || !map.isStyleLoaded || !map.isStyleLoaded()) { setTimeout(whenReady, 200); return; }
+    map.on('style.load', function () { setTimeout(reattach, 400); });
+    connect();
+  }
+  whenReady();
+})();
+</script>
+
+</body>
+</html>

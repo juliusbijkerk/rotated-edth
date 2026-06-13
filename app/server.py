@@ -26,6 +26,7 @@ app = FastAPI(title="Argus")
 
 units = UnitRegistry()
 reports: list[dict] = []
+contacts: list[dict] = []  # observed enemy/contact markers (action=contact reports)
 current_ao_id: Optional[str] = None
 current_ao: Optional[dict] = None
 operator_sockets: set[WebSocket] = set()
@@ -106,6 +107,9 @@ def _missing_dist_html(page: str) -> str:
 
 @app.get("/operator")
 def serve_operator():
+    ops = PROJECT_ROOT / "web" / "ops.html"
+    if ops.exists():
+        return FileResponse(ops)  # standalone MapLibre C2 operator (this branch)
     path = DIST_DIR / "operator.html"
     if not path.exists():
         return HTMLResponse(_missing_dist_html("operator"), status_code=503)
@@ -145,6 +149,7 @@ def _state_message() -> dict:
         "ao_id": current_ao_id,
         "units": units.snapshot(),
         "reports": reports[-50:],
+        "contacts": contacts[-50:],
     }
 
 
@@ -259,16 +264,27 @@ async def _process(ws: WebSocket, unit_id: str, transcript: str, ts: int) -> Non
         return
 
     route = None
+    action = (parsed.get("action") or "").lower()
     if not resolved.get("needs_review"):
-        prev = units.last_position(unit_id)
-        if prev:
-            # Snap the leg from the unit's last fix to roads so the trail follows streets,
-            # not a straight line over buildings. Best-effort — falls back to a straight line.
-            await _send(ws, {"type": "progress", "stage": "routing"})
-            route = await asyncio.to_thread(
-                routing.route, prev["lat"], prev["lon"], resolved["lat"], resolved["lon"],
-            )
-        units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time(), route=route)
+        if action == "contact":
+            # An observed enemy/contact at a location -> drop a hostile marker there; do NOT
+            # move the reporting unit (we don't know it moved to where it sees the contact).
+            contacts.append({
+                "id": ts, "unit": unit_id,
+                "lat": resolved["lat"], "lon": resolved["lon"],
+                "observed": parsed.get("observed", ""), "transcript": transcript,
+                "timestamp": time.time(),
+            })
+        else:
+            prev = units.last_position(unit_id)
+            if prev:
+                # Snap the leg from the unit's last fix to roads so the trail follows streets,
+                # not a straight line over buildings. Best-effort — falls back to a straight line.
+                await _send(ws, {"type": "progress", "stage": "routing"})
+                route = await asyncio.to_thread(
+                    routing.route, prev["lat"], prev["lon"], resolved["lat"], resolved["lon"],
+                )
+            units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time(), route=route)
     units.set_last_report(unit_id, transcript)
 
     report = {
@@ -281,7 +297,7 @@ async def _process(ws: WebSocket, unit_id: str, transcript: str, ts: int) -> Non
     }
     reports.append(report)
     await _send(ws, {"type": "report_echo", "report": report})
-    await broadcast({"type": "report", "report": report, "units": units.snapshot()})
+    await broadcast({"type": "report", "report": report, "units": units.snapshot(), "contacts": contacts[-50:]})
 
 
 async def _send(ws: WebSocket, payload: dict) -> None:
