@@ -25,6 +25,24 @@ def ground(parsed: dict, ao: dict, units: UnitRegistry, speaker: str) -> dict:
             lon, lat = poi["coords"]
             return _ok("osm_poi", lat, lon, poi_name=poi["name"])
 
+    # 1b. Relative to a named POI ("west side of the central station", "300m N of the bridge").
+    if ref_type == "relative_to_poi":
+        poi = find_poi(loc.get("poi_name") or raw, pois, near_point=near)
+        if poi:
+            lon, lat = poi["coords"]
+            bearing = loc.get("bearing_deg")
+            distance = loc.get("distance_m") or 120.0  # a "side of" sits ~120m off the centroid
+            if bearing is None:
+                for word in raw.lower().split():
+                    deg = bearing_word_to_deg(word)
+                    if deg is not None:
+                        bearing = deg
+                        break
+            if bearing is not None:
+                lat2, lon2 = haversine_destination(lat, lon, float(bearing), float(distance))
+                return _ok("relative_to_poi", lat2, lon2, poi_name=poi["name"])
+            return _ok("osm_poi", lat, lon, poi_name=poi["name"])
+
     # 2a. Coordinate
     if ref_type == "coordinate":
         coords = loc.get("coordinates")

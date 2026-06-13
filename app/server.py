@@ -51,7 +51,7 @@ def _load_preset(ao_id: str) -> dict:
 
 def _initial_ao() -> None:
     global current_ao_id, current_ao
-    for ao_id in ("paris_8", "pokrovsk"):
+    for ao_id in ("kyiv", "pokrovsk", "paris_8"):
         path = PRESETS_DIR / f"{ao_id}.json"
         if path.exists():
             current_ao_id = ao_id

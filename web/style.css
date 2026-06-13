@@ -115,7 +115,22 @@ html, body {
   cursor: pointer; touch-action: manipulation;
 }
 .ptt:active, .ptt.live { background: #d32f2f; box-shadow: 0 0 24px rgba(255, 80, 80, 0.4); }
-.status { text-align: center; font-size: 14px; color: #8aa1b1; }
+.status {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  text-align: center; font-size: 15px; font-weight: 600; letter-spacing: 0.3px;
+  padding: 10px 12px; border-radius: 10px; min-height: 46px;
+  background: #15202a; color: #b6c5d2; transition: background .15s;
+}
+.status.processing { background: #2a2410; color: #ffd166; }
+.status.done { background: #11301f; color: #74e0a3; }
+.status.error { background: #2e1416; color: #ff8a8a; }
+.status .spin {
+  width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.25);
+  border-top-color: currentColor; border-radius: 50%; display: none;
+  animation: argus-spin .8s linear infinite;
+}
+.status.processing .spin { display: inline-block; }
+@keyframes argus-spin { to { transform: rotate(360deg); } }
 .change-unit {
   background: transparent; color: #8aa1b1; border: 1px solid #2c3a46;
   border-radius: 6px; padding: 5px 10px; font-size: 11px; letter-spacing: 1px; cursor: pointer;

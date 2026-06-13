@@ -47,6 +47,13 @@ AO_DEFS = {
         "zoom": 14,
         "type": "rural",
     },
+    "kyiv": {
+        "name": "Kyiv (centre)",
+        "bbox": [30.460, 50.420, 30.575, 50.475],  # ~7 km: Maidan, Khreshchatyk, Central Station
+        "center": [30.5175, 50.4475],
+        "zoom": 13,
+        "type": "urban",
+    },
     "utrecht": {
         "name": "Utrecht (city centre)",
         "bbox": [5.105, 52.082, 5.135, 52.100],  # ~2 km box around the Dom

@@ -27,7 +27,7 @@ _TOOL = {
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["osm_poi", "coordinate", "mgrs",
+                        "enum": ["osm_poi", "coordinate", "mgrs", "relative_to_poi",
                                  "relative_to_unit", "relative_to_self", "unresolved"],
                     },
                     "raw_text": {"type": "string", "description": "Exact phrase from transcript that referenced the location."},
@@ -62,6 +62,8 @@ def _system_blocks(ao: dict) -> list:
         "Call the `report_parsed` tool with the structured interpretation.\n\n"
         "Pick the most specific location_reference.type:\n"
         "- osm_poi: transcript references a named feature in the POI list (use the canonical poi_name).\n"
+        '- relative_to_poi: a position described relative to a named feature ("west side of the central '
+        'station", "300m north of the bridge") — set poi_name (the anchor feature), bearing_deg, distance_m.\n'
         "- coordinate: decimal lat/lon in the transcript.\n"
         "- mgrs: MGRS grid reference.\n"
         '- relative_to_unit: relative to another callsign ("300 meters east of Bravo").\n'

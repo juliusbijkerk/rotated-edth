@@ -5,6 +5,7 @@ const UNITS = ['Alpha', 'Bravo', 'Charlie'];
 const picker = document.getElementById('picker')!;
 const ptBtn = document.getElementById('ptt') as HTMLButtonElement;
 const statusEl = document.getElementById('status')!;
+const statusTextEl = document.getElementById('status-text')!;
 const lastEl = document.getElementById('last')!;
 const sessionEl = document.getElementById('session')!;
 const changeUnitBtn = document.getElementById('change-unit') as HTMLButtonElement;
@@ -19,7 +20,11 @@ let mediaStream: MediaStream | null = null;
 let recStartedAt = 0;
 const MIN_RECORDING_MS = 650;  // reject accidental taps (the source of garbage reports)
 
-function setStatus(msg: string) { statusEl.textContent = msg; }
+type StatusState = '' | 'processing' | 'done' | 'error';
+function setStatus(msg: string, state: StatusState = '') {
+  statusTextEl.textContent = msg;
+  statusEl.className = 'status' + (state ? ' ' + state : '');
+}
 
 function escapeText(s: string): string {
   return String(s).replace(/[&<>"']/g, (c) =>
@@ -59,7 +64,7 @@ async function joinAs(unit: string) {
   document.querySelectorAll('.unit-label-display').forEach((el) => (el.textContent = unit));
   ws = connect(`/ws/unit/${unit}`);
   ws.onOpen(() => setStatus(`connected as ${unit}`));
-  ws.onClose(() => setStatus('disconnected'));
+  ws.onClose(() => setStatus('disconnected — reconnecting…', 'error'));
   ws.onMessage((msg) => {
     if (typeof msg !== 'object' || msg === null) return;
     const m = msg as any;
@@ -70,16 +75,17 @@ async function joinAs(unit: string) {
       lastEl.innerHTML =
         `<div class="echo-head">${escapeText(headText)}</div>` +
         `<div class="echo-text">${escapeText(r.transcript || '')}</div>`;
-      setStatus(res.needs_review ? 'placed (needs review) — try again?' : `placed ✓ · ${res.method || '—'}`);
+      if (res.needs_review) setStatus('placed (needs review) — try again?', 'error');
+      else setStatus(`placed ✓ · ${res.method || '—'}`, 'done');
     } else if (m.type === 'progress') {
-      setStatus(PROGRESS_LABELS[m.stage] || m.stage);
+      setStatus(PROGRESS_LABELS[m.stage] || m.stage, 'processing');
       if (m.stage === 'transcribed' && m.transcript) {
         lastEl.innerHTML =
           `<div class="echo-head">transcript</div>` +
           `<div class="echo-text">${escapeText(m.transcript)}</div>`;
       }
     } else if (m.type === 'error') {
-      setStatus(`error: ${m.stage} — ${m.error}`);
+      setStatus(`error: ${m.stage} — ${m.error}`, 'error');
     }
   });
   await requestMic();
@@ -100,10 +106,10 @@ async function requestMic() {
   if (!navigator.mediaDevices?.getUserMedia) {
     ptBtn.disabled = true;
     ptBtn.classList.add('disabled');
-    setStatus('mic needs HTTPS — type your report below ↓');
+    setStatus('mic needs HTTPS — type your report below ↓', 'error');
     return;
   }
-  setStatus('requesting mic…');
+  setStatus('requesting mic…', 'processing');
   try {
     mediaStream = await navigator.mediaDevices.getUserMedia({
       audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
@@ -112,7 +118,7 @@ async function requestMic() {
   } catch (e: any) {
     ptBtn.disabled = true;
     ptBtn.classList.add('disabled');
-    setStatus(`mic blocked (${e?.name || 'denied'}) — type your report below ↓`);
+    setStatus(`mic blocked (${e?.name || 'denied'}) — type your report below ↓`, 'error');
   }
 }
 
@@ -126,23 +132,23 @@ function startRec() {
   recorder.onstop = async () => {
     const blob = new Blob(chunks, { type: recorder?.mimeType || 'audio/webm' });
     if (Date.now() - recStartedAt < MIN_RECORDING_MS || blob.size < 1024) {
-      setStatus('too short — hold the button while you speak');
+      setStatus('too short — hold the button while you speak', 'error');
       return;
     }
-    setStatus(`sending ${(blob.size / 1024).toFixed(1)} KB…`);
+    setStatus(`sending ${(blob.size / 1024).toFixed(1)} KB…`, 'processing');
     if (ws && blob.size > 0) {
       const buf = await blob.arrayBuffer();
       ws.send({ type: 'audio_meta', mime_type: blob.type });  // advisory container hint
       ws.ws.send(buf);
-      setStatus('processing…');
+      setStatus('processing…', 'processing');
     } else {
-      setStatus('no audio captured');
+      setStatus('no audio captured', 'error');
     }
   };
   recorder.start();
   recStartedAt = Date.now();
   ptBtn.classList.add('live');
-  setStatus('listening…');
+  setStatus('listening…', 'processing');
 }
 
 function stopRec() {
@@ -153,10 +159,10 @@ function stopRec() {
 function sendTypedReport() {
   const transcript = manualText.value.trim();
   if (!transcript) return;
-  if (!ws || ws.ws.readyState !== WebSocket.OPEN) { setStatus('not connected'); return; }
+  if (!ws || ws.ws.readyState !== WebSocket.OPEN) { setStatus('not connected', 'error'); return; }
   ws.send({ type: 'text_report', transcript });
   manualText.value = '';
-  setStatus('processing typed report…');
+  setStatus('processing typed report…', 'processing');
 }
 
 // Pointer events + capture: the button stays "held" even if the thumb slides off it.
