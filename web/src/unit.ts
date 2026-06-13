@@ -8,6 +8,9 @@ const statusEl = document.getElementById('status')!;
 const lastEl = document.getElementById('last')!;
 const sessionEl = document.getElementById('session')!;
 const changeUnitBtn = document.getElementById('change-unit') as HTMLButtonElement;
+const micStateEl = document.getElementById('mic-state')!;
+const locationStateEl = document.getElementById('location-state')!;
+const stageStrip = document.getElementById('stage-strip')!;
 const manualForm = document.getElementById('manual-report') as HTMLFormElement;
 const manualText = document.getElementById('manual-text') as HTMLTextAreaElement;
 
@@ -21,6 +24,22 @@ const MIN_RECORDING_MS = 650;
 
 function setStatus(msg: string) {
   statusEl.textContent = msg;
+}
+
+function setStage(stage: string) {
+  stageStrip.querySelectorAll('span').forEach((el) => {
+    el.classList.toggle('active', el.getAttribute('data-stage') === stage);
+    el.classList.toggle('done', stageOrder(el.getAttribute('data-stage') || '') < stageOrder(stage));
+  });
+}
+
+function stageOrder(stage: string): number {
+  return ['link', 'mic', 'sent', 'stt', 'parse', 'ground', 'done'].indexOf(stage);
+}
+
+function setPermission(el: Element, state: string, tone: 'wait' | 'ok' | 'bad' = 'wait') {
+  el.textContent = state;
+  el.className = tone;
 }
 
 for (const u of UNITS) {
@@ -53,7 +72,12 @@ async function joinAs(unit: string) {
   sessionEl.style.display = 'flex';
   document.querySelectorAll('.unit-label-display').forEach((el) => (el.textContent = unit));
   ws = connect(`/ws/unit/${unit}`);
-  ws.onOpen(() => setStatus(`connected as ${unit}`));
+  setStage('link');
+  setPermission(locationStateEl, 'requesting', 'wait');
+  ws.onOpen(() => {
+    setStatus(`connected as ${unit}`);
+    setStage('mic');
+  });
   ws.onClose(() => setStatus('disconnected'));
   ws.onMessage((msg) => {
     if (typeof msg !== 'object' || msg === null) return;
@@ -65,14 +89,17 @@ async function joinAs(unit: string) {
       lastEl.innerHTML =
         `<div class="echo-head">${escapeText(headText)}</div>` +
         `<div class="echo-text">${escapeText(r.transcript || '')}</div>`;
-      setStatus(`ready · ${res.method || '—'}`);
+      setStatus(`ready · ${res.needs_review ? 'review' : res.method || '—'}`);
+      setStage('done');
     } else if (m.type === 'status') {
       setStatus(m.message || m.stage || 'processing…');
+      if (m.stage) setStage(m.stage);
     } else if (m.type === 'error') {
       setStatus(`error: ${m.stage} ${m.error}`);
+      setStage('link');
     }
   });
-  await requestMic();
+  await Promise.all([requestMic(), requestLocation()]);
 }
 
 function leaveUnit() {
@@ -82,7 +109,11 @@ function leaveUnit() {
   if (recorder && recorder.state === 'recording') recorder.stop();
   recorder = null;
   chunks = [];
+  mediaStream?.getTracks().forEach((track) => track.stop());
+  mediaStream = null;
+  ptBtn.disabled = false;
   ptBtn.classList.remove('live');
+  ptBtn.classList.remove('disabled');
 }
 
 function escapeText(s: string): string {
@@ -91,12 +122,16 @@ function escapeText(s: string): string {
 }
 
 async function requestMic() {
+  ptBtn.disabled = false;
+  ptBtn.classList.remove('disabled');
   if (!navigator.mediaDevices?.getUserMedia) {
     ptBtn.disabled = true;
     ptBtn.classList.add('disabled');
+    setPermission(micStateEl, 'blocked', 'bad');
     setStatus('mic requires HTTPS or localhost; use typed report or open the HTTPS tunnel URL');
     return;
   }
+  setPermission(micStateEl, 'requesting', 'wait');
   setStatus('requesting mic…');
   try {
     mediaStream = await navigator.mediaDevices.getUserMedia({
@@ -106,11 +141,33 @@ async function requestMic() {
         autoGainControl: true,
       },
     });
+    setPermission(micStateEl, 'ready', 'ok');
+    setStage('mic');
   } catch (e: any) {
     const msg = e?.message || e?.name || 'permission denied';
     ptBtn.disabled = true;
     ptBtn.classList.add('disabled');
+    setPermission(micStateEl, 'denied', 'bad');
     setStatus(`mic unavailable: ${msg}; use typed report`);
+  }
+}
+
+async function requestLocation() {
+  if (!navigator.geolocation) {
+    setPermission(locationStateEl, 'unavailable', 'bad');
+    return;
+  }
+  try {
+    await new Promise<void>((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        () => resolve(),
+        (err) => reject(err),
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 },
+      );
+    });
+    setPermission(locationStateEl, 'available', 'ok');
+  } catch (e: any) {
+    setPermission(locationStateEl, e?.code === 1 ? 'denied' : 'limited', e?.code === 1 ? 'bad' : 'wait');
   }
 }
 
@@ -130,6 +187,7 @@ function startRec() {
       return;
     }
     setStatus(`sending ${(blob.size / 1024).toFixed(1)} KB…`);
+    setStage('sent');
     if (ws && blob.size > 0) {
       const buf = await blob.arrayBuffer();
       ws.send({ type: 'audio_meta', mime_type: blob.type });
@@ -143,6 +201,7 @@ function startRec() {
   recStartedAt = Date.now();
   ptBtn.classList.add('live');
   setStatus('listening…');
+  setStage('mic');
 }
 
 function stopRec() {
@@ -162,6 +221,7 @@ function sendTypedReport() {
   ws.send({ type: 'text_report', transcript });
   manualText.value = '';
   setStatus('processing typed report…');
+  setStage('parse');
 }
 
 ptBtn.addEventListener('pointerdown', (e) => {
@@ -185,4 +245,7 @@ changeUnitBtn.addEventListener('click', () => {
   picker.style.display = 'flex';
   document.querySelectorAll('.unit-label-display').forEach((el) => (el.textContent = 'UNIT'));
   setStatus('ready');
+  setStage('link');
+  setPermission(micStateEl, 'waiting', 'wait');
+  setPermission(locationStateEl, 'waiting', 'wait');
 });

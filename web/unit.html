@@ -13,11 +13,30 @@
   <div id="picker" class="picker"></div>
   <div id="session" class="session" style="display:none">
     <button id="change-unit" class="change-unit" type="button">CHANGE UNIT</button>
+    <div id="permission-panel" class="permission-panel">
+      <div class="permission-item">
+        <span>MIC</span>
+        <strong id="mic-state">waiting</strong>
+      </div>
+      <div class="permission-item">
+        <span>LOCATION</span>
+        <strong id="location-state">waiting</strong>
+      </div>
+    </div>
     <div id="last" class="last">
       <div class="echo-head">last detection</div>
       <div class="echo-text">—</div>
     </div>
     <div id="status" class="status">ready</div>
+    <div id="stage-strip" class="stage-strip">
+      <span data-stage="link">LINK</span>
+      <span data-stage="mic">MIC</span>
+      <span data-stage="sent">SENT</span>
+      <span data-stage="stt">STT</span>
+      <span data-stage="parse">PARSE</span>
+      <span data-stage="ground">MAP</span>
+      <span data-stage="done">DONE</span>
+    </div>
     <button id="ptt" class="ptt">PUSH&nbsp;TO&nbsp;TALK</button>
     <form id="manual-report" class="manual-report">
       <textarea id="manual-text" rows="3" placeholder="Type report if mic is unavailable"></textarea>

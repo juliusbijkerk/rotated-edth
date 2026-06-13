@@ -40,6 +40,13 @@ AO_DEFS = {
         "zoom": 16,
         "type": "urban",
     },
+    "paris_central_demo": {
+        "name": "Paris Central Demo",
+        "bbox": [2.2850, 48.8450, 2.3700, 48.8950],
+        "center": [2.3300, 48.8700],
+        "zoom": 13,
+        "type": "urban",
+    },
     "pokrovsk": {
         "name": "Pokrovsk, Donetsk Oblast",
         "bbox": [37.150, 48.260, 37.230, 48.310],
@@ -155,14 +162,41 @@ _PROM = {"place": 0, "railway": 1, "public_transport": 1, "aeroway": 1,
          "leisure": 4, "highway": 5, "shop": 6}
 _AMENITY_PROMINENT = {"place_of_worship", "hospital", "school", "university",
                       "townhall", "police", "fire_station"}
+_PRIORITY_NAME_HINTS = (
+    "gare du nord",
+    "gare saint-lazare",
+    "saint-lazare",
+    "tour eiffel",
+    "eiffel tower",
+    "madeleine",
+    "arc de triomphe",
+    "champs-élysées",
+    "champs elysees",
+    "concorde",
+    "opéra",
+    "opera",
+    "louvre",
+)
 
 
 def prominence(poi_type: str) -> int:
     """Lower = more prominent."""
     key, _, sub = (poi_type or "").partition("=")
+    if key == "railway" and sub in {"station", "train_station_entrance"}:
+        return 0
+    if key == "public_transport" and sub == "station":
+        return 0
     if key == "amenity":
         return 2 if sub in _AMENITY_PROMINENT else 4
     return _PROM.get(key, 4)
+
+
+def priority_name_score(poi: dict) -> int:
+    haystack = " ".join([poi.get("name", ""), *poi.get("aliases", [])]).lower()
+    for idx, hint in enumerate(_PRIORITY_NAME_HINTS):
+        if hint in haystack:
+            return idx
+    return len(_PRIORITY_NAME_HINTS)
 
 
 def dedupe_pois(pois: list[dict]) -> list[dict]:
@@ -173,7 +207,7 @@ def dedupe_pois(pois: list[dict]) -> list[dict]:
         name = p["name"]
         if name not in best or prominence(p["type"]) < prominence(best[name]["type"]):
             best[name] = p
-    return sorted(best.values(), key=lambda p: prominence(p["type"]))
+    return sorted(best.values(), key=lambda p: (priority_name_score(p), prominence(p["type"]), p["name"]))
 
 
 def fetch(ao_id: str) -> dict:

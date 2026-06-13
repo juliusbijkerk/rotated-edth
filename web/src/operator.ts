@@ -20,6 +20,15 @@ const manualUnit = document.getElementById('manual-unit') as HTMLSelectElement;
 const manualAffiliation = document.getElementById('manual-affiliation') as HTMLSelectElement;
 const manualEntity = document.getElementById('manual-entity') as HTMLSelectElement;
 const operatorStatus = document.getElementById('operator-status')!;
+const operatorClock = document.getElementById('operator-clock')!;
+const unitCountEl = document.getElementById('unit-count')!;
+const targetCountEl = document.getElementById('target-count')!;
+const reviewCountEl = document.getElementById('review-count')!;
+const statFriendly = document.getElementById('stat-friendly')!;
+const statHostile = document.getElementById('stat-hostile')!;
+const statUnknown = document.getElementById('stat-unknown')!;
+const statReview = document.getElementById('stat-review')!;
+const statusAo = document.getElementById('status-ao')!;
 
 let map: L.Map | null = null;
 let poiLayer: L.LayerGroup | null = null;
@@ -32,8 +41,10 @@ let operatorPin: L.Marker | null = null;
 let currentPreset: Preset | null = null;
 let latestUnits: Record<string, any> = {};
 let latestTargets: Target[] = [];
+let latestReports: any[] = [];
 let showPoiLabels = false;
 let followReports = true;
+let targetFilter = 'all';
 
 const ws = connect('/ws/operator');
 
@@ -59,6 +70,7 @@ async function loadPreset(id: string) {
   const preset: Preset = await r.json();
   currentPreset = preset;
   aoTitleEl.textContent = `${preset.name} · ${preset.pois.length} POIs`;
+  statusAo.textContent = `${preset.name.toUpperCase()} · ${preset.pois.length} POIS`;
   const [lon, lat] = preset.center;
   if (!map) {
     map = createMap('map', [lat, lon], preset.zoom);
@@ -71,6 +83,7 @@ async function loadPreset(id: string) {
   renderPresetPois();
   renderUnits(latestUnits);
   renderTargets(latestTargets);
+  updateStats();
   ws.send({ type: 'set_ao', ao_id: id });
 }
 
@@ -91,13 +104,11 @@ ws.onMessage((msg) => {
       renderTargets(latestTargets);
     }
     if (m.reports) {
-      transcriptLog.innerHTML = '';
-      // Show oldest at bottom; newest on top — prepend each in stored order.
-      for (const r of m.reports) addReport(r);
-      if (!m.reports.length) addEmpty(transcriptLog, 'Waiting for unit reports');
+      latestReports = m.reports;
+      renderReports();
     }
   } else if (m.type === 'report') {
-    addReport(m.report);
+    upsertReport(m.report);
     if (m.units) {
       latestUnits = m.units;
       renderUnits(latestUnits);
@@ -107,6 +118,16 @@ ws.onMessage((msg) => {
       renderTargets(latestTargets);
     }
     followReport(m.report);
+  } else if (m.type === 'report_reviewed') {
+    upsertReport(m.report);
+    if (m.units) {
+      latestUnits = m.units;
+      renderUnits(latestUnits);
+    }
+    if (m.targets) {
+      latestTargets = m.targets;
+      renderTargets(latestTargets);
+    }
   } else if (m.type === 'units') {
     if (m.units) {
       latestUnits = m.units;
@@ -231,6 +252,7 @@ function renderUnits(units: Record<string, any>) {
       }
     }
   }
+  updateStats();
 }
 
 function renderTargets(targets: Target[]) {
@@ -256,11 +278,13 @@ function renderTargets(targets: Target[]) {
 
 function renderTargetList() {
   targetList.innerHTML = '';
-  if (!latestTargets.length) {
+  const visibleTargets = latestTargets.filter((t) => targetFilter === 'all' || (t.affiliation || 'unknown') === targetFilter);
+  if (!visibleTargets.length) {
     addEmpty(targetList, 'No targets reported');
+    updateStats();
     return;
   }
-  for (const t of latestTargets.slice().reverse()) {
+  for (const t of visibleTargets.slice().reverse()) {
     const row = document.createElement('button');
     row.className = `target-row target-row-${t.affiliation || 'unknown'}`;
     row.type = 'button';
@@ -274,10 +298,32 @@ function renderTargetList() {
     });
     targetList.appendChild(row);
   }
+  updateStats();
+}
+
+function renderReports() {
+  transcriptLog.innerHTML = '';
+  if (!latestReports.length) {
+    addEmpty(transcriptLog, 'Waiting for unit reports');
+    return;
+  }
+  for (const report of latestReports.slice().reverse()) {
+    addReport(report);
+  }
+  updateStats();
+}
+
+function upsertReport(report: any) {
+  const idx = latestReports.findIndex((r) => String(r.id) === String(report.id));
+  if (idx >= 0) {
+    latestReports[idx] = report;
+  } else {
+    latestReports.push(report);
+  }
+  renderReports();
 }
 
 function addReport(report: any) {
-  transcriptLog.querySelector('.empty-state')?.remove();
   const card = document.createElement('div');
   card.className = 'report-card';
   card.style.borderLeftColor = UNIT_COLORS[report.unit] ?? '#3ee47a';
@@ -285,17 +331,39 @@ function addReport(report: any) {
   const needs = resolved.needs_review;
   const parsed = report.parsed || {};
   const action = parsed.action || '';
-  const target = report.target || parsed.target;
+  const displayTarget = report.target || parsed.target;
+  const reviewStatus = report.review_status || '';
+  const confidence = typeof parsed.confidence === 'number' ? `${Math.round(parsed.confidence * 100)}%` : '';
+  const canReview = needs && !reviewStatus;
+  const canAcceptPosition = canReview && action === 'position_update' &&
+    resolved.method !== 'unresolved' && resolved.lat !== undefined && resolved.lon !== undefined;
+  const canAcceptTarget = canReview && !!report.target;
   card.innerHTML = `
     <div class="report-head">
       <span class="report-unit" style="color:${UNIT_COLORS[report.unit] ?? '#fff'}">${report.unit}${action ? ' · ' + escapeHtml(action) : ''}</span>
-      <span class="report-method ${needs ? 'unresolved' : ''}">${escapeHtml(resolved.method || '?')}</span>
+      <span class="report-method ${needs ? 'unresolved' : ''}">${escapeHtml(resolved.method || '?')}${confidence ? ' · ' + confidence : ''}</span>
     </div>
     <div class="report-transcript">${escapeHtml(report.transcript || '')}</div>
     ${resolved.poi_name ? `<div class="report-poi">→ ${escapeHtml(resolved.poi_name)}</div>` : ''}
-    ${target ? `<div class="report-target">${escapeHtml((target.affiliation || 'unknown').toUpperCase())} · ${escapeHtml(target.label || target.entity_type || 'target')}</div>` : ''}
+    ${displayTarget ? `<div class="report-target">${escapeHtml((displayTarget.affiliation || 'unknown').toUpperCase())} · ${escapeHtml(displayTarget.label || displayTarget.entity_type || 'target')}</div>` : ''}
+    ${reviewStatus ? `<div class="review-status">${escapeHtml(reviewStatus.replace('_', ' ').toUpperCase())}</div>` : ''}
+    ${canReview ? `
+      <div class="review-actions">
+        ${canAcceptPosition ? '<button type="button" data-review-action="accept_position">ACCEPT POSITION</button>' : ''}
+        ${canAcceptTarget ? '<button type="button" data-review-action="accept_target">ACCEPT TARGET</button>' : ''}
+        <button type="button" data-review-action="reject">REJECT</button>
+      </div>
+    ` : ''}
   `;
-  transcriptLog.prepend(card);
+  card.querySelectorAll<HTMLButtonElement>('button[data-review-action]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const reviewAction = btn.dataset.reviewAction;
+      if (!reviewAction) return;
+      ws.send({ type: 'review_report', report_id: report.id, action: reviewAction });
+      setOperatorStatus(`REVIEW ${reviewAction.replace('_', ' ').toUpperCase()}`);
+    });
+  });
+  transcriptLog.appendChild(card);
 }
 
 function addErrorCard(err: any) {
@@ -337,6 +405,24 @@ function formatCoord(lat: number, lon: number): string {
   return `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
 }
 
+function updateStats() {
+  const unitEntries = Object.values(latestUnits || {});
+  const activeUnits = unitEntries.filter((u: any) => !!u.last_position).length;
+  unitCountEl.textContent = `${activeUnits}/${unitEntries.length || 0}`;
+  targetCountEl.textContent = String(latestTargets.length);
+  const reviewCount = latestReports.filter((r) => r?.resolved?.needs_review && !r.review_status).length +
+    latestTargets.filter((t) => t.needs_review).length;
+  reviewCountEl.textContent = String(reviewCount);
+  statReview.textContent = String(reviewCount);
+  statFriendly.textContent = String(latestTargets.filter((t) => t.affiliation === 'friendly').length + activeUnits);
+  statHostile.textContent = String(latestTargets.filter((t) => t.affiliation === 'hostile').length);
+  statUnknown.textContent = String(latestTargets.filter((t) => !t.affiliation || t.affiliation === 'unknown').length);
+}
+
+function updateClock() {
+  operatorClock.textContent = `${new Date().toISOString().slice(11, 19)}Z`;
+}
+
 locateOperatorBtn.addEventListener('click', locateOperator);
 syncFollowButton();
 followReportsBtn.addEventListener('click', () => {
@@ -349,4 +435,15 @@ togglePoiBtn.addEventListener('click', () => {
   renderPresetPois();
   setOperatorStatus(showPoiLabels ? 'POI LABELS ON' : 'POI LABELS OFF');
 });
+document.querySelectorAll<HTMLButtonElement>('.filter-btn[data-filter]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll<HTMLButtonElement>('.filter-btn[data-filter]').forEach((other) => {
+      other.classList.toggle('active', other === btn);
+    });
+    targetFilter = btn.dataset.filter || 'all';
+    renderTargetList();
+  });
+});
+updateClock();
+setInterval(updateClock, 1000);
 fetchPresets();

@@ -71,8 +71,8 @@ _TOOL = {
 
 
 def _system_blocks(ao: dict) -> list:
-    # Truncate the POI list for prompt size; favor first 200 (Overpass returns them roughly bbox-ordered).
-    pois = ao.get("pois", [])[:200]
+    # Truncate the POI list for prompt size; preset ordering promotes demo landmarks first.
+    pois = ao.get("pois", [])[:300]
     poi_text = "\n".join(
         f"- {p['name']} ({p['type']}) [{p['coords'][1]:.5f},{p['coords'][0]:.5f}]"
         + (f" aka {', '.join(p['aliases'])}" if p.get("aliases") else "")

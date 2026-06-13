@@ -52,7 +52,7 @@ def _load_preset(ao_id: str) -> dict:
 
 def _initial_ao() -> None:
     global current_ao_id, current_ao
-    for ao_id in ("paris_8", "pokrovsk"):
+    for ao_id in ("paris_central_demo", "paris_8", "pokrovsk"):
         path = PRESETS_DIR / f"{ao_id}.json"
         if path.exists():
             current_ao_id = ao_id
@@ -78,6 +78,8 @@ def list_presets():
             "zoom": data.get("zoom", 14),
             "poi_count": len(data.get("pois", [])),
         })
+    if current_ao_id:
+        items.sort(key=lambda item: (item["id"] != current_ao_id, item["name"]))
     return items
 
 
@@ -229,6 +231,17 @@ async def ws_operator(ws: WebSocket):
                 if target:
                     targets.append(target)
                     await broadcast({"type": "target", "target": target, "targets": targets[-100:]})
+            elif msg.get("type") == "review_report":
+                result = _review_report(msg)
+                if result.get("error"):
+                    await ws.send_text(json.dumps({"type": "error", "stage": "review", "error": result["error"]}))
+                else:
+                    await broadcast({
+                        "type": "report_reviewed",
+                        "report": result["report"],
+                        "units": units.snapshot(),
+                        "targets": targets[-100:],
+                    })
     except WebSocketDisconnect:
         pass
     finally:
@@ -368,6 +381,8 @@ def _target_from_report(report: dict) -> Optional[dict]:
     resolved = report.get("resolved") or {}
     if "lat" not in resolved or "lon" not in resolved:
         return None
+    if resolved.get("method") == "unresolved":
+        return None
     raw_target = parsed.get("target") or {}
     observed = parsed.get("observed") or ""
     affiliation = (raw_target.get("affiliation") or ("hostile" if action == "contact" else "unknown")).lower()
@@ -392,6 +407,63 @@ def _target_from_report(report: dict) -> Optional[dict]:
         "needs_review": bool(resolved.get("needs_review")) or float(parsed.get("confidence", 0.0) or 0.0) < 0.7,
         "timestamp": report["timestamp"],
     }
+
+
+def _find_report(report_id: object) -> Optional[dict]:
+    rid = str(report_id)
+    for report in reports:
+        if str(report.get("id")) == rid:
+            return report
+    return None
+
+
+def _target_for_report(report: dict) -> Optional[dict]:
+    rid = str(report.get("id"))
+    for target in targets:
+        if str(target.get("report_id")) == rid:
+            return target
+    return None
+
+
+def _review_report(msg: dict) -> dict:
+    report = _find_report(msg.get("report_id"))
+    if not report:
+        return {"error": "report not found"}
+    action = msg.get("action")
+    resolved = report.get("resolved") or {}
+    report["reviewed_at"] = time.time()
+
+    if action == "accept_position":
+        if resolved.get("method") == "unresolved" or "lat" not in resolved or "lon" not in resolved:
+            return {"error": "report has no resolved position to accept"}
+        units.append_position(report["unit"], float(resolved["lat"]), float(resolved["lon"]), ts=time.time())
+        resolved["needs_review"] = False
+        report["resolved"] = resolved
+        report["review_status"] = "accepted_position"
+        return {"report": report}
+
+    if action == "accept_target":
+        target = _target_for_report(report)
+        if not target:
+            target = _target_from_report(report)
+            if not target:
+                return {"error": "report has no target to accept"}
+            targets.append(target)
+            report["target"] = target
+        target["needs_review"] = False
+        resolved["needs_review"] = False
+        report["resolved"] = resolved
+        report["target"] = target
+        report["review_status"] = "accepted_target"
+        return {"report": report}
+
+    if action == "reject":
+        report["review_status"] = "rejected"
+        targets[:] = [t for t in targets if str(t.get("report_id")) != str(report.get("id"))]
+        report.pop("target", None)
+        return {"report": report}
+
+    return {"error": "unknown review action"}
 
 
 def _needs_review(parsed: dict, resolved: dict) -> bool:

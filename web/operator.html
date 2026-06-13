@@ -8,11 +8,19 @@
 </head>
 <body class="operator">
   <div class="topbar">
-    <h1>ARGUS</h1>
+    <div class="brand-lockup">
+      <h1>ARGUS <span>C2</span></h1>
+      <div class="terminal-subtitle">VOICE-TO-MAP SITUATIONAL AWARENESS</div>
+    </div>
     <div class="ao-control">
       <label for="preset-select">AO</label>
       <select id="preset-select"></select>
       <span id="ao-title"></span>
+    </div>
+    <div class="mission-strip">
+      <span>MISSION</span>
+      <strong>DEMO OPS</strong>
+      <time id="operator-clock">--:--:--Z</time>
     </div>
     <div class="operator-controls">
       <button id="locate-operator" type="button">LOCATE</button>
@@ -45,24 +53,38 @@
     </div>
   </div>
   <div class="layout">
+    <div class="sidebar">
+      <div class="unit-panel">
+        <h2>UNIT ROSTER <span id="unit-count">0</span></h2>
+        <div id="unit-list"></div>
+      </div>
+      <div class="target-panel">
+        <h2>TACTICAL OBJECTS <span id="target-count">0</span></h2>
+        <div class="filter-bar">
+          <button class="filter-btn active" type="button" data-filter="all">ALL</button>
+          <button class="filter-btn" type="button" data-filter="friendly">FRIENDLY</button>
+          <button class="filter-btn" type="button" data-filter="hostile">HOSTILE</button>
+          <button class="filter-btn" type="button" data-filter="unknown">UNKNOWN</button>
+        </div>
+        <div id="target-list"></div>
+      </div>
+      <div class="transcript-panel">
+        <h2>REPORTS / REVIEW <span id="review-count">0</span></h2>
+        <div id="transcript-log"></div>
+      </div>
+    </div>
     <div class="map-shell">
       <div id="map"></div>
       <div id="operator-status" class="operator-status">READY</div>
     </div>
-    <div class="sidebar">
-      <div class="unit-panel">
-        <h2>UNITS</h2>
-        <div id="unit-list"></div>
-      </div>
-      <div class="target-panel">
-        <h2>TARGETS</h2>
-        <div id="target-list"></div>
-      </div>
-      <div class="transcript-panel">
-        <h2>REPORTS</h2>
-        <div id="transcript-log"></div>
-      </div>
-    </div>
+  </div>
+  <div class="statusbar">
+    <span>FRIENDLY <strong id="stat-friendly">0</strong></span>
+    <span>HOSTILE <strong id="stat-hostile">0</strong></span>
+    <span>UNKNOWN <strong id="stat-unknown">0</strong></span>
+    <span>REVIEW <strong id="stat-review">0</strong></span>
+    <span class="statusbar-spacer"></span>
+    <span id="status-ao">AO READY</span>
   </div>
   <script type="module" src="./src/operator.ts"></script>
 </body>
