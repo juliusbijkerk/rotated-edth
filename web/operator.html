@@ -14,37 +14,38 @@
       <select id="preset-select"></select>
       <span id="ao-title"></span>
     </div>
+    <div class="operator-controls">
+      <button id="locate-operator" type="button">LOCATE</button>
+      <button id="toggle-poi" type="button" aria-pressed="false">POI</button>
+      <select id="map-action" aria-label="Map action">
+        <option value="pan">PAN</option>
+        <option value="set_unit">SET UNIT</option>
+        <option value="manual_target">DROP TARGET</option>
+      </select>
+      <select id="manual-unit" aria-label="Unit">
+        <option>Alpha</option>
+        <option>Bravo</option>
+        <option>Charlie</option>
+      </select>
+      <select id="manual-affiliation" aria-label="Affiliation">
+        <option value="unknown">UNKNOWN</option>
+        <option value="hostile">HOSTILE</option>
+        <option value="friendly">FRIENDLY</option>
+        <option value="neutral">NEUTRAL</option>
+      </select>
+      <select id="manual-entity" aria-label="Entity type">
+        <option value="person">PERSON</option>
+        <option value="group">GROUP</option>
+        <option value="vehicle">VEHICLE</option>
+        <option value="tank">TANK</option>
+        <option value="drone">DRONE</option>
+        <option value="unknown">UNKNOWN</option>
+      </select>
+    </div>
   </div>
   <div class="layout">
     <div class="map-shell">
       <div id="map"></div>
-      <div class="map-tools">
-        <button id="locate-operator" type="button">LOCATE</button>
-        <select id="map-action">
-          <option value="pan">PAN</option>
-          <option value="set_unit">SET UNIT</option>
-          <option value="manual_target">DROP TARGET</option>
-        </select>
-        <select id="manual-unit">
-          <option>Alpha</option>
-          <option>Bravo</option>
-          <option>Charlie</option>
-        </select>
-        <select id="manual-affiliation">
-          <option value="unknown">UNKNOWN</option>
-          <option value="hostile">HOSTILE</option>
-          <option value="friendly">FRIENDLY</option>
-          <option value="neutral">NEUTRAL</option>
-        </select>
-        <select id="manual-entity">
-          <option value="person">PERSON</option>
-          <option value="group">GROUP</option>
-          <option value="vehicle">VEHICLE</option>
-          <option value="tank">TANK</option>
-          <option value="drone">DRONE</option>
-          <option value="unknown">UNKNOWN</option>
-        </select>
-      </div>
       <div id="operator-status" class="operator-status">READY</div>
     </div>
     <div class="sidebar">

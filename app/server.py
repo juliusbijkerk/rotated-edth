@@ -10,7 +10,7 @@ from typing import Optional
 
 import anthropic
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
-from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import grounding, parser as llm_parser, stt
@@ -90,7 +90,45 @@ def get_preset(ao_id: str):
 
 @app.get("/")
 def root():
-    return RedirectResponse(url="/operator")
+    return HTMLResponse(
+        """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Argus</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      background: #0b1115; color: #e6edf2;
+      font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+    }
+    main { width: min(520px, calc(100vw - 32px)); }
+    h1 { margin: 0 0 10px; font-size: 42px; letter-spacing: 0; }
+    p { margin: 0 0 22px; color: #91a3b0; line-height: 1.45; }
+    .choices { display: grid; gap: 12px; }
+    a {
+      display: block; text-decoration: none; color: #e6edf2;
+      background: #142029; border: 1px solid #2f4554; border-radius: 8px;
+      padding: 18px;
+    }
+    strong { display: block; font-size: 20px; margin-bottom: 5px; }
+    span { color: #9fb2c0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>ARGUS</h1>
+    <p>Select the role for this device. Operators monitor and edit the map; units send field reports.</p>
+    <div class="choices">
+      <a href="/operator"><strong>Operator</strong><span>Laptop or command post map</span></a>
+      <a href="/unit"><strong>Unit</strong><span>Phone push-to-talk or typed field reports</span></a>
+    </div>
+  </main>
+</body>
+</html>"""
+    )
 
 
 def _missing_dist_html(page: str) -> str:

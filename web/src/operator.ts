@@ -13,6 +13,7 @@ const targetList = document.getElementById('target-list')!;
 const transcriptLog = document.getElementById('transcript-log')!;
 const aoTitleEl = document.getElementById('ao-title')!;
 const locateOperatorBtn = document.getElementById('locate-operator') as HTMLButtonElement;
+const togglePoiBtn = document.getElementById('toggle-poi') as HTMLButtonElement;
 const mapAction = document.getElementById('map-action') as HTMLSelectElement;
 const manualUnit = document.getElementById('manual-unit') as HTMLSelectElement;
 const manualAffiliation = document.getElementById('manual-affiliation') as HTMLSelectElement;
@@ -30,6 +31,7 @@ let operatorPin: L.Marker | null = null;
 let currentPreset: Preset | null = null;
 let latestUnits: Record<string, any> = {};
 let latestTargets: Target[] = [];
+let showPoiLabels = false;
 
 const ws = connect('/ws/operator');
 
@@ -64,8 +66,7 @@ async function loadPreset(id: string) {
   } else {
     map.setView([lat, lon], preset.zoom);
   }
-  if (poiLayer) poiLayer.remove();
-  poiLayer = renderPOIs(map, preset.pois);
+  renderPresetPois();
   renderUnits(latestUnits);
   renderTargets(latestTargets);
   ws.send({ type: 'set_ao', ao_id: id });
@@ -91,6 +92,7 @@ ws.onMessage((msg) => {
       transcriptLog.innerHTML = '';
       // Show oldest at bottom; newest on top — prepend each in stored order.
       for (const r of m.reports) addReport(r);
+      if (!m.reports.length) addEmpty(transcriptLog, 'Waiting for unit reports');
     }
   } else if (m.type === 'report') {
     addReport(m.report);
@@ -124,6 +126,17 @@ ws.onMessage((msg) => {
 
 function setOperatorStatus(msg: string) {
   operatorStatus.textContent = msg;
+}
+
+function renderPresetPois() {
+  if (!map || !currentPreset) return;
+  if (poiLayer) poiLayer.remove();
+  poiLayer = renderPOIs(map, currentPreset.pois, {
+    maxCount: showPoiLabels ? 160 : 80,
+    showLabels: showPoiLabels,
+  });
+  togglePoiBtn.setAttribute('aria-pressed', String(showPoiLabels));
+  togglePoiBtn.classList.toggle('active', showPoiLabels);
 }
 
 function handleMapClick(e: L.LeafletMouseEvent) {
@@ -234,6 +247,10 @@ function renderTargets(targets: Target[]) {
 
 function renderTargetList() {
   targetList.innerHTML = '';
+  if (!latestTargets.length) {
+    addEmpty(targetList, 'No targets reported');
+    return;
+  }
   for (const t of latestTargets.slice().reverse()) {
     const row = document.createElement('button');
     row.className = `target-row target-row-${t.affiliation || 'unknown'}`;
@@ -251,6 +268,7 @@ function renderTargetList() {
 }
 
 function addReport(report: any) {
+  transcriptLog.querySelector('.empty-state')?.remove();
   const card = document.createElement('div');
   card.className = 'report-card';
   card.style.borderLeftColor = UNIT_COLORS[report.unit] ?? '#3ee47a';
@@ -272,6 +290,7 @@ function addReport(report: any) {
 }
 
 function addErrorCard(err: any) {
+  transcriptLog.querySelector('.empty-state')?.remove();
   const card = document.createElement('div');
   card.className = 'report-card error';
   card.textContent = `[${err.stage}] ${err.error}`;
@@ -283,9 +302,21 @@ function escapeHtml(s: string): string {
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 }
 
+function addEmpty(container: Element, text: string) {
+  const empty = document.createElement('div');
+  empty.className = 'empty-state';
+  empty.textContent = text;
+  container.appendChild(empty);
+}
+
 function formatCoord(lat: number, lon: number): string {
   return `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
 }
 
 locateOperatorBtn.addEventListener('click', locateOperator);
+togglePoiBtn.addEventListener('click', () => {
+  showPoiLabels = !showPoiLabels;
+  renderPresetPois();
+  setOperatorStatus(showPoiLabels ? 'POI LABELS ON' : 'POI LABELS OFF');
+});
 fetchPresets();

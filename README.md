@@ -55,6 +55,14 @@ The server prints its local IP and QR codes for the operator and unit URLs.
 - Scan **unit URL** QR with a phone. Pick a callsign (Alpha / Bravo / Charlie). Tap-and-hold to speak.
 - Marker on the map updates within seconds.
 
+For phone microphone access, use HTTPS. One quick local-demo option:
+
+```sh
+cloudflared tunnel --url http://127.0.0.1:8001
+```
+
+Open the printed `https://...trycloudflare.com/unit` URL on the phone. The base tunnel URL shows a role chooser; `/operator` is for the laptop map, `/unit` is for field-user reports.
+
 ## Status
 
 This is hackathon code. Working > elegant. See `CLAUDE.md` for development guidance.

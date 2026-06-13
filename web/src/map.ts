@@ -52,7 +52,13 @@ export function createMap(elId: string, centerLatLon: [number, number], zoom: nu
   return map;
 }
 
-export function renderPOIs(map: L.Map, pois: POI[], maxCount = 200): L.LayerGroup {
+export function renderPOIs(
+  map: L.Map,
+  pois: POI[],
+  options: { maxCount?: number; showLabels?: boolean } = {},
+): L.LayerGroup {
+  const maxCount = options.maxCount ?? 80;
+  const showLabels = options.showLabels ?? false;
   const layer = L.layerGroup();
   for (const p of pois.slice(0, maxCount)) {
     const [lon, lat] = p.coords;
@@ -60,7 +66,7 @@ export function renderPOIs(map: L.Map, pois: POI[], maxCount = 200): L.LayerGrou
     L.marker([lat, lon], {
       icon: L.divIcon({
         className: 'poi-icon',
-        html: `<div class="poi-dot"></div><span class="poi-label">${safeName}</span>`,
+        html: `<div class="poi-dot"></div>${showLabels ? `<span class="poi-label">${safeName}</span>` : ''}`,
         iconSize: [10, 10],
         iconAnchor: [5, 5],
       }),
