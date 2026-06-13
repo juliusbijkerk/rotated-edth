@@ -14,6 +14,7 @@ brew install uv ffmpeg
 uv sync
 npm install
 cp .env.example .env   # then set ANTHROPIC_API_KEY
+# Optional cloud STT: set ARGUS_STT_PROVIDER=deepgram and DEEPGRAM_API_KEY
 
 # AO presets (already committed under app/presets/; re-run only if you want fresh OSM data)
 uv run python scripts/fetch_ao_preset.py all --force
@@ -42,7 +43,7 @@ Each PTT release:
 unit phone (web/src/unit.ts)
   → MediaRecorder blob, binary WS frame
   → /ws/unit/{Alpha|Bravo|Charlie}      (app/server.py)
-  → app/stt.py        mlx-whisper large-v3-turbo (lazy-loaded, ffmpeg decodes container)
+  → app/stt.py        mlx-whisper large-v3-turbo by default, or Deepgram if enabled
   → app/parser.py     claude-sonnet-4-6 with tool-use; AO POI list is prompt-cached
   → app/grounding.py  ladder: osm_poi → coordinate → mgrs → relative_to_unit → relative_to_self → unresolved
   → app/units.py      in-memory position history
@@ -65,6 +66,7 @@ Server state is **in-memory only** (units, reports, current AO). Restart wipes e
 - **Python 3.12, not 3.11.** Spec said 3.11; 3.12 was already installed and every dep supports it.
 - **Pokrovsk POIs are Cyrillic.** If a judge says "Mykhailivka" in English the parser will likely route through `relative_to_self` rather than POI match. Adding Latin transliteration aliases is a Phase 2 polish.
 - **Audio is buffered then sent on PTT release**, not streamed. One binary WS frame per utterance.
+- **Deepgram is opt-in**, not automatic. Keep `ARGUS_STT_PROVIDER=whisper` for local demo mode, or set `ARGUS_STT_PROVIDER=deepgram` plus `DEEPGRAM_API_KEY` in `.env` to use the organizer-provided STT key.
 - **Grounding ladder branches fall through to `unresolved`** when their inputs are missing. Don't add try/except around the branches — the fall-through *is* the error handling.
 - **Prompt caching** is on the AO POI block (`cache_control: ephemeral` in `app/parser.py`). Hits save tokens when the same AO sees many reports.
 - **MGRS and relative-to-unit are wired** (not stubbed) because both fit the same fall-through shape as the other branches — they degrade gracefully when their fields aren't populated.

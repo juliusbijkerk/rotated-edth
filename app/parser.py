@@ -68,7 +68,9 @@ def _system_blocks(ao: dict) -> list:
         '- relative_to_self: relative to the speaker ("moving north 200 meters").\n'
         "- unresolved: cannot determine.\n\n"
         "For relative references, set bearing_deg (0=N, 90=E, 180=S, 270=W) and distance_m. "
-        "Default entity to the speaker unless the transcript clearly attributes the report to another unit."
+        "Default entity to the speaker unless the transcript clearly attributes the report to another unit. "
+        'When the speaker names a landmark or station (e.g. "the Madeleine metro"), prefer the POI whose '
+        "name IS that landmark over a nearby street or entrance name, and copy poi_name exactly as listed."
     )
     ao_block = (
         f"AREA OF OPERATIONS: {ao['name']} ({ao.get('type', '?')})\n"

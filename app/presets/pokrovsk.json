@@ -75,205 +75,6 @@
       ]
     },
     {
-      "id": "node/1296778737",
-      "name": "Роз'їзд 6 км",
-      "aliases": [],
-      "type": "railway=halt",
-      "coords": [
-        37.208888,
-        48.300538
-      ]
-    },
-    {
-      "id": "node/1376637505",
-      "name": "Мир",
-      "aliases": [],
-      "type": "amenity=cinema",
-      "coords": [
-        37.177036,
-        48.279814
-      ]
-    },
-    {
-      "id": "node/1376637520",
-      "name": "Пам'ятник Кирилу Семеновичу Москаленку",
-      "aliases": [],
-      "type": "historic=memorial",
-      "coords": [
-        37.177188,
-        48.280429
-      ]
-    },
-    {
-      "id": "node/1393175344",
-      "name": "Покровськ",
-      "aliases": [
-        "Pokrovsk"
-      ],
-      "type": "public_transport=stop_position",
-      "coords": [
-        37.178518,
-        48.285265
-      ]
-    },
-    {
-      "id": "node/1482296630",
-      "name": "Нова Пошта №2",
-      "aliases": [
-        "Nova Poshta #2"
-      ],
-      "type": "amenity=post_office",
-      "coords": [
-        37.185754,
-        48.263663
-      ]
-    },
-    {
-      "id": "node/1735202734",
-      "name": "ТОВ \"Хвиля\"",
-      "aliases": [],
-      "type": "amenity=fuel",
-      "coords": [
-        37.163693,
-        48.272778
-      ]
-    },
-    {
-      "id": "node/1781664372",
-      "name": "Еко - Маркет",
-      "aliases": [
-        "Еко",
-        "Маркет"
-      ],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.182985,
-        48.266436
-      ]
-    },
-    {
-      "id": "node/1785964477",
-      "name": "ТЦ \"Явір\"",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.176648,
-        48.273843
-      ]
-    },
-    {
-      "id": "node/1787519939",
-      "name": "Центральний ринок",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.176701,
-        48.274807
-      ]
-    },
-    {
-      "id": "node/1787526171",
-      "name": "ЦРБ",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.182556,
-        48.266884
-      ]
-    },
-    {
-      "id": "node/2036088276",
-      "name": "Парк;Пам'ятник Миколі Леонтовичу",
-      "aliases": [],
-      "type": "historic=memorial",
-      "coords": [
-        37.17597,
-        48.265488
-      ]
-    },
-    {
-      "id": "node/2038177221",
-      "name": "Мебельєр",
-      "aliases": [],
-      "type": "shop=furniture",
-      "coords": [
-        37.178512,
-        48.283925
-      ]
-    },
-    {
-      "id": "node/2038220340",
-      "name": "Eva",
-      "aliases": [],
-      "type": "shop=chemist",
-      "coords": [
-        37.178454,
-        48.28378
-      ]
-    },
-    {
-      "id": "node/2038245519",
-      "name": "Credit Agricole",
-      "aliases": [],
-      "type": "amenity=bank",
-      "coords": [
-        37.179125,
-        48.275395
-      ]
-    },
-    {
-      "id": "node/2038260481",
-      "name": "Ощадбанк",
-      "aliases": [
-        "Oschadbank"
-      ],
-      "type": "amenity=bank",
-      "coords": [
-        37.175964,
-        48.27371
-      ]
-    },
-    {
-      "id": "node/2038288800",
-      "name": "Піраміда",
-      "aliases": [],
-      "type": "shop=furniture",
-      "coords": [
-        37.179663,
-        48.273457
-      ]
-    },
-    {
-      "id": "node/2038301888",
-      "name": "Арніка",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.181234,
-        48.269721
-      ]
-    },
-    {
-      "id": "node/2038320148",
-      "name": "Бібліотека ім. Олени Теліги",
-      "aliases": [],
-      "type": "amenity=library",
-      "coords": [
-        37.181002,
-        48.274529
-      ]
-    },
-    {
-      "id": "node/2038345138",
-      "name": "Comfy",
-      "aliases": [],
-      "type": "shop=electronics",
-      "coords": [
-        37.175838,
-        48.275204
-      ]
-    },
-    {
       "id": "node/2145106534",
       "name": "Шахтарський мікрорайон",
       "aliases": [
@@ -298,183 +99,157 @@
       ]
     },
     {
-      "id": "node/2297105356",
-      "name": "ПриватБанк",
+      "id": "node/5240098480",
+      "name": "Собачовка",
       "aliases": [
-        "PrivatBank"
+        "Sobachovka"
       ],
-      "type": "amenity=bank",
+      "type": "place=suburb",
       "coords": [
-        37.184067,
-        48.263264
+        37.191553,
+        48.273596
       ]
     },
     {
-      "id": "node/2297105360",
-      "name": "ПриватБанк",
+      "id": "node/11162327705",
+      "name": "площа Незалежності",
       "aliases": [
-        "PrivatBank"
+        "Nezalezhnosti Square"
       ],
-      "type": "amenity=bank",
+      "type": "place=square",
       "coords": [
-        37.176045,
-        48.273572
+        37.178407,
+        48.277547
       ]
     },
     {
-      "id": "node/2297105363",
-      "name": "ПриватБанк",
+      "id": "way/168235715",
+      "name": "Лазурний мікрорайон",
       "aliases": [
-        "PrivatBank"
+        "Lazurnyi Microdistrict"
       ],
-      "type": "amenity=bank",
+      "type": "place=neighbourhood",
       "coords": [
-        37.173736,
-        48.277349
+        37.183243,
+        48.257021
       ]
     },
     {
-      "id": "node/2297105368",
-      "name": "Ощадбанк",
+      "id": "way/168300662",
+      "name": "Сонячний мікрорайон",
       "aliases": [
-        "Oschadbank"
+        "Soniachnyi Microdistrict"
       ],
-      "type": "amenity=bank",
+      "type": "place=neighbourhood",
       "coords": [
-        37.173178,
-        48.280825
+        37.193784,
+        48.258826
       ]
     },
     {
-      "id": "node/2297105371",
-      "name": "ПриватБанк",
+      "id": "way/313524493",
+      "name": "Динас",
       "aliases": [
-        "PrivatBank"
+        "Dynas"
       ],
-      "type": "amenity=bank",
+      "type": "place=neighbourhood",
       "coords": [
-        37.175282,
-        48.278413
+        37.200306,
+        48.295592
       ]
     },
     {
-      "id": "node/2297105414",
-      "name": "ПриватБанк",
+      "id": "way/326625634",
+      "name": "Первомайка",
       "aliases": [
-        "PrivatBank"
+        "Pervomaika"
       ],
-      "type": "amenity=atm",
+      "type": "place=neighbourhood",
       "coords": [
-        37.18599,
-        48.263742
+        37.160366,
+        48.280732
       ]
     },
     {
-      "id": "node/2297105423",
-      "name": "ПриватБанк",
+      "id": "relation/2910228",
+      "name": "Світле",
       "aliases": [
-        "PrivatBank"
+        "Svitle"
       ],
-      "type": "amenity=atm",
+      "type": "place=village",
       "coords": [
-        37.181549,
-        48.274736
+        37.236546,
+        48.308628
       ]
     },
     {
-      "id": "node/2297105428",
-      "name": "ПриватБанк",
+      "id": "relation/4458534",
+      "name": "Свободи площа",
       "aliases": [
-        "PrivatBank"
+        "Svobody Square"
       ],
-      "type": "amenity=atm",
+      "type": "place=square",
       "coords": [
-        37.178171,
-        48.277086
+        37.177873,
+        48.282831
       ]
     },
     {
-      "id": "node/2297105430",
-      "name": "ПриватБанк",
+      "id": "relation/9210753",
+      "name": "Дурняк",
       "aliases": [
-        "PrivatBank"
+        "Durniak"
       ],
-      "type": "amenity=atm",
+      "type": "place=neighbourhood",
       "coords": [
-        37.19145,
-        48.28203
+        37.144895,
+        48.2817
       ]
     },
     {
-      "id": "node/2678996156",
-      "name": "Арніка",
+      "id": "relation/11984324",
+      "name": "Покровський район",
+      "aliases": [
+        "Pokrovskii Raion"
+      ],
+      "type": "place=district",
+      "coords": [
+        37.384408,
+        48.204602
+      ]
+    },
+    {
+      "id": "relation/13285837",
+      "name": "Мирноградська міська громада",
+      "aliases": [
+        "Myrnohrad urban hromada"
+      ],
+      "type": "place=municipality",
+      "coords": [
+        37.255904,
+        48.318935
+      ]
+    },
+    {
+      "id": "relation/13285838",
+      "name": "Покровська міська громада",
+      "aliases": [
+        "Pokrovsk urban hromada"
+      ],
+      "type": "place=municipality",
+      "coords": [
+        37.104998,
+        48.216215
+      ]
+    },
+    {
+      "id": "node/1296778737",
+      "name": "Роз'їзд 6 км",
       "aliases": [],
-      "type": "amenity=pharmacy",
+      "type": "railway=halt",
       "coords": [
-        37.185041,
-        48.264345
-      ]
-    },
-    {
-      "id": "node/2678996169",
-      "name": "Арніка",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.17636,
-        48.274673
-      ]
-    },
-    {
-      "id": "node/2678996174",
-      "name": "Арніка",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.178632,
-        48.274997
-      ]
-    },
-    {
-      "id": "node/2678996179",
-      "name": "Арніка",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.177298,
-        48.28198
-      ]
-    },
-    {
-      "id": "node/2678996184",
-      "name": "Арніка",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.167766,
-        48.292851
-      ]
-    },
-    {
-      "id": "node/2681184236",
-      "name": "Здравица",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.177528,
-        48.282916
-      ]
-    },
-    {
-      "id": "node/2759186611",
-      "name": "Нова Пошта №1",
-      "aliases": [
-        "Nova Poshta #1"
-      ],
-      "type": "amenity=post_office",
-      "coords": [
-        37.201276,
-        48.272543
+        37.208888,
+        48.300538
       ]
     },
     {
@@ -488,162 +263,6 @@
       ]
     },
     {
-      "id": "node/3050808447",
-      "name": "Залізничний вокзал",
-      "aliases": [
-        "Zaliznychnyi Vokzal"
-      ],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.179901,
-        48.284117
-      ]
-    },
-    {
-      "id": "node/3050895241",
-      "name": "МС+",
-      "aliases": [],
-      "type": "leisure=sports_centre",
-      "coords": [
-        37.180835,
-        48.273275
-      ]
-    },
-    {
-      "id": "node/3050927221",
-      "name": "Максим",
-      "aliases": [
-        "Maksym"
-      ],
-      "type": "shop=clothes",
-      "coords": [
-        37.176166,
-        48.283534
-      ]
-    },
-    {
-      "id": "node/3054309675",
-      "name": "Watsons",
-      "aliases": [],
-      "type": "shop=cosmetics",
-      "coords": [
-        37.177971,
-        48.283592
-      ]
-    },
-    {
-      "id": "node/3054330253",
-      "name": "Каприз",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.175481,
-        48.283755
-      ]
-    },
-    {
-      "id": "node/3055597172",
-      "name": "АТБ-Маркет",
-      "aliases": [
-        "ATB-Market"
-      ],
-      "type": "shop=supermarket",
-      "coords": [
-        37.178211,
-        48.282897
-      ]
-    },
-    {
-      "id": "node/3057834309",
-      "name": "Піцерія",
-      "aliases": [],
-      "type": "amenity=restaurant",
-      "coords": [
-        37.19144,
-        48.261336
-      ]
-    },
-    {
-      "id": "node/3068001309",
-      "name": "Мак Дак",
-      "aliases": [],
-      "type": "amenity=fast_food",
-      "coords": [
-        37.178794,
-        48.262462
-      ]
-    },
-    {
-      "id": "node/3068015921",
-      "name": "Парк",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.176003,
-        48.264858
-      ]
-    },
-    {
-      "id": "node/3072237930",
-      "name": "Укрпошта",
-      "aliases": [],
-      "type": "amenity=post_office",
-      "coords": [
-        37.181453,
-        48.274954
-      ]
-    },
-    {
-      "id": "node/3072238349",
-      "name": "Carleone",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.176741,
-        48.282398
-      ]
-    },
-    {
-      "id": "node/3072238350",
-      "name": "Банк",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.174207,
-        48.280634
-      ]
-    },
-    {
-      "id": "node/3072238351",
-      "name": "Суд",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.175012,
-        48.280313
-      ]
-    },
-    {
-      "id": "node/3072238352",
-      "name": "Capriccio",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.174214,
-        48.280906
-      ]
-    },
-    {
-      "id": "node/3072238358",
-      "name": "Ринок",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.182976,
-        48.260821
-      ]
-    },
-    {
       "id": "node/3076399002",
       "name": "Маяк",
       "aliases": [],
@@ -654,15 +273,33 @@
       ]
     },
     {
-      "id": "node/3087932154",
-      "name": "Братська могила",
-      "aliases": [
-        "mass grave"
-      ],
-      "type": "amenity=grave_yard",
+      "id": "way/181284519",
+      "name": "Дубове — Покровськ",
+      "aliases": [],
+      "type": "railway=disused",
       "coords": [
-        37.179601,
-        48.283311
+        37.203527,
+        48.282046
+      ]
+    },
+    {
+      "id": "node/1376637520",
+      "name": "Пам'ятник Кирилу Семеновичу Москаленку",
+      "aliases": [],
+      "type": "historic=memorial",
+      "coords": [
+        37.177188,
+        48.280429
+      ]
+    },
+    {
+      "id": "node/2036088276",
+      "name": "Парк;Пам'ятник Миколі Леонтовичу",
+      "aliases": [],
+      "type": "historic=memorial",
+      "coords": [
+        37.17597,
+        48.265488
       ]
     },
     {
@@ -676,26 +313,6 @@
       ]
     },
     {
-      "id": "node/3094246427",
-      "name": "Баня",
-      "aliases": [],
-      "type": "amenity=public_bath",
-      "coords": [
-        37.177979,
-        48.272243
-      ]
-    },
-    {
-      "id": "node/3094252218",
-      "name": "Фокстрот",
-      "aliases": [],
-      "type": "shop=electronics",
-      "coords": [
-        37.176112,
-        48.273695
-      ]
-    },
-    {
       "id": "node/3094260758",
       "name": "Т-34-85",
       "aliases": [],
@@ -703,78 +320,6 @@
       "coords": [
         37.18076,
         48.278287
-      ]
-    },
-    {
-      "id": "node/3098918333",
-      "name": "Гаражі",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.181504,
-        48.261524
-      ]
-    },
-    {
-      "id": "node/3162500233",
-      "name": "Покровськ",
-      "aliases": [
-        "Pokrovsk"
-      ],
-      "type": "public_transport=stop_position",
-      "coords": [
-        37.178513,
-        48.285201
-      ]
-    },
-    {
-      "id": "node/3220153315",
-      "name": "Вернисаж",
-      "aliases": [],
-      "type": "shop=shoes",
-      "coords": [
-        37.176273,
-        48.283302
-      ]
-    },
-    {
-      "id": "node/3222414196",
-      "name": "Малибу",
-      "aliases": [],
-      "type": "amenity=cinema",
-      "coords": [
-        37.178697,
-        48.262509
-      ]
-    },
-    {
-      "id": "node/3227835996",
-      "name": "Центральна міська бібліотека ім. Т.Г. Шевченка",
-      "aliases": [],
-      "type": "amenity=library",
-      "coords": [
-        37.175211,
-        48.278967
-      ]
-    },
-    {
-      "id": "node/3241706676",
-      "name": "Стоматологічне відділення",
-      "aliases": [],
-      "type": "amenity=dentist",
-      "coords": [
-        37.176213,
-        48.280422
-      ]
-    },
-    {
-      "id": "node/3243586908",
-      "name": "Етюд",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.174881,
-        48.280599
       ]
     },
     {
@@ -808,6 +353,562 @@
       ]
     },
     {
+      "id": "node/3815227399",
+      "name": "Діагностичний центр \"Кода\"",
+      "aliases": [],
+      "type": "amenity=hospital",
+      "coords": [
+        37.174895,
+        48.282496
+      ]
+    },
+    {
+      "id": "node/4394270090",
+      "name": "ABC клуб",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.187135,
+        48.262355
+      ]
+    },
+    {
+      "id": "node/6055418623",
+      "name": "Хостел отеля \"Европа\"",
+      "aliases": [],
+      "type": "tourism=hostel",
+      "coords": [
+        37.221095,
+        48.296216
+      ]
+    },
+    {
+      "id": "node/8236672407",
+      "name": "Європа",
+      "aliases": [],
+      "type": "tourism=hotel",
+      "coords": [
+        37.221217,
+        48.296249
+      ]
+    },
+    {
+      "id": "node/9082115318",
+      "name": "Орігамі Олень",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        37.17291,
+        48.267955
+      ]
+    },
+    {
+      "id": "node/13270655343",
+      "name": "Битва за Покровськ",
+      "aliases": [
+        "Battle of Pokrovsk"
+      ],
+      "type": "historic=battlefield",
+      "coords": [
+        37.176306,
+        48.27813
+      ]
+    },
+    {
+      "id": "node/13828348384",
+      "name": "Памятник Николаю Леонтовичу",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        37.175901,
+        48.266575
+      ]
+    },
+    {
+      "id": "node/13828348397",
+      "name": "Памятник Тарасу Шевченко",
+      "aliases": [],
+      "type": "tourism=artwork",
+      "coords": [
+        37.178374,
+        48.277684
+      ]
+    },
+    {
+      "id": "way/220519173",
+      "name": "Дружба",
+      "aliases": [],
+      "type": "tourism=hotel",
+      "coords": [
+        37.175837,
+        48.28238
+      ]
+    },
+    {
+      "id": "way/300980698",
+      "name": "Покровська центральна районна лікарня",
+      "aliases": [],
+      "type": "amenity=hospital",
+      "coords": [
+        37.18201,
+        48.270151
+      ]
+    },
+    {
+      "id": "way/301370786",
+      "name": "Покровський відділ поліції ГУНП в Донецькій області",
+      "aliases": [
+        "Police Pokrovsk"
+      ],
+      "type": "amenity=police",
+      "coords": [
+        37.173812,
+        48.279565
+      ]
+    },
+    {
+      "id": "way/301530698",
+      "name": "Школа №3",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.181587,
+        48.276117
+      ]
+    },
+    {
+      "id": "way/301690250",
+      "name": "Школа №9",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.189033,
+        48.260452
+      ]
+    },
+    {
+      "id": "way/301827843",
+      "name": "Школа №4",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.201461,
+        48.295321
+      ]
+    },
+    {
+      "id": "way/301827846",
+      "name": "Вузлова лікарня станції Покровськ",
+      "aliases": [],
+      "type": "amenity=hospital",
+      "coords": [
+        37.200791,
+        48.300483
+      ]
+    },
+    {
+      "id": "way/302041003",
+      "name": "Навчально-виховний комплекс № 2",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.162989,
+        48.281928
+      ]
+    },
+    {
+      "id": "way/302942204",
+      "name": "Мелодія",
+      "aliases": [],
+      "type": "tourism=hotel",
+      "coords": [
+        37.173106,
+        48.284811
+      ]
+    },
+    {
+      "id": "way/303289106",
+      "name": "Школа №6",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.203575,
+        48.297679
+      ]
+    },
+    {
+      "id": "way/305285689",
+      "name": "Багатопрофільна гімназія",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.180525,
+        48.279217
+      ]
+    },
+    {
+      "id": "way/313549281",
+      "name": "Школа №15",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.192849,
+        48.273919
+      ]
+    },
+    {
+      "id": "way/331349653",
+      "name": "Парафія “Св. влкмуч. Юрія”,УГКЦ",
+      "aliases": [],
+      "type": "amenity=place_of_worship",
+      "coords": [
+        37.206282,
+        48.29634
+      ]
+    },
+    {
+      "id": "way/332585268",
+      "name": "Школа №14",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.164579,
+        48.292353
+      ]
+    },
+    {
+      "id": "way/427155468",
+      "name": "Індустріальний інститут ДВНЗ \"ДонНТУ\"",
+      "aliases": [],
+      "type": "amenity=university",
+      "coords": [
+        37.178378,
+        48.278635
+      ]
+    },
+    {
+      "id": "way/676828494",
+      "name": "Колишній механічний завод",
+      "aliases": [],
+      "type": "historic=building",
+      "coords": [
+        37.166674,
+        48.275598
+      ]
+    },
+    {
+      "id": "way/847235716",
+      "name": "Ліцей \"Надія\"",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.181356,
+        48.277163
+      ]
+    },
+    {
+      "id": "relation/6354790",
+      "name": "Школа №12",
+      "aliases": [],
+      "type": "amenity=school",
+      "coords": [
+        37.178424,
+        48.279262
+      ]
+    },
+    {
+      "id": "way/121812639",
+      "name": "Ставок №1",
+      "aliases": [],
+      "type": "natural=water",
+      "coords": [
+        37.163584,
+        48.270069
+      ]
+    },
+    {
+      "id": "way/121812642",
+      "name": "Нульовка",
+      "aliases": [],
+      "type": "natural=water",
+      "coords": [
+        37.174325,
+        48.26821
+      ]
+    },
+    {
+      "id": "way/301495588",
+      "name": "Ставок №2",
+      "aliases": [],
+      "type": "natural=water",
+      "coords": [
+        37.158998,
+        48.270341
+      ]
+    },
+    {
+      "id": "way/301502012",
+      "name": "Ставок №3",
+      "aliases": [],
+      "type": "natural=water",
+      "coords": [
+        37.154079,
+        48.266752
+      ]
+    },
+    {
+      "id": "way/314322731",
+      "name": "балка Сазонова",
+      "aliases": [],
+      "type": "waterway=stream",
+      "coords": [
+        37.154542,
+        48.264138
+      ]
+    },
+    {
+      "id": "way/319548524",
+      "name": "Гришинка",
+      "aliases": [
+        "Hryshynka"
+      ],
+      "type": "waterway=river",
+      "coords": [
+        37.007408,
+        48.359843
+      ]
+    },
+    {
+      "id": "node/1376637505",
+      "name": "Мир",
+      "aliases": [],
+      "type": "amenity=cinema",
+      "coords": [
+        37.177036,
+        48.279814
+      ]
+    },
+    {
+      "id": "node/1482296630",
+      "name": "Нова Пошта №2",
+      "aliases": [
+        "Nova Poshta #2"
+      ],
+      "type": "amenity=post_office",
+      "coords": [
+        37.185754,
+        48.263663
+      ]
+    },
+    {
+      "id": "node/1735202734",
+      "name": "ТОВ \"Хвиля\"",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        37.163693,
+        48.272778
+      ]
+    },
+    {
+      "id": "way/301134708",
+      "name": "Центральний ринок",
+      "aliases": [],
+      "type": "amenity=marketplace",
+      "coords": [
+        37.173252,
+        48.276082
+      ]
+    },
+    {
+      "id": "node/2038245519",
+      "name": "Credit Agricole",
+      "aliases": [],
+      "type": "amenity=bank",
+      "coords": [
+        37.179125,
+        48.275395
+      ]
+    },
+    {
+      "id": "node/2038260481",
+      "name": "Ощадбанк",
+      "aliases": [
+        "Oschadbank"
+      ],
+      "type": "amenity=bank",
+      "coords": [
+        37.175964,
+        48.27371
+      ]
+    },
+    {
+      "id": "node/2038301888",
+      "name": "Арніка",
+      "aliases": [],
+      "type": "amenity=pharmacy",
+      "coords": [
+        37.181234,
+        48.269721
+      ]
+    },
+    {
+      "id": "node/2038320148",
+      "name": "Бібліотека ім. Олени Теліги",
+      "aliases": [],
+      "type": "amenity=library",
+      "coords": [
+        37.181002,
+        48.274529
+      ]
+    },
+    {
+      "id": "node/2297105356",
+      "name": "ПриватБанк",
+      "aliases": [
+        "PrivatBank"
+      ],
+      "type": "amenity=bank",
+      "coords": [
+        37.184067,
+        48.263264
+      ]
+    },
+    {
+      "id": "node/2681184236",
+      "name": "Здравица",
+      "aliases": [],
+      "type": "amenity=pharmacy",
+      "coords": [
+        37.177528,
+        48.282916
+      ]
+    },
+    {
+      "id": "node/2759186611",
+      "name": "Нова Пошта №1",
+      "aliases": [
+        "Nova Poshta #1"
+      ],
+      "type": "amenity=post_office",
+      "coords": [
+        37.201276,
+        48.272543
+      ]
+    },
+    {
+      "id": "node/3050895241",
+      "name": "МС+",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        37.180835,
+        48.273275
+      ]
+    },
+    {
+      "id": "node/3057834309",
+      "name": "Піцерія",
+      "aliases": [],
+      "type": "amenity=restaurant",
+      "coords": [
+        37.19144,
+        48.261336
+      ]
+    },
+    {
+      "id": "node/3068001309",
+      "name": "Мак Дак",
+      "aliases": [],
+      "type": "amenity=fast_food",
+      "coords": [
+        37.178794,
+        48.262462
+      ]
+    },
+    {
+      "id": "node/3072237930",
+      "name": "Укрпошта",
+      "aliases": [],
+      "type": "amenity=post_office",
+      "coords": [
+        37.181453,
+        48.274954
+      ]
+    },
+    {
+      "id": "node/3072238349",
+      "name": "Carleone",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.176741,
+        48.282398
+      ]
+    },
+    {
+      "id": "node/3072238352",
+      "name": "Capriccio",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.174214,
+        48.280906
+      ]
+    },
+    {
+      "id": "node/3087932154",
+      "name": "Братська могила",
+      "aliases": [
+        "mass grave"
+      ],
+      "type": "amenity=grave_yard",
+      "coords": [
+        37.179601,
+        48.283311
+      ]
+    },
+    {
+      "id": "node/3094246427",
+      "name": "Баня",
+      "aliases": [],
+      "type": "amenity=public_bath",
+      "coords": [
+        37.177979,
+        48.272243
+      ]
+    },
+    {
+      "id": "node/3222414196",
+      "name": "Малибу",
+      "aliases": [],
+      "type": "amenity=cinema",
+      "coords": [
+        37.178697,
+        48.262509
+      ]
+    },
+    {
+      "id": "node/3227835996",
+      "name": "Центральна міська бібліотека ім. Т.Г. Шевченка",
+      "aliases": [],
+      "type": "amenity=library",
+      "coords": [
+        37.175211,
+        48.278967
+      ]
+    },
+    {
+      "id": "node/3241706676",
+      "name": "Стоматологічне відділення",
+      "aliases": [],
+      "type": "amenity=dentist",
+      "coords": [
+        37.176213,
+        48.280422
+      ]
+    },
+    {
       "id": "node/3317104098",
       "name": "В семейном кругу",
       "aliases": [],
@@ -838,18 +939,6 @@
       ]
     },
     {
-      "id": "node/3384151231",
-      "name": "Ощадбанк",
-      "aliases": [
-        "Oschadbank"
-      ],
-      "type": "amenity=atm",
-      "coords": [
-        37.196894,
-        48.296329
-      ]
-    },
-    {
       "id": "node/3385549063",
       "name": "Радянське кафе",
       "aliases": [],
@@ -860,36 +949,6 @@
       ]
     },
     {
-      "id": "node/3392269980",
-      "name": "Вега",
-      "aliases": [],
-      "type": "shop=farm",
-      "coords": [
-        37.192633,
-        48.291666
-      ]
-    },
-    {
-      "id": "node/3397837511",
-      "name": "Канцлер",
-      "aliases": [],
-      "type": "shop=copyshop",
-      "coords": [
-        37.200063,
-        48.295425
-      ]
-    },
-    {
-      "id": "node/3417410859",
-      "name": "Верес",
-      "aliases": [],
-      "type": "shop=farm",
-      "coords": [
-        37.199415,
-        48.298668
-      ]
-    },
-    {
       "id": "node/3417475814",
       "name": "Приватбанк",
       "aliases": [],
@@ -897,78 +956,6 @@
       "coords": [
         37.196229,
         48.291349
-      ]
-    },
-    {
-      "id": "node/3426439318",
-      "name": "Interno",
-      "aliases": [],
-      "type": "shop=furniture",
-      "coords": [
-        37.178139,
-        48.269285
-      ]
-    },
-    {
-      "id": "node/3450837405",
-      "name": "Черемушки",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.184667,
-        48.263231
-      ]
-    },
-    {
-      "id": "node/3450837406",
-      "name": "Лія",
-      "aliases": [],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.184835,
-        48.263664
-      ]
-    },
-    {
-      "id": "node/3450837407",
-      "name": "Фокстрот",
-      "aliases": [],
-      "type": "shop=electronics",
-      "coords": [
-        37.181212,
-        48.26611
-      ]
-    },
-    {
-      "id": "node/3450837408",
-      "name": "Еко-Маркет",
-      "aliases": [],
-      "type": "shop=supermarket",
-      "coords": [
-        37.181467,
-        48.266039
-      ]
-    },
-    {
-      "id": "node/3455901053",
-      "name": "Легенда",
-      "aliases": [],
-      "type": "shop=window_blind",
-      "coords": [
-        37.175632,
-        48.284001
-      ]
-    },
-    {
-      "id": "node/3484762224",
-      "name": "ІТЦ Компас",
-      "aliases": [
-        "ITC-Compass"
-      ],
-      "type": "shop=computer",
-      "coords": [
-        37.177476,
-        48.283402
       ]
     },
     {
@@ -994,26 +981,6 @@
       ]
     },
     {
-      "id": "node/3815227399",
-      "name": "Діагностичний центр \"Кода\"",
-      "aliases": [],
-      "type": "amenity=hospital",
-      "coords": [
-        37.174895,
-        48.282496
-      ]
-    },
-    {
-      "id": "node/3839291442",
-      "name": "Линолеум",
-      "aliases": [],
-      "type": "shop=interior_decoration",
-      "coords": [
-        37.171676,
-        48.283082
-      ]
-    },
-    {
       "id": "node/3839343470",
       "name": "Мед-сервіс+",
       "aliases": [],
@@ -1021,126 +988,6 @@
       "coords": [
         37.17814,
         48.282596
-      ]
-    },
-    {
-      "id": "node/3839343471",
-      "name": "Ощадбанк",
-      "aliases": [
-        "Oschadbank"
-      ],
-      "type": "amenity=bank",
-      "coords": [
-        37.179661,
-        48.282853
-      ]
-    },
-    {
-      "id": "node/3884004269",
-      "name": "Ощадбанк",
-      "aliases": [
-        "Oschadbank"
-      ],
-      "type": "amenity=atm",
-      "coords": [
-        37.178771,
-        48.276678
-      ]
-    },
-    {
-      "id": "node/4194995570",
-      "name": "Watsons",
-      "aliases": [],
-      "type": "shop=cosmetics",
-      "coords": [
-        37.184224,
-        48.263436
-      ]
-    },
-    {
-      "id": "node/4394270090",
-      "name": "ABC клуб",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.187135,
-        48.262355
-      ]
-    },
-    {
-      "id": "node/4426821291",
-      "name": "Услада",
-      "aliases": [
-        "Yslada"
-      ],
-      "type": "shop=confectionery",
-      "coords": [
-        37.182997,
-        48.260731
-      ]
-    },
-    {
-      "id": "node/4426821292",
-      "name": "Услада",
-      "aliases": [
-        "Yslada"
-      ],
-      "type": "shop=confectionery",
-      "coords": [
-        37.175156,
-        48.276147
-      ]
-    },
-    {
-      "id": "node/4426844791",
-      "name": "Услада",
-      "aliases": [
-        "Yslada"
-      ],
-      "type": "shop=confectionery",
-      "coords": [
-        37.178133,
-        48.282539
-      ]
-    },
-    {
-      "id": "node/4482637396",
-      "name": "Ощадбанк",
-      "aliases": [],
-      "type": "amenity=bank",
-      "coords": [
-        37.185932,
-        48.262914
-      ]
-    },
-    {
-      "id": "node/4482637495",
-      "name": "Укрпошта",
-      "aliases": [],
-      "type": "amenity=post_box",
-      "coords": [
-        37.186538,
-        48.262625
-      ]
-    },
-    {
-      "id": "node/4845720222",
-      "name": "Магазин \"Плазма\"",
-      "aliases": [],
-      "type": "shop=electronics",
-      "coords": [
-        37.175793,
-        48.275332
-      ]
-    },
-    {
-      "id": "node/4903176213",
-      "name": "Привоз",
-      "aliases": [],
-      "type": "shop=farm",
-      "coords": [
-        37.198078,
-        48.295552
       ]
     },
     {
@@ -1166,38 +1013,6 @@
       ]
     },
     {
-      "id": "node/4907964125",
-      "name": "Афродита",
-      "aliases": [],
-      "type": "shop=beauty",
-      "coords": [
-        37.183773,
-        48.260733
-      ]
-    },
-    {
-      "id": "node/4907964223",
-      "name": "Комп'ютерні технології",
-      "aliases": [
-        "Computer technologies"
-      ],
-      "type": "shop=computer",
-      "coords": [
-        37.183091,
-        48.261047
-      ]
-    },
-    {
-      "id": "node/4907964224",
-      "name": "Алло",
-      "aliases": [],
-      "type": "shop=mobile_phone",
-      "coords": [
-        37.182735,
-        48.261227
-      ]
-    },
-    {
       "id": "node/4907964225",
       "name": "Ваша аптека",
       "aliases": [],
@@ -1208,92 +1023,6 @@
       ]
     },
     {
-      "id": "node/4907964226",
-      "name": "Зоомаркет",
-      "aliases": [],
-      "type": "shop=pet",
-      "coords": [
-        37.183878,
-        48.260682
-      ]
-    },
-    {
-      "id": "node/4907988821",
-      "name": "М'ясна весна",
-      "aliases": [],
-      "type": "shop=butcher",
-      "coords": [
-        37.182941,
-        48.261057
-      ]
-    },
-    {
-      "id": "node/4907992023",
-      "name": "Італійська хімчистка",
-      "aliases": [
-        "Italian dry cleaning"
-      ],
-      "type": "shop=dry_cleaning",
-      "coords": [
-        37.18445,
-        48.260405
-      ]
-    },
-    {
-      "id": "node/4908084505",
-      "name": "Лучіано",
-      "aliases": [
-        "Luchiano"
-      ],
-      "type": "shop=pastry",
-      "coords": [
-        37.178974,
-        48.276397
-      ]
-    },
-    {
-      "id": "node/4909214221",
-      "name": "Тамара",
-      "aliases": [
-        "Tamara"
-      ],
-      "type": "shop=convenience",
-      "coords": [
-        37.179321,
-        48.272013
-      ]
-    },
-    {
-      "id": "node/4910017822",
-      "name": "Продукти",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.179594,
-        48.270741
-      ]
-    },
-    {
-      "id": "node/4910017823",
-      "name": "Butterfly",
-      "aliases": [],
-      "type": "shop=beauty",
-      "coords": [
-        37.17977,
-        48.272427
-      ]
-    },
-    {
-      "id": "node/4910017824",
-      "name": "Актуаль",
-      "aliases": [],
-      "type": "shop=clothes",
-      "coords": [
-        37.179609,
-        48.273137
-      ]
-    },
-    {
       "id": "node/4910017825",
       "name": "Ukrsibbank",
       "aliases": [],
@@ -1301,16 +1030,6 @@
       "coords": [
         37.178556,
         48.275509
-      ]
-    },
-    {
-      "id": "node/4910017826",
-      "name": "Золотой дом",
-      "aliases": [],
-      "type": "shop=jewelry",
-      "coords": [
-        37.178416,
-        48.27618
       ]
     },
     {
@@ -1344,16 +1063,6 @@
       ]
     },
     {
-      "id": "node/4910018822",
-      "name": "Вода святогорья",
-      "aliases": [],
-      "type": "shop=alcohol",
-      "coords": [
-        37.17921,
-        48.274502
-      ]
-    },
-    {
       "id": "node/4910969121",
       "name": "FitCurves",
       "aliases": [],
@@ -1361,16 +1070,6 @@
       "coords": [
         37.184385,
         48.262591
-      ]
-    },
-    {
-      "id": "node/4910969221",
-      "name": "Ангелочек",
-      "aliases": [],
-      "type": "shop=toys",
-      "coords": [
-        37.183513,
-        48.262084
       ]
     },
     {
@@ -1384,16 +1083,6 @@
       ]
     },
     {
-      "id": "node/4915262221",
-      "name": "Космос",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.170165,
-        48.289187
-      ]
-    },
-    {
       "id": "node/4921960821",
       "name": "Укрексімбанк",
       "aliases": [],
@@ -1401,62 +1090,6 @@
       "coords": [
         37.178593,
         48.275521
-      ]
-    },
-    {
-      "id": "node/5029932125",
-      "name": "Наркологія",
-      "aliases": [
-        "Narkologija"
-      ],
-      "type": "highway=bus_stop",
-      "coords": [
-        37.174346,
-        48.2823
-      ]
-    },
-    {
-      "id": "node/5103791921",
-      "name": "Перша леді",
-      "aliases": [],
-      "type": "shop=clothes",
-      "coords": [
-        37.179055,
-        48.276004
-      ]
-    },
-    {
-      "id": "node/5240098480",
-      "name": "Собачовка",
-      "aliases": [
-        "Sobachovka"
-      ],
-      "type": "place=suburb",
-      "coords": [
-        37.191553,
-        48.273596
-      ]
-    },
-    {
-      "id": "node/5396472022",
-      "name": "MOBI-SERVICE",
-      "aliases": [],
-      "type": "shop=mobile_phone",
-      "coords": [
-        37.176843,
-        48.275424
-      ]
-    },
-    {
-      "id": "node/5496787428",
-      "name": "Товари з Європи",
-      "aliases": [
-        "Goods from Europe"
-      ],
-      "type": "shop=convenience",
-      "coords": [
-        37.179563,
-        48.282058
       ]
     },
     {
@@ -1472,55 +1105,6 @@
       ]
     },
     {
-      "id": "node/5658305823",
-      "name": "Услада",
-      "aliases": [],
-      "type": "shop=confectionery",
-      "coords": [
-        37.178124,
-        48.282534
-      ]
-    },
-    {
-      "id": "node/5957755385",
-      "name": "Одяг для всієї родини - second hand",
-      "aliases": [
-        "Одяг для всієї родини",
-        "second hand"
-      ],
-      "type": "shop=clothes",
-      "coords": [
-        37.180469,
-        48.284259
-      ]
-    },
-    {
-      "id": "node/5957755585",
-      "name": "Одяг для всієї родини - stok & second hand",
-      "aliases": [
-        "Одяг для всієї родини",
-        "stok & second hand"
-      ],
-      "type": "shop=clothes",
-      "coords": [
-        37.179328,
-        48.269373
-      ]
-    },
-    {
-      "id": "node/5957755586",
-      "name": "Одяг для всієї родини - second hand",
-      "aliases": [
-        "Одяг для всієї родини",
-        "second hand"
-      ],
-      "type": "shop=clothes",
-      "coords": [
-        37.189738,
-        48.261374
-      ]
-    },
-    {
       "id": "node/6055418622",
       "name": "Сауна отеля \"Европа\"",
       "aliases": [],
@@ -1531,26 +1115,6 @@
       ]
     },
     {
-      "id": "node/6055418623",
-      "name": "Хостел отеля \"Европа\"",
-      "aliases": [],
-      "type": "tourism=hostel",
-      "coords": [
-        37.221095,
-        48.296216
-      ]
-    },
-    {
-      "id": "node/6618611185",
-      "name": "Електрооптторг",
-      "aliases": [],
-      "type": "shop=variety_store",
-      "coords": [
-        37.199615,
-        48.28119
-      ]
-    },
-    {
       "id": "node/6669759386",
       "name": "Юнона",
       "aliases": [],
@@ -1558,26 +1122,6 @@
       "coords": [
         37.195298,
         48.291645
-      ]
-    },
-    {
-      "id": "node/6789028617",
-      "name": "Еспрес маркет",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.178154,
-        48.282668
-      ]
-    },
-    {
-      "id": "node/6853511881",
-      "name": "Beayties Factory",
-      "aliases": [],
-      "type": "shop=beauty",
-      "coords": [
-        37.176793,
-        48.275727
       ]
     },
     {
@@ -1611,36 +1155,6 @@
       ]
     },
     {
-      "id": "node/7812772952",
-      "name": "Аптека оптових цін",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.182834,
-        48.261322
-      ]
-    },
-    {
-      "id": "node/7812902227",
-      "name": "Аптека оптових цін",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.178285,
-        48.282507
-      ]
-    },
-    {
-      "id": "node/7812919020",
-      "name": "Аптека оптових цін",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        37.177093,
-        48.274287
-      ]
-    },
-    {
       "id": "node/7942225518",
       "name": "Точка видачі monobank \\ Universal Bank",
       "aliases": [],
@@ -1648,30 +1162,6 @@
       "coords": [
         37.175562,
         48.275737
-      ]
-    },
-    {
-      "id": "node/8111774818",
-      "name": "STIHL - магазин ІнтерТехніка - офіційний дилер",
-      "aliases": [
-        "STIHL",
-        "магазин ІнтерТехніка",
-        "офіційний дилер"
-      ],
-      "type": "shop=general",
-      "coords": [
-        37.173353,
-        48.28103
-      ]
-    },
-    {
-      "id": "node/8146177530",
-      "name": "Точка видачі monobank \\ Universal Bank",
-      "aliases": [],
-      "type": "amenity=bank",
-      "coords": [
-        37.176122,
-        48.273736
       ]
     },
     {
@@ -1705,16 +1195,6 @@
       ]
     },
     {
-      "id": "node/8236672407",
-      "name": "Європа",
-      "aliases": [],
-      "type": "tourism=hotel",
-      "coords": [
-        37.221217,
-        48.296249
-      ]
-    },
-    {
       "id": "node/8237212849",
       "name": "Нова пошта, від. №5",
       "aliases": [],
@@ -1722,140 +1202,6 @@
       "coords": [
         37.21273,
         48.29034
-      ]
-    },
-    {
-      "id": "node/8394928717",
-      "name": "Фуджі фільм",
-      "aliases": [
-        "Fuji-film"
-      ],
-      "type": "shop=photo",
-      "coords": [
-        37.183226,
-        48.261826
-      ]
-    },
-    {
-      "id": "node/8394928817",
-      "name": "ФУДЖИ ФИЛЬМ",
-      "aliases": [
-        "Fuji-film"
-      ],
-      "type": "shop=photo",
-      "coords": [
-        37.177211,
-        48.283217
-      ]
-    },
-    {
-      "id": "node/8693032814",
-      "name": "Благо",
-      "aliases": [],
-      "type": "shop=pawnbroker",
-      "coords": [
-        37.183088,
-        48.261545
-      ]
-    },
-    {
-      "id": "node/8693037430",
-      "name": "Благо",
-      "aliases": [],
-      "type": "shop=pawnbroker",
-      "coords": [
-        37.178582,
-        48.283944
-      ]
-    },
-    {
-      "id": "node/8693037482",
-      "name": "Благо",
-      "aliases": [],
-      "type": "shop=pawnbroker",
-      "coords": [
-        37.175771,
-        48.275417
-      ]
-    },
-    {
-      "id": "node/8749647428",
-      "name": "Ломбард Центральний",
-      "aliases": [],
-      "type": "shop=pawnbroker",
-      "coords": [
-        37.182686,
-        48.26127
-      ]
-    },
-    {
-      "id": "node/8749647457",
-      "name": "Ломбард Центральний",
-      "aliases": [],
-      "type": "shop=pawnbroker",
-      "coords": [
-        37.176962,
-        48.274603
-      ]
-    },
-    {
-      "id": "node/8816518117",
-      "name": "Университет",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.177622,
-        48.279353
-      ]
-    },
-    {
-      "id": "node/8816622318",
-      "name": "Спокуса",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.175839,
-        48.275639
-      ]
-    },
-    {
-      "id": "node/8816691617",
-      "name": "Салтів. комбінат",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.172603,
-        48.275095
-      ]
-    },
-    {
-      "id": "node/8838468617",
-      "name": "Магазин якщо на ринок не встиг",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.171048,
-        48.275498
-      ]
-    },
-    {
-      "id": "node/8838735917",
-      "name": "Класний ковбасний",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.17896,
-        48.282234
-      ]
-    },
-    {
-      "id": "node/8900730817",
-      "name": "Велес",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.17623,
-        48.284594
       ]
     },
     {
@@ -1869,136 +1215,6 @@
       ]
     },
     {
-      "id": "node/9073261618",
-      "name": "Каприз",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.175419,
-        48.283725
-      ]
-    },
-    {
-      "id": "node/9073427017",
-      "name": "Щедра Крамниця",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.168481,
-        48.276701
-      ]
-    },
-    {
-      "id": "node/9082115318",
-      "name": "Орігамі Олень",
-      "aliases": [],
-      "type": "tourism=artwork",
-      "coords": [
-        37.17291,
-        48.267955
-      ]
-    },
-    {
-      "id": "node/9240154117",
-      "name": "НП. Гришко (сирний кіоск)",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.177908,
-        48.284405
-      ]
-    },
-    {
-      "id": "node/9430357900",
-      "name": "Eva",
-      "aliases": [],
-      "type": "shop=chemist",
-      "coords": [
-        37.175937,
-        48.273582
-      ]
-    },
-    {
-      "id": "node/9430357901",
-      "name": "Eva",
-      "aliases": [],
-      "type": "shop=chemist",
-      "coords": [
-        37.182326,
-        48.260541
-      ]
-    },
-    {
-      "id": "node/9430358011",
-      "name": "Eva",
-      "aliases": [],
-      "type": "shop=chemist",
-      "coords": [
-        37.189311,
-        48.281155
-      ]
-    },
-    {
-      "id": "node/11162327705",
-      "name": "площа Незалежності",
-      "aliases": [
-        "Nezalezhnosti Square"
-      ],
-      "type": "place=square",
-      "coords": [
-        37.178407,
-        48.277547
-      ]
-    },
-    {
-      "id": "node/12351757191",
-      "name": "Покровськ",
-      "aliases": [
-        "Pokrovsk"
-      ],
-      "type": "public_transport=stop_position",
-      "coords": [
-        37.178542,
-        48.285388
-      ]
-    },
-    {
-      "id": "node/12351757192",
-      "name": "Покровськ",
-      "aliases": [
-        "Pokrovsk"
-      ],
-      "type": "public_transport=stop_position",
-      "coords": [
-        37.178523,
-        48.285303
-      ]
-    },
-    {
-      "id": "node/12351757193",
-      "name": "Покровськ",
-      "aliases": [
-        "Pokrovsk"
-      ],
-      "type": "public_transport=station",
-      "coords": [
-        37.179523,
-        48.284945
-      ]
-    },
-    {
-      "id": "node/13270655343",
-      "name": "Битва за Покровськ",
-      "aliases": [
-        "Battle of Pokrovsk"
-      ],
-      "type": "historic=battlefield",
-      "coords": [
-        37.176306,
-        48.27813
-      ]
-    },
-    {
       "id": "node/13503781744",
       "name": "Аптека",
       "aliases": [],
@@ -2009,43 +1225,630 @@
       ]
     },
     {
-      "id": "node/13828348384",
-      "name": "Памятник Николаю Леонтовичу",
-      "aliases": [],
-      "type": "tourism=artwork",
+      "id": "way/161548678",
+      "name": "Шосейна вулиця",
+      "aliases": [
+        "Shoseina Street"
+      ],
+      "type": "bridge=yes",
       "coords": [
-        37.175901,
-        48.266575
+        37.198696,
+        48.282159
       ]
     },
     {
-      "id": "node/13828348397",
-      "name": "Памятник Тарасу Шевченко",
+      "id": "way/191732867",
+      "name": "Покровський міськрайонний суд",
       "aliases": [],
-      "type": "tourism=artwork",
+      "type": "amenity=courthouse",
       "coords": [
-        37.178374,
-        48.277684
+        37.174968,
+        48.280069
       ]
     },
     {
-      "id": "way/121812639",
-      "name": "Ставок №1",
-      "aliases": [],
-      "type": "natural=water",
+      "id": "way/774540414",
+      "name": "Партизанська вулиця",
+      "aliases": [
+        "Partisan Street"
+      ],
+      "type": "bridge=yes",
       "coords": [
-        37.163584,
-        48.270069
+        37.158972,
+        48.276602
       ]
     },
     {
-      "id": "way/121812642",
-      "name": "Нульовка",
+      "id": "way/220519179",
+      "name": "Палац культури ПАТ \"ШУ \"Покровське\"",
       "aliases": [],
-      "type": "natural=water",
+      "type": "amenity=arts_centre",
       "coords": [
-        37.174325,
-        48.26821
+        37.180514,
+        48.277846
+      ]
+    },
+    {
+      "id": "way/220519220",
+      "name": "Голлівуд",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.179602,
+        48.270208
+      ]
+    },
+    {
+      "id": "way/220519222",
+      "name": "Поліклініка",
+      "aliases": [],
+      "type": "amenity=clinic",
+      "coords": [
+        37.176184,
+        48.279964
+      ]
+    },
+    {
+      "id": "way/220519261",
+      "name": "Музична школа",
+      "aliases": [],
+      "type": "amenity=music_school",
+      "coords": [
+        37.180406,
+        48.27725
+      ]
+    },
+    {
+      "id": "way/220519519",
+      "name": "Імпульс",
+      "aliases": [],
+      "type": "amenity=public_bath",
+      "coords": [
+        37.177959,
+        48.272326
+      ]
+    },
+    {
+      "id": "way/300967552",
+      "name": "Сквер Соборний",
+      "aliases": [
+        "Sobornyi Public Garden"
+      ],
+      "type": "leisure=park",
+      "coords": [
+        37.178951,
+        48.281034
+      ]
+    },
+    {
+      "id": "way/301530696",
+      "name": "Привокзальний ринок",
+      "aliases": [],
+      "type": "amenity=marketplace",
+      "coords": [
+        37.177696,
+        48.284662
+      ]
+    },
+    {
+      "id": "way/301688747",
+      "name": "Золотой петушок",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        37.185463,
+        48.260661
+      ]
+    },
+    {
+      "id": "way/301688753",
+      "name": "Дитячий дошкільний навчальний заклад №51 «Золота рибка»",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        37.18693,
+        48.261541
+      ]
+    },
+    {
+      "id": "way/301696272",
+      "name": "Ласточка",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        37.181997,
+        48.264599
+      ]
+    },
+    {
+      "id": "way/301827842",
+      "name": "Спортзал школи 4",
+      "aliases": [],
+      "type": "leisure=sports_centre",
+      "coords": [
+        37.201276,
+        48.295757
+      ]
+    },
+    {
+      "id": "way/302121901",
+      "name": "ПУМБ",
+      "aliases": [
+        "First Ukrainian International Bank"
+      ],
+      "type": "amenity=bank",
+      "coords": [
+        37.174878,
+        48.283452
+      ]
+    },
+    {
+      "id": "way/302553434",
+      "name": "Авторинок",
+      "aliases": [],
+      "type": "amenity=marketplace",
+      "coords": [
+        37.167237,
+        48.276353
+      ]
+    },
+    {
+      "id": "way/302616976",
+      "name": "Автомийка \"Південний\"",
+      "aliases": [],
+      "type": "amenity=car_wash",
+      "coords": [
+        37.180151,
+        48.262009
+      ]
+    },
+    {
+      "id": "way/302788721",
+      "name": "Ювілейний",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        37.174079,
+        48.266673
+      ]
+    },
+    {
+      "id": "way/302942203",
+      "name": "Світлячок",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        37.180023,
+        48.276111
+      ]
+    },
+    {
+      "id": "way/302942208",
+      "name": "Старе місто",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.177521,
+        48.282722
+      ]
+    },
+    {
+      "id": "way/303284066",
+      "name": "Шашличний двір",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.18409,
+        48.266305
+      ]
+    },
+    {
+      "id": "way/303742758",
+      "name": "Еко миття",
+      "aliases": [],
+      "type": "amenity=car_wash",
+      "coords": [
+        37.183484,
+        48.26657
+      ]
+    },
+    {
+      "id": "way/303742759",
+      "name": "Дионис",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.177648,
+        48.279725
+      ]
+    },
+    {
+      "id": "way/303764461",
+      "name": "Казка",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.178895,
+        48.283711
+      ]
+    },
+    {
+      "id": "way/305285693",
+      "name": "Ручеек",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.176763,
+        48.268755
+      ]
+    },
+    {
+      "id": "way/310279231",
+      "name": "СК \"Олімпієць\"",
+      "aliases": [],
+      "type": "leisure=stadium",
+      "coords": [
+        37.173291,
+        48.264712
+      ]
+    },
+    {
+      "id": "way/310416122",
+      "name": "Mango",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        37.210533,
+        48.288481
+      ]
+    },
+    {
+      "id": "way/313479194",
+      "name": "Автошкола",
+      "aliases": [],
+      "type": "amenity=driving_school",
+      "coords": [
+        37.206674,
+        48.297449
+      ]
+    },
+    {
+      "id": "way/313550282",
+      "name": "Покровська ветеринарна лікарня",
+      "aliases": [],
+      "type": "amenity=veterinary",
+      "coords": [
+        37.194063,
+        48.272218
+      ]
+    },
+    {
+      "id": "way/313550844",
+      "name": "Дитячий садок №7 «Топольок»",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        37.19295,
+        48.275301
+      ]
+    },
+    {
+      "id": "way/315860471",
+      "name": "Геріатричний пансіонат з психоневрологічним відділенням",
+      "aliases": [],
+      "type": "amenity=social_facility",
+      "coords": [
+        37.198207,
+        48.301173
+      ]
+    },
+    {
+      "id": "way/317856944",
+      "name": "Покровське педагогічне училище",
+      "aliases": [],
+      "type": "amenity=college",
+      "coords": [
+        37.179326,
+        48.279318
+      ]
+    },
+    {
+      "id": "way/318368423",
+      "name": "Ринок \"Блакитний\"",
+      "aliases": [],
+      "type": "amenity=marketplace",
+      "coords": [
+        37.182248,
+        48.260442
+      ]
+    },
+    {
+      "id": "way/319019200",
+      "name": "Медичний центр Neo Skin",
+      "aliases": [],
+      "type": "amenity=clinic",
+      "coords": [
+        37.174489,
+        48.27376
+      ]
+    },
+    {
+      "id": "way/323122753",
+      "name": "Росинка",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        37.177736,
+        48.26632
+      ]
+    },
+    {
+      "id": "way/329740213",
+      "name": "Дитячий садок №10 \"Калинка\"",
+      "aliases": [],
+      "type": "amenity=kindergarten",
+      "coords": [
+        37.1777,
+        48.275143
+      ]
+    },
+    {
+      "id": "way/331196197",
+      "name": "Парк Динасового селища",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        37.195614,
+        48.294564
+      ]
+    },
+    {
+      "id": "way/331228486",
+      "name": "Парковка МРЕВ",
+      "aliases": [],
+      "type": "amenity=parking",
+      "coords": [
+        37.208617,
+        48.296492
+      ]
+    },
+    {
+      "id": "way/331905120",
+      "name": "Автомойка",
+      "aliases": [],
+      "type": "amenity=car_wash",
+      "coords": [
+        37.166157,
+        48.276333
+      ]
+    },
+    {
+      "id": "way/332106639",
+      "name": "Їдальня ЗОШ 6",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.203304,
+        48.297718
+      ]
+    },
+    {
+      "id": "way/332585269",
+      "name": "Юность",
+      "aliases": [],
+      "type": "leisure=stadium",
+      "coords": [
+        37.181223,
+        48.268471
+      ]
+    },
+    {
+      "id": "way/332634860",
+      "name": "Чемпион",
+      "aliases": [],
+      "type": "amenity=car_wash",
+      "coords": [
+        37.203067,
+        48.291919
+      ]
+    },
+    {
+      "id": "way/334810659",
+      "name": "Дорожнє",
+      "aliases": [],
+      "type": "amenity=cafe",
+      "coords": [
+        37.204375,
+        48.28548
+      ]
+    },
+    {
+      "id": "way/335542367",
+      "name": "Морг",
+      "aliases": [],
+      "type": "amenity=morgue",
+      "coords": [
+        37.183249,
+        48.270849
+      ]
+    },
+    {
+      "id": "way/370327533",
+      "name": "ГазНафта",
+      "aliases": [],
+      "type": "amenity=fuel",
+      "coords": [
+        37.201203,
+        48.273398
+      ]
+    },
+    {
+      "id": "way/497147477",
+      "name": "Сиеста",
+      "aliases": [],
+      "type": "amenity=public_bath",
+      "coords": [
+        37.21148,
+        48.293676
+      ]
+    },
+    {
+      "id": "way/662502097",
+      "name": "Автостанція Покровськ",
+      "aliases": [
+        "Pokrovsk Bus Station"
+      ],
+      "type": "amenity=bus_station",
+      "coords": [
+        37.169,
+        48.277344
+      ]
+    },
+    {
+      "id": "relation/3523492",
+      "name": "Мережа аптек «Здравица»",
+      "aliases": [],
+      "type": "amenity=pharmacy",
+      "coords": [
+        35.020295,
+        47.61166
+      ]
+    },
+    {
+      "id": "relation/12146743",
+      "name": "Парк \"Ювілейний\"",
+      "aliases": [],
+      "type": "leisure=park",
+      "coords": [
+        37.174079,
+        48.266673
+      ]
+    },
+    {
+      "id": "node/1781664372",
+      "name": "Еко - Маркет",
+      "aliases": [
+        "Еко",
+        "Маркет"
+      ],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.182985,
+        48.266436
+      ]
+    },
+    {
+      "id": "node/1785964477",
+      "name": "ТЦ \"Явір\"",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.176648,
+        48.273843
+      ]
+    },
+    {
+      "id": "node/1787526171",
+      "name": "ЦРБ",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.182556,
+        48.266884
+      ]
+    },
+    {
+      "id": "node/3050808447",
+      "name": "Залізничний вокзал",
+      "aliases": [
+        "Zaliznychnyi Vokzal"
+      ],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.179901,
+        48.284117
+      ]
+    },
+    {
+      "id": "node/3068015921",
+      "name": "Парк",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.176003,
+        48.264858
+      ]
+    },
+    {
+      "id": "node/3072238350",
+      "name": "Банк",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.174207,
+        48.280634
+      ]
+    },
+    {
+      "id": "node/3072238351",
+      "name": "Суд",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.175012,
+        48.280313
+      ]
+    },
+    {
+      "id": "node/3072238358",
+      "name": "Ринок",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.182976,
+        48.260821
+      ]
+    },
+    {
+      "id": "node/3098918333",
+      "name": "Гаражі",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.181504,
+        48.261524
+      ]
+    },
+    {
+      "id": "node/3450837405",
+      "name": "Черемушки",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.184667,
+        48.263231
+      ]
+    },
+    {
+      "id": "node/3450837406",
+      "name": "Лія",
+      "aliases": [],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.184835,
+        48.263664
+      ]
+    },
+    {
+      "id": "node/5029932125",
+      "name": "Наркологія",
+      "aliases": [
+        "Narkologija"
+      ],
+      "type": "highway=bus_stop",
+      "coords": [
+        37.174346,
+        48.2823
       ]
     },
     {
@@ -2105,18 +1908,6 @@
       ]
     },
     {
-      "id": "way/161548678",
-      "name": "Шосейна вулиця",
-      "aliases": [
-        "Shoseina Street"
-      ],
-      "type": "bridge=yes",
-      "coords": [
-        37.198696,
-        48.282159
-      ]
-    },
-    {
       "id": "way/161548679",
       "name": "Добропільська вулиця",
       "aliases": [
@@ -2163,74 +1954,6 @@
       ]
     },
     {
-      "id": "way/166637061",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.176603,
-        48.269103
-      ]
-    },
-    {
-      "id": "way/166638300",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.196879,
-        48.260025
-      ]
-    },
-    {
-      "id": "way/166693697",
-      "name": "Європейська вулиця",
-      "aliases": [],
-      "type": "highway=tertiary",
-      "coords": [
-        37.176607,
-        48.274866
-      ]
-    },
-    {
-      "id": "way/166693698",
-      "name": "Європейська вулиця",
-      "aliases": [],
-      "type": "highway=tertiary",
-      "coords": [
-        37.177886,
-        48.269109
-      ]
-    },
-    {
-      "id": "way/166709956",
-      "name": "Ювілейна вулиця",
-      "aliases": [
-        "Juvileina Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.177275,
-        48.268675
-      ]
-    },
-    {
-      "id": "way/166709957",
-      "name": "Ювілейна вулиця",
-      "aliases": [
-        "Juvileina Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.177468,
-        48.268636
-      ]
-    },
-    {
       "id": "way/166711638",
       "name": "Майора Савельєва вулиця",
       "aliases": [
@@ -2240,30 +1963,6 @@
       "coords": [
         37.177657,
         48.2691
-      ]
-    },
-    {
-      "id": "way/166711640",
-      "name": "Майора Савельєва вулиця",
-      "aliases": [
-        "Major Saveliev Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.178205,
-        48.268991
-      ]
-    },
-    {
-      "id": "way/166711643",
-      "name": "Майора Савельєва вулиця",
-      "aliases": [
-        "Major Saveliev Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.178077,
-        48.269116
       ]
     },
     {
@@ -2303,78 +2002,6 @@
       ]
     },
     {
-      "id": "way/168235715",
-      "name": "Лазурний мікрорайон",
-      "aliases": [
-        "Lazurnyi Microdistrict"
-      ],
-      "type": "place=neighbourhood",
-      "coords": [
-        37.183243,
-        48.257021
-      ]
-    },
-    {
-      "id": "way/168300662",
-      "name": "Сонячний мікрорайон",
-      "aliases": [
-        "Soniachnyi Microdistrict"
-      ],
-      "type": "place=neighbourhood",
-      "coords": [
-        37.193784,
-        48.258826
-      ]
-    },
-    {
-      "id": "way/168318590",
-      "name": "Шахтарський мікрорайон",
-      "aliases": [
-        "Shakhtarskyi Microdistrict"
-      ],
-      "type": "place=neighbourhood",
-      "coords": [
-        37.187365,
-        48.261595
-      ]
-    },
-    {
-      "id": "way/168318593",
-      "name": "Південний мікрорайон",
-      "aliases": [
-        "Pivdennyi Microdistrict"
-      ],
-      "type": "place=neighbourhood",
-      "coords": [
-        37.180857,
-        48.264944
-      ]
-    },
-    {
-      "id": "way/168673612",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.180348,
-        48.267614
-      ]
-    },
-    {
-      "id": "way/168673614",
-      "name": "Ювілейна вулиця",
-      "aliases": [
-        "Juvileina Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.174722,
-        48.25809
-      ]
-    },
-    {
       "id": "way/168673617",
       "name": "Володимирська вулиця",
       "aliases": [
@@ -2384,30 +2011,6 @@
       "coords": [
         37.180076,
         48.258253
-      ]
-    },
-    {
-      "id": "way/168675282",
-      "name": "Володимирська вулиця",
-      "aliases": [
-        "Volodymyrs'ka Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.184257,
-        48.263082
-      ]
-    },
-    {
-      "id": "way/168675287",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.1894,
-        48.263466
       ]
     },
     {
@@ -2421,18 +2024,6 @@
       ]
     },
     {
-      "id": "way/168679018",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.189482,
-        48.26354
-      ]
-    },
-    {
       "id": "way/168679021",
       "name": "Ліцейна вулиця",
       "aliases": [],
@@ -2440,28 +2031,6 @@
       "coords": [
         37.194782,
         48.260491
-      ]
-    },
-    {
-      "id": "way/168679022",
-      "name": "Ліцейна вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.193521,
-        48.259272
-      ]
-    },
-    {
-      "id": "way/169233867",
-      "name": "Прокоф'єва вулиця",
-      "aliases": [
-        "Prokofieva Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.160961,
-        48.284268
       ]
     },
     {
@@ -2474,26 +2043,6 @@
       "coords": [
         37.208027,
         48.288329
-      ]
-    },
-    {
-      "id": "way/174633917",
-      "name": "Шосейна вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.206933,
-        48.289895
-      ]
-    },
-    {
-      "id": "way/174633921",
-      "name": "Шосейна вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.2003,
-        48.286906
       ]
     },
     {
@@ -2586,16 +2135,6 @@
       "coords": [
         37.203481,
         48.287186
-      ]
-    },
-    {
-      "id": "way/174817658",
-      "name": "Гайдамацька вулиця",
-      "aliases": [],
-      "type": "highway=tertiary",
-      "coords": [
-        37.202808,
-        48.290789
       ]
     },
     {
@@ -3153,18 +2692,6 @@
       ]
     },
     {
-      "id": "way/175135728",
-      "name": "Полтавський провулок",
-      "aliases": [
-        "Poltavskyi Lane"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.190327,
-        48.287987
-      ]
-    },
-    {
       "id": "way/175135731",
       "name": "Заводська вулиця",
       "aliases": [
@@ -3241,18 +2768,6 @@
       ]
     },
     {
-      "id": "way/175324945",
-      "name": "Прокоф'єва вулиця",
-      "aliases": [
-        "Prokofieva Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.182746,
-        48.28252
-      ]
-    },
-    {
       "id": "way/175324946",
       "name": "Леоніда Бикова вулиця",
       "aliases": [
@@ -3274,30 +2789,6 @@
       "coords": [
         37.177531,
         48.281281
-      ]
-    },
-    {
-      "id": "way/175324950",
-      "name": "Миру проспект",
-      "aliases": [
-        "Myru Avenue"
-      ],
-      "type": "highway=pedestrian",
-      "coords": [
-        37.178311,
-        48.283637
-      ]
-    },
-    {
-      "id": "way/175324952",
-      "name": "Миру проспект",
-      "aliases": [
-        "Myru Avenue"
-      ],
-      "type": "highway=pedestrian",
-      "coords": [
-        37.178105,
-        48.283669
       ]
     },
     {
@@ -3325,18 +2816,6 @@
       ]
     },
     {
-      "id": "way/175324958",
-      "name": "Радянський провулок",
-      "aliases": [
-        "Radianskyi Lane"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.182079,
-        48.281511
-      ]
-    },
-    {
       "id": "way/175324959",
       "name": "Кальміуська вулиця",
       "aliases": [
@@ -3358,30 +2837,6 @@
       "coords": [
         37.181953,
         48.281921
-      ]
-    },
-    {
-      "id": "way/175324961",
-      "name": "Центральна вулиця",
-      "aliases": [
-        "Centralna Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.194629,
-        48.280648
-      ]
-    },
-    {
-      "id": "way/175324962",
-      "name": "Центральна вулиця",
-      "aliases": [
-        "Centralna Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.169931,
-        48.283278
       ]
     },
     {
@@ -3475,16 +2930,6 @@
       ]
     },
     {
-      "id": "way/175748701",
-      "name": "Волонтерська вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.173586,
-        48.283066
-      ]
-    },
-    {
       "id": "way/175748703",
       "name": "Солов’яненка вулиця",
       "aliases": [
@@ -3504,16 +2949,6 @@
       "coords": [
         37.174207,
         48.279098
-      ]
-    },
-    {
-      "id": "way/175748705",
-      "name": "Європейська вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.176479,
-        48.283
       ]
     },
     {
@@ -3563,18 +2998,6 @@
       ]
     },
     {
-      "id": "way/175748711",
-      "name": "Леоніда Бикова вулиця",
-      "aliases": [
-        "Leonid Bykov Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.168568,
-        48.281751
-      ]
-    },
-    {
       "id": "way/175748712",
       "name": "Слобожанська вулиця",
       "aliases": [],
@@ -3594,16 +3017,6 @@
       "coords": [
         37.172665,
         48.278308
-      ]
-    },
-    {
-      "id": "way/175748714",
-      "name": "Кальміуська вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.169562,
-        48.282477
       ]
     },
     {
@@ -3749,18 +3162,6 @@
       ]
     },
     {
-      "id": "way/175802139",
-      "name": "Лесі Українки вулиця",
-      "aliases": [
-        "Lesi Ukrainky Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.196336,
-        48.272144
-      ]
-    },
-    {
       "id": "way/175802140",
       "name": "Ломоносова вулиця",
       "aliases": [
@@ -3833,18 +3234,6 @@
       ]
     },
     {
-      "id": "way/175802149",
-      "name": "Малевича вулиця",
-      "aliases": [
-        "Malevich Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.189408,
-        48.274897
-      ]
-    },
-    {
       "id": "way/175802150",
       "name": "Січовий провулок",
       "aliases": [],
@@ -3877,18 +3266,6 @@
       ]
     },
     {
-      "id": "way/175802153",
-      "name": "Центральна вулиця",
-      "aliases": [
-        "Centralna Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.157261,
-        48.282635
-      ]
-    },
-    {
       "id": "way/175802154",
       "name": "Таврійська вулиця",
       "aliases": [],
@@ -3908,16 +3285,6 @@
       "coords": [
         37.19398,
         48.275793
-      ]
-    },
-    {
-      "id": "way/175802156",
-      "name": "Залізнична вулиця",
-      "aliases": [],
-      "type": "highway=tertiary",
-      "coords": [
-        37.17156,
-        48.285272
       ]
     },
     {
@@ -3945,52 +3312,6 @@
       ]
     },
     {
-      "id": "way/176833519",
-      "name": "Павла Чубинського вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.174612,
-        48.280226
-      ]
-    },
-    {
-      "id": "way/176833521",
-      "name": "Деповський провулок",
-      "aliases": [
-        "Depovskyi Lane"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.16959,
-        48.282625
-      ]
-    },
-    {
-      "id": "way/176833525",
-      "name": "Торгівельна вулиця",
-      "aliases": [
-        "Torgivelna Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.160686,
-        48.277499
-      ]
-    },
-    {
-      "id": "way/178265285",
-      "name": "Деповський провулок",
-      "aliases": [
-        "Depovskyi Lane"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.168702,
-        48.279415
-      ]
-    },
-    {
       "id": "way/178266690",
       "name": "Калиновий провулок",
       "aliases": [
@@ -4012,28 +3333,6 @@
       "coords": [
         37.161426,
         48.286193
-      ]
-    },
-    {
-      "id": "way/178302959",
-      "name": "Дмитра Яворницького вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.172586,
-        48.290174
-      ]
-    },
-    {
-      "id": "way/180167513",
-      "name": "Майора Савельєва вулиця",
-      "aliases": [
-        "Major Saveliev Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.181215,
-        48.269312
       ]
     },
     {
@@ -4109,18 +3408,6 @@
       ]
     },
     {
-      "id": "way/180167521",
-      "name": "вулиця Героїв Азовсталі",
-      "aliases": [
-        "Heroiv Azovstali Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.174527,
-        48.274286
-      ]
-    },
-    {
       "id": "way/180167522",
       "name": "Добролюбова вулиця",
       "aliases": [
@@ -4179,38 +3466,6 @@
       ]
     },
     {
-      "id": "way/181284519",
-      "name": "Дубове — Покровськ",
-      "aliases": [],
-      "type": "railway=disused",
-      "coords": [
-        37.203527,
-        48.282046
-      ]
-    },
-    {
-      "id": "way/191732867",
-      "name": "Покровський міськрайонний суд",
-      "aliases": [],
-      "type": "amenity=courthouse",
-      "coords": [
-        37.174968,
-        48.280069
-      ]
-    },
-    {
-      "id": "way/192994719",
-      "name": "Миру проспект",
-      "aliases": [
-        "Myru Avenue"
-      ],
-      "type": "highway=pedestrian",
-      "coords": [
-        37.177339,
-        48.281303
-      ]
-    },
-    {
       "id": "way/193308749",
       "name": "вулиця Івана Сірка",
       "aliases": [
@@ -4232,18 +3487,6 @@
       "coords": [
         37.183355,
         48.267855
-      ]
-    },
-    {
-      "id": "way/220519147",
-      "name": "Поштова вулиця",
-      "aliases": [
-        "Poshtova Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.18162,
-        48.272881
       ]
     },
     {
@@ -4269,30 +3512,6 @@
       ]
     },
     {
-      "id": "way/220519154",
-      "name": "Сорокіна вулиця",
-      "aliases": [
-        "Sorokina Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.162108,
-        48.275511
-      ]
-    },
-    {
-      "id": "way/220519155",
-      "name": "Партизанська вулиця",
-      "aliases": [
-        "Partisan Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.162689,
-        48.276438
-      ]
-    },
-    {
       "id": "way/220519157",
       "name": "Каховський провулок",
       "aliases": [],
@@ -4315,126 +3534,6 @@
       ]
     },
     {
-      "id": "way/220519173",
-      "name": "Дружба",
-      "aliases": [],
-      "type": "tourism=hotel",
-      "coords": [
-        37.175837,
-        48.28238
-      ]
-    },
-    {
-      "id": "way/220519179",
-      "name": "Палац культури ПАТ \"ШУ \"Покровське\"",
-      "aliases": [],
-      "type": "amenity=arts_centre",
-      "coords": [
-        37.180514,
-        48.277846
-      ]
-    },
-    {
-      "id": "way/220519191",
-      "name": "Торг. центр «Шахтарський»",
-      "aliases": [],
-      "type": "shop=mall",
-      "coords": [
-        37.186182,
-        48.263598
-      ]
-    },
-    {
-      "id": "way/220519218",
-      "name": "Люкс",
-      "aliases": [],
-      "type": "shop=department_store",
-      "coords": [
-        37.176661,
-        48.276493
-      ]
-    },
-    {
-      "id": "way/220519220",
-      "name": "Голлівуд",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.179602,
-        48.270208
-      ]
-    },
-    {
-      "id": "way/220519222",
-      "name": "Поліклініка",
-      "aliases": [],
-      "type": "amenity=clinic",
-      "coords": [
-        37.176184,
-        48.279964
-      ]
-    },
-    {
-      "id": "way/220519261",
-      "name": "Музична школа",
-      "aliases": [],
-      "type": "amenity=music_school",
-      "coords": [
-        37.180406,
-        48.27725
-      ]
-    },
-    {
-      "id": "way/220519275",
-      "name": "Подіум",
-      "aliases": [],
-      "type": "shop=boutique",
-      "coords": [
-        37.176378,
-        48.279584
-      ]
-    },
-    {
-      "id": "way/220519341",
-      "name": "Україна",
-      "aliases": [],
-      "type": "shop=department_store",
-      "coords": [
-        37.180592,
-        48.265332
-      ]
-    },
-    {
-      "id": "way/220519519",
-      "name": "Імпульс",
-      "aliases": [],
-      "type": "amenity=public_bath",
-      "coords": [
-        37.177959,
-        48.272326
-      ]
-    },
-    {
-      "id": "way/220608258",
-      "name": "Лія",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.18466,
-        48.263816
-      ]
-    },
-    {
-      "id": "way/228476711",
-      "name": "Університетський провулок",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.179634,
-        48.277691
-      ]
-    },
-    {
       "id": "way/234313419",
       "name": "Цвєточна вулиця",
       "aliases": [],
@@ -4442,38 +3541,6 @@
       "coords": [
         37.159304,
         48.263538
-      ]
-    },
-    {
-      "id": "way/234313421",
-      "name": "Цвєточна вулиця",
-      "aliases": [],
-      "type": "highway=unclassified",
-      "coords": [
-        37.169972,
-        48.263674
-      ]
-    },
-    {
-      "id": "way/245843349",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.176642,
-        48.26924
-      ]
-    },
-    {
-      "id": "way/268666505",
-      "name": "ТЦ \"Явір\"",
-      "aliases": [],
-      "type": "shop=department_store",
-      "coords": [
-        37.17607,
-        48.273741
       ]
     },
     {
@@ -4501,202 +3568,6 @@
       ]
     },
     {
-      "id": "way/268666512",
-      "name": "площа Незалежності",
-      "aliases": [
-        "Nezalezhnosti Square"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.180194,
-        48.277444
-      ]
-    },
-    {
-      "id": "way/268666523",
-      "name": "Контур",
-      "aliases": [],
-      "type": "shop=shoes",
-      "coords": [
-        37.175562,
-        48.277891
-      ]
-    },
-    {
-      "id": "way/268666524",
-      "name": "Універмаг \"Червоноармійськ\"",
-      "aliases": [],
-      "type": "shop=department_store",
-      "coords": [
-        37.175584,
-        48.275409
-      ]
-    },
-    {
-      "id": "way/297457504",
-      "name": "Шосейна вулиця",
-      "aliases": [
-        "Shoseina Street"
-      ],
-      "type": "highway=secondary",
-      "coords": [
-        37.202585,
-        48.264092
-      ]
-    },
-    {
-      "id": "way/299369357",
-      "name": "вулиця Івана Мазепи",
-      "aliases": [
-        "Ivana Mazepy Street"
-      ],
-      "type": "highway=primary",
-      "coords": [
-        37.170039,
-        48.290425
-      ]
-    },
-    {
-      "id": "way/300963236",
-      "name": "АТБ-Маркет",
-      "aliases": [
-        "ATB-Market"
-      ],
-      "type": "shop=supermarket",
-      "coords": [
-        37.182025,
-        48.261636
-      ]
-    },
-    {
-      "id": "way/300965380",
-      "name": "Ягодка",
-      "aliases": [],
-      "type": "shop=department_store",
-      "coords": [
-        37.177129,
-        48.265268
-      ]
-    },
-    {
-      "id": "way/300967552",
-      "name": "Сквер Соборний",
-      "aliases": [
-        "Sobornyi Public Garden"
-      ],
-      "type": "leisure=park",
-      "coords": [
-        37.178951,
-        48.281034
-      ]
-    },
-    {
-      "id": "way/300972483",
-      "name": "Ельдорадо",
-      "aliases": [
-        "Eldorado"
-      ],
-      "type": "shop=electronics",
-      "coords": [
-        37.178463,
-        48.283331
-      ]
-    },
-    {
-      "id": "way/300980698",
-      "name": "Покровська центральна районна лікарня",
-      "aliases": [],
-      "type": "amenity=hospital",
-      "coords": [
-        37.18201,
-        48.270151
-      ]
-    },
-    {
-      "id": "way/301134708",
-      "name": "Центральний ринок",
-      "aliases": [],
-      "type": "amenity=marketplace",
-      "coords": [
-        37.173252,
-        48.276082
-      ]
-    },
-    {
-      "id": "way/301370786",
-      "name": "Покровський відділ поліції ГУНП в Донецькій області",
-      "aliases": [
-        "Police Pokrovsk"
-      ],
-      "type": "amenity=police",
-      "coords": [
-        37.173812,
-        48.279565
-      ]
-    },
-    {
-      "id": "way/301495588",
-      "name": "Ставок №2",
-      "aliases": [],
-      "type": "natural=water",
-      "coords": [
-        37.158998,
-        48.270341
-      ]
-    },
-    {
-      "id": "way/301498571",
-      "name": "АТБ-Маркет",
-      "aliases": [
-        "ATB-Market"
-      ],
-      "type": "shop=supermarket",
-      "coords": [
-        37.168122,
-        48.277193
-      ]
-    },
-    {
-      "id": "way/301499004",
-      "name": "Вишивайка",
-      "aliases": [],
-      "type": "shop=stationery",
-      "coords": [
-        37.177199,
-        48.283187
-      ]
-    },
-    {
-      "id": "way/301502012",
-      "name": "Ставок №3",
-      "aliases": [],
-      "type": "natural=water",
-      "coords": [
-        37.154079,
-        48.266752
-      ]
-    },
-    {
-      "id": "way/301530696",
-      "name": "Привокзальний ринок",
-      "aliases": [],
-      "type": "amenity=marketplace",
-      "coords": [
-        37.177696,
-        48.284662
-      ]
-    },
-    {
-      "id": "way/301530698",
-      "name": "Школа №3",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.181587,
-        48.276117
-      ]
-    },
-    {
       "id": "way/301531178",
       "name": "бульвар Козацької Слави",
       "aliases": [
@@ -4706,112 +3577,6 @@
       "coords": [
         37.177264,
         48.278955
-      ]
-    },
-    {
-      "id": "way/301540353",
-      "name": "бульвар Козацької Слави",
-      "aliases": [
-        "Kozatskoi Slavy Boulevard"
-      ],
-      "type": "highway=pedestrian",
-      "coords": [
-        37.176944,
-        48.278503
-      ]
-    },
-    {
-      "id": "way/301540354",
-      "name": "бульвар Козацької Слави",
-      "aliases": [
-        "Kozatskoi Slavy Boulevard"
-      ],
-      "type": "highway=pedestrian",
-      "coords": [
-        37.176676,
-        48.278516
-      ]
-    },
-    {
-      "id": "way/301540355",
-      "name": "бульвар Козацької Слави",
-      "aliases": [
-        "Kozatskoi Slavy Boulevard"
-      ],
-      "type": "highway=pedestrian",
-      "coords": [
-        37.176849,
-        48.279746
-      ]
-    },
-    {
-      "id": "way/301540365",
-      "name": "Університетський провулок",
-      "aliases": [],
-      "type": "highway=footway",
-      "coords": [
-        37.180082,
-        48.279745
-      ]
-    },
-    {
-      "id": "way/301688747",
-      "name": "Золотой петушок",
-      "aliases": [],
-      "type": "amenity=kindergarten",
-      "coords": [
-        37.185463,
-        48.260661
-      ]
-    },
-    {
-      "id": "way/301688753",
-      "name": "Дитячий дошкільний навчальний заклад №51 «Золота рибка»",
-      "aliases": [],
-      "type": "amenity=kindergarten",
-      "coords": [
-        37.18693,
-        48.261541
-      ]
-    },
-    {
-      "id": "way/301690250",
-      "name": "Школа №9",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.189033,
-        48.260452
-      ]
-    },
-    {
-      "id": "way/301696272",
-      "name": "Ласточка",
-      "aliases": [],
-      "type": "amenity=kindergarten",
-      "coords": [
-        37.181997,
-        48.264599
-      ]
-    },
-    {
-      "id": "way/301827842",
-      "name": "Спортзал школи 4",
-      "aliases": [],
-      "type": "leisure=sports_centre",
-      "coords": [
-        37.201276,
-        48.295757
-      ]
-    },
-    {
-      "id": "way/301827843",
-      "name": "Школа №4",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.201461,
-        48.295321
       ]
     },
     {
@@ -4827,72 +3592,6 @@
       ]
     },
     {
-      "id": "way/301827846",
-      "name": "Вузлова лікарня станції Покровськ",
-      "aliases": [],
-      "type": "amenity=hospital",
-      "coords": [
-        37.200791,
-        48.300483
-      ]
-    },
-    {
-      "id": "way/301827849",
-      "name": "Магнит",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.201113,
-        48.29707
-      ]
-    },
-    {
-      "id": "way/301959277",
-      "name": "Привольна вулиця",
-      "aliases": [],
-      "type": "highway=secondary",
-      "coords": [
-        37.152599,
-        48.270574
-      ]
-    },
-    {
-      "id": "way/302029601",
-      "name": "Довженка вулиця",
-      "aliases": [
-        "Dovzhenko Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.187231,
-        48.265729
-      ]
-    },
-    {
-      "id": "way/302029604",
-      "name": "Франка вулиця",
-      "aliases": [
-        "Franko Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.17347,
-        48.27132
-      ]
-    },
-    {
-      "id": "way/302029606",
-      "name": "Франка вулиця",
-      "aliases": [
-        "Franko Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.173238,
-        48.271478
-      ]
-    },
-    {
       "id": "way/302029608",
       "name": "Гвардійська вулиця",
       "aliases": [
@@ -4902,18 +3601,6 @@
       "coords": [
         37.169803,
         48.271846
-      ]
-    },
-    {
-      "id": "way/302029609",
-      "name": "вулиця Миколи Лисенка",
-      "aliases": [
-        "Mykoly Lysenka Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.173354,
-        48.272882
       ]
     },
     {
@@ -4927,28 +3614,6 @@
       ]
     },
     {
-      "id": "way/302029618",
-      "name": "Сорокіна вулиця",
-      "aliases": [
-        "Sorokina Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.166485,
-        48.274206
-      ]
-    },
-    {
-      "id": "way/302041003",
-      "name": "Навчально-виховний комплекс № 2",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.162989,
-        48.281928
-      ]
-    },
-    {
       "id": "way/302041019",
       "name": "Безімʼянний провулок",
       "aliases": [],
@@ -4956,242 +3621,6 @@
       "coords": [
         37.144512,
         48.279734
-      ]
-    },
-    {
-      "id": "way/302121901",
-      "name": "ПУМБ",
-      "aliases": [
-        "First Ukrainian International Bank"
-      ],
-      "type": "amenity=bank",
-      "coords": [
-        37.174878,
-        48.283452
-      ]
-    },
-    {
-      "id": "way/302121903",
-      "name": "Хозяин",
-      "aliases": [],
-      "type": "shop=hardware",
-      "coords": [
-        37.174078,
-        48.282703
-      ]
-    },
-    {
-      "id": "way/302549875",
-      "name": "Ювілейна вулиця",
-      "aliases": [
-        "Juvileina Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.175985,
-        48.265176
-      ]
-    },
-    {
-      "id": "way/302553434",
-      "name": "Авторинок",
-      "aliases": [],
-      "type": "amenity=marketplace",
-      "coords": [
-        37.167237,
-        48.276353
-      ]
-    },
-    {
-      "id": "way/302616976",
-      "name": "Автомийка \"Південний\"",
-      "aliases": [],
-      "type": "amenity=car_wash",
-      "coords": [
-        37.180151,
-        48.262009
-      ]
-    },
-    {
-      "id": "way/302788721",
-      "name": "Ювілейний",
-      "aliases": [],
-      "type": "leisure=park",
-      "coords": [
-        37.174079,
-        48.266673
-      ]
-    },
-    {
-      "id": "way/302942203",
-      "name": "Світлячок",
-      "aliases": [],
-      "type": "amenity=kindergarten",
-      "coords": [
-        37.180023,
-        48.276111
-      ]
-    },
-    {
-      "id": "way/302942204",
-      "name": "Мелодія",
-      "aliases": [],
-      "type": "tourism=hotel",
-      "coords": [
-        37.173106,
-        48.284811
-      ]
-    },
-    {
-      "id": "way/302942208",
-      "name": "Старе місто",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.177521,
-        48.282722
-      ]
-    },
-    {
-      "id": "way/303284062",
-      "name": "Добра курка",
-      "aliases": [],
-      "type": "shop=convenience",
-      "coords": [
-        37.183088,
-        48.267051
-      ]
-    },
-    {
-      "id": "way/303284066",
-      "name": "Шашличний двір",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.18409,
-        48.266305
-      ]
-    },
-    {
-      "id": "way/303289106",
-      "name": "Школа №6",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.203575,
-        48.297679
-      ]
-    },
-    {
-      "id": "way/303742758",
-      "name": "Еко миття",
-      "aliases": [],
-      "type": "amenity=car_wash",
-      "coords": [
-        37.183484,
-        48.26657
-      ]
-    },
-    {
-      "id": "way/303742759",
-      "name": "Дионис",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.177648,
-        48.279725
-      ]
-    },
-    {
-      "id": "way/303764461",
-      "name": "Казка",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.178895,
-        48.283711
-      ]
-    },
-    {
-      "id": "way/304833105",
-      "name": "Олівія",
-      "aliases": [],
-      "type": "shop=beauty",
-      "coords": [
-        37.176384,
-        48.272425
-      ]
-    },
-    {
-      "id": "way/305285689",
-      "name": "Багатопрофільна гімназія",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.180525,
-        48.279217
-      ]
-    },
-    {
-      "id": "way/305285693",
-      "name": "Ручеек",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.176763,
-        48.268755
-      ]
-    },
-    {
-      "id": "way/305288842",
-      "name": "Новосіл",
-      "aliases": [],
-      "type": "shop=hardware",
-      "coords": [
-        37.183375,
-        48.260922
-      ]
-    },
-    {
-      "id": "way/307487300",
-      "name": "Меморіальна вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.181321,
-        48.26644
-      ]
-    },
-    {
-      "id": "way/307492526",
-      "name": "Меморіальна вулиця",
-      "aliases": [],
-      "type": "highway=service",
-      "coords": [
-        37.187711,
-        48.263362
-      ]
-    },
-    {
-      "id": "way/307494765",
-      "name": "Меморіальна вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.183923,
-        48.265206
-      ]
-    },
-    {
-      "id": "way/307494766",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.184525,
-        48.265773
       ]
     },
     {
@@ -5204,38 +3633,6 @@
       "coords": [
         37.183468,
         48.271639
-      ]
-    },
-    {
-      "id": "way/310147806",
-      "name": "вулиця Івана Сірка",
-      "aliases": [
-        "Ivana Sirka Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.190219,
-        48.271161
-      ]
-    },
-    {
-      "id": "way/310279231",
-      "name": "СК \"Олімпієць\"",
-      "aliases": [],
-      "type": "leisure=stadium",
-      "coords": [
-        37.173291,
-        48.264712
-      ]
-    },
-    {
-      "id": "way/310416122",
-      "name": "Mango",
-      "aliases": [],
-      "type": "amenity=fuel",
-      "coords": [
-        37.210533,
-        48.288481
       ]
     },
     {
@@ -5258,26 +3655,6 @@
       "coords": [
         37.151667,
         48.266708
-      ]
-    },
-    {
-      "id": "way/311794869",
-      "name": "Табурна вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.153968,
-        48.270109
-      ]
-    },
-    {
-      "id": "way/311794870",
-      "name": "Табурна вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.155989,
-        48.273781
       ]
     },
     {
@@ -5329,298 +3706,6 @@
       ]
     },
     {
-      "id": "way/313479194",
-      "name": "Автошкола",
-      "aliases": [],
-      "type": "amenity=driving_school",
-      "coords": [
-        37.206674,
-        48.297449
-      ]
-    },
-    {
-      "id": "way/313524493",
-      "name": "Динас",
-      "aliases": [
-        "Dynas"
-      ],
-      "type": "place=neighbourhood",
-      "coords": [
-        37.200306,
-        48.295592
-      ]
-    },
-    {
-      "id": "way/313549281",
-      "name": "Школа №15",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.192849,
-        48.273919
-      ]
-    },
-    {
-      "id": "way/313550282",
-      "name": "Покровська ветеринарна лікарня",
-      "aliases": [],
-      "type": "amenity=veterinary",
-      "coords": [
-        37.194063,
-        48.272218
-      ]
-    },
-    {
-      "id": "way/313550844",
-      "name": "Дитячий садок №7 «Топольок»",
-      "aliases": [],
-      "type": "amenity=kindergarten",
-      "coords": [
-        37.19295,
-        48.275301
-      ]
-    },
-    {
-      "id": "way/313556676",
-      "name": "Шевченка вулиця",
-      "aliases": [
-        "Shevchenka Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.170278,
-        48.279309
-      ]
-    },
-    {
-      "id": "way/313556677",
-      "name": "Маршала Москаленка вулиця",
-      "aliases": [
-        "Marshala Moskalenka Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.166773,
-        48.280869
-      ]
-    },
-    {
-      "id": "way/313556678",
-      "name": "Маршала Москаленка вулиця",
-      "aliases": [
-        "Marshala Moskalenka Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.175592,
-        48.28034
-      ]
-    },
-    {
-      "id": "way/313556679",
-      "name": "Залізнична вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.201519,
-        48.280898
-      ]
-    },
-    {
-      "id": "way/313556680",
-      "name": "Залізнична вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.178122,
-        48.284157
-      ]
-    },
-    {
-      "id": "way/313556904",
-      "name": "Центральна вулиця",
-      "aliases": [
-        "Tsentralna Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.177742,
-        48.282445
-      ]
-    },
-    {
-      "id": "way/313556905",
-      "name": "Європейська вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.176105,
-        48.281681
-      ]
-    },
-    {
-      "id": "way/313556906",
-      "name": "Центральна вулиця",
-      "aliases": [
-        "Centralna Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.175468,
-        48.282729
-      ]
-    },
-    {
-      "id": "way/313582127",
-      "name": "Колосова вулиця",
-      "aliases": [
-        "Kolosova Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.181346,
-        48.272411
-      ]
-    },
-    {
-      "id": "way/313730818",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.195765,
-        48.260449
-      ]
-    },
-    {
-      "id": "way/313730819",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.182237,
-        48.26692
-      ]
-    },
-    {
-      "id": "way/314174785",
-      "name": "Тц \"Золотая Долина\"",
-      "aliases": [],
-      "type": "shop=department_store",
-      "coords": [
-        37.175562,
-        48.278195
-      ]
-    },
-    {
-      "id": "way/314322731",
-      "name": "балка Сазонова",
-      "aliases": [],
-      "type": "waterway=stream",
-      "coords": [
-        37.154542,
-        48.264138
-      ]
-    },
-    {
-      "id": "way/315308830",
-      "name": "Миру проспект",
-      "aliases": [
-        "Myru Avenue"
-      ],
-      "type": "highway=pedestrian",
-      "coords": [
-        37.177609,
-        48.281271
-      ]
-    },
-    {
-      "id": "way/315860471",
-      "name": "Геріатричний пансіонат з психоневрологічним відділенням",
-      "aliases": [],
-      "type": "amenity=social_facility",
-      "coords": [
-        37.198207,
-        48.301173
-      ]
-    },
-    {
-      "id": "way/315868382",
-      "name": "Будівнича база \"Граніт\"",
-      "aliases": [],
-      "type": "shop=hardware",
-      "coords": [
-        37.20374,
-        48.289809
-      ]
-    },
-    {
-      "id": "way/317856944",
-      "name": "Покровське педагогічне училище",
-      "aliases": [],
-      "type": "amenity=college",
-      "coords": [
-        37.179326,
-        48.279318
-      ]
-    },
-    {
-      "id": "way/317856946",
-      "name": "Ритуальні послуги",
-      "aliases": [],
-      "type": "shop=funeral_directors",
-      "coords": [
-        37.176777,
-        48.265305
-      ]
-    },
-    {
-      "id": "way/317856947",
-      "name": "Салон ритуальних послуг",
-      "aliases": [],
-      "type": "shop=funeral_directors",
-      "coords": [
-        37.175705,
-        48.28222
-      ]
-    },
-    {
-      "id": "way/318006850",
-      "name": "Гайдамацька вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.203819,
-        48.283427
-      ]
-    },
-    {
-      "id": "way/318006851",
-      "name": "Зіркова вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.200963,
-        48.28347
-      ]
-    },
-    {
-      "id": "way/318301534",
-      "name": "Авангардна вулиця",
-      "aliases": [
-        "Avanhardna Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.208738,
-        48.284662
-      ]
-    },
-    {
       "id": "way/318301535",
       "name": "Скоропадського провулок",
       "aliases": [
@@ -5633,30 +3718,6 @@
       ]
     },
     {
-      "id": "way/318301536",
-      "name": "Дейнеги вулиця",
-      "aliases": [
-        "Deinehy Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.199514,
-        48.283727
-      ]
-    },
-    {
-      "id": "way/318301537",
-      "name": "Тіниста вулиця",
-      "aliases": [
-        "Tіnista Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.202338,
-        48.284324
-      ]
-    },
-    {
       "id": "way/318301539",
       "name": "Добровой провулок",
       "aliases": [
@@ -5666,30 +3727,6 @@
       "coords": [
         37.203872,
         48.28397
-      ]
-    },
-    {
-      "id": "way/318301540",
-      "name": "Осіння вулиця",
-      "aliases": [
-        "Osinnya Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.204315,
-        48.283565
-      ]
-    },
-    {
-      "id": "way/318301542",
-      "name": "Космонавтів вулиця",
-      "aliases": [
-        "Kosmonavtiv Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.2056,
-        48.283945
       ]
     },
     {
@@ -5713,36 +3750,6 @@
       ]
     },
     {
-      "id": "way/318368423",
-      "name": "Ринок \"Блакитний\"",
-      "aliases": [],
-      "type": "amenity=marketplace",
-      "coords": [
-        37.182248,
-        48.260442
-      ]
-    },
-    {
-      "id": "way/318873252",
-      "name": "Університетський провулок",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.179858,
-        48.278844
-      ]
-    },
-    {
-      "id": "way/319019200",
-      "name": "Медичний центр Neo Skin",
-      "aliases": [],
-      "type": "amenity=clinic",
-      "coords": [
-        37.174489,
-        48.27376
-      ]
-    },
-    {
       "id": "way/319424351",
       "name": "вулиця Євгена Плужника",
       "aliases": [
@@ -5752,48 +3759,6 @@
       "coords": [
         37.164815,
         48.274181
-      ]
-    },
-    {
-      "id": "way/319424352",
-      "name": "Волонтерська вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.167187,
-        48.272957
-      ]
-    },
-    {
-      "id": "way/319424353",
-      "name": "Волонтерська вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.169497,
-        48.274297
-      ]
-    },
-    {
-      "id": "way/319548524",
-      "name": "Гришинка",
-      "aliases": [
-        "Hryshynka"
-      ],
-      "type": "waterway=river",
-      "coords": [
-        37.007408,
-        48.359843
-      ]
-    },
-    {
-      "id": "way/323122753",
-      "name": "Росинка",
-      "aliases": [],
-      "type": "amenity=kindergarten",
-      "coords": [
-        37.177736,
-        48.26632
       ]
     },
     {
@@ -5833,18 +3798,6 @@
       ]
     },
     {
-      "id": "way/324098113",
-      "name": "Громова вулиця",
-      "aliases": [
-        "Gromov Street"
-      ],
-      "type": "highway=unclassified",
-      "coords": [
-        37.22399,
-        48.310044
-      ]
-    },
-    {
       "id": "way/324098116",
       "name": "Матросов вулиця",
       "aliases": [
@@ -5854,18 +3807,6 @@
       "coords": [
         37.227527,
         48.307492
-      ]
-    },
-    {
-      "id": "way/326625634",
-      "name": "Первомайка",
-      "aliases": [
-        "Pervomaika"
-      ],
-      "type": "place=neighbourhood",
-      "coords": [
-        37.160366,
-        48.280732
       ]
     },
     {
@@ -5881,118 +3822,6 @@
       ]
     },
     {
-      "id": "way/327118715",
-      "name": "Залізнична вулиця",
-      "aliases": [],
-      "type": "highway=tertiary",
-      "coords": [
-        37.167088,
-        48.286195
-      ]
-    },
-    {
-      "id": "way/327118718",
-      "name": "Залізнична вулиця",
-      "aliases": [],
-      "type": "highway=residential",
-      "coords": [
-        37.152052,
-        48.287478
-      ]
-    },
-    {
-      "id": "way/328451419",
-      "name": "Шевченка вулиця",
-      "aliases": [
-        "Shevchenka Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.165823,
-        48.275676
-      ]
-    },
-    {
-      "id": "way/328451421",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.159745,
-        48.274674
-      ]
-    },
-    {
-      "id": "way/328451422",
-      "name": "Захисників України вулиця",
-      "aliases": [
-        "Zakhisnykiv Ukraini Street"
-      ],
-      "type": "highway=trunk",
-      "coords": [
-        37.169575,
-        48.271488
-      ]
-    },
-    {
-      "id": "way/329740213",
-      "name": "Дитячий садок №10 \"Калинка\"",
-      "aliases": [],
-      "type": "amenity=kindergarten",
-      "coords": [
-        37.1777,
-        48.275143
-      ]
-    },
-    {
-      "id": "way/329740217",
-      "name": "площа Незалежності",
-      "aliases": [
-        "Nezalezhnosti Square"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.177928,
-        48.277241
-      ]
-    },
-    {
-      "id": "way/330419466",
-      "name": "вулиця Івана Мазепи",
-      "aliases": [
-        "Ivana Mazepy Street"
-      ],
-      "type": "highway=secondary",
-      "coords": [
-        37.206746,
-        48.29344
-      ]
-    },
-    {
-      "id": "way/330419470",
-      "name": "вулиця Івана Мазепи",
-      "aliases": [
-        "Ivana Mazepy Street"
-      ],
-      "type": "highway=secondary",
-      "coords": [
-        37.206863,
-        48.293104
-      ]
-    },
-    {
-      "id": "way/331196197",
-      "name": "Парк Динасового селища",
-      "aliases": [],
-      "type": "leisure=park",
-      "coords": [
-        37.195614,
-        48.294564
-      ]
-    },
-    {
       "id": "way/331201017",
       "name": "Грушевського вулиця",
       "aliases": [
@@ -6002,120 +3831,6 @@
       "coords": [
         37.191086,
         48.285168
-      ]
-    },
-    {
-      "id": "way/331228486",
-      "name": "Парковка МРЕВ",
-      "aliases": [],
-      "type": "amenity=parking",
-      "coords": [
-        37.208617,
-        48.296492
-      ]
-    },
-    {
-      "id": "way/331349653",
-      "name": "Парафія “Св. влкмуч. Юрія”,УГКЦ",
-      "aliases": [],
-      "type": "amenity=place_of_worship",
-      "coords": [
-        37.206282,
-        48.29634
-      ]
-    },
-    {
-      "id": "way/331349663",
-      "name": "Шиномонтаж",
-      "aliases": [],
-      "type": "shop=car_repair",
-      "coords": [
-        37.207893,
-        48.294012
-      ]
-    },
-    {
-      "id": "way/331352177",
-      "name": "Автомойка",
-      "aliases": [],
-      "type": "shop=car_repair",
-      "coords": [
-        37.207654,
-        48.293863
-      ]
-    },
-    {
-      "id": "way/331905120",
-      "name": "Автомойка",
-      "aliases": [],
-      "type": "amenity=car_wash",
-      "coords": [
-        37.166157,
-        48.276333
-      ]
-    },
-    {
-      "id": "way/332106639",
-      "name": "Їдальня ЗОШ 6",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.203304,
-        48.297718
-      ]
-    },
-    {
-      "id": "way/332585268",
-      "name": "Школа №14",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.164579,
-        48.292353
-      ]
-    },
-    {
-      "id": "way/332585269",
-      "name": "Юность",
-      "aliases": [],
-      "type": "leisure=stadium",
-      "coords": [
-        37.181223,
-        48.268471
-      ]
-    },
-    {
-      "id": "way/332634860",
-      "name": "Чемпион",
-      "aliases": [],
-      "type": "amenity=car_wash",
-      "coords": [
-        37.203067,
-        48.291919
-      ]
-    },
-    {
-      "id": "way/333508749",
-      "name": "Шосейна вулиця",
-      "aliases": [
-        "Shoseina Street"
-      ],
-      "type": "highway=secondary",
-      "coords": [
-        37.20095,
-        48.272337
-      ]
-    },
-    {
-      "id": "way/333649545",
-      "name": "Шосейна вулиця",
-      "aliases": [
-        "Shoseina Street"
-      ],
-      "type": "highway=secondary",
-      "coords": [
-        37.199815,
-        48.27747
       ]
     },
     {
@@ -6138,122 +3853,6 @@
       "coords": [
         37.209372,
         48.296312
-      ]
-    },
-    {
-      "id": "way/334810644",
-      "name": "Титан",
-      "aliases": [],
-      "type": "shop=car_parts",
-      "coords": [
-        37.203376,
-        48.291681
-      ]
-    },
-    {
-      "id": "way/334810657",
-      "name": "Магазин #30",
-      "aliases": [],
-      "type": "shop=farm",
-      "coords": [
-        37.202113,
-        48.285173
-      ]
-    },
-    {
-      "id": "way/334810659",
-      "name": "Дорожнє",
-      "aliases": [],
-      "type": "amenity=cafe",
-      "coords": [
-        37.204375,
-        48.28548
-      ]
-    },
-    {
-      "id": "way/335542367",
-      "name": "Морг",
-      "aliases": [],
-      "type": "amenity=morgue",
-      "coords": [
-        37.183249,
-        48.270849
-      ]
-    },
-    {
-      "id": "way/351888505",
-      "name": "Вербицького вулиця",
-      "aliases": [],
-      "type": "highway=secondary",
-      "coords": [
-        37.209868,
-        48.294176
-      ]
-    },
-    {
-      "id": "way/351888508",
-      "name": "Вербицького вулиця",
-      "aliases": [],
-      "type": "highway=secondary",
-      "coords": [
-        37.209645,
-        48.294205
-      ]
-    },
-    {
-      "id": "way/351888516",
-      "name": "Добропільська вулиця",
-      "aliases": [
-        "Dobropilska Street"
-      ],
-      "type": "highway=secondary",
-      "coords": [
-        37.210023,
-        48.293409
-      ]
-    },
-    {
-      "id": "way/351888518",
-      "name": "Добропільська вулиця",
-      "aliases": [
-        "Dobropilska Street"
-      ],
-      "type": "highway=secondary",
-      "coords": [
-        37.209834,
-        48.293343
-      ]
-    },
-    {
-      "id": "way/368730390",
-      "name": "Маршала Москаленка вулиця",
-      "aliases": [
-        "Marshala Moskalenka Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.173816,
-        48.280586
-      ]
-    },
-    {
-      "id": "way/370327533",
-      "name": "ГазНафта",
-      "aliases": [],
-      "type": "amenity=fuel",
-      "coords": [
-        37.201203,
-        48.273398
-      ]
-    },
-    {
-      "id": "way/374565325",
-      "name": "ТЦ \"Планета\"",
-      "aliases": [],
-      "type": "shop=mall",
-      "coords": [
-        37.175197,
-        48.278382
       ]
     },
     {
@@ -6313,48 +3912,6 @@
       ]
     },
     {
-      "id": "way/413320228",
-      "name": "Остапа Вишні вулиця",
-      "aliases": [
-        "Ostap Vyshnya Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.189424,
-        48.287142
-      ]
-    },
-    {
-      "id": "way/427155468",
-      "name": "Індустріальний інститут ДВНЗ \"ДонНТУ\"",
-      "aliases": [],
-      "type": "amenity=university",
-      "coords": [
-        37.178378,
-        48.278635
-      ]
-    },
-    {
-      "id": "way/428489667",
-      "name": "Дубове — Покровськ",
-      "aliases": [],
-      "type": "railway=disused",
-      "coords": [
-        37.205046,
-        48.315077
-      ]
-    },
-    {
-      "id": "way/432888410",
-      "name": "СТО \"Движок\"",
-      "aliases": [],
-      "type": "shop=car_repair",
-      "coords": [
-        37.18954,
-        48.265296
-      ]
-    },
-    {
       "id": "way/475230928",
       "name": "Шопена вулиця",
       "aliases": [],
@@ -6375,194 +3932,6 @@
       ]
     },
     {
-      "id": "way/497147477",
-      "name": "Сиеста",
-      "aliases": [],
-      "type": "amenity=public_bath",
-      "coords": [
-        37.21148,
-        48.293676
-      ]
-    },
-    {
-      "id": "way/524867777",
-      "name": "Евромедоптика",
-      "aliases": [],
-      "type": "shop=optician",
-      "coords": [
-        37.169973,
-        48.276326
-      ]
-    },
-    {
-      "id": "way/662502097",
-      "name": "Автостанція Покровськ",
-      "aliases": [
-        "Pokrovsk Bus Station"
-      ],
-      "type": "amenity=bus_station",
-      "coords": [
-        37.169,
-        48.277344
-      ]
-    },
-    {
-      "id": "way/674909139",
-      "name": "Укрпошта",
-      "aliases": [],
-      "type": "amenity=post_office",
-      "coords": [
-        37.180768,
-        48.281521
-      ]
-    },
-    {
-      "id": "way/676828494",
-      "name": "Колишній механічний завод",
-      "aliases": [],
-      "type": "historic=building",
-      "coords": [
-        37.166674,
-        48.275598
-      ]
-    },
-    {
-      "id": "way/774540409",
-      "name": "балка Сазонова",
-      "aliases": [],
-      "type": "waterway=stream",
-      "coords": [
-        37.171752,
-        48.26846
-      ]
-    },
-    {
-      "id": "way/774540410",
-      "name": "балка Сазонова",
-      "aliases": [],
-      "type": "waterway=stream",
-      "coords": [
-        37.174183,
-        48.268044
-      ]
-    },
-    {
-      "id": "way/774540413",
-      "name": "Партизанська вулиця",
-      "aliases": [
-        "Partisan Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.156686,
-        48.276548
-      ]
-    },
-    {
-      "id": "way/774540414",
-      "name": "Партизанська вулиця",
-      "aliases": [
-        "Partisan Street"
-      ],
-      "type": "bridge=yes",
-      "coords": [
-        37.158972,
-        48.276602
-      ]
-    },
-    {
-      "id": "way/824633745",
-      "name": "вулиця Івана Мазепи",
-      "aliases": [
-        "Ivana Mazepy Street"
-      ],
-      "type": "highway=primary",
-      "coords": [
-        37.204653,
-        48.292859
-      ]
-    },
-    {
-      "id": "way/824633746",
-      "name": "вулиця Івана Мазепи",
-      "aliases": [
-        "Ivana Mazepy Street"
-      ],
-      "type": "highway=primary",
-      "coords": [
-        37.206159,
-        48.293159
-      ]
-    },
-    {
-      "id": "way/824633747",
-      "name": "Роздольна вулиця",
-      "aliases": [
-        "Rozdolna Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.203677,
-        48.293047
-      ]
-    },
-    {
-      "id": "way/824633748",
-      "name": "Роздольна вулиця",
-      "aliases": [
-        "Rozdolna Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.203842,
-        48.293102
-      ]
-    },
-    {
-      "id": "way/824633749",
-      "name": "вулиця Івана Мазепи",
-      "aliases": [
-        "Ivana Mazepy Street"
-      ],
-      "type": "highway=primary",
-      "coords": [
-        37.203345,
-        48.292746
-      ]
-    },
-    {
-      "id": "way/824633750",
-      "name": "вулиця Івана Мазепи",
-      "aliases": [
-        "Ivana Mazepy Street"
-      ],
-      "type": "highway=primary",
-      "coords": [
-        37.203427,
-        48.292621
-      ]
-    },
-    {
-      "id": "way/824636294",
-      "name": "Шосейна вулиця",
-      "aliases": [],
-      "type": "highway=tertiary",
-      "coords": [
-        37.202647,
-        48.292427
-      ]
-    },
-    {
-      "id": "way/824636295",
-      "name": "Шосейна вулиця",
-      "aliases": [],
-      "type": "highway=tertiary",
-      "coords": [
-        37.202397,
-        48.292386
-      ]
-    },
-    {
       "id": "way/846885035",
       "name": "вулиця Святослава Хороброго",
       "aliases": [
@@ -6572,18 +3941,6 @@
       "coords": [
         37.198632,
         48.273797
-      ]
-    },
-    {
-      "id": "way/846885036",
-      "name": "вулиця Святослава Хороброго",
-      "aliases": [
-        "Sviatoslava Khorobroho Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.199407,
-        48.273852
       ]
     },
     {
@@ -6606,52 +3963,6 @@
       "coords": [
         37.20209,
         48.274857
-      ]
-    },
-    {
-      "id": "way/847235716",
-      "name": "Ліцей \"Надія\"",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.181356,
-        48.277163
-      ]
-    },
-    {
-      "id": "way/909811218",
-      "name": "вулиця Героїв Азовсталі",
-      "aliases": [
-        "Heroiv Azovstali Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.172603,
-        48.274725
-      ]
-    },
-    {
-      "id": "way/911404730",
-      "name": "вулиця Кирила Стиценка",
-      "aliases": [
-        "Kyryla Stytsenka Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.175707,
-        48.274777
-      ]
-    },
-    {
-      "id": "way/911404731",
-      "name": "вулиця Кирила Стиценка",
-      "aliases": [
-        "Kyryla Stytsenka Street"
-      ],
-      "type": "highway=footway",
-      "coords": [
-        37.175472,
-        48.275116
       ]
     },
     {
@@ -6679,18 +3990,6 @@
       ]
     },
     {
-      "id": "way/1159036285",
-      "name": "Центральна вулиця",
-      "aliases": [
-        "Centralna Street"
-      ],
-      "type": "highway=tertiary",
-      "coords": [
-        37.187408,
-        48.28124
-      ]
-    },
-    {
       "id": "way/1204130253",
       "name": "вулиця Бориса Бутенка",
       "aliases": [
@@ -6700,18 +3999,6 @@
       "coords": [
         37.203106,
         48.282176
-      ]
-    },
-    {
-      "id": "way/1204130266",
-      "name": "вулиця Княгині Ольги",
-      "aliases": [
-        "Kniahyni Olhy Street"
-      ],
-      "type": "highway=residential",
-      "coords": [
-        37.203223,
-        48.273672
       ]
     },
     {
@@ -6727,6 +4014,860 @@
       ]
     },
     {
+      "id": "node/2038177221",
+      "name": "Мебельєр",
+      "aliases": [],
+      "type": "shop=furniture",
+      "coords": [
+        37.178512,
+        48.283925
+      ]
+    },
+    {
+      "id": "node/2038220340",
+      "name": "Eva",
+      "aliases": [],
+      "type": "shop=chemist",
+      "coords": [
+        37.178454,
+        48.28378
+      ]
+    },
+    {
+      "id": "node/2038288800",
+      "name": "Піраміда",
+      "aliases": [],
+      "type": "shop=furniture",
+      "coords": [
+        37.179663,
+        48.273457
+      ]
+    },
+    {
+      "id": "node/2038345138",
+      "name": "Comfy",
+      "aliases": [],
+      "type": "shop=electronics",
+      "coords": [
+        37.175838,
+        48.275204
+      ]
+    },
+    {
+      "id": "node/3050927221",
+      "name": "Максим",
+      "aliases": [
+        "Maksym"
+      ],
+      "type": "shop=clothes",
+      "coords": [
+        37.176166,
+        48.283534
+      ]
+    },
+    {
+      "id": "node/3054309675",
+      "name": "Watsons",
+      "aliases": [],
+      "type": "shop=cosmetics",
+      "coords": [
+        37.177971,
+        48.283592
+      ]
+    },
+    {
+      "id": "node/3054330253",
+      "name": "Каприз",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.175481,
+        48.283755
+      ]
+    },
+    {
+      "id": "node/3055597172",
+      "name": "АТБ-Маркет",
+      "aliases": [
+        "ATB-Market"
+      ],
+      "type": "shop=supermarket",
+      "coords": [
+        37.178211,
+        48.282897
+      ]
+    },
+    {
+      "id": "node/3094252218",
+      "name": "Фокстрот",
+      "aliases": [],
+      "type": "shop=electronics",
+      "coords": [
+        37.176112,
+        48.273695
+      ]
+    },
+    {
+      "id": "node/3220153315",
+      "name": "Вернисаж",
+      "aliases": [],
+      "type": "shop=shoes",
+      "coords": [
+        37.176273,
+        48.283302
+      ]
+    },
+    {
+      "id": "node/3243586908",
+      "name": "Етюд",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.174881,
+        48.280599
+      ]
+    },
+    {
+      "id": "node/3392269980",
+      "name": "Вега",
+      "aliases": [],
+      "type": "shop=farm",
+      "coords": [
+        37.192633,
+        48.291666
+      ]
+    },
+    {
+      "id": "node/3397837511",
+      "name": "Канцлер",
+      "aliases": [],
+      "type": "shop=copyshop",
+      "coords": [
+        37.200063,
+        48.295425
+      ]
+    },
+    {
+      "id": "node/3417410859",
+      "name": "Верес",
+      "aliases": [],
+      "type": "shop=farm",
+      "coords": [
+        37.199415,
+        48.298668
+      ]
+    },
+    {
+      "id": "node/3426439318",
+      "name": "Interno",
+      "aliases": [],
+      "type": "shop=furniture",
+      "coords": [
+        37.178139,
+        48.269285
+      ]
+    },
+    {
+      "id": "node/3450837408",
+      "name": "Еко-Маркет",
+      "aliases": [],
+      "type": "shop=supermarket",
+      "coords": [
+        37.181467,
+        48.266039
+      ]
+    },
+    {
+      "id": "node/3455901053",
+      "name": "Легенда",
+      "aliases": [],
+      "type": "shop=window_blind",
+      "coords": [
+        37.175632,
+        48.284001
+      ]
+    },
+    {
+      "id": "node/3484762224",
+      "name": "ІТЦ Компас",
+      "aliases": [
+        "ITC-Compass"
+      ],
+      "type": "shop=computer",
+      "coords": [
+        37.177476,
+        48.283402
+      ]
+    },
+    {
+      "id": "node/3839291442",
+      "name": "Линолеум",
+      "aliases": [],
+      "type": "shop=interior_decoration",
+      "coords": [
+        37.171676,
+        48.283082
+      ]
+    },
+    {
+      "id": "node/4426821291",
+      "name": "Услада",
+      "aliases": [
+        "Yslada"
+      ],
+      "type": "shop=confectionery",
+      "coords": [
+        37.182997,
+        48.260731
+      ]
+    },
+    {
+      "id": "node/4845720222",
+      "name": "Магазин \"Плазма\"",
+      "aliases": [],
+      "type": "shop=electronics",
+      "coords": [
+        37.175793,
+        48.275332
+      ]
+    },
+    {
+      "id": "node/4903176213",
+      "name": "Привоз",
+      "aliases": [],
+      "type": "shop=farm",
+      "coords": [
+        37.198078,
+        48.295552
+      ]
+    },
+    {
+      "id": "node/4907964125",
+      "name": "Афродита",
+      "aliases": [],
+      "type": "shop=beauty",
+      "coords": [
+        37.183773,
+        48.260733
+      ]
+    },
+    {
+      "id": "node/4907964223",
+      "name": "Комп'ютерні технології",
+      "aliases": [
+        "Computer technologies"
+      ],
+      "type": "shop=computer",
+      "coords": [
+        37.183091,
+        48.261047
+      ]
+    },
+    {
+      "id": "node/4907964224",
+      "name": "Алло",
+      "aliases": [],
+      "type": "shop=mobile_phone",
+      "coords": [
+        37.182735,
+        48.261227
+      ]
+    },
+    {
+      "id": "node/4907964226",
+      "name": "Зоомаркет",
+      "aliases": [],
+      "type": "shop=pet",
+      "coords": [
+        37.183878,
+        48.260682
+      ]
+    },
+    {
+      "id": "node/4907988821",
+      "name": "М'ясна весна",
+      "aliases": [],
+      "type": "shop=butcher",
+      "coords": [
+        37.182941,
+        48.261057
+      ]
+    },
+    {
+      "id": "node/4907992023",
+      "name": "Італійська хімчистка",
+      "aliases": [
+        "Italian dry cleaning"
+      ],
+      "type": "shop=dry_cleaning",
+      "coords": [
+        37.18445,
+        48.260405
+      ]
+    },
+    {
+      "id": "node/4908084505",
+      "name": "Лучіано",
+      "aliases": [
+        "Luchiano"
+      ],
+      "type": "shop=pastry",
+      "coords": [
+        37.178974,
+        48.276397
+      ]
+    },
+    {
+      "id": "node/4909214221",
+      "name": "Тамара",
+      "aliases": [
+        "Tamara"
+      ],
+      "type": "shop=convenience",
+      "coords": [
+        37.179321,
+        48.272013
+      ]
+    },
+    {
+      "id": "node/4910017822",
+      "name": "Продукти",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.179594,
+        48.270741
+      ]
+    },
+    {
+      "id": "node/4910017823",
+      "name": "Butterfly",
+      "aliases": [],
+      "type": "shop=beauty",
+      "coords": [
+        37.17977,
+        48.272427
+      ]
+    },
+    {
+      "id": "node/4910017824",
+      "name": "Актуаль",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        37.179609,
+        48.273137
+      ]
+    },
+    {
+      "id": "node/4910017826",
+      "name": "Золотой дом",
+      "aliases": [],
+      "type": "shop=jewelry",
+      "coords": [
+        37.178416,
+        48.27618
+      ]
+    },
+    {
+      "id": "node/4910018822",
+      "name": "Вода святогорья",
+      "aliases": [],
+      "type": "shop=alcohol",
+      "coords": [
+        37.17921,
+        48.274502
+      ]
+    },
+    {
+      "id": "node/4910969221",
+      "name": "Ангелочек",
+      "aliases": [],
+      "type": "shop=toys",
+      "coords": [
+        37.183513,
+        48.262084
+      ]
+    },
+    {
+      "id": "node/4915262221",
+      "name": "Космос",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.170165,
+        48.289187
+      ]
+    },
+    {
+      "id": "node/5103791921",
+      "name": "Перша леді",
+      "aliases": [],
+      "type": "shop=clothes",
+      "coords": [
+        37.179055,
+        48.276004
+      ]
+    },
+    {
+      "id": "node/5396472022",
+      "name": "MOBI-SERVICE",
+      "aliases": [],
+      "type": "shop=mobile_phone",
+      "coords": [
+        37.176843,
+        48.275424
+      ]
+    },
+    {
+      "id": "node/5496787428",
+      "name": "Товари з Європи",
+      "aliases": [
+        "Goods from Europe"
+      ],
+      "type": "shop=convenience",
+      "coords": [
+        37.179563,
+        48.282058
+      ]
+    },
+    {
+      "id": "node/5957755385",
+      "name": "Одяг для всієї родини - second hand",
+      "aliases": [
+        "Одяг для всієї родини",
+        "second hand"
+      ],
+      "type": "shop=clothes",
+      "coords": [
+        37.180469,
+        48.284259
+      ]
+    },
+    {
+      "id": "node/5957755585",
+      "name": "Одяг для всієї родини - stok & second hand",
+      "aliases": [
+        "Одяг для всієї родини",
+        "stok & second hand"
+      ],
+      "type": "shop=clothes",
+      "coords": [
+        37.179328,
+        48.269373
+      ]
+    },
+    {
+      "id": "node/6618611185",
+      "name": "Електрооптторг",
+      "aliases": [],
+      "type": "shop=variety_store",
+      "coords": [
+        37.199615,
+        48.28119
+      ]
+    },
+    {
+      "id": "node/6789028617",
+      "name": "Еспрес маркет",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.178154,
+        48.282668
+      ]
+    },
+    {
+      "id": "node/6853511881",
+      "name": "Beayties Factory",
+      "aliases": [],
+      "type": "shop=beauty",
+      "coords": [
+        37.176793,
+        48.275727
+      ]
+    },
+    {
+      "id": "node/8111774818",
+      "name": "STIHL - магазин ІнтерТехніка - офіційний дилер",
+      "aliases": [
+        "STIHL",
+        "магазин ІнтерТехніка",
+        "офіційний дилер"
+      ],
+      "type": "shop=general",
+      "coords": [
+        37.173353,
+        48.28103
+      ]
+    },
+    {
+      "id": "node/8394928717",
+      "name": "Фуджі фільм",
+      "aliases": [
+        "Fuji-film"
+      ],
+      "type": "shop=photo",
+      "coords": [
+        37.183226,
+        48.261826
+      ]
+    },
+    {
+      "id": "node/8394928817",
+      "name": "ФУДЖИ ФИЛЬМ",
+      "aliases": [
+        "Fuji-film"
+      ],
+      "type": "shop=photo",
+      "coords": [
+        37.177211,
+        48.283217
+      ]
+    },
+    {
+      "id": "node/8693032814",
+      "name": "Благо",
+      "aliases": [],
+      "type": "shop=pawnbroker",
+      "coords": [
+        37.183088,
+        48.261545
+      ]
+    },
+    {
+      "id": "node/8749647428",
+      "name": "Ломбард Центральний",
+      "aliases": [],
+      "type": "shop=pawnbroker",
+      "coords": [
+        37.182686,
+        48.26127
+      ]
+    },
+    {
+      "id": "node/8816518117",
+      "name": "Университет",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.177622,
+        48.279353
+      ]
+    },
+    {
+      "id": "node/8816622318",
+      "name": "Спокуса",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.175839,
+        48.275639
+      ]
+    },
+    {
+      "id": "node/8816691617",
+      "name": "Салтів. комбінат",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.172603,
+        48.275095
+      ]
+    },
+    {
+      "id": "node/8838468617",
+      "name": "Магазин якщо на ринок не встиг",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.171048,
+        48.275498
+      ]
+    },
+    {
+      "id": "node/8838735917",
+      "name": "Класний ковбасний",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.17896,
+        48.282234
+      ]
+    },
+    {
+      "id": "node/8900730817",
+      "name": "Велес",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.17623,
+        48.284594
+      ]
+    },
+    {
+      "id": "node/9073427017",
+      "name": "Щедра Крамниця",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.168481,
+        48.276701
+      ]
+    },
+    {
+      "id": "node/9240154117",
+      "name": "НП. Гришко (сирний кіоск)",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.177908,
+        48.284405
+      ]
+    },
+    {
+      "id": "way/220519191",
+      "name": "Торг. центр «Шахтарський»",
+      "aliases": [],
+      "type": "shop=mall",
+      "coords": [
+        37.186182,
+        48.263598
+      ]
+    },
+    {
+      "id": "way/220519218",
+      "name": "Люкс",
+      "aliases": [],
+      "type": "shop=department_store",
+      "coords": [
+        37.176661,
+        48.276493
+      ]
+    },
+    {
+      "id": "way/220519275",
+      "name": "Подіум",
+      "aliases": [],
+      "type": "shop=boutique",
+      "coords": [
+        37.176378,
+        48.279584
+      ]
+    },
+    {
+      "id": "way/220519341",
+      "name": "Україна",
+      "aliases": [],
+      "type": "shop=department_store",
+      "coords": [
+        37.180592,
+        48.265332
+      ]
+    },
+    {
+      "id": "way/268666523",
+      "name": "Контур",
+      "aliases": [],
+      "type": "shop=shoes",
+      "coords": [
+        37.175562,
+        48.277891
+      ]
+    },
+    {
+      "id": "way/268666524",
+      "name": "Універмаг \"Червоноармійськ\"",
+      "aliases": [],
+      "type": "shop=department_store",
+      "coords": [
+        37.175584,
+        48.275409
+      ]
+    },
+    {
+      "id": "way/300965380",
+      "name": "Ягодка",
+      "aliases": [],
+      "type": "shop=department_store",
+      "coords": [
+        37.177129,
+        48.265268
+      ]
+    },
+    {
+      "id": "way/300972483",
+      "name": "Ельдорадо",
+      "aliases": [
+        "Eldorado"
+      ],
+      "type": "shop=electronics",
+      "coords": [
+        37.178463,
+        48.283331
+      ]
+    },
+    {
+      "id": "way/301499004",
+      "name": "Вишивайка",
+      "aliases": [],
+      "type": "shop=stationery",
+      "coords": [
+        37.177199,
+        48.283187
+      ]
+    },
+    {
+      "id": "way/301827849",
+      "name": "Магнит",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.201113,
+        48.29707
+      ]
+    },
+    {
+      "id": "way/302121903",
+      "name": "Хозяин",
+      "aliases": [],
+      "type": "shop=hardware",
+      "coords": [
+        37.174078,
+        48.282703
+      ]
+    },
+    {
+      "id": "way/303284062",
+      "name": "Добра курка",
+      "aliases": [],
+      "type": "shop=convenience",
+      "coords": [
+        37.183088,
+        48.267051
+      ]
+    },
+    {
+      "id": "way/304833105",
+      "name": "Олівія",
+      "aliases": [],
+      "type": "shop=beauty",
+      "coords": [
+        37.176384,
+        48.272425
+      ]
+    },
+    {
+      "id": "way/305288842",
+      "name": "Новосіл",
+      "aliases": [],
+      "type": "shop=hardware",
+      "coords": [
+        37.183375,
+        48.260922
+      ]
+    },
+    {
+      "id": "way/314174785",
+      "name": "Тц \"Золотая Долина\"",
+      "aliases": [],
+      "type": "shop=department_store",
+      "coords": [
+        37.175562,
+        48.278195
+      ]
+    },
+    {
+      "id": "way/315868382",
+      "name": "Будівнича база \"Граніт\"",
+      "aliases": [],
+      "type": "shop=hardware",
+      "coords": [
+        37.20374,
+        48.289809
+      ]
+    },
+    {
+      "id": "way/317856946",
+      "name": "Ритуальні послуги",
+      "aliases": [],
+      "type": "shop=funeral_directors",
+      "coords": [
+        37.176777,
+        48.265305
+      ]
+    },
+    {
+      "id": "way/317856947",
+      "name": "Салон ритуальних послуг",
+      "aliases": [],
+      "type": "shop=funeral_directors",
+      "coords": [
+        37.175705,
+        48.28222
+      ]
+    },
+    {
+      "id": "way/331349663",
+      "name": "Шиномонтаж",
+      "aliases": [],
+      "type": "shop=car_repair",
+      "coords": [
+        37.207893,
+        48.294012
+      ]
+    },
+    {
+      "id": "way/334810644",
+      "name": "Титан",
+      "aliases": [],
+      "type": "shop=car_parts",
+      "coords": [
+        37.203376,
+        48.291681
+      ]
+    },
+    {
+      "id": "way/334810657",
+      "name": "Магазин #30",
+      "aliases": [],
+      "type": "shop=farm",
+      "coords": [
+        37.202113,
+        48.285173
+      ]
+    },
+    {
+      "id": "way/374565325",
+      "name": "ТЦ \"Планета\"",
+      "aliases": [],
+      "type": "shop=mall",
+      "coords": [
+        37.175197,
+        48.278382
+      ]
+    },
+    {
+      "id": "way/432888410",
+      "name": "СТО \"Движок\"",
+      "aliases": [],
+      "type": "shop=car_repair",
+      "coords": [
+        37.18954,
+        48.265296
+      ]
+    },
+    {
+      "id": "way/524867777",
+      "name": "Евромедоптика",
+      "aliases": [],
+      "type": "shop=optician",
+      "coords": [
+        37.169973,
+        48.276326
+      ]
+    },
+    {
       "id": "way/1214327827",
       "name": "База оздоблювальних матеріалів \"Таркет\"",
       "aliases": [],
@@ -6734,204 +4875,6 @@
       "coords": [
         37.206008,
         48.29009
-      ]
-    },
-    {
-      "id": "way/1366982368",
-      "name": "Добропільська вулиця",
-      "aliases": [
-        "Dobropilska Street"
-      ],
-      "type": "highway=secondary",
-      "coords": [
-        37.198445,
-        48.283545
-      ]
-    },
-    {
-      "id": "relation/2506125",
-      "name": "Покровськ",
-      "aliases": [
-        "Pokrovsk"
-      ],
-      "type": "place=town",
-      "coords": [
-        37.173123,
-        48.282334
-      ]
-    },
-    {
-      "id": "relation/2910228",
-      "name": "Світле",
-      "aliases": [
-        "Svitle"
-      ],
-      "type": "place=village",
-      "coords": [
-        37.236546,
-        48.308628
-      ]
-    },
-    {
-      "id": "relation/3523492",
-      "name": "Мережа аптек «Здравица»",
-      "aliases": [],
-      "type": "amenity=pharmacy",
-      "coords": [
-        35.020295,
-        47.61166
-      ]
-    },
-    {
-      "id": "relation/3936197",
-      "name": "Рівне",
-      "aliases": [
-        "Rivne"
-      ],
-      "type": "place=village",
-      "coords": [
-        37.22114,
-        48.299917
-      ]
-    },
-    {
-      "id": "relation/3937109",
-      "name": "Троянда",
-      "aliases": [
-        "Troianda"
-      ],
-      "type": "place=village",
-      "coords": [
-        37.159739,
-        48.263491
-      ]
-    },
-    {
-      "id": "relation/3937122",
-      "name": "Гнатівка",
-      "aliases": [
-        "Hnativka"
-      ],
-      "type": "place=village",
-      "coords": [
-        37.208333,
-        48.26308
-      ]
-    },
-    {
-      "id": "relation/3937129",
-      "name": "Ріг",
-      "aliases": [
-        "Rih"
-      ],
-      "type": "place=village",
-      "coords": [
-        37.205777,
-        48.271121
-      ]
-    },
-    {
-      "id": "relation/4458534",
-      "name": "Свободи площа",
-      "aliases": [
-        "Svobody Square"
-      ],
-      "type": "place=square",
-      "coords": [
-        37.177873,
-        48.282831
-      ]
-    },
-    {
-      "id": "relation/4775631",
-      "name": "Гришинка",
-      "aliases": [
-        "Hryshynka"
-      ],
-      "type": "waterway=river",
-      "coords": [
-        37.017518,
-        48.359732
-      ]
-    },
-    {
-      "id": "relation/6354790",
-      "name": "Школа №12",
-      "aliases": [],
-      "type": "amenity=school",
-      "coords": [
-        37.178424,
-        48.279262
-      ]
-    },
-    {
-      "id": "relation/7748150",
-      "name": "Собачовка",
-      "aliases": [
-        "Sobachovka"
-      ],
-      "type": "place=suburb",
-      "coords": [
-        37.19208,
-        48.272868
-      ]
-    },
-    {
-      "id": "relation/9210753",
-      "name": "Дурняк",
-      "aliases": [
-        "Durniak"
-      ],
-      "type": "place=neighbourhood",
-      "coords": [
-        37.144895,
-        48.2817
-      ]
-    },
-    {
-      "id": "relation/11984324",
-      "name": "Покровський район",
-      "aliases": [
-        "Pokrovskii Raion"
-      ],
-      "type": "place=district",
-      "coords": [
-        37.384408,
-        48.204602
-      ]
-    },
-    {
-      "id": "relation/12146743",
-      "name": "Парк \"Ювілейний\"",
-      "aliases": [],
-      "type": "leisure=park",
-      "coords": [
-        37.174079,
-        48.266673
-      ]
-    },
-    {
-      "id": "relation/13285837",
-      "name": "Мирноградська міська громада",
-      "aliases": [
-        "Myrnohrad urban hromada"
-      ],
-      "type": "place=municipality",
-      "coords": [
-        37.255904,
-        48.318935
-      ]
-    },
-    {
-      "id": "relation/13285838",
-      "name": "Покровська міська громада",
-      "aliases": [
-        "Pokrovsk urban hromada"
-      ],
-      "type": "place=municipality",
-      "coords": [
-        37.104998,
-        48.216215
       ]
     }
   ]

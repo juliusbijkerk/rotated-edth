@@ -10,12 +10,12 @@ Built at the **European Defense Tech Hackathon Paris 2026** for challenge #04 (V
 
 - **Backend**: Python 3.11+ · FastAPI · WebSockets · in-memory state.
 - **Frontend**: vanilla TypeScript · Vite · Leaflet.
-- **STT**: `mlx-whisper` with `large-v3-turbo` (Apple Silicon native). Fallback: `faster-whisper`.
+- **STT**: `mlx-whisper` with `large-v3-turbo` (Apple Silicon native) by default. Optional: Deepgram pre-recorded STT via `ARGUS_STT_PROVIDER=deepgram`.
 - **Parsing**: Anthropic API · `claude-sonnet-4-6` · tool-use for guaranteed schema.
 - **Map tiles**: Esri World Imagery (satellite, no API key) primary, with the AO's pre-fetched OSM POIs overlaid as labelled markers.
 - **OSM data**: Overpass API for AO preset generation (run **once at setup**, cached as JSON in repo). **Not** called at demo time.
 
-Only Anthropic API and tile servers are touched at demo time. STT runs locally on the Mac.
+By default, only Anthropic API and tile servers are touched at demo time. STT runs locally on the Mac unless Deepgram is explicitly enabled.
 
 ## Setup
 
@@ -31,7 +31,9 @@ npm install
 
 # 4. Configure
 cp .env.example .env
-# Edit .env and set ANTHROPIC_API_KEY
+# Edit .env and set ANTHROPIC_API_KEY.
+# Optional: set ARGUS_STT_PROVIDER=deepgram and DEEPGRAM_API_KEY
+# if you want cloud STT instead of local mlx-whisper.
 
 # 5. Pre-fetch AO presets (only if you don't trust the committed JSONs)
 uv run python scripts/fetch_ao_preset.py paris_8

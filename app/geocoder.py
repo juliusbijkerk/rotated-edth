@@ -48,30 +48,60 @@ def bearing_word_to_deg(word: str) -> Optional[float]:
     return BEARING_WORDS.get(word.lower().strip(".,!?;:"))
 
 
-def find_poi(query: str, pois: list[dict], min_score: int = 75,
+def find_poi(query: str, pois: list[dict], min_score: int = 85,
              near_point: Optional[tuple[float, float]] = None) -> Optional[dict]:
-    """Fuzzy-match a query against POI names + aliases.
+    """Fuzzy-match a query against POI names + aliases. Returns best POI or None.
 
-    Returns the best POI or None. If multiple are tied within 5 points,
-    `near_point` (lat, lon) is used as a tiebreak (closest wins).
+    Recall vs precision, in order:
+      1. WRatio over name+aliases — recall gate (typos, tokens, substrings, cross-script
+         aliases). A POI must clear `min_score` here to be considered at all.
+      2. Among the WRatio band, prefer a strong match on the POI's *primary name*: a query
+         that *is* a name ('Madeleine', the metro) beats one where the query is only a
+         shared locality alias OSM hangs on nearby businesses ('Planet Sushi Paris -
+         Madeleine' and 'Maison De La Truffe - Madeleine' are also tagged alias
+         'Madeleine'). If no primary name matches well — the query hit via an alias, e.g.
+         Latin 'Pokrovsk' -> Cyrillic 'Покровськ' — fall back to ranking by alias closeness.
+      3. near_point distance — final tiebreak among equally-good names (several co-located
+         POIs all literally named 'Madeleine'). Also makes the pick deterministic when
+         near_point is None (a unit's first report), unlike the old arbitrary choice.
+
+    min_score raised 75->85 so transliteration near-misses like 'Mykhailivka' ->
+    'Михайла…вулиця' (WRatio 75) fall through the ladder instead of dropping a
+    confidently-wrong marker ~2.8 km away.
     """
     if not query or not pois:
         return None
-    candidates: list[tuple[int, dict]] = []
     q = query.strip()
+    # A primary-name ratio at/above this means the query really names this POI (so prefer
+    # it over alias-only matches). "Name + one descriptor" queries land ~75 (ratio of
+    # 'Madeleine metro' vs 'Madeleine'); cross-script alias hits sit at ~0 ('Pokrovsk' vs
+    # 'Покровськ') — 70 sits in the wide gap between, so it catches the former, not the latter.
+    STRONG_NAME = 70
+    scored: list[tuple[int, int, int, dict]] = []
     for poi in pois:
-        names = [poi["name"]] + list(poi.get("aliases", []))
-        score = max((int(fuzz.WRatio(q, n)) for n in names if n), default=0)
-        candidates.append((score, poi))
-    candidates.sort(key=lambda x: -x[0])
-    if not candidates or candidates[0][0] < min_score:
+        name = poi.get("name") or ""
+        aliases = [a for a in poi.get("aliases", []) if a]
+        all_names = ([name] if name else []) + aliases
+        wr = max((int(fuzz.WRatio(q, n)) for n in all_names), default=0)
+        name_rt = int(fuzz.ratio(q, name)) if name else 0
+        alias_rt = max((int(fuzz.ratio(q, a)) for a in aliases), default=0)
+        scored.append((wr, name_rt, alias_rt, poi))
+    scored.sort(key=lambda x: (-x[0], -x[1], -x[2]))
+    if not scored or scored[0][0] < min_score:
         return None
-    top_score = candidates[0][0]
-    top = [c for c in candidates if c[0] >= top_score - 5]
-    if near_point and len(top) > 1:
+    top_wr = scored[0][0]
+    band = [s for s in scored if s[0] >= top_wr - 5]
+    best_name_rt = max(s[1] for s in band)
+    if best_name_rt >= STRONG_NAME:
+        finalists = [s for s in band if s[1] >= best_name_rt - 5]   # query matched a primary name
+    else:
+        best_alias_rt = max(s[2] for s in band)                     # query matched via an alias
+        finalists = [s for s in band if max(s[1], s[2]) >= best_alias_rt - 5]
+    if near_point and len(finalists) > 1:
         plat, plon = near_point
-        top.sort(key=lambda c: haversine_distance(plat, plon, c[1]["coords"][1], c[1]["coords"][0]))
-    return top[0][1]
+        finalists.sort(key=lambda s: haversine_distance(
+            plat, plon, s[3]["coords"][1], s[3]["coords"][0]))
+    return finalists[0][3]
 
 
 # Decimal-degree pattern e.g. "48.8738, 2.2950" or "48.8738N, 2.2950E".
