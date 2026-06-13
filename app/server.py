@@ -240,6 +240,7 @@ async def ws_operator(ws: WebSocket):
 @app.websocket("/ws/unit/{unit_id}")
 async def ws_unit(ws: WebSocket, unit_id: str):
     await ws.accept()
+    audio_mime_type: Optional[str] = None
     try:
         while True:
             frame = await ws.receive()
@@ -247,16 +248,18 @@ async def ws_unit(ws: WebSocket, unit_id: str):
                 break
             data = frame.get("bytes")
             if data:
-                await _handle_utterance(ws, unit_id, data)
+                await _handle_utterance(ws, unit_id, data, audio_mime_type)
+                audio_mime_type = None
                 continue
             text = frame.get("text")
             if text:
-                await _handle_unit_text(ws, unit_id, text)
+                audio_mime_type = await _handle_unit_text(ws, unit_id, text, audio_mime_type)
     except WebSocketDisconnect:
         pass
 
 
-async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> None:
+async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes,
+                            mime_type: Optional[str] = None) -> None:
     ts = int(time.time() * 1000)
     if len(audio_bytes) < 1024:
         await _send(ws, {
@@ -266,7 +269,7 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
         })
         return
 
-    path = TMP_DIR / f"{unit_id}-{ts}.webm"  # ffmpeg detects container regardless of ext
+    path = TMP_DIR / f"{unit_id}-{ts}{_audio_suffix(mime_type)}"
     path.write_bytes(audio_bytes)
 
     try:
@@ -280,18 +283,22 @@ async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> 
     await _handle_transcript(ws, unit_id, transcript, ts)
 
 
-async def _handle_unit_text(ws: WebSocket, unit_id: str, text: str) -> None:
+async def _handle_unit_text(ws: WebSocket, unit_id: str, text: str,
+                            audio_mime_type: Optional[str]) -> Optional[str]:
     try:
         msg = json.loads(text)
     except Exception:
         msg = {"type": "text_report", "transcript": text}
+    if msg.get("type") == "audio_meta":
+        return msg.get("mime_type") or audio_mime_type
     if msg.get("type") != "text_report":
-        return
+        return audio_mime_type
     transcript = (msg.get("transcript") or "").strip()
     if not transcript:
         await _send(ws, {"type": "error", "stage": "input", "error": "empty report"})
-        return
+        return audio_mime_type
     await _handle_transcript(ws, unit_id, transcript, int(time.time() * 1000))
+    return audio_mime_type
 
 
 async def _handle_transcript(ws: WebSocket, unit_id: str, transcript: str, ts: int) -> None:
@@ -322,8 +329,12 @@ async def _handle_transcript(ws: WebSocket, unit_id: str, transcript: str, ts: i
         await _send(ws, {"type": "error", "stage": "ground", "error": str(e)})
         return
 
+    report_needs_review = _needs_review(parsed, resolved)
+    if report_needs_review:
+        resolved["needs_review"] = True
+
     action = parsed.get("action")
-    if action == "position_update" and not resolved.get("needs_review"):
+    if action == "position_update" and not report_needs_review:
         units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time())
     units.set_last_report(unit_id, transcript)
 
@@ -383,6 +394,14 @@ def _target_from_report(report: dict) -> Optional[dict]:
     }
 
 
+def _needs_review(parsed: dict, resolved: dict) -> bool:
+    try:
+        confidence = float(parsed.get("confidence", 0.0) or 0.0)
+    except (TypeError, ValueError):
+        confidence = 0.0
+    return bool(resolved.get("needs_review")) or confidence < 0.7
+
+
 def _manual_target(msg: dict) -> Optional[dict]:
     lat = msg.get("lat")
     lon = msg.get("lon")
@@ -415,6 +434,19 @@ def _entity_from_text(text: str) -> str:
         if word in lower:
             return word
     return "unknown"
+
+
+def _audio_suffix(mime_type: Optional[str]) -> str:
+    if not mime_type:
+        return ".webm"
+    base = mime_type.split(";", 1)[0].strip().lower()
+    if base in {"audio/mp4", "audio/aac", "audio/x-m4a"}:
+        return ".m4a"
+    if base in {"audio/ogg", "application/ogg"}:
+        return ".ogg"
+    if base in {"audio/wav", "audio/x-wav"}:
+        return ".wav"
+    return ".webm"
 
 
 async def _send(ws: WebSocket, payload: dict) -> None:

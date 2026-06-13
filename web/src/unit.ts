@@ -7,6 +7,7 @@ const ptBtn = document.getElementById('ptt') as HTMLButtonElement;
 const statusEl = document.getElementById('status')!;
 const lastEl = document.getElementById('last')!;
 const sessionEl = document.getElementById('session')!;
+const changeUnitBtn = document.getElementById('change-unit') as HTMLButtonElement;
 const manualForm = document.getElementById('manual-report') as HTMLFormElement;
 const manualText = document.getElementById('manual-text') as HTMLTextAreaElement;
 
@@ -15,6 +16,8 @@ let ws: ReturnType<typeof connect> | null = null;
 let recorder: MediaRecorder | null = null;
 let chunks: Blob[] = [];
 let mediaStream: MediaStream | null = null;
+let recStartedAt = 0;
+const MIN_RECORDING_MS = 650;
 
 function setStatus(msg: string) {
   statusEl.textContent = msg;
@@ -31,9 +34,9 @@ for (const u of UNITS) {
 function pickMimeType(): string | undefined {
   if (typeof MediaRecorder === 'undefined') return undefined;
   const candidates = [
+    'audio/mp4',
     'audio/webm;codecs=opus',
     'audio/webm',
-    'audio/mp4',
     'audio/ogg;codecs=opus',
     'audio/ogg',
   ];
@@ -44,7 +47,7 @@ function pickMimeType(): string | undefined {
 }
 
 async function joinAs(unit: string) {
-  if (selectedUnit) return;
+  if (selectedUnit) leaveUnit();
   selectedUnit = unit;
   picker.style.display = 'none';
   sessionEl.style.display = 'flex';
@@ -70,6 +73,16 @@ async function joinAs(unit: string) {
     }
   });
   await requestMic();
+}
+
+function leaveUnit() {
+  ws?.close();
+  ws = null;
+  selectedUnit = null;
+  if (recorder && recorder.state === 'recording') recorder.stop();
+  recorder = null;
+  chunks = [];
+  ptBtn.classList.remove('live');
 }
 
 function escapeText(s: string): string {
@@ -112,9 +125,14 @@ function startRec() {
   };
   recorder.onstop = async () => {
     const blob = new Blob(chunks, { type: recorder?.mimeType || 'audio/webm' });
+    if (Date.now() - recStartedAt < MIN_RECORDING_MS || blob.size < 1024) {
+      setStatus('no usable audio captured; hold longer');
+      return;
+    }
     setStatus(`sending ${(blob.size / 1024).toFixed(1)} KB…`);
     if (ws && blob.size > 0) {
       const buf = await blob.arrayBuffer();
+      ws.send({ type: 'audio_meta', mime_type: blob.type });
       ws.ws.send(buf);
       setStatus('processing…');
     } else {
@@ -122,6 +140,7 @@ function startRec() {
     }
   };
   recorder.start();
+  recStartedAt = Date.now();
   ptBtn.classList.add('live');
   setStatus('listening…');
 }
@@ -145,13 +164,25 @@ function sendTypedReport() {
   setStatus('processing typed report…');
 }
 
-ptBtn.addEventListener('mousedown', startRec);
-ptBtn.addEventListener('mouseup', stopRec);
-ptBtn.addEventListener('mouseleave', stopRec);
-ptBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startRec(); });
-ptBtn.addEventListener('touchend', (e) => { e.preventDefault(); stopRec(); });
-ptBtn.addEventListener('touchcancel', stopRec);
+ptBtn.addEventListener('pointerdown', (e) => {
+  e.preventDefault();
+  ptBtn.setPointerCapture?.(e.pointerId);
+  startRec();
+});
+ptBtn.addEventListener('pointerup', (e) => {
+  e.preventDefault();
+  stopRec();
+});
+ptBtn.addEventListener('pointercancel', stopRec);
+ptBtn.addEventListener('lostpointercapture', stopRec);
 manualForm.addEventListener('submit', (e) => {
   e.preventDefault();
   sendTypedReport();
+});
+changeUnitBtn.addEventListener('click', () => {
+  leaveUnit();
+  sessionEl.style.display = 'none';
+  picker.style.display = 'flex';
+  document.querySelectorAll('.unit-label-display').forEach((el) => (el.textContent = 'UNIT'));
+  setStatus('ready');
 });

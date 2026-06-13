@@ -9,7 +9,7 @@ import mimetypes
 import os
 from pathlib import Path
 
-_MODEL_REPO = "mlx-community/whisper-large-v3-turbo"
+_DEFAULT_MODEL_REPO = "mlx-community/whisper-large-v3-turbo"
 _DEEPGRAM_URL = "https://api.deepgram.com/v1/listen"
 
 
@@ -28,7 +28,7 @@ def _transcribe_whisper(audio_path: str | Path) -> str:
     import mlx_whisper  # lazy: defers ~1s mlx import until first audio arrives
     result = mlx_whisper.transcribe(
         str(audio_path),
-        path_or_hf_repo=_MODEL_REPO,
+        path_or_hf_repo=os.environ.get("ARGUS_WHISPER_MODEL", _DEFAULT_MODEL_REPO),
         verbose=False,
         task="transcribe",
     )

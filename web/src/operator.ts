@@ -13,6 +13,7 @@ const targetList = document.getElementById('target-list')!;
 const transcriptLog = document.getElementById('transcript-log')!;
 const aoTitleEl = document.getElementById('ao-title')!;
 const locateOperatorBtn = document.getElementById('locate-operator') as HTMLButtonElement;
+const followReportsBtn = document.getElementById('follow-reports') as HTMLButtonElement;
 const togglePoiBtn = document.getElementById('toggle-poi') as HTMLButtonElement;
 const mapAction = document.getElementById('map-action') as HTMLSelectElement;
 const manualUnit = document.getElementById('manual-unit') as HTMLSelectElement;
@@ -32,6 +33,7 @@ let currentPreset: Preset | null = null;
 let latestUnits: Record<string, any> = {};
 let latestTargets: Target[] = [];
 let showPoiLabels = false;
+let followReports = true;
 
 const ws = connect('/ws/operator');
 
@@ -104,6 +106,7 @@ ws.onMessage((msg) => {
       latestTargets = m.targets;
       renderTargets(latestTargets);
     }
+    followReport(m.report);
   } else if (m.type === 'units') {
     if (m.units) {
       latestUnits = m.units;
@@ -126,6 +129,11 @@ ws.onMessage((msg) => {
 
 function setOperatorStatus(msg: string) {
   operatorStatus.textContent = msg;
+}
+
+function syncFollowButton() {
+  followReportsBtn.setAttribute('aria-pressed', String(followReports));
+  followReportsBtn.classList.toggle('active', followReports);
 }
 
 function renderPresetPois() {
@@ -217,6 +225,7 @@ function renderUnits(units: Record<string, any>) {
             color: UNIT_COLORS[uid] ?? '#ffcc00',
             weight: 3,
             opacity: 0.7,
+            dashArray: '6 6',
           }).addTo(trailsLayer);
         }
       }
@@ -297,6 +306,21 @@ function addErrorCard(err: any) {
   transcriptLog.prepend(card);
 }
 
+function followReport(report: any) {
+  if (!followReports || !map) return;
+  const target = report?.target;
+  if (target?.lat !== undefined && target?.lon !== undefined) {
+    map.flyTo([target.lat, target.lon], Math.max(map.getZoom(), 16), { duration: 0.6 });
+    setOperatorStatus(`FOLLOW TARGET ${formatCoord(target.lat, target.lon)}`);
+    return;
+  }
+  const resolved = report?.resolved || {};
+  if (!resolved.needs_review && resolved.lat !== undefined && resolved.lon !== undefined) {
+    map.flyTo([resolved.lat, resolved.lon], Math.max(map.getZoom(), 16), { duration: 0.6 });
+    setOperatorStatus(`FOLLOW ${report.unit || 'UNIT'} ${formatCoord(resolved.lat, resolved.lon)}`);
+  }
+}
+
 function escapeHtml(s: string): string {
   return String(s).replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
@@ -314,6 +338,12 @@ function formatCoord(lat: number, lon: number): string {
 }
 
 locateOperatorBtn.addEventListener('click', locateOperator);
+syncFollowButton();
+followReportsBtn.addEventListener('click', () => {
+  followReports = !followReports;
+  syncFollowButton();
+  setOperatorStatus(followReports ? 'FOLLOW REPORTS ON' : 'FOLLOW REPORTS OFF');
+});
 togglePoiBtn.addEventListener('click', () => {
   showPoiLabels = !showPoiLabels;
   renderPresetPois();
