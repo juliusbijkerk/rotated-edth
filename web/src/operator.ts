@@ -1,0 +1,148 @@
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { createMap, renderPOIs, unitMarker, UNIT_COLORS, Preset } from './map';
+import { connect } from './ws';
+
+const mapEl = document.getElementById('map')!;
+const presetSelect = document.getElementById('preset-select') as HTMLSelectElement;
+const unitList = document.getElementById('unit-list')!;
+const transcriptLog = document.getElementById('transcript-log')!;
+const aoTitleEl = document.getElementById('ao-title')!;
+
+let map: L.Map | null = null;
+let poiLayer: L.LayerGroup | null = null;
+const trailsLayer: L.LayerGroup = L.layerGroup();
+const unitMarkers: Record<string, L.Marker> = {};
+const unitTrails: Record<string, L.Polyline> = {};
+let currentPreset: Preset | null = null;
+
+const ws = connect('/ws/operator');
+
+void mapEl;
+
+async function fetchPresets() {
+  const r = await fetch('/api/presets');
+  const presets: { id: string; name: string }[] = await r.json();
+  presetSelect.innerHTML = '';
+  for (const p of presets) {
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = p.name;
+    presetSelect.appendChild(opt);
+  }
+  if (presets.length) {
+    await loadPreset(presets[0].id);
+  }
+}
+
+async function loadPreset(id: string) {
+  const r = await fetch(`/api/presets/${id}`);
+  const preset: Preset = await r.json();
+  currentPreset = preset;
+  aoTitleEl.textContent = `${preset.name} · ${preset.pois.length} POIs`;
+  const [lon, lat] = preset.center;
+  if (!map) {
+    map = createMap('map', [lat, lon], preset.zoom);
+    trailsLayer.addTo(map);
+  } else {
+    map.setView([lat, lon], preset.zoom);
+  }
+  if (poiLayer) poiLayer.remove();
+  poiLayer = renderPOIs(map, preset.pois);
+  ws.send({ type: 'set_ao', ao_id: id });
+}
+
+presetSelect.addEventListener('change', () => {
+  loadPreset(presetSelect.value);
+});
+
+ws.onMessage((msg) => {
+  if (typeof msg !== 'object' || msg === null) return;
+  const m = msg as any;
+  if (m.type === 'state') {
+    if (m.units) renderUnits(m.units);
+    if (m.reports) {
+      transcriptLog.innerHTML = '';
+      // Show oldest at bottom; newest on top — prepend each in stored order.
+      for (const r of m.reports) addReport(r);
+    }
+  } else if (m.type === 'report') {
+    addReport(m.report);
+    if (m.units) renderUnits(m.units);
+  } else if (m.type === 'ao_changed') {
+    if (m.ao_id && m.ao_id !== currentPreset?.id) {
+      presetSelect.value = m.ao_id;
+      loadPreset(m.ao_id);
+    }
+  } else if (m.type === 'error') {
+    addErrorCard(m);
+  }
+});
+
+function renderUnits(units: Record<string, any>) {
+  if (!map) return;
+  unitList.innerHTML = '';
+  for (const [uid, u] of Object.entries(units)) {
+    const lp = u.last_position;
+    const li = document.createElement('div');
+    li.className = 'unit-row';
+    li.innerHTML = `<span class="unit-name" style="color:${UNIT_COLORS[uid] ?? '#fff'}">${uid}</span>` +
+      (lp ? `<span class="unit-coord">${lp.lat.toFixed(5)}, ${lp.lon.toFixed(5)}</span>`
+          : `<span class="unit-coord stale">no fix</span>`);
+    unitList.appendChild(li);
+
+    if (lp) {
+      const latlng: L.LatLngExpression = [lp.lat, lp.lon];
+      if (unitMarkers[uid]) {
+        unitMarkers[uid].setLatLng(latlng);
+      } else {
+        unitMarkers[uid] = unitMarker(uid, lp.lat, lp.lon).addTo(map);
+      }
+      const positions: L.LatLngExpression[] = (u.positions || []).map((p: any) => [p.lat, p.lon] as L.LatLngExpression);
+      if (positions.length > 1) {
+        if (unitTrails[uid]) {
+          unitTrails[uid].setLatLngs(positions);
+        } else {
+          unitTrails[uid] = L.polyline(positions, {
+            color: UNIT_COLORS[uid] ?? '#ffcc00',
+            weight: 3,
+            opacity: 0.7,
+          }).addTo(trailsLayer);
+        }
+      }
+    }
+  }
+}
+
+function addReport(report: any) {
+  const card = document.createElement('div');
+  card.className = 'report-card';
+  card.style.borderLeftColor = UNIT_COLORS[report.unit] ?? '#3ee47a';
+  const resolved = report.resolved || {};
+  const needs = resolved.needs_review;
+  const parsed = report.parsed || {};
+  const action = parsed.action || '';
+  card.innerHTML = `
+    <div class="report-head">
+      <span class="report-unit" style="color:${UNIT_COLORS[report.unit] ?? '#fff'}">${report.unit}${action ? ' · ' + escapeHtml(action) : ''}</span>
+      <span class="report-method ${needs ? 'unresolved' : ''}">${escapeHtml(resolved.method || '?')}</span>
+    </div>
+    <div class="report-transcript">${escapeHtml(report.transcript || '')}</div>
+    ${resolved.poi_name ? `<div class="report-poi">→ ${escapeHtml(resolved.poi_name)}</div>` : ''}
+  `;
+  transcriptLog.prepend(card);
+}
+
+function addErrorCard(err: any) {
+  const card = document.createElement('div');
+  card.className = 'report-card error';
+  card.textContent = `[${err.stage}] ${err.error}`;
+  transcriptLog.prepend(card);
+}
+
+function escapeHtml(s: string): string {
+  return String(s).replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+}
+
+fetchPresets();

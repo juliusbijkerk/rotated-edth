@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Argus · Unit</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="unit">
+  <div class="topbar">
+    <h1>ARGUS · <span class="unit-label-display">UNIT</span></h1>
+  </div>
+  <div id="picker" class="picker"></div>
+  <div id="session" class="session" style="display:none">
+    <div id="last" class="last">
+      <div class="echo-head">last detection</div>
+      <div class="echo-text">—</div>
+    </div>
+    <button id="ptt" class="ptt">PUSH&nbsp;TO&nbsp;TALK</button>
+    <div id="status" class="status">ready</div>
+  </div>
+  <script type="module" src="./src/unit.ts"></script>
+</body>
+</html>

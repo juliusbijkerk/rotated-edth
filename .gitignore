@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.python-version
+*.egg-info/
+
+# Node
+node_modules/
+web/dist/
+
+# Env / secrets
+.env
+
+# Whisper model cache & audio samples
+app/models/
+data/audio_samples/
+data/tmp/
+*.wav
+*.webm
+*.mp4
+*.tmp.*
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

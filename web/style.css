@@ -1,0 +1,116 @@
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; height: 100%; overflow: hidden;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  background: #0c1115; color: #e6edf2;
+  overscroll-behavior: none;
+}
+
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px;
+  background: #11181d;
+  border-bottom: 1px solid #1f2a32;
+}
+.topbar h1 { margin: 0; font-size: 18px; letter-spacing: 2px; }
+.ao-control { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+.ao-control label { color: #8aa1b1; letter-spacing: 2px; font-size: 11px; }
+.ao-control select {
+  background: #1a242b; color: #e6edf2;
+  border: 1px solid #2c3a46; padding: 4px 8px; border-radius: 4px;
+}
+#ao-title { color: #8aa1b1; font-size: 13px; }
+
+/* --- Operator --- */
+.operator { display: flex; flex-direction: column; height: 100vh; }
+.layout { display: flex; flex: 1; min-height: 0; }
+#map { flex: 1; background: #000; }
+.sidebar {
+  width: 380px; display: flex; flex-direction: column;
+  background: #0e1418; border-left: 1px solid #1f2a32; min-height: 0;
+}
+.unit-panel { padding: 10px 14px; border-bottom: 1px solid #1f2a32; }
+.unit-panel h2, .transcript-panel h2 {
+  margin: 0 0 8px; font-size: 11px; letter-spacing: 2px; color: #8aa1b1;
+}
+.unit-row {
+  display: flex; justify-content: space-between; padding: 4px 0;
+  font-size: 13px;
+}
+.unit-name { font-weight: bold; }
+.unit-coord {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 12px; color: #b6c5d2;
+}
+.unit-coord.stale { color: #5f6b73; }
+.transcript-panel {
+  flex: 1; display: flex; flex-direction: column; min-height: 0;
+  padding: 10px 14px;
+}
+#transcript-log {
+  flex: 1; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.report-card {
+  background: #131b21; padding: 8px 10px; border-radius: 6px;
+  border-left: 3px solid #3ee47a;
+}
+.report-card.error { border-left-color: #ff5454; }
+.report-head {
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: #8aa1b1;
+}
+.report-unit { font-weight: bold; color: #fff; letter-spacing: 1px; }
+.report-method { text-transform: uppercase; font-size: 10px; }
+.report-method.unresolved { color: #ffb74d; }
+.report-transcript { margin-top: 4px; font-size: 13px; line-height: 1.35; }
+.report-poi { margin-top: 2px; font-size: 11px; color: #80cbc4; }
+
+/* --- POI overlay --- */
+.poi-icon { pointer-events: none; }
+.poi-dot {
+  width: 6px; height: 6px;
+  background: #ffeb3b; border: 1px solid #000; border-radius: 50%;
+}
+.poi-label {
+  position: absolute; left: 8px; top: -3px;
+  color: #fff; font-size: 10px; white-space: nowrap;
+  text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
+  pointer-events: none;
+}
+
+/* --- Unit overlay --- */
+.unit-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 6px rgba(0, 0, 0, .8);
+}
+.unit-label {
+  position: absolute; left: 16px; top: -3px;
+  font-weight: bold; font-size: 12px; white-space: nowrap;
+  text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
+}
+
+/* --- Unit phone UI --- */
+.unit { display: flex; flex-direction: column; height: 100vh; }
+.picker { display: flex; flex-direction: column; gap: 12px; padding: 24px; flex: 1; justify-content: center; }
+.unit-pick {
+  font-size: 28px; padding: 24px; border: none; border-radius: 12px;
+  color: #fff; background: #1c2730; cursor: pointer; letter-spacing: 2px;
+}
+.unit-pick.unit-alpha { background: #186a3b; }
+.unit-pick.unit-bravo { background: #1565c0; }
+.unit-pick.unit-charlie { background: #c0461f; }
+.session { flex: 1; display: flex; flex-direction: column; padding: 16px; gap: 16px; }
+.last { background: #131b21; padding: 12px; border-radius: 8px; min-height: 60px; }
+.echo-head {
+  font-size: 11px; color: #80cbc4; letter-spacing: 1px; text-transform: uppercase;
+}
+.echo-text { font-size: 14px; margin-top: 4px; word-break: break-word; }
+.ptt {
+  flex: 1; font-size: 32px; letter-spacing: 4px; border: none; border-radius: 24px;
+  background: #2a3e4d; color: #fff;
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  cursor: pointer; touch-action: manipulation;
+}
+.ptt:active, .ptt.live { background: #d32f2f; box-shadow: 0 0 24px rgba(255, 80, 80, 0.4); }
+.status { text-align: center; font-size: 14px; color: #8aa1b1; }

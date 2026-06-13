@@ -1,0 +1,257 @@
+"""FastAPI app: REST presets + WS unit/operator + static serving."""
+from __future__ import annotations
+import asyncio
+import json
+import os
+import time
+import traceback
+from pathlib import Path
+from typing import Optional
+
+import anthropic
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
+
+from . import grounding, parser as llm_parser, stt
+from .units import UnitRegistry
+
+PROJECT_ROOT = Path(__file__).parent.parent
+PRESETS_DIR = PROJECT_ROOT / "app" / "presets"
+DIST_DIR = PROJECT_ROOT / "web" / "dist"
+TMP_DIR = PROJECT_ROOT / "data" / "tmp"
+TMP_DIR.mkdir(parents=True, exist_ok=True)
+
+app = FastAPI(title="Argus")
+
+units = UnitRegistry()
+reports: list[dict] = []
+current_ao_id: Optional[str] = None
+current_ao: Optional[dict] = None
+operator_sockets: set[WebSocket] = set()
+_anthropic_client: Optional[anthropic.Anthropic] = None
+
+
+def _get_anthropic() -> anthropic.Anthropic:
+    global _anthropic_client
+    if _anthropic_client is None:
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        if not api_key:
+            raise RuntimeError("ANTHROPIC_API_KEY not set; copy .env.example to .env.")
+        _anthropic_client = anthropic.Anthropic(api_key=api_key)
+    return _anthropic_client
+
+
+def _load_preset(ao_id: str) -> dict:
+    path = PRESETS_DIR / f"{ao_id}.json"
+    if not path.exists():
+        raise HTTPException(404, f"Unknown AO preset: {ao_id}")
+    return json.loads(path.read_text())
+
+
+def _initial_ao() -> None:
+    global current_ao_id, current_ao
+    for ao_id in ("paris_8", "pokrovsk"):
+        path = PRESETS_DIR / f"{ao_id}.json"
+        if path.exists():
+            current_ao_id = ao_id
+            current_ao = json.loads(path.read_text())
+            return
+
+
+_initial_ao()
+
+
+# ----- REST -----
+
+@app.get("/api/presets")
+def list_presets():
+    items = []
+    for p in sorted(PRESETS_DIR.glob("*.json")):
+        data = json.loads(p.read_text())
+        items.append({
+            "id": data["id"],
+            "name": data["name"],
+            "type": data.get("type"),
+            "center": data["center"],
+            "zoom": data.get("zoom", 14),
+            "poi_count": len(data.get("pois", [])),
+        })
+    return items
+
+
+@app.get("/api/presets/{ao_id}")
+def get_preset(ao_id: str):
+    return _load_preset(ao_id)
+
+
+# ----- Static + page routes -----
+
+@app.get("/")
+def root():
+    return RedirectResponse(url="/operator")
+
+
+def _missing_dist_html(page: str) -> str:
+    return (
+        f"<!doctype html><html><body style='font-family:sans-serif;background:#0c1115;color:#e6edf2;padding:40px'>"
+        f"<h1>Argus</h1>"
+        f"<p>The frontend bundle is missing. Build it first:</p>"
+        f"<pre>npm install\nnpm run build</pre>"
+        f"<p>Then refresh this page.</p>"
+        f"<p style='color:#8aa1b1'>(page requested: <code>{page}</code>)</p>"
+        f"</body></html>"
+    )
+
+
+@app.get("/operator")
+def serve_operator():
+    path = DIST_DIR / "operator.html"
+    if not path.exists():
+        return HTMLResponse(_missing_dist_html("operator"), status_code=503)
+    return FileResponse(path)
+
+
+@app.get("/unit")
+def serve_unit():
+    path = DIST_DIR / "unit.html"
+    if not path.exists():
+        return HTMLResponse(_missing_dist_html("unit"), status_code=503)
+    return FileResponse(path)
+
+
+# Mount asset bundle if vite has built; safe to skip otherwise.
+if (DIST_DIR / "assets").exists():
+    app.mount("/assets", StaticFiles(directory=DIST_DIR / "assets"), name="assets")
+
+
+# ----- Broadcast helpers -----
+
+async def broadcast(message: dict) -> None:
+    dead = []
+    payload = json.dumps(message, default=str)
+    for ws in list(operator_sockets):
+        try:
+            await ws.send_text(payload)
+        except Exception:
+            dead.append(ws)
+    for ws in dead:
+        operator_sockets.discard(ws)
+
+
+def _state_message() -> dict:
+    return {
+        "type": "state",
+        "ao_id": current_ao_id,
+        "units": units.snapshot(),
+        "reports": reports[-50:],
+    }
+
+
+# ----- WebSocket: operator -----
+
+@app.websocket("/ws/operator")
+async def ws_operator(ws: WebSocket):
+    global current_ao_id, current_ao
+    await ws.accept()
+    operator_sockets.add(ws)
+    try:
+        await ws.send_text(json.dumps(_state_message(), default=str))
+        while True:
+            data = await ws.receive_text()
+            try:
+                msg = json.loads(data)
+            except Exception:
+                continue
+            if msg.get("type") == "set_ao":
+                ao_id = msg.get("ao_id")
+                if ao_id:
+                    try:
+                        current_ao = _load_preset(ao_id)
+                        current_ao_id = ao_id
+                        await broadcast({"type": "ao_changed", "ao_id": ao_id})
+                    except HTTPException as e:
+                        await ws.send_text(json.dumps({"type": "error", "stage": "ao", "error": e.detail}))
+    except WebSocketDisconnect:
+        pass
+    finally:
+        operator_sockets.discard(ws)
+
+
+# ----- WebSocket: unit (audio in) -----
+
+@app.websocket("/ws/unit/{unit_id}")
+async def ws_unit(ws: WebSocket, unit_id: str):
+    await ws.accept()
+    try:
+        while True:
+            frame = await ws.receive()
+            if frame.get("type") == "websocket.disconnect":
+                break
+            data = frame.get("bytes")
+            if not data:
+                continue  # ignore text frames for now
+            await _handle_utterance(ws, unit_id, data)
+    except WebSocketDisconnect:
+        pass
+
+
+async def _handle_utterance(ws: WebSocket, unit_id: str, audio_bytes: bytes) -> None:
+    ts = int(time.time() * 1000)
+    path = TMP_DIR / f"{unit_id}-{ts}.webm"  # ffmpeg detects container regardless of ext
+    path.write_bytes(audio_bytes)
+
+    try:
+        transcript = await asyncio.to_thread(stt.transcribe, path)
+    except Exception as e:
+        traceback.print_exc()
+        await _send(ws, {"type": "error", "stage": "stt", "error": str(e)})
+        return
+
+    if current_ao is None:
+        await _send(ws, {"type": "error", "stage": "ao", "error": "no AO loaded — pick one in the operator dashboard"})
+        return
+
+    try:
+        parsed = await asyncio.to_thread(
+            llm_parser.parse,
+            transcript,
+            current_ao,
+            units.snapshot(),
+            unit_id,
+            _get_anthropic(),
+        )
+    except Exception as e:
+        traceback.print_exc()
+        await _send(ws, {"type": "error", "stage": "parse", "error": str(e)})
+        return
+
+    try:
+        resolved = grounding.ground(parsed, current_ao, units, unit_id)
+    except Exception as e:
+        traceback.print_exc()
+        await _send(ws, {"type": "error", "stage": "ground", "error": str(e)})
+        return
+
+    if not resolved.get("needs_review"):
+        units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time())
+    units.set_last_report(unit_id, transcript)
+
+    report = {
+        "id": ts,
+        "unit": unit_id,
+        "transcript": transcript,
+        "parsed": parsed,
+        "resolved": resolved,
+        "timestamp": time.time(),
+    }
+    reports.append(report)
+    await _send(ws, {"type": "report_echo", "report": report})
+    await broadcast({"type": "report", "report": report, "units": units.snapshot()})
+
+
+async def _send(ws: WebSocket, payload: dict) -> None:
+    try:
+        await ws.send_text(json.dumps(payload, default=str))
+    except Exception:
+        pass
