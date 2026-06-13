@@ -65,10 +65,12 @@ ws.onMessage((msg) => {
       transcriptLog.innerHTML = '';
       // Show oldest at bottom; newest on top — prepend each in stored order.
       for (const r of m.reports) addReport(r);
+      if (m.reports.length) focusOnReport(m.reports[m.reports.length - 1]);
     }
   } else if (m.type === 'report') {
     addReport(m.report);
     if (m.units) renderUnits(m.units);
+    focusOnReport(m.report);  // glide the map to the new fix so it's never off-screen
   } else if (m.type === 'ao_changed') {
     if (m.ao_id && m.ao_id !== currentPreset?.id) {
       presetSelect.value = m.ao_id;
@@ -111,6 +113,16 @@ function renderUnits(units: Record<string, any>) {
         }
       }
     }
+  }
+}
+
+function focusOnReport(report: any) {
+  if (!map || !report) return;
+  const r = report.resolved || {};
+  if (typeof r.lat === 'number' && typeof r.lon === 'number') {
+    // flyTo keeps spatial context (animated) and guarantees the new marker is centered,
+    // never stranded off-screen — the operator should never have to hunt for the latest fix.
+    map.flyTo([r.lat, r.lon], Math.max(map.getZoom(), 16), { duration: 0.8 });
   }
 }
 
