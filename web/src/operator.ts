@@ -1,21 +1,21 @@
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import {
-  createMap, operatorMarker, renderPOIs, targetMarker,
-  unitMarker, UNIT_COLORS, Preset, Target,
+  ArgusMap, ArgusMarker, BaseLayer, Preset, Target, UNIT_COLORS,
+  createMap, markerPopup, operatorMarker, renderPOIs, renderUnitTrails,
+  setThreeD, switchBaseLayer, targetMarker, unitMarker,
 } from './map';
 import { connect } from './ws';
 
-const mapEl = document.getElementById('map')!;
 const presetSelect = document.getElementById('preset-select') as HTMLSelectElement;
 const unitList = document.getElementById('unit-list')!;
 const targetList = document.getElementById('target-list')!;
 const transcriptLog = document.getElementById('transcript-log')!;
-const aoTitleEl = document.getElementById('ao-title')!;
 const locateOperatorBtn = document.getElementById('locate-operator') as HTMLButtonElement;
 const followReportsBtn = document.getElementById('follow-reports') as HTMLButtonElement;
+const resetMissionBtn = document.getElementById('reset-mission') as HTMLButtonElement;
 const togglePoiBtn = document.getElementById('toggle-poi') as HTMLButtonElement;
+const toggle3dBtn = document.getElementById('toggle-3d') as HTMLButtonElement;
 const mapAction = document.getElementById('map-action') as HTMLSelectElement;
+const manualMapControls = document.getElementById('manual-map-controls')!;
 const manualUnit = document.getElementById('manual-unit') as HTMLSelectElement;
 const manualAffiliation = document.getElementById('manual-affiliation') as HTMLSelectElement;
 const manualEntity = document.getElementById('manual-entity') as HTMLSelectElement;
@@ -30,14 +30,10 @@ const statUnknown = document.getElementById('stat-unknown')!;
 const statReview = document.getElementById('stat-review')!;
 const statusAo = document.getElementById('status-ao')!;
 
-let map: L.Map | null = null;
-let poiLayer: L.LayerGroup | null = null;
-const trailsLayer: L.LayerGroup = L.layerGroup();
-const targetLayer: L.LayerGroup = L.layerGroup();
-const unitMarkers: Record<string, L.Marker> = {};
-const unitTrails: Record<string, L.Polyline> = {};
-const targetMarkers: Record<string, L.Marker> = {};
-let operatorPin: L.Marker | null = null;
+let map: ArgusMap | null = null;
+const unitMarkers: Record<string, ArgusMarker> = {};
+const targetMarkers: Record<string, ArgusMarker> = {};
+let operatorPin: ArgusMarker | null = null;
 let currentPreset: Preset | null = null;
 let latestUnits: Record<string, any> = {};
 let latestTargets: Target[] = [];
@@ -45,10 +41,19 @@ let latestReports: any[] = [];
 let showPoiLabels = false;
 let followReports = true;
 let targetFilter = 'all';
+let baseLayer: BaseLayer = 'fusion';
+let threeD = true;
+const activePoiCategories = new Set(['critical', 'transport', 'power', 'military', 'telecom']);
 
 const ws = connect('/ws/operator');
 
-void mapEl;
+function sendOperator(msg: unknown) {
+  if (ws.ws.readyState === WebSocket.OPEN) {
+    ws.send(msg);
+  } else {
+    ws.onOpen(() => ws.send(msg));
+  }
+}
 
 async function fetchPresets() {
   const r = await fetch('/api/presets');
@@ -69,22 +74,33 @@ async function loadPreset(id: string) {
   const r = await fetch(`/api/presets/${id}`);
   const preset: Preset = await r.json();
   currentPreset = preset;
-  aoTitleEl.textContent = `${preset.name} · ${preset.pois.length} POIs`;
   statusAo.textContent = `${preset.name.toUpperCase()} · ${preset.pois.length} POIS`;
   const [lon, lat] = preset.center;
   if (!map) {
     map = createMap('map', [lat, lon], preset.zoom);
-    trailsLayer.addTo(map);
-    targetLayer.addTo(map);
+    map.on('style.load', () => {
+      renderMapLayers();
+      setThreeD(map!, threeD);
+    });
     map.on('click', handleMapClick);
+    map.on('load', () => {
+      renderMapLayers();
+      renderUnits(latestUnits);
+      renderTargets(latestTargets);
+    });
   } else {
-    map.setView([lat, lon], preset.zoom);
+    map.jumpTo({
+      center: [lon, lat],
+      zoom: preset.zoom,
+      pitch: threeD ? 52 : 0,
+      bearing: threeD ? 12 : 0,
+    });
   }
-  renderPresetPois();
+  renderMapLayers();
   renderUnits(latestUnits);
   renderTargets(latestTargets);
   updateStats();
-  ws.send({ type: 'set_ao', ao_id: id });
+  sendOperator({ type: 'set_ao', ao_id: id });
 }
 
 presetSelect.addEventListener('change', () => {
@@ -95,6 +111,9 @@ ws.onMessage((msg) => {
   if (typeof msg !== 'object' || msg === null) return;
   const m = msg as any;
   if (m.type === 'state') {
+    if (m.ao_id && currentPreset && m.ao_id !== currentPreset.id) {
+      presetSelect.value = m.ao_id;
+    }
     if (m.units) {
       latestUnits = m.units;
       renderUnits(latestUnits);
@@ -157,37 +176,43 @@ function syncFollowButton() {
   followReportsBtn.classList.toggle('active', followReports);
 }
 
+function renderMapLayers() {
+  if (!map || !currentPreset || !map.isStyleLoaded()) return;
+  renderPresetPois();
+  renderUnitTrails(map, latestUnits);
+}
+
 function renderPresetPois() {
-  if (!map || !currentPreset) return;
-  if (poiLayer) poiLayer.remove();
-  poiLayer = renderPOIs(map, currentPreset.pois, {
-    maxCount: showPoiLabels ? 160 : 80,
+  if (!map || !currentPreset || !map.isStyleLoaded()) return;
+  renderPOIs(map, currentPreset.pois, {
+    maxCount: showPoiLabels ? 1800 : 900,
     showLabels: showPoiLabels,
+    categories: activePoiCategories,
   });
   togglePoiBtn.setAttribute('aria-pressed', String(showPoiLabels));
   togglePoiBtn.classList.toggle('active', showPoiLabels);
 }
 
-function handleMapClick(e: L.LeafletMouseEvent) {
+function handleMapClick(e: any) {
   const action = mapAction.value;
   if (action === 'set_unit') {
     const unitId = manualUnit.value;
-    ws.send({
+    sendOperator({
       type: 'set_unit_position',
       unit_id: unitId,
-      lat: e.latlng.lat,
-      lon: e.latlng.lng,
+      lat: e.lngLat.lat,
+      lon: e.lngLat.lng,
     });
-    setOperatorStatus(`SET ${unitId} ${formatCoord(e.latlng.lat, e.latlng.lng)}`);
+    setOperatorStatus(`SET ${unitId} ${formatCoord(e.lngLat.lat, e.lngLat.lng)}`);
   } else if (action === 'manual_target') {
     const entity = manualEntity.value;
-    ws.send({
+    sendOperator({
       type: 'manual_target',
       affiliation: manualAffiliation.value,
       entity_type: entity,
       label: entity,
-      lat: e.latlng.lat,
-      lon: e.latlng.lng,
+      lat: e.lngLat.lat,
+      lon: e.lngLat.lng,
     });
     setOperatorStatus(`DROPPED ${manualAffiliation.value.toUpperCase()} ${entity.toUpperCase()}`);
   }
@@ -203,14 +228,15 @@ function locateOperator() {
   navigator.geolocation.getCurrentPosition(
     (pos) => {
       const { latitude, longitude, accuracy } = pos.coords;
-      const latlng: L.LatLngExpression = [latitude, longitude];
       if (operatorPin) {
-        operatorPin.setLatLng(latlng);
+        operatorPin.setLngLat([longitude, latitude]);
       } else {
         operatorPin = operatorMarker(latitude, longitude).addTo(map!);
       }
-      operatorPin.bindPopup(`Operator<br>${formatCoord(latitude, longitude)}<br>Accuracy ${Math.round(accuracy)} m`);
-      map!.setView(latlng, Math.max(map!.getZoom(), 16));
+      operatorPin.setPopup(markerPopup(
+        `<div class="popup-content"><strong>Operator</strong><br>${formatCoord(latitude, longitude)}<br>Accuracy ${Math.round(accuracy)} m</div>`,
+      ));
+      map!.flyTo({ center: [longitude, latitude], zoom: Math.max(map!.getZoom(), 15), duration: 600 });
       setOperatorStatus(`OPERATOR ${formatCoord(latitude, longitude)}`);
     },
     (err) => setOperatorStatus(`LOCATION ERROR: ${err.message || err.code}`),
@@ -219,7 +245,6 @@ function locateOperator() {
 }
 
 function renderUnits(units: Record<string, any>) {
-  if (!map) return;
   unitList.innerHTML = '';
   for (const [uid, u] of Object.entries(units)) {
     const lp = u.last_position;
@@ -227,44 +252,33 @@ function renderUnits(units: Record<string, any>) {
     li.className = 'unit-row';
     li.innerHTML = `<span class="unit-name" style="color:${UNIT_COLORS[uid] ?? '#fff'}">${uid}</span>` +
       (lp ? `<span class="unit-coord">${lp.lat.toFixed(5)}, ${lp.lon.toFixed(5)}</span>`
-          : `<span class="unit-coord stale">no fix</span>`);
+        : `<span class="unit-coord stale">no fix</span>`);
     unitList.appendChild(li);
 
-    if (lp) {
-      const latlng: L.LatLngExpression = [lp.lat, lp.lon];
+    if (lp && map) {
       if (unitMarkers[uid]) {
-        unitMarkers[uid].setLatLng(latlng);
+        unitMarkers[uid].setLngLat([lp.lon, lp.lat]);
       } else {
         unitMarkers[uid] = unitMarker(uid, lp.lat, lp.lon).addTo(map);
       }
-      const positions: L.LatLngExpression[] = (u.positions || []).map((p: any) => [p.lat, p.lon] as L.LatLngExpression);
-      if (positions.length > 1) {
-        if (unitTrails[uid]) {
-          unitTrails[uid].setLatLngs(positions);
-        } else {
-          unitTrails[uid] = L.polyline(positions, {
-            color: UNIT_COLORS[uid] ?? '#ffcc00',
-            weight: 3,
-            opacity: 0.7,
-            dashArray: '6 6',
-          }).addTo(trailsLayer);
-        }
-      }
+    } else if (unitMarkers[uid]) {
+      unitMarkers[uid].remove();
+      delete unitMarkers[uid];
     }
   }
+  if (map?.isStyleLoaded()) renderUnitTrails(map, units);
   updateStats();
 }
 
 function renderTargets(targets: Target[]) {
-  if (!map) return;
   latestTargets = targets || [];
   const seen = new Set<string>();
   for (const target of latestTargets) {
     seen.add(target.id);
     if (targetMarkers[target.id]) {
-      targetMarkers[target.id].setLatLng([target.lat, target.lon]);
-    } else {
-      targetMarkers[target.id] = targetMarker(target).addTo(targetLayer);
+      targetMarkers[target.id].setLngLat([target.lon, target.lat]);
+    } else if (map) {
+      targetMarkers[target.id] = targetMarker(target).addTo(map);
     }
   }
   for (const id of Object.keys(targetMarkers)) {
@@ -293,8 +307,8 @@ function renderTargetList() {
       `<span class="target-row-meta">${escapeHtml(t.affiliation || 'unknown')} · ${escapeHtml(t.source_unit || 'operator')}` +
       `${t.needs_review ? ' · REVIEW' : ''}</span>`;
     row.addEventListener('click', () => {
-      map?.setView([t.lat, t.lon], Math.max(map?.getZoom() ?? 16, 16));
-      targetMarkers[t.id]?.openPopup();
+      map?.flyTo({ center: [t.lon, t.lat], zoom: Math.max(map?.getZoom() ?? 15, 15), duration: 500 });
+      targetMarkers[t.id]?.togglePopup();
     });
     targetList.appendChild(row);
   }
@@ -305,6 +319,7 @@ function renderReports() {
   transcriptLog.innerHTML = '';
   if (!latestReports.length) {
     addEmpty(transcriptLog, 'Waiting for unit reports');
+    updateStats();
     return;
   }
   for (const report of latestReports.slice().reverse()) {
@@ -344,7 +359,7 @@ function addReport(report: any) {
       <span class="report-method ${needs ? 'unresolved' : ''}">${escapeHtml(resolved.method || '?')}${confidence ? ' · ' + confidence : ''}</span>
     </div>
     <div class="report-transcript">${escapeHtml(report.transcript || '')}</div>
-    ${resolved.poi_name ? `<div class="report-poi">→ ${escapeHtml(resolved.poi_name)}</div>` : ''}
+    ${resolved.poi_name ? `<div class="report-poi">-> ${escapeHtml(resolved.poi_name)}</div>` : ''}
     ${displayTarget ? `<div class="report-target">${escapeHtml((displayTarget.affiliation || 'unknown').toUpperCase())} · ${escapeHtml(displayTarget.label || displayTarget.entity_type || 'target')}</div>` : ''}
     ${reviewStatus ? `<div class="review-status">${escapeHtml(reviewStatus.replace('_', ' ').toUpperCase())}</div>` : ''}
     ${canReview ? `
@@ -359,7 +374,7 @@ function addReport(report: any) {
     btn.addEventListener('click', () => {
       const reviewAction = btn.dataset.reviewAction;
       if (!reviewAction) return;
-      ws.send({ type: 'review_report', report_id: report.id, action: reviewAction });
+      sendOperator({ type: 'review_report', report_id: report.id, action: reviewAction });
       setOperatorStatus(`REVIEW ${reviewAction.replace('_', ' ').toUpperCase()}`);
     });
   });
@@ -378,13 +393,13 @@ function followReport(report: any) {
   if (!followReports || !map) return;
   const target = report?.target;
   if (target?.lat !== undefined && target?.lon !== undefined) {
-    map.flyTo([target.lat, target.lon], Math.max(map.getZoom(), 16), { duration: 0.6 });
+    map.flyTo({ center: [target.lon, target.lat], zoom: Math.max(map.getZoom(), 15), duration: 600 });
     setOperatorStatus(`FOLLOW TARGET ${formatCoord(target.lat, target.lon)}`);
     return;
   }
   const resolved = report?.resolved || {};
   if (!resolved.needs_review && resolved.lat !== undefined && resolved.lon !== undefined) {
-    map.flyTo([resolved.lat, resolved.lon], Math.max(map.getZoom(), 16), { duration: 0.6 });
+    map.flyTo({ center: [resolved.lon, resolved.lat], zoom: Math.max(map.getZoom(), 15), duration: 600 });
     setOperatorStatus(`FOLLOW ${report.unit || 'UNIT'} ${formatCoord(resolved.lat, resolved.lon)}`);
   }
 }
@@ -423,7 +438,19 @@ function updateClock() {
   operatorClock.textContent = `${new Date().toISOString().slice(11, 19)}Z`;
 }
 
+function syncManualControls() {
+  const action = mapAction.value;
+  manualMapControls.style.display = action === 'pan' ? 'none' : 'flex';
+  manualUnit.style.display = action === 'set_unit' ? '' : 'none';
+  manualAffiliation.style.display = action === 'manual_target' ? '' : 'none';
+  manualEntity.style.display = action === 'manual_target' ? '' : 'none';
+}
+
 locateOperatorBtn.addEventListener('click', locateOperator);
+resetMissionBtn.addEventListener('click', () => {
+  sendOperator({ type: 'reset_mission' });
+  setOperatorStatus('MISSION RESET');
+});
 syncFollowButton();
 followReportsBtn.addEventListener('click', () => {
   followReports = !followReports;
@@ -435,6 +462,40 @@ togglePoiBtn.addEventListener('click', () => {
   renderPresetPois();
   setOperatorStatus(showPoiLabels ? 'POI LABELS ON' : 'POI LABELS OFF');
 });
+toggle3dBtn.addEventListener('click', () => {
+  if (!map) return;
+  threeD = !threeD;
+  toggle3dBtn.setAttribute('aria-pressed', String(threeD));
+  toggle3dBtn.classList.toggle('active', threeD);
+  setThreeD(map, threeD);
+  setOperatorStatus(threeD ? '3D ON' : '2D ON');
+});
+mapAction.addEventListener('change', syncManualControls);
+document.querySelectorAll<HTMLButtonElement>('.map-mode[data-base-layer]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    if (!map) return;
+    baseLayer = btn.dataset.baseLayer as BaseLayer;
+    document.querySelectorAll<HTMLButtonElement>('.map-mode[data-base-layer]').forEach((other) => {
+      other.classList.toggle('active', other === btn);
+    });
+    switchBaseLayer(map, baseLayer);
+    setOperatorStatus(`${baseLayer.toUpperCase()} MAP`);
+  });
+});
+document.querySelectorAll<HTMLButtonElement>('.data-layer[data-poi-category]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const category = btn.dataset.poiCategory;
+    if (!category) return;
+    if (activePoiCategories.has(category)) {
+      activePoiCategories.delete(category);
+      btn.classList.remove('active');
+    } else {
+      activePoiCategories.add(category);
+      btn.classList.add('active');
+    }
+    renderPresetPois();
+  });
+});
 document.querySelectorAll<HTMLButtonElement>('.filter-btn[data-filter]').forEach((btn) => {
   btn.addEventListener('click', () => {
     document.querySelectorAll<HTMLButtonElement>('.filter-btn[data-filter]').forEach((other) => {
@@ -444,6 +505,7 @@ document.querySelectorAll<HTMLButtonElement>('.filter-btn[data-filter]').forEach
     renderTargetList();
   });
 });
+syncManualControls();
 updateClock();
 setInterval(updateClock, 1000);
 fetchPresets();

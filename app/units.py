@@ -51,3 +51,10 @@ class UnitRegistry:
                 }
                 for uid, u in self._units.items()
             }
+
+    def reset(self) -> None:
+        with self._lock:
+            self._units = {
+                uid: {"id": uid, "positions": [], "last_report": None}
+                for uid in UNIT_IDS
+            }

@@ -9,47 +9,41 @@
 <body class="operator">
   <div class="topbar">
     <div class="brand-lockup">
-      <h1>ARGUS <span>C2</span></h1>
-      <div class="terminal-subtitle">VOICE-TO-MAP SITUATIONAL AWARENESS</div>
+      <h1>ARGUS</h1>
     </div>
     <div class="ao-control">
-      <label for="preset-select">AO</label>
       <select id="preset-select"></select>
-      <span id="ao-title"></span>
-    </div>
-    <div class="mission-strip">
-      <span>MISSION</span>
-      <strong>DEMO OPS</strong>
-      <time id="operator-clock">--:--:--Z</time>
     </div>
     <div class="operator-controls">
       <button id="locate-operator" type="button">LOCATE</button>
       <button id="follow-reports" type="button" aria-pressed="true">FOLLOW</button>
-      <button id="toggle-poi" type="button" aria-pressed="false">POI</button>
+      <button id="reset-mission" type="button">RESET</button>
       <select id="map-action" aria-label="Map action">
         <option value="pan">PAN</option>
         <option value="set_unit">SET UNIT</option>
         <option value="manual_target">DROP TARGET</option>
       </select>
-      <select id="manual-unit" aria-label="Unit">
-        <option>Alpha</option>
-        <option>Bravo</option>
-        <option>Charlie</option>
-      </select>
-      <select id="manual-affiliation" aria-label="Affiliation">
-        <option value="unknown">UNKNOWN</option>
-        <option value="hostile">HOSTILE</option>
-        <option value="friendly">FRIENDLY</option>
-        <option value="neutral">NEUTRAL</option>
-      </select>
-      <select id="manual-entity" aria-label="Entity type">
-        <option value="person">PERSON</option>
-        <option value="group">GROUP</option>
-        <option value="vehicle">VEHICLE</option>
-        <option value="tank">TANK</option>
-        <option value="drone">DRONE</option>
-        <option value="unknown">UNKNOWN</option>
-      </select>
+      <div id="manual-map-controls" class="manual-map-controls">
+        <select id="manual-unit" aria-label="Unit">
+          <option>Alpha</option>
+          <option>Bravo</option>
+          <option>Charlie</option>
+        </select>
+        <select id="manual-affiliation" aria-label="Affiliation">
+          <option value="unknown">UNKNOWN</option>
+          <option value="hostile">HOSTILE</option>
+          <option value="friendly">FRIENDLY</option>
+          <option value="neutral">NEUTRAL</option>
+        </select>
+        <select id="manual-entity" aria-label="Entity type">
+          <option value="person">PERSON</option>
+          <option value="group">GROUP</option>
+          <option value="vehicle">VEHICLE</option>
+          <option value="tank">TANK</option>
+          <option value="drone">DRONE</option>
+          <option value="unknown">UNKNOWN</option>
+        </select>
+      </div>
     </div>
   </div>
   <div class="layout">
@@ -75,6 +69,23 @@
     </div>
     <div class="map-shell">
       <div id="map"></div>
+      <div class="map-mode-panel">
+        <button class="map-mode active" type="button" data-base-layer="fusion">FUSION</button>
+        <button class="map-mode" type="button" data-base-layer="dark">DARK</button>
+        <button class="map-mode" type="button" data-base-layer="satellite">SAT</button>
+        <button id="toggle-3d" class="map-mode active" type="button" aria-pressed="true">3D</button>
+        <button id="toggle-poi" class="map-mode" type="button" aria-pressed="false">LABELS</button>
+      </div>
+      <div class="data-layer-panel">
+        <button class="data-layer active" type="button" data-poi-category="critical">CRITICAL</button>
+        <button class="data-layer active" type="button" data-poi-category="transport">TRANSPORT</button>
+        <button class="data-layer active" type="button" data-poi-category="power">POWER</button>
+        <button class="data-layer active" type="button" data-poi-category="military">MIL</button>
+        <button class="data-layer active" type="button" data-poi-category="telecom">TELECOM</button>
+        <button class="data-layer" type="button" data-poi-category="humanitarian">HUMAN</button>
+        <button class="data-layer" type="button" data-poi-category="industrial">IND</button>
+        <button class="data-layer" type="button" data-poi-category="services">SVC</button>
+      </div>
       <div id="operator-status" class="operator-status">READY</div>
     </div>
   </div>
@@ -85,6 +96,7 @@
     <span>REVIEW <strong id="stat-review">0</strong></span>
     <span class="statusbar-spacer"></span>
     <span id="status-ao">AO READY</span>
+    <time id="operator-clock">--:--:--Z</time>
   </div>
   <script type="module" src="./src/operator.ts"></script>
 </body>

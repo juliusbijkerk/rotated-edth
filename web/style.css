@@ -30,24 +30,13 @@ html, body {
   border-bottom: 1px solid var(--border);
 }
 .topbar h1 { margin: 0; font-size: 17px; letter-spacing: 0; }
-.topbar h1 span { color: var(--green); }
-.brand-lockup { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
-.terminal-subtitle {
-  color: var(--text-muted); font-size: 10px; white-space: nowrap;
-}
+.brand-lockup { display: flex; align-items: baseline; min-width: 0; }
 .ao-control { display: flex; gap: 8px; align-items: center; font-size: 14px; }
-.ao-control label { color: var(--text-muted); letter-spacing: 0; font-size: 11px; }
 .ao-control select {
   background: var(--bg-tertiary); color: var(--text-primary);
   border: 1px solid var(--border-light); padding: 4px 8px; border-radius: 3px;
+  min-width: 180px;
 }
-#ao-title { color: var(--text-secondary); font-size: 12px; }
-.mission-strip {
-  margin-left: auto; display: flex; align-items: center; gap: 8px;
-  color: var(--text-muted); font-size: 10px; white-space: nowrap;
-}
-.mission-strip strong { color: var(--amber); font-weight: 700; }
-.mission-strip time { color: var(--cyan); min-width: 72px; text-align: right; }
 
 /* --- Operator --- */
 .operator { display: flex; flex-direction: column; height: 100vh; }
@@ -56,6 +45,7 @@ html, body {
 #map { width: 100%; height: 100%; background: #000; }
 .operator-controls {
   display: flex; justify-content: flex-end; align-items: center; gap: 6px;
+  margin-left: auto;
   min-width: 0;
 }
 .operator-controls button, .operator-controls select {
@@ -66,11 +56,50 @@ html, body {
 .operator-controls button.active, .operator-controls button[aria-pressed="true"] {
   background: #153d45; border-color: var(--cyan); color: var(--cyan);
 }
+.manual-map-controls {
+  display: none; align-items: center; gap: 6px;
+}
 .operator-status {
   position: absolute; z-index: 500; left: 12px; bottom: 12px;
   background: rgba(7, 11, 15, .88); color: #d7e4ed;
   border: 1px solid rgba(160, 178, 191, .25); border-radius: 6px;
   padding: 7px 9px; font-size: 11px; letter-spacing: 0;
+}
+.maplibregl-ctrl-attrib { display: none !important; }
+.maplibregl-ctrl-top-left { top: 8px; left: 8px; }
+.maplibregl-ctrl-group {
+  background: rgba(17, 26, 32, .92) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+}
+.maplibregl-ctrl-group button { background-color: transparent !important; }
+.maplibregl-ctrl-group button span { filter: invert(.86); }
+.maplibregl-popup-content {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  font: 11px "SF Mono", "JetBrains Mono", Consolas, monospace !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.45) !important;
+  padding: 0 !important;
+}
+.maplibregl-popup-tip { border-top-color: var(--border) !important; }
+.popup-content { padding: 10px 12px; min-width: 180px; }
+.map-mode-panel, .data-layer-panel {
+  position: absolute; z-index: 520; right: 10px;
+  display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end;
+  background: rgba(7, 11, 15, .82); border: 1px solid var(--border);
+  border-radius: 5px; padding: 5px; backdrop-filter: blur(4px);
+}
+.map-mode-panel { top: 10px; max-width: 330px; }
+.data-layer-panel { top: 50px; max-width: 470px; }
+.map-mode, .data-layer {
+  min-height: 26px; padding: 0 8px; border: 1px solid var(--border);
+  border-radius: 3px; background: transparent; color: var(--text-muted);
+  font: 10px "SF Mono", "JetBrains Mono", Consolas, monospace; cursor: pointer;
+}
+.map-mode.active, .data-layer.active {
+  color: var(--cyan); border-color: var(--cyan); background: rgba(22, 199, 220, .09);
 }
 .sidebar {
   width: 360px; display: flex; flex-direction: column;
@@ -169,6 +198,7 @@ html, body {
 .statusbar span:nth-child(3) strong { color: var(--amber); }
 .statusbar span:nth-child(4) strong { color: var(--cyan); }
 .statusbar-spacer { flex: 1; }
+.statusbar time { color: var(--cyan); min-width: 72px; text-align: right; }
 
 /* --- POI overlay --- */
 .poi-icon { pointer-events: none; }
@@ -207,6 +237,7 @@ html, body {
 .target-wrap {
   position: relative; width: 34px; height: 34px;
   --target-color: #d7c84f; --target-fill: rgba(215, 200, 79, .24);
+  cursor: pointer;
 }
 .target-friendly { --target-color: #4c8dff; --target-fill: rgba(76, 141, 255, .25); }
 .target-hostile { --target-color: #f25555; --target-fill: rgba(242, 85, 85, .24); }
@@ -323,13 +354,15 @@ html, body {
   html, body { overflow: auto; }
   .topbar { align-items: flex-start; gap: 8px; flex-direction: column; }
   .brand-lockup { flex-direction: column; gap: 2px; }
-  .mission-strip { margin-left: 0; width: 100%; justify-content: space-between; }
   .ao-control { width: 100%; flex-wrap: wrap; }
-  #ao-title { display: none; }
+  .ao-control select { width: 100%; }
   .operator-controls {
     width: 100%; justify-content: flex-start; overflow-x: auto; padding-bottom: 2px;
   }
   .operator-controls button, .operator-controls select { flex: 0 0 auto; min-width: 96px; }
+  .manual-map-controls { flex: 0 0 auto; }
+  .map-mode-panel { left: 10px; right: 10px; max-width: none; justify-content: flex-start; }
+  .data-layer-panel { left: 10px; right: 10px; max-width: none; justify-content: flex-start; top: 48px; }
   .manual-report { grid-template-columns: 1fr; }
   .manual-report button { min-height: 44px; }
   .ptt { flex-basis: 250px; }

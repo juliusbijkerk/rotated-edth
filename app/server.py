@@ -52,7 +52,7 @@ def _load_preset(ao_id: str) -> dict:
 
 def _initial_ao() -> None:
     global current_ao_id, current_ao
-    for ao_id in ("paris_central_demo", "paris_8", "pokrovsk"):
+    for ao_id in ("kyiv_demo", "pokrovsk", "paris_central_demo", "paris_8"):
         path = PRESETS_DIR / f"{ao_id}.json"
         if path.exists():
             current_ao_id = ao_id
@@ -242,6 +242,9 @@ async def ws_operator(ws: WebSocket):
                         "units": units.snapshot(),
                         "targets": targets[-100:],
                     })
+            elif msg.get("type") == "reset_mission":
+                _reset_mission()
+                await broadcast(_state_message())
     except WebSocketDisconnect:
         pass
     finally:
@@ -415,6 +418,12 @@ def _find_report(report_id: object) -> Optional[dict]:
         if str(report.get("id")) == rid:
             return report
     return None
+
+
+def _reset_mission() -> None:
+    reports.clear()
+    targets.clear()
+    units.reset()
 
 
 def _target_for_report(report: dict) -> Optional[dict]:

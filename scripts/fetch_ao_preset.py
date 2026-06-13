@@ -29,10 +29,17 @@ OVERPASS_URLS = [
     "https://z.overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
 ]
-USER_AGENT = "Argus/0.1 (EDTH Paris 2026; juliusjacobbijkerk@gmail.com)"
+USER_AGENT = "Argus/0.1 (EDTH 2026; juliusjacobbijkerk@gmail.com)"
 
 # AO definitions. bbox = [west_lon, south_lat, east_lon, north_lat].
 AO_DEFS = {
+    "kyiv_demo": {
+        "name": "Kyiv, Ukraine",
+        "bbox": [30.3500, 50.3500, 30.7000, 50.5600],
+        "center": [30.5234, 50.4501],
+        "zoom": 11,
+        "type": "urban",
+    },
     "paris_8": {
         "name": "Paris 8th Arrondissement",
         "bbox": [2.3050, 48.8650, 2.3270, 48.8780],
@@ -70,12 +77,22 @@ QUERIES = [
     'nwr["public_transport"]',
     'nwr["bridge"="yes"]',
     'nwr["highway"]["name"]',
+    'nwr["office"]',
+    'nwr["healthcare"]',
+    'nwr["emergency"]',
+    'nwr["power"]',
+    'nwr["man_made"]',
+    'nwr["military"]',
+    'nwr["aeroway"]',
+    'nwr["landuse"="industrial"]',
 ]
 
 # What counts as the "primary" tag when classifying a feature.
 PRIMARY_KEYS = (
     "amenity", "tourism", "historic", "shop", "public_transport",
     "railway", "leisure", "natural", "waterway", "place", "bridge", "highway",
+    "office", "healthcare", "emergency", "power", "man_made", "military",
+    "aeroway", "landuse",
 )
 
 
@@ -163,6 +180,16 @@ _PROM = {"place": 0, "railway": 1, "public_transport": 1, "aeroway": 1,
 _AMENITY_PROMINENT = {"place_of_worship", "hospital", "school", "university",
                       "townhall", "police", "fire_station"}
 _PRIORITY_NAME_HINTS = (
+    "maidan nezalezhnosti",
+    "independence square",
+    "khreshchatyk",
+    "kyiv-pasazhyrskyi",
+    "kyiv passenger",
+    "vokzalna",
+    "golden gate",
+    "zoloti vorota",
+    "arsenalna",
+    "independence monument",
     "gare du nord",
     "gare saint-lazare",
     "saint-lazare",
