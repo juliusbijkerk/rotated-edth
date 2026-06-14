@@ -43,3 +43,13 @@ Get the first working demo solid; these are deliberately deferred.
 - **More precise POIs:** big features ("Hoog Catharijne" mall) ground to a vague centroid.
   Use entrance nodes / addresses / a richer dataset (Overture Maps, OSM entrances) for
   point-precise, better-described locations — also improves text→POI matching.
+
+## From demo prep (Jun 14)
+- **Operator-side review queue:** today `needs_review` reports place at AO-center but
+  there's no UI to triage/correct them. Build a "Needs Review" panel on the operator
+  with the original transcript and a click-to-place-on-map control. Then re-enable the
+  needs_review gate so unresolved reports don't junk the map silently.
+- **Inline focus-on-place search** on the operator (Google-Maps style): geocode a
+  typed place / "lat,lon" / use-my-location → flyTo. Previous attempt was reverted
+  because the welcome-overlay regex cut too many </div>s and broke the page; redo
+  with the Edit tool instead of a regex pass.

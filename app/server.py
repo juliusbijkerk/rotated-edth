@@ -287,26 +287,28 @@ async def _process(ws: WebSocket, unit_id: str, transcript: str, ts: int) -> Non
 
     route = None
     action = (parsed.get("action") or "").lower()
-    if not resolved.get("needs_review"):
-        if action == "contact":
-            # An observed enemy/contact at a location -> drop a hostile marker there; do NOT
-            # move the reporting unit (we don't know it moved to where it sees the contact).
-            contacts.append({
-                "id": ts, "unit": unit_id,
-                "lat": resolved["lat"], "lon": resolved["lon"],
-                "observed": parsed.get("observed", ""), "transcript": transcript,
-                "timestamp": time.time(),
-            })
-        else:
-            prev = units.last_position(unit_id)
-            if prev:
-                # Snap the leg from the unit's last fix to roads so the trail follows streets,
-                # not a straight line over buildings. Best-effort — falls back to a straight line.
-                await _send(ws, {"type": "progress", "stage": "routing"})
-                route = await asyncio.to_thread(
-                    routing.route, prev["lat"], prev["lon"], resolved["lat"], resolved["lon"],
-                )
-            units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time(), route=route)
+    # Place every report — even unresolved ones — at the best-guess location (AO center
+    # fallback) so the operator sees *something* land instead of silent dead-ends. The
+    # grounder still flags needs_review on the report so review tooling can pick it up later.
+    if action == "contact":
+        # An observed enemy/contact at a location -> drop a hostile marker there; do NOT
+        # move the reporting unit (we don't know it moved to where it sees the contact).
+        contacts.append({
+            "id": ts, "unit": unit_id,
+            "lat": resolved["lat"], "lon": resolved["lon"],
+            "observed": parsed.get("observed", ""), "transcript": transcript,
+            "timestamp": time.time(),
+        })
+    else:
+        prev = units.last_position(unit_id)
+        if prev:
+            # Snap the leg from the unit's last fix to roads so the trail follows streets,
+            # not a straight line over buildings. Best-effort — falls back to a straight line.
+            await _send(ws, {"type": "progress", "stage": "routing"})
+            route = await asyncio.to_thread(
+                routing.route, prev["lat"], prev["lon"], resolved["lat"], resolved["lon"],
+            )
+        units.append_position(unit_id, resolved["lat"], resolved["lon"], ts=time.time(), route=route)
     units.set_last_report(unit_id, transcript)
 
     report = {
