@@ -552,283 +552,32 @@ body {
   margin-left: auto;
 }
 
-.welcome-overlay { position: fixed; inset: 0; background: rgba(10,14,23,0.94); backdrop-filter: blur(6px); z-index: 200; display: flex; align-items: center; justify-content: center; }
-.welcome-overlay.hidden { display: none; }
-.welcome-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 28px 36px; max-width: 460px; width: 92%; box-shadow: 0 12px 60px rgba(0,0,0,.6); }
-.welcome-head { text-align: center; margin-bottom: 22px; }
-.welcome-head h1 { font-size: 28px; letter-spacing: 6px; margin: 0; font-weight: 600; }
-.welcome-head h1 .c2 { color: var(--green); }
-.welcome-sub { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; margin-top: 6px; }
-.welcome-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-.welcome-row .lbl { font-size: 9.5px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; }
-.welcome-row select, .welcome-row input { padding: 9px 11px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-family: inherit; font-size: 12px; outline: none; }
-.welcome-row select:focus, .welcome-row input:focus { border-color: var(--blue); }
-.welcome-or { text-align: center; color: var(--text-muted); font-size: 9.5px; letter-spacing: 1.5px; margin: 4px 0 10px; }
-.welcome-locate { background: none; border: none; color: var(--cyan); text-align: left; padding: 4px 0; cursor: pointer; font-family: inherit; font-size: 11px; }
-.welcome-locate:hover { text-decoration: underline; }
-.welcome-hint { font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 14px; }
-.welcome-start { width: 100%; padding: 12px; margin-top: 8px; background: var(--green); color: #000; border: none; border-radius: 4px; font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: 3px; cursor: pointer; }
-.welcome-start:hover { filter: brightness(1.1); }
+
+.focus-bar { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); z-index: 4;
+  display: flex; align-items: center; gap: 6px; background: rgba(30,41,59,0.92);
+  border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px;
+  backdrop-filter: blur(6px); box-shadow: 0 2px 14px rgba(0,0,0,.4); }
+.focus-bar input { width: 320px; max-width: 60vw; padding: 6px 8px; background: transparent;
+  border: none; color: var(--text-primary); font-family: inherit; font-size: 12px; outline: none; }
+.focus-bar input::placeholder { color: var(--text-muted); }
+.focus-bar button { background: transparent; border: 1px solid var(--border-light); color: var(--text-muted);
+  border-radius: 4px; padding: 4px 8px; font-family: inherit; font-size: 10px; letter-spacing: 1px;
+  cursor: pointer; }
+.focus-bar button:hover { color: var(--text-primary); border-color: var(--text-secondary); }
+.focus-hint { position: absolute; top: 42px; left: 50%; transform: translateX(-50%); z-index: 4;
+  font-size: 10px; color: var(--cyan); background: rgba(30,41,59,0.92); border: 1px solid var(--border);
+  border-radius: 4px; padding: 3px 8px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.focus-hint.show { opacity: 1; }
 </style>
 </head>
 <body>
-<div id="welcome-overlay" class="welcome-overlay">
-  <div class="welcome-panel">
-    <div class="welcome-head">
-      <h1>ROTATED <span class="c2">C2</span></h1>
-      <div class="welcome-sub">SITUATIONAL AWARENESS · COMMAND &amp; CONTROL</div>
-    </div>
-    <div class="welcome-row">
-      <div class="lbl">Area of Operations</div>
-      <select id="welcome-ao"></select>
-    </div>
-    <div class="welcome-or">— or focus on any place on earth —</div>
-    <div class="welcome-row">
-      <div class="lbl">Search</div>
-      <input id="welcome-search" placeholder="e.g. Kharkiv, Maidan Nezalezhnosti, 50.45,30.52" autocomplete="off">
-      <button id="welcome-locate" type="button" class="welcome-locate">Use my current location →</button>
-      <div id="welcome-hint" class="welcome-hint"></div>
-    </div>
-    <button id="welcome-start" type="button" class="welcome-start">ENTER OPS CENTER</button>
-  </div>
 </div>
-
-<div id="loading">
-  <div class="spinner"></div>
-  <p>INITIALIZING C2 TERMINAL</p>
-</div>
-
-<div id="app">
-  <!-- Header -->
-  <div id="header">
-    <div class="logo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10" stroke="var(--green)"/>
-        <circle cx="12" cy="12" r="3" fill="var(--green)"/>
-        <path d="M12 2v20M2 12h20" stroke="var(--green)" opacity="0.3"/>
-      </svg>
-      <span>ROTATED</span>
-    </div>
-    <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.5px;"></div>
-    <div class="mission">MISSION: <span style="color:var(--amber);">OP DNIPRO SHIELD</span></div>
-    <button id="reset-btn" class="filter-btn" style="margin-right:12px;color:var(--amber);border-color:var(--amber)">RESET</button><div class="clock" id="clock">--:--:--</div>
-  </div>
-
-  <!-- Main -->
-  <div id="main">
-    <!-- Sidebar -->
-    <div id="sidebar">
-      <div class="sidebar-header">
-        <span>Unit Roster</span>
-        <span class="count" id="unit-count">0 UNITS</span>
-      </div>
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="FRIENDLY" style="color:var(--blue);">Friendly</button>
-        <button class="filter-btn" data-filter="HOSTILE" style="color:var(--red);">Hostile</button>
-        <button class="filter-btn" data-filter="UNKNOWN" style="color:var(--amber);">Unknown</button>
-      </div>
-      <div id="unit-list"></div>
-
-      <!-- Layers Panel -->
-      <div id="layers-panel">
-        <div class="sidebar-header">
-          <span>Map Layers</span>
-          <button id="poi-all" class="filter-btn" style="margin-left:auto">SELECT ALL</button>
-          <span class="count" id="layer-count" style="margin-left:8px">0 ACTIVE</span>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="critical">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#ef4444;"></span>
-            <span class="group-name">Critical Infrastructure</span>
-            <input type="checkbox" class="group-toggle" data-category="critical">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="hospital"> Hospitals</label>
-            <label><input type="checkbox" data-subcategory="school"> Schools</label>
-            <label><input type="checkbox" data-subcategory="university"> Universities</label>
-            <label><input type="checkbox" data-subcategory="government"> Government</label>
-            <label><input type="checkbox" data-subcategory="fire_station"> Fire Stations</label>
-            <label><input type="checkbox" data-subcategory="police"> Police</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="commercial">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#3b82f6;"></span>
-            <span class="group-name">Commercial</span>
-            <input type="checkbox" class="group-toggle" data-category="commercial">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="restaurant"> Restaurants</label>
-            <label><input type="checkbox" data-subcategory="cafe"> Cafes</label>
-            <label><input type="checkbox" data-subcategory="shop"> Shops</label>
-            <label><input type="checkbox" data-subcategory="supermarket"> Supermarkets</label>
-            <label><input type="checkbox" data-subcategory="bank"> Banks</label>
-            <label><input type="checkbox" data-subcategory="office"> Offices</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="industrial">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#f59e0b;"></span>
-            <span class="group-name">Industrial</span>
-            <input type="checkbox" class="group-toggle" data-category="industrial">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="industrial"> Industrial</label>
-            <label><input type="checkbox" data-subcategory="warehouse"> Warehouses</label>
-            <label><input type="checkbox" data-subcategory="factory"> Factories</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="transport">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#22c55e;"></span>
-            <span class="group-name">Transportation</span>
-            <input type="checkbox" class="group-toggle" data-category="transport">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="bus_station"> Bus Stations</label>
-            <label><input type="checkbox" data-subcategory="train_station"> Train Stations</label>
-            <label><input type="checkbox" data-subcategory="airport"> Airports</label>
-            <label><input type="checkbox" data-subcategory="ferry_terminal"> Ferry Terminals</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="services">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#8b5cf6;"></span>
-            <span class="group-name">Services</span>
-            <input type="checkbox" class="group-toggle" data-category="services">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="post_office"> Post Offices</label>
-            <label><input type="checkbox" data-subcategory="pharmacy"> Pharmacies</label>
-            <label><input type="checkbox" data-subcategory="fuel"> Fuel Stations</label>
-            <label><input type="checkbox" data-subcategory="parking"> Parking</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="accommodation">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#06b6d4;"></span>
-            <span class="group-name">Accommodation</span>
-            <input type="checkbox" class="group-toggle" data-category="accommodation">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="hotel"> Hotels</label>
-            <label><input type="checkbox" data-subcategory="motel"> Motels</label>
-            <label><input type="checkbox" data-subcategory="hostel"> Hostels</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="power">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#ff6b35;"></span>
-            <span class="group-name">Power Infrastructure</span>
-            <input type="checkbox" class="group-toggle" data-category="power">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="power_plant"> Power Plants</label>
-            <label><input type="checkbox" data-subcategory="substation"> Substations</label>
-            <label><input type="checkbox" data-subcategory="power_line"> Power Lines</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="transport_infra">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#8b4513;"></span>
-            <span class="group-name">Transport Infrastructure</span>
-            <input type="checkbox" class="group-toggle" data-category="transport_infra">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="railway_station"> Railway Stations</label>
-            <label><input type="checkbox" data-subcategory="airport"> Airports</label>
-            <label><input type="checkbox" data-subcategory="bridge"> Bridges</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="admin">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#9370db;"></span>
-            <span class="group-name">Admin Boundaries</span>
-            <input type="checkbox" class="group-toggle" data-category="admin">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="oblast"> Oblasts</label>
-            <label><input type="checkbox" data-subcategory="raion"> Raions</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="humanitarian">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#dc143c;"></span>
-            <span class="group-name">Humanitarian</span>
-            <input type="checkbox" class="group-toggle" data-category="humanitarian">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="idp_camp"> IDP Camps</label>
-            <label><input type="checkbox" data-subcategory="shelter"> Shelters</label>
-            <label><input type="checkbox" data-subcategory="aid_point"> Aid Points</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="military_osm">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#8b0000;"></span>
-            <span class="group-name">Military (OSM)</span>
-            <input type="checkbox" class="group-toggle" data-category="military_osm">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="military_base"> Bases</label>
-            <label><input type="checkbox" data-subcategory="military_training"> Training Areas</label>
-            <label><input type="checkbox" data-subcategory="military_airfield"> Airfields</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="bridges">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#facc15;"></span>
-            <span class="group-name">Bridges</span>
-            <input type="checkbox" id="bridges-toggle" class="group-toggle" data-category="bridges">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" id="bridges-named"> Named bridges</label>
-          </div>
-        </div>
-
-        <div class="layer-group">
-          <div class="layer-group-header" data-group="telecom">
-            <span class="toggle-icon">&#9656;</span>
-            <span class="layer-swatch" style="background:#00ff7f;"></span>
-            <span class="group-name">Telecom</span>
-            <input type="checkbox" class="group-toggle" data-category="telecom">
-          </div>
-          <div class="layer-group-items">
-            <label><input type="checkbox" data-subcategory="comm_tower"> Comm Towers</label>
-            <label><input type="checkbox" data-subcategory="mobile_tower"> Mobile Towers</label>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Map -->
     <div id="map-container">
       <div id="map"></div>
+      <div class="focus-bar"><input id="focus-input" placeholder="🎯 Focus map on: Maidan, Kharkiv, 50.45,30.52…" autocomplete="off"><button id="focus-locate" title="Use my current location">⊕ HERE</button></div>
+      <div id="focus-hint" class="focus-hint"></div>
 
       <!-- Layer Toggle (Dark / Satellite) -->
       <div class="layer-toggle">
@@ -2436,75 +2185,6 @@ function initInteraction() {
 }
 </script>
 <script>
-/* ===== Welcome onboarding overlay — picks AO + optional fly-to-anywhere ===== */
-(function () {
-  var overlay = document.getElementById('welcome-overlay');
-  var aoSel   = document.getElementById('welcome-ao');
-  var search  = document.getElementById('welcome-search');
-  var locate  = document.getElementById('welcome-locate');
-  var hint    = document.getElementById('welcome-hint');
-  var startBtn = document.getElementById('welcome-start');
-  var pendingFocus = null; // [lon, lat] from search/geolocate -> flyTo on start
-  var ao = null;
-
-  fetch('/api/presets').then(function (r) { return r.json(); }).then(function (ps) {
-    aoSel.innerHTML = ps.map(function (p) {
-      return '<option value="' + p.id + '" data-bbox="' + p.bbox.join(',') + '">' + p.name + '</option>';
-    }).join('');
-    ao = ps[0] || null;
-    aoSel.addEventListener('change', function () { ao = ps.find(function (p) { return p.id === aoSel.value; }) || ao; });
-  }).catch(function () { hint.textContent = 'could not load AO list'; });
-
-  locate.addEventListener('click', function () {
-    if (!navigator.geolocation) { hint.textContent = 'geolocation not available in this browser'; return; }
-    hint.textContent = 'asking for location…';
-    navigator.geolocation.getCurrentPosition(function (pos) {
-      pendingFocus = [pos.coords.longitude, pos.coords.latitude];
-      search.value = pos.coords.latitude.toFixed(4) + ', ' + pos.coords.longitude.toFixed(4);
-      hint.textContent = 'will focus on your location';
-    }, function (err) { hint.textContent = 'location denied: ' + (err.message || err.code); }, { timeout: 6000 });
-  });
-
-  // Search: "lat, lon" -> instant; otherwise Nominatim free geocoder
-  var searchTimer;
-  search.addEventListener('input', function () {
-    clearTimeout(searchTimer);
-    var q = search.value.trim();
-    pendingFocus = null;
-    if (!q) { hint.textContent = ''; return; }
-    var m = q.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/);
-    if (m) { pendingFocus = [parseFloat(m[2]), parseFloat(m[1])]; hint.textContent = 'coordinates parsed ✓'; return; }
-    hint.textContent = 'searching…';
-    searchTimer = setTimeout(function () {
-      fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q),
-            { headers: { 'Accept-Language': 'en' } })
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          if (d.length) { pendingFocus = [parseFloat(d[0].lon), parseFloat(d[0].lat)]; hint.textContent = '→ ' + d[0].display_name; }
-          else { hint.textContent = 'no match'; }
-        })
-        .catch(function () { hint.textContent = 'search failed (offline?)'; });
-    }, 350);
-  });
-
-  function flyWhenReady(fn) {
-    if (typeof map !== 'undefined' && map && map.isStyleLoaded && map.isStyleLoaded()) { fn(); }
-    else { setTimeout(function () { flyWhenReady(fn); }, 200); }
-  }
-
-  startBtn.addEventListener('click', function () {
-    overlay.classList.add('hidden');
-    flyWhenReady(function () {
-      if (pendingFocus) {
-        map.flyTo({ center: pendingFocus, zoom: 14, duration: 1400 });
-      } else if (ao && ao.bbox) {
-        map.fitBounds([[ao.bbox[0], ao.bbox[1]], [ao.bbox[2], ao.bbox[3]]], { padding: 50, duration: 1200 });
-      }
-    });
-  });
-})();
-</script>
-<script>
 /* ===== ARGUS live wiring: drive this C2 map from our FastAPI /ws/operator ===== */
 (function () {
   var FRIENDLY = 'SFGPUCI----', HOSTILE = 'SHGPUCI----';
@@ -2665,6 +2345,38 @@ function initInteraction() {
   function sync(){ var on = (bg && bg.checked) || (bn && bn.checked); if (bg) bg.checked = on; if (bn) bn.checked = on; ensureBridges(on); }
   if (bg) bg.addEventListener('change', sync);
   if (bn) bn.addEventListener('change', sync);
+})();
+</script>
+<script>
+/* ===== Inline Focus bar — type a place / coords / use my location, fly the map ===== */
+(function () {
+  var input = document.getElementById('focus-input');
+  var here  = document.getElementById('focus-locate');
+  var hint  = document.getElementById('focus-hint');
+  function flash(msg, ms) { hint.textContent = msg; hint.classList.add('show'); setTimeout(function(){hint.classList.remove('show');}, ms||1800); }
+  function ready(fn){ if (typeof map !== 'undefined' && map && map.isStyleLoaded && map.isStyleLoaded()) fn(); else setTimeout(function(){ready(fn);},200); }
+  function fly(lon, lat, label) { ready(function () { map.flyTo({ center: [lon, lat], zoom: 15, duration: 1200 }); }); if (label) flash('→ ' + label, 2400); }
+
+  function go() {
+    var q = input.value.trim();
+    if (!q) return;
+    var m = q.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/);
+    if (m) { fly(parseFloat(m[2]), parseFloat(m[1]), 'coordinates'); return; }
+    flash('searching…', 6000);
+    fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q),
+          { headers: { 'Accept-Language': 'en' } })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (d.length) fly(parseFloat(d[0].lon), parseFloat(d[0].lat), d[0].display_name); else flash('no match', 2000); })
+      .catch(function () { flash('search failed', 2000); });
+  }
+  input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); go(); } });
+  here.addEventListener('click', function () {
+    if (!navigator.geolocation) return flash('geolocation not available', 2200);
+    flash('asking for location…', 6000);
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      fly(pos.coords.longitude, pos.coords.latitude, 'your location');
+    }, function (err) { flash('denied: ' + (err.message || err.code), 2400); }, { timeout: 7000 });
+  });
 })();
 </script>
 </body>
