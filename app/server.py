@@ -65,6 +65,28 @@ _initial_ao()
 
 # ----- REST -----
 
+@app.post("/api/reset")
+def reset_state():
+    """Wipe in-memory units/reports/contacts so the operator gets a clean slate
+    (useful between demo runs without needing to restart the server)."""
+    global reports, contacts
+    units.__init__()  # rebuild empty registry
+    reports.clear()
+    contacts.clear()
+    return {"ok": True}
+
+
+@app.get("/api/bridges")
+def get_bridges():
+    """Named bridges for the current AO as GeoJSON (with real line/polygon geometry).
+    Falls back to an empty FeatureCollection if no bridge file exists for the AO."""
+    if current_ao_id:
+        path = PRESETS_DIR / f"{current_ao_id}_bridges.geojson"
+        if path.exists():
+            return json.loads(path.read_text())
+    return {"type": "FeatureCollection", "features": []}
+
+
 @app.get("/api/presets")
 def list_presets():
     items = []

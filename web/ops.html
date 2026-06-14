@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>C2 SITMAP - Command & Control</title>
+<title>ROTATED · C2</title>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <script src="https://unpkg.com/milsymbol@3.0.4/dist/milsymbol.js"></script>
@@ -569,11 +569,11 @@ body {
         <circle cx="12" cy="12" r="3" fill="var(--green)"/>
         <path d="M12 2v20M2 12h20" stroke="var(--green)" opacity="0.3"/>
       </svg>
-      <span>ARGUS</span>
+      <span>ROTATED</span>
     </div>
     <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.5px;"></div>
     <div class="mission">MISSION: <span style="color:var(--amber);">OP DNIPRO SHIELD</span></div>
-    <div class="clock" id="clock">--:--:--</div>
+    <button id="reset-btn" class="filter-btn" style="margin-right:12px;color:var(--amber);border-color:var(--amber)">RESET</button><div class="clock" id="clock">--:--:--</div>
   </div>
 
   <!-- Main -->
@@ -762,6 +762,18 @@ body {
         </div>
 
         <div class="layer-group">
+          <div class="layer-group-header" data-group="bridges">
+            <span class="toggle-icon">&#9656;</span>
+            <span class="layer-swatch" style="background:#facc15;"></span>
+            <span class="group-name">Bridges</span>
+            <input type="checkbox" id="bridges-toggle" class="group-toggle" data-category="bridges">
+          </div>
+          <div class="layer-group-items">
+            <label><input type="checkbox" id="bridges-named"> Named bridges</label>
+          </div>
+        </div>
+
+        <div class="layer-group">
           <div class="layer-group-header" data-group="telecom">
             <span class="toggle-icon">&#9656;</span>
             <span class="layer-swatch" style="background:#00ff7f;"></span>
@@ -782,9 +794,9 @@ body {
 
       <!-- Layer Toggle (Dark / Satellite) -->
       <div class="layer-toggle">
-        <button class="layer-btn active" id="btn-dark" data-layer="dark">DARK</button>
+        <button class="layer-btn" id="btn-dark" data-layer="dark">DARK</button>
         <button class="layer-btn" id="btn-satellite" data-layer="satellite">SATELLITE</button>
-        <button class="layer-btn" id="btn-fusion" data-layer="fusion">FUSION</button>
+        <button class="layer-btn active" id="btn-fusion" data-layer="fusion">FUSION</button>
       </div>
 
       <!-- 3D View Toggle -->
@@ -794,7 +806,7 @@ body {
       </div>
 
       <!-- Fusion Opacity Slider -->
-      <div class="opacity-slider" id="opacity-slider" style="display:none;">
+      <div class="opacity-slider" id="opacity-slider" style="display:flex;">
         <label class="opacity-label">OVERLAY</label>
         <input type="range" id="opacity-range" class="opacity-range" min="0" max="100" value="55">
         <span class="opacity-val" id="opacity-val">55%</span>
@@ -917,7 +929,7 @@ const FUSION_STYLE = {
 var map;
 let is3D = false;
 let terrainSource = null;
-let currentLayer = 'dark';
+let currentLayer = 'fusion';
 let lastZoom = 10;
 
 // ========== Init Map (deferred for layout stability) ==========
@@ -933,11 +945,11 @@ function initMap() {
 
   map = new maplibregl.Map({
     container: 'map',
-    style: DARK_STYLE,
+    style: FUSION_STYLE,
     center: [30.52, 50.45],
     zoom: 10,
     minZoom: 3,
-    maxZoom: 20,
+    maxZoom: 18,
     attributionControl: false,
     dragRotate: true,
     pitchWithRotate: false,
@@ -2507,6 +2519,45 @@ function initInteraction() {
     boxes.forEach(function (b) { if (b.checked !== anyOff) { b.checked = anyOff; b.dispatchEvent(new Event('change')); } });
     btn.textContent = anyOff ? 'CLEAR ALL' : 'SELECT ALL';
   });
+})();
+</script>
+<script>
+(function () {
+  // RESET — calls server then nukes our locally-drawn unit/contact/trail layers
+  var rb = document.getElementById('reset-btn');
+  if (rb) rb.addEventListener('click', function () {
+    if (!confirm('Reset all units, contacts, and trails?')) return;
+    fetch('/api/reset', {method: 'POST'}).then(function(){ try { location.reload(); } catch(e){} });
+  });
+
+  // BRIDGES layer — loads /api/bridges (GeoJSON of named bridges in the AO) and draws them
+  function ensureBridges(visible) {
+    if (!map || !map.isStyleLoaded()) { setTimeout(function(){ ensureBridges(visible); }, 300); return; }
+    if (!map.getSource('argus-bridges')) {
+      map.addSource('argus-bridges', { type: 'geojson', data: '/api/bridges' });
+      map.addLayer({ id: 'argus-bridges-line', type: 'line', source: 'argus-bridges',
+        filter: ['==', ['geometry-type'], 'LineString'],
+        paint: { 'line-color': '#facc15', 'line-width': 4, 'line-opacity': 0.85 } });
+      map.addLayer({ id: 'argus-bridges-fill', type: 'fill', source: 'argus-bridges',
+        filter: ['==', ['geometry-type'], 'Polygon'],
+        paint: { 'fill-color': '#facc15', 'fill-opacity': 0.4, 'fill-outline-color': '#fde047' } });
+      map.addLayer({ id: 'argus-bridges-pt', type: 'circle', source: 'argus-bridges',
+        filter: ['==', ['geometry-type'], 'Point'],
+        paint: { 'circle-radius': 5, 'circle-color': '#facc15', 'circle-stroke-width': 1, 'circle-stroke-color': '#000' } });
+      map.addLayer({ id: 'argus-bridges-label', type: 'symbol', source: 'argus-bridges',
+        minzoom: 13,
+        layout: { 'text-field': ['get', 'name'], 'text-size': 11, 'text-offset': [0, 0.9] },
+        paint: { 'text-color': '#facc15', 'text-halo-color': '#000', 'text-halo-width': 1.2 } });
+    }
+    ['argus-bridges-line','argus-bridges-fill','argus-bridges-pt','argus-bridges-label'].forEach(function(id){
+      if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+    });
+  }
+  var bg = document.getElementById('bridges-toggle');
+  var bn = document.getElementById('bridges-named');
+  function sync(){ var on = (bg && bg.checked) || (bn && bn.checked); if (bg) bg.checked = on; if (bn) bn.checked = on; ensureBridges(on); }
+  if (bg) bg.addEventListener('change', sync);
+  if (bn) bn.addEventListener('change', sync);
 })();
 </script>
 </body>
