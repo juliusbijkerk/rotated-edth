@@ -551,9 +551,47 @@ body {
   font-size: 8px;
   margin-left: auto;
 }
+
+.welcome-overlay { position: fixed; inset: 0; background: rgba(10,14,23,0.94); backdrop-filter: blur(6px); z-index: 200; display: flex; align-items: center; justify-content: center; }
+.welcome-overlay.hidden { display: none; }
+.welcome-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 28px 36px; max-width: 460px; width: 92%; box-shadow: 0 12px 60px rgba(0,0,0,.6); }
+.welcome-head { text-align: center; margin-bottom: 22px; }
+.welcome-head h1 { font-size: 28px; letter-spacing: 6px; margin: 0; font-weight: 600; }
+.welcome-head h1 .c2 { color: var(--green); }
+.welcome-sub { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; margin-top: 6px; }
+.welcome-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.welcome-row .lbl { font-size: 9.5px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; }
+.welcome-row select, .welcome-row input { padding: 9px 11px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-family: inherit; font-size: 12px; outline: none; }
+.welcome-row select:focus, .welcome-row input:focus { border-color: var(--blue); }
+.welcome-or { text-align: center; color: var(--text-muted); font-size: 9.5px; letter-spacing: 1.5px; margin: 4px 0 10px; }
+.welcome-locate { background: none; border: none; color: var(--cyan); text-align: left; padding: 4px 0; cursor: pointer; font-family: inherit; font-size: 11px; }
+.welcome-locate:hover { text-decoration: underline; }
+.welcome-hint { font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 14px; }
+.welcome-start { width: 100%; padding: 12px; margin-top: 8px; background: var(--green); color: #000; border: none; border-radius: 4px; font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: 3px; cursor: pointer; }
+.welcome-start:hover { filter: brightness(1.1); }
 </style>
 </head>
 <body>
+<div id="welcome-overlay" class="welcome-overlay">
+  <div class="welcome-panel">
+    <div class="welcome-head">
+      <h1>ROTATED <span class="c2">C2</span></h1>
+      <div class="welcome-sub">SITUATIONAL AWARENESS · COMMAND &amp; CONTROL</div>
+    </div>
+    <div class="welcome-row">
+      <div class="lbl">Area of Operations</div>
+      <select id="welcome-ao"></select>
+    </div>
+    <div class="welcome-or">— or focus on any place on earth —</div>
+    <div class="welcome-row">
+      <div class="lbl">Search</div>
+      <input id="welcome-search" placeholder="e.g. Kharkiv, Maidan Nezalezhnosti, 50.45,30.52" autocomplete="off">
+      <button id="welcome-locate" type="button" class="welcome-locate">Use my current location →</button>
+      <div id="welcome-hint" class="welcome-hint"></div>
+    </div>
+    <button id="welcome-start" type="button" class="welcome-start">ENTER OPS CENTER</button>
+  </div>
+</div>
 
 <div id="loading">
   <div class="spinner"></div>
@@ -2396,6 +2434,75 @@ document.addEventListener('keydown', (e) => {
 function initInteraction() {
   map.on('click', () => closeAllPopups());
 }
+</script>
+<script>
+/* ===== Welcome onboarding overlay — picks AO + optional fly-to-anywhere ===== */
+(function () {
+  var overlay = document.getElementById('welcome-overlay');
+  var aoSel   = document.getElementById('welcome-ao');
+  var search  = document.getElementById('welcome-search');
+  var locate  = document.getElementById('welcome-locate');
+  var hint    = document.getElementById('welcome-hint');
+  var startBtn = document.getElementById('welcome-start');
+  var pendingFocus = null; // [lon, lat] from search/geolocate -> flyTo on start
+  var ao = null;
+
+  fetch('/api/presets').then(function (r) { return r.json(); }).then(function (ps) {
+    aoSel.innerHTML = ps.map(function (p) {
+      return '<option value="' + p.id + '" data-bbox="' + p.bbox.join(',') + '">' + p.name + '</option>';
+    }).join('');
+    ao = ps[0] || null;
+    aoSel.addEventListener('change', function () { ao = ps.find(function (p) { return p.id === aoSel.value; }) || ao; });
+  }).catch(function () { hint.textContent = 'could not load AO list'; });
+
+  locate.addEventListener('click', function () {
+    if (!navigator.geolocation) { hint.textContent = 'geolocation not available in this browser'; return; }
+    hint.textContent = 'asking for location…';
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      pendingFocus = [pos.coords.longitude, pos.coords.latitude];
+      search.value = pos.coords.latitude.toFixed(4) + ', ' + pos.coords.longitude.toFixed(4);
+      hint.textContent = 'will focus on your location';
+    }, function (err) { hint.textContent = 'location denied: ' + (err.message || err.code); }, { timeout: 6000 });
+  });
+
+  // Search: "lat, lon" -> instant; otherwise Nominatim free geocoder
+  var searchTimer;
+  search.addEventListener('input', function () {
+    clearTimeout(searchTimer);
+    var q = search.value.trim();
+    pendingFocus = null;
+    if (!q) { hint.textContent = ''; return; }
+    var m = q.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/);
+    if (m) { pendingFocus = [parseFloat(m[2]), parseFloat(m[1])]; hint.textContent = 'coordinates parsed ✓'; return; }
+    hint.textContent = 'searching…';
+    searchTimer = setTimeout(function () {
+      fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q),
+            { headers: { 'Accept-Language': 'en' } })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d.length) { pendingFocus = [parseFloat(d[0].lon), parseFloat(d[0].lat)]; hint.textContent = '→ ' + d[0].display_name; }
+          else { hint.textContent = 'no match'; }
+        })
+        .catch(function () { hint.textContent = 'search failed (offline?)'; });
+    }, 350);
+  });
+
+  function flyWhenReady(fn) {
+    if (typeof map !== 'undefined' && map && map.isStyleLoaded && map.isStyleLoaded()) { fn(); }
+    else { setTimeout(function () { flyWhenReady(fn); }, 200); }
+  }
+
+  startBtn.addEventListener('click', function () {
+    overlay.classList.add('hidden');
+    flyWhenReady(function () {
+      if (pendingFocus) {
+        map.flyTo({ center: pendingFocus, zoom: 14, duration: 1400 });
+      } else if (ao && ao.bbox) {
+        map.fitBounds([[ao.bbox[0], ao.bbox[1]], [ao.bbox[2], ao.bbox[3]]], { padding: 50, duration: 1200 });
+      }
+    });
+  });
+})();
 </script>
 <script>
 /* ===== ARGUS live wiring: drive this C2 map from our FastAPI /ws/operator ===== */
