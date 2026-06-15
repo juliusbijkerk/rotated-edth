@@ -1,15 +1,17 @@
 """FastAPI app: REST presets + WS unit/operator + static serving."""
 from __future__ import annotations
 import asyncio
+import base64
 import json
 import os
+import secrets
 import time
 import traceback
 from pathlib import Path
 from typing import Optional
 
 import anthropic
-from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, Request, Response, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -23,6 +25,42 @@ TMP_DIR = PROJECT_ROOT / "data" / "tmp"
 TMP_DIR.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(title="Argus")
+
+
+# ---------- Auth (HTTP Basic, covers HTTP + WebSocket handshakes) ----------
+# Set ARGUS_USER / ARGUS_PASS in .env to enable. Leave ARGUS_PASS unset to disable
+# (the warning at startup will tell you it's open). Browsers prompt natively and
+# cache credentials per-origin, so phones auth once and reuse for WebSocket upgrades.
+_ARGUS_USER = os.environ.get("ARGUS_USER", "argus")
+_ARGUS_PASS = os.environ.get("ARGUS_PASS", "")
+
+
+def _check_basic_auth(authorization: str) -> bool:
+    """Return True if the Authorization header carries the configured Basic creds.
+    Returns True when auth is disabled (no ARGUS_PASS set)."""
+    if not _ARGUS_PASS:
+        return True
+    if not authorization or not authorization.startswith("Basic "):
+        return False
+    try:
+        user, pwd = base64.b64decode(authorization[6:]).decode("utf-8").split(":", 1)
+    except Exception:
+        return False
+    return (
+        secrets.compare_digest(user, _ARGUS_USER)
+        and secrets.compare_digest(pwd, _ARGUS_PASS)
+    )
+
+
+@app.middleware("http")
+async def _basic_auth_middleware(request: Request, call_next):
+    if _check_basic_auth(request.headers.get("authorization", "")):
+        return await call_next(request)
+    return Response(
+        content="Unauthorized\n",
+        status_code=401,
+        headers={"WWW-Authenticate": 'Basic realm="Argus"'},
+    )
 
 units = UnitRegistry()
 reports: list[dict] = []
@@ -180,6 +218,9 @@ def _state_message() -> dict:
 @app.websocket("/ws/operator")
 async def ws_operator(ws: WebSocket):
     global current_ao_id, current_ao
+    if not _check_basic_auth(ws.headers.get("authorization", "")):
+        await ws.close(code=4401)  # custom code = auth failed
+        return
     await ws.accept()
     operator_sockets.add(ws)
     try:
@@ -209,6 +250,9 @@ async def ws_operator(ws: WebSocket):
 
 @app.websocket("/ws/unit/{unit_id}")
 async def ws_unit(ws: WebSocket, unit_id: str):
+    if not _check_basic_auth(ws.headers.get("authorization", "")):
+        await ws.close(code=4401)
+        return
     await ws.accept()
     try:
         while True:

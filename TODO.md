@@ -53,3 +53,21 @@ Get the first working demo solid; these are deliberately deferred.
   typed place / "lat,lon" / use-my-location → flyTo. Previous attempt was reverted
   because the welcome-overlay regex cut too many </div>s and broke the page; redo
   with the Edit tool instead of a regex pass.
+
+## After 2nd-place demo (Jun 15)
+- **Addresses (street + house number) as POIs:** ground "92 Khreshchatyk" precisely.
+  Pull from OSM `addr:housenumber`+`addr:street` (Overpass) or use Nominatim reverse-
+  geocoding at runtime. Must be rock-solid — addresses are the simplest, highest-
+  value precision win.
+- **Chat-like conversation panel** (per-unit or single channel): every transcript
+  in a collapsible chat sub-interface so the operator can scroll history and "talk
+  back" — already half-built (each report has transcript + parsed + resolved).
+  Hide by default, expand on click of the unit row. Server already broadcasts the
+  full report payload; just needs operator-side UI.
+- **Persistent memory** (transcripts, positions, routes, contacts) — switch from
+  the in-memory dicts to SQLite (or a JSON file) per session, so a server restart
+  doesn't wipe a debrief. Pairs with the Operations dashboard idea (already in TODO).
+- **Pedestrian routing:** today we use the OSRM **driving** profile, which obeys
+  one-ways and avoids pedestrian streets — so trails take long detours. Switch to
+  a foot profile (OpenRouteService, GraphHopper, or a self-hosted OSRM foot.lua).
+  Wartime context = ignore traffic direction, take shortest passable path.
