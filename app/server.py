@@ -54,12 +54,29 @@ def _check_basic_auth(authorization: str) -> bool:
 
 @app.middleware("http")
 async def _basic_auth_middleware(request: Request, call_next):
+    # /api/health is the public, CORS-enabled liveness probe used by the static landing
+    # page to decide whether to show ONLINE / OFFLINE. Skip auth for it.
+    if request.url.path == "/api/health":
+        return await call_next(request)
     if _check_basic_auth(request.headers.get("authorization", "")):
         return await call_next(request)
     return Response(
         content="Unauthorized\n",
         status_code=401,
         headers={"WWW-Authenticate": 'Basic realm="Argus"'},
+    )
+
+
+@app.get("/api/health")
+def health():
+    """Public, CORS-friendly liveness probe — the landing page calls this to detect ONLINE."""
+    return Response(
+        content='{"ok":true}',
+        media_type="application/json",
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Cache-Control": "no-store",
+        },
     )
 
 units = UnitRegistry()
