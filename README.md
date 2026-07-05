@@ -1,58 +1,76 @@
-# Argus
+# Argus · ROTATED
 
-**Push-to-talk situational awareness. From voice to map in seconds, anywhere on earth.**
+**Push-to-talk situational awareness — from voice to map in seconds.**
 
-Field units carry phones, tap push-to-talk, speak natural-language reports. Argus transcribes locally with Whisper, parses with an LLM against the Area of Operations context, grounds the location, and updates a live tactical map with markers, trails, and observations.
+Field units carry phones, tap-and-hold, and speak natural-language reports. Argus
+transcribes locally with Whisper, parses each report with Claude against the
+Area-of-Operations context, grounds the spoken location deterministically, and updates
+a live 3D command map with friendly units, enemy contacts, and street-following trails.
 
-Built at the **European Defense Tech Hackathon Paris 2026** for challenge #04 (Voice-to-Map) from Lysk.
+🏆 **2nd place / 29 teams** — European Defense Tech Hackathon, Paris 2026 ·
+challenge #04 (Voice-to-Map) from Lysk.
+🔗 **[rotated.cc](https://rotated.cc)** (live landing) ·
+[event](https://luma.com/edth-2026-paris) ·
+[recap](https://www.linkedin.com/posts/european-defense-tech_before-everyone-gathered-this-week-at-eurosatory-activity-7472672979731279872-_KB8)
+
+## Pipeline
+
+```
+voice → Whisper (on-device) → Claude tool-use → grounding ladder → OSRM route → MapLibre map
+```
+
+The LLM never emits raw coordinates — it returns a *structured location reference*, which a
+deterministic grounding ladder resolves against the AO's pre-fetched map data.
 
 ## Architecture
 
-- **Backend**: Python 3.11+ · FastAPI · WebSockets · in-memory state.
-- **Frontend**: vanilla TypeScript · Vite · Leaflet.
-- **STT**: `mlx-whisper` with `large-v3-turbo` (Apple Silicon native). Fallback: `faster-whisper`.
-- **Parsing**: Anthropic API · `claude-sonnet-4-6` · tool-use for guaranteed schema.
-- **Map tiles**: Esri World Imagery (satellite, no API key) primary, with the AO's pre-fetched OSM POIs overlaid as labelled markers.
-- **OSM data**: Overpass API for AO preset generation (run **once at setup**, cached as JSON in repo). **Not** called at demo time.
+- **Backend**: Python 3.11+ · FastAPI · WebSockets · in-memory state · HTTP Basic Auth.
+- **Operator**: MapLibre GL command map — NATO milsymbol, Overture POIs, extruded 3D
+  buildings, enemy contacts, routed trails (`web/ops.html`).
+- **Unit**: lightweight push-to-talk web app (vanilla TypeScript · Vite).
+- **STT**: local `mlx-whisper` `large-v3-turbo` on Apple Silicon — **no audio leaves the laptop**.
+- **Parsing**: Anthropic API · `claude-sonnet-4-6` · forced tool-use for a guaranteed schema.
+- **Grounding**: deterministic ladder — OSM POI → relative-to-POI → coordinate → MGRS →
+  relative-to-unit → relative-to-self.
+- **Routing**: OSRM (street-following trails between fixes).
+- **Map data**: Esri World Imagery tiles; POIs pre-fetched once from OSM Overpass and cached
+  in-repo (`app/presets/`), **not** called at demo time.
+- **Serving**: Cloudflare named tunnel (live app, on-demand) + Cloudflare Pages (always-up landing).
 
-Only Anthropic API and tile servers are touched at demo time. STT runs locally on the Mac.
+Only the Anthropic API and tile/routing servers are touched at demo time; STT is local.
 
 ## Setup
 
 ```sh
-# 1. Install system deps (one-time)
-brew install uv ffmpeg
+brew install uv ffmpeg          # system deps (one-time)
+uv sync                         # Python deps
+npm install                     # frontend deps
 
-# 2. Python venv + deps
-uv sync
+cp .env.example .env            # then set ANTHROPIC_API_KEY (and ARGUS_PASS to lock the site)
 
-# 3. Frontend deps
-npm install
-
-# 4. Configure
-cp .env.example .env
-# Edit .env and set ANTHROPIC_API_KEY
-
-# 5. Pre-fetch AO presets (only if you don't trust the committed JSONs)
-uv run python scripts/fetch_ao_preset.py paris_8
-uv run python scripts/fetch_ao_preset.py pokrovsk
-
-# 6. Build frontend
-npm run build
-
-# 7. Run
-uv run python -m app
+npm run build                   # build the unit frontend
+ARGUS_PORT=8010 uv run python -m app
 ```
 
-The server prints its local IP and QR codes for the operator and unit URLs.
+The server prints its LAN IP and QR codes for the operator and unit URLs. The active AO
+(Kyiv) ships pre-fetched in `app/presets/`; regenerate or add areas with
+`uv run python scripts/fetch_ao_preset.py <ao>`.
 
 ## Demo
 
-- Open **operator URL** on a MacBook (Wi-Fi connected to the same LAN).
-- Pick an AO from the dropdown (Paris 8th or Pokrovsk).
-- Scan **unit URL** QR with a phone. Pick a callsign (Alpha / Bravo / Charlie). Tap-and-hold to speak.
-- Marker on the map updates within seconds.
+- Open the **operator URL** on a MacBook.
+- Scan the **unit URL** QR with a phone, pick a callsign (Alpha / Bravo / Charlie),
+  tap-and-hold to speak (e.g. *"Alpha, at Kyiv central railway station, over"*).
+- The marker + routed trail appear on the map within seconds.
+
+See [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for the walkthrough script and
+[DEPLOY.md](DEPLOY.md) for the always-up landing-page deployment.
+
+## Credits
+
+Built in ~36 hours by **[Julius Bijkerk](https://github.com/juliusbijkerk)** and
+**[Leon van Rooijen](https://github.com/leonvanrooijen)**.
 
 ## Status
 
-This is hackathon code. Working > elegant. See `CLAUDE.md` for development guidance.
+Hackathon code — **working > elegant**. See `CLAUDE.md` for development guidance.
