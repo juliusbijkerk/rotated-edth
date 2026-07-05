@@ -43,6 +43,22 @@
   .hero h2 .accent2 { color: var(--green); }
   .hero p { font-size: 15px; color: var(--muted); max-width: 680px; margin-bottom: 12px; }
 
+  .demo { margin: 32px 0; }
+  .demo-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .demo-tag { font-size: 11px; letter-spacing: 2px; color: var(--green); }
+  .demo-sub { font-size: 11px; color: var(--dim); letter-spacing: 1px; }
+  .video-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9;
+    background: #000; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.4); }
+  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px; color: var(--dim);
+    background: repeating-linear-gradient(45deg, #0d1420, #0d1420 12px, #0a0e17 12px, #0a0e17 24px); }
+  .vp-icon { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--border-light);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+    color: var(--muted); padding-left: 4px; }
+  .vp-text { font-size: 12px; letter-spacing: 1.5px; }
+
   .status-card { background: var(--bg2); border: 1px solid var(--border);
     border-radius: 8px; padding: 22px 24px; margin: 32px 0; box-shadow: 0 4px 24px rgba(0,0,0,.3); }
   .status-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
@@ -109,8 +125,21 @@
     <section class="hero">
       <div class="award">★ 2ND PLACE · EDTH PARIS 2026 · CHALLENGE 04</div>
       <h2>Voice to <span class="accent">map</span>.<br>From the field to <span class="accent2">command</span>.</h2>
-      <p>Push-to-talk situational awareness for tactical operations. Field units carry phones, tap-and-speak natural-language reports — Whisper transcribes locally on the laptop, Claude parses against the area-of-operations context, locations ground against OpenStreetMap, trails follow real-world streets.</p>
-      <p>One operator, many units, voice-only over radio-quality channels. Built in 36 hours at the European Defense Tech Hackathon, Paris.</p>
+      <p>Turn free-form spoken field reports into structured, mapped situational awareness — in real time. Field units carry phones and tap-and-speak natural-language reports; Whisper transcribes locally, Claude parses each report against the area-of-operations context, locations ground against OpenStreetMap, and trails follow real-world streets.</p>
+      <p>One operator, many units — hands-free and voice-only. Built in ~36 hours at the European Defense Tech Hackathon, Paris.</p>
+    </section>
+
+    <section class="demo" id="demo">
+      <div class="demo-head">
+        <span class="demo-tag">▶ RECORDED WALKTHROUGH</span>
+        <span class="demo-sub">field-to-command demo · ~2 min</span>
+      </div>
+      <div class="video-wrap" id="video-wrap">
+        <div class="video-placeholder" id="video-placeholder">
+          <div class="vp-icon">▶</div>
+          <div class="vp-text">Demo video coming soon</div>
+        </div>
+      </div>
     </section>
 
     <section class="status-card">
@@ -171,9 +200,15 @@
     </div>
 
     <footer>
-      <span>EDTH PARIS 2026 · CHALLENGE 04 (VOICE-TO-MAP) · LYSK</span>
-      <span><a href="https://github.com/juliusbijkerk/edth_argus">GITHUB</a></span>
-      <span class="flag-meaning">🇳🇱 = 🇫🇷 rotated −90°</span>
+      <span>EDTH PARIS 2026 · CHALLENGE 04 · VOICE-TO-MAP</span>
+      <span>BUILT BY
+        <a href="https://github.com/juliusbijkerk" target="_blank" rel="noopener">JULIUS BIJKERK</a> ·
+        <a href="https://github.com/leonvanrooijen" target="_blank" rel="noopener">LEON VAN ROOIJEN</a></span>
+      <span>
+        <a href="https://github.com/juliusbijkerk/edth_argus" target="_blank" rel="noopener">CODE</a> ·
+        <a href="https://luma.com/edth-2026-paris" target="_blank" rel="noopener">EVENT</a> ·
+        <a href="https://www.linkedin.com/posts/european-defense-tech_before-everyone-gathered-this-week-at-eurosatory-activity-7472672979731279872-_KB8" target="_blank" rel="noopener">RECAP</a></span>
+      <span class="flag-meaning">🇳🇱 = 🇫🇷 rotated 90°</span>
     </footer>
   </div>
 
@@ -181,6 +216,17 @@
     // The hostname where the live app is reachable behind the cloudflared tunnel.
     // (Edit this once you've moved the tunnel from rotated.cc -> app.rotated.cc.)
     var APP_HOST = 'app.rotated.cc';
+
+    // Paste your (unlisted) YouTube video ID here to embed the walkthrough — it's the
+    // part after "watch?v=" in the URL, e.g. for youtu.be/dQw4w9WgXcQ it's 'dQw4w9WgXcQ'.
+    // Leave '' to keep showing the placeholder.
+    var VIDEO_ID = '';
+    if (VIDEO_ID) {
+      document.getElementById('video-wrap').innerHTML =
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '" ' +
+        'title="ROTATED C2 — voice-to-map demo" loading="lazy" allowfullscreen ' +
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>';
+    }
 
     var dot = document.getElementById('status-dot');
     var text = document.getElementById('status-text');
@@ -214,7 +260,7 @@
         btn.classList.remove('disabled');
         btn.href = 'https://' + APP_HOST + '/operator';
       } catch (e) {
-        setStatus('offline', 'The operations terminal is currently down. This is a demo system that runs on-demand from a laptop — please come back later. Phones can still try unit.rotated.cc/unit when the operator is online.');
+        setStatus('offline', 'The live operations terminal is offline right now — it runs on-demand from a laptop. Watch the recorded walkthrough above for the full demo, or check back when the operator is online.');
         btn.classList.add('disabled');
         btn.removeAttribute('href');
       }
