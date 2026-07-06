@@ -7,7 +7,7 @@ transcribes locally with Whisper, parses each report with Claude against the
 Area-of-Operations context, grounds the spoken location deterministically, and updates
 a live 3D command map with friendly units, enemy contacts, and street-following trails.
 
-🏆 **2nd place / 29 teams** — European Defense Tech Hackathon, Paris 2026 ·
+🏆 **2nd place / 28 teams** — European Defense Tech Hackathon, Paris 2026 ·
 challenge #04 (Voice-to-Map) from Lysk.
 🔗 **[rotated.cc](https://rotated.cc)** (live landing) ·
 [event](https://luma.com/edth-2026-paris) ·
