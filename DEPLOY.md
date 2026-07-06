@@ -55,17 +55,18 @@ npx wrangler pages deploy landing --project-name rotated-landing
 
 Optional: also add `www.rotated.cc` the same way.
 
-## Step 4 — verify the whole loop
-- **Laptop off:** `rotated.cc` loads the landing page, status shows **OFFLINE**, the
-  recorded video still plays. No 1033.
-- **Laptop on** (app + tunnel running): status flips to **ONLINE**, "ENTER OPS CENTER"
-  links to `app.rotated.cc/operator` (prompts for the ARGUS password).
+## Step 4 — verify
+- **Anytime (laptop on or off):** `rotated.cc` loads instantly with the embedded demo
+  video. It's a fully static page, so it's always up — no more 1033.
+- **Live demo (laptop on):** bring the app + tunnel up and the live system is reachable
+  directly at `app.rotated.cc/operator` (password-gated). The landing page is static and
+  intentionally doesn't link to it, so it never shows a broken "offline" state.
 
 ---
 
 ## Updating the page later
-Re-run the drag-and-drop upload (or `wrangler pages deploy landing …`). After you record
-the demo, set `VIDEO_ID` in `landing/index.html` first, then redeploy.
+Edit `landing/index.html`, then re-run the drag-and-drop upload (or
+`wrangler pages deploy landing --project-name rotated-landing`).
 
 ## Two things only you can decide
 - **GitHub link:** the landing footer links to `github.com/juliusbijkerk/edth_argus`,

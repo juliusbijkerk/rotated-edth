@@ -4,104 +4,50 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ROTATED C2 — voice-to-map situational awareness. EDTH Paris 2026, 2nd place.">
-<title>ROTATED · C2</title>
+<title>ROTATED · C2 — voice to map</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%2322c55e' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%2322c55e'/%3E%3C/svg%3E">
 <style>
   :root {
-    --bg: #0a0e17; --bg2: #111827; --bg3: #1e293b;
-    --border: #2d3a4a; --border-light: #3d4a5a;
+    --bg: #0a0e17; --bg2: #111827; --border: #2d3a4a; --border-light: #3d4a5a;
     --text: #e2e8f0; --muted: #94a3b8; --dim: #64748b;
-    --green: #22c55e; --amber: #f59e0b; --red: #ef4444;
-    --cyan: #06b6d4; --blue: #3b82f6;
+    --green: #22c55e; --amber: #f59e0b; --cyan: #06b6d4;
   }
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { background: var(--bg); color: var(--text);
     font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
-    min-height: 100vh; font-size: 13px; line-height: 1.5; }
+    min-height: 100vh; font-size: 14px; line-height: 1.5; }
   body { background-image:
-    radial-gradient(circle at 20% 10%, rgba(34, 197, 94, 0.06) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 0%, rgba(34, 197, 94, 0.06) 0%, transparent 42%),
+    radial-gradient(circle at 85% 90%, rgba(59, 130, 246, 0.05) 0%, transparent 52%);
     background-attachment: fixed; }
-  .container { max-width: 920px; margin: 0 auto; padding: 32px 24px 64px; }
+  .container { max-width: 880px; margin: 0 auto; padding: 44px 24px 56px; }
 
-  header { display: flex; align-items: center; gap: 10px; padding: 10px 14px;
-    border: 1px solid var(--border); background: rgba(17, 24, 39, 0.6);
-    border-radius: 6px; margin-bottom: 36px; backdrop-filter: blur(4px); }
-  .logo-svg { width: 20px; height: 20px; }
-  h1 { font-size: 14px; letter-spacing: 4px; font-weight: 600; }
+  header { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+  .logo-svg { width: 22px; height: 22px; }
+  h1 { font-size: 15px; letter-spacing: 4px; font-weight: 600; }
   h1 .c2 { color: var(--green); }
-  .header-meta { margin-left: auto; display: flex; gap: 14px; font-size: 10px; color: var(--dim); letter-spacing: 1.5px; }
-  .header-meta .clock { color: var(--cyan); min-width: 80px; text-align: right; }
 
-  .award { display: inline-block; padding: 4px 10px;
+  .award { display: inline-block; padding: 5px 11px;
     background: rgba(245, 158, 11, 0.08); border: 1px solid var(--amber); border-radius: 3px;
-    font-size: 10px; color: var(--amber); letter-spacing: 1.5px; margin-bottom: 24px; }
+    font-size: 11px; color: var(--amber); letter-spacing: 1.5px; margin-bottom: 20px; }
+  .hero h2 { font-size: clamp(30px, 5.2vw, 46px); line-height: 1.12; font-weight: 600;
+    letter-spacing: -0.5px; margin-bottom: 16px; }
+  .hero h2 .accent { color: var(--cyan); } .hero h2 .accent2 { color: var(--green); }
+  .hero p { font-size: 16px; color: var(--muted); max-width: 640px; margin-bottom: 30px; }
 
-  .hero h2 { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; font-weight: 600;
-    letter-spacing: -0.5px; margin-bottom: 18px; font-family: inherit; }
-  .hero h2 .accent { color: var(--cyan); }
-  .hero h2 .accent2 { color: var(--green); }
-  .hero p { font-size: 15px; color: var(--muted); max-width: 680px; margin-bottom: 12px; }
-
-  .demo { margin: 32px 0; }
-  .demo-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
-  .demo-tag { font-size: 11px; letter-spacing: 2px; color: var(--green); }
-  .demo-sub { font-size: 11px; color: var(--dim); letter-spacing: 1px; }
   .video-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9;
-    background: #000; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0,0,0,.4); }
+    background: #000; border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5); }
   .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 12px; color: var(--dim);
-    background: repeating-linear-gradient(45deg, #0d1420, #0d1420 12px, #0a0e17 12px, #0a0e17 24px); }
-  .vp-icon { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--border-light);
-    display: flex; align-items: center; justify-content: center; font-size: 20px;
-    color: var(--muted); padding-left: 4px; }
-  .vp-text { font-size: 12px; letter-spacing: 1.5px; }
 
-  .status-card { background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 8px; padding: 22px 24px; margin: 32px 0; box-shadow: 0 4px 24px rgba(0,0,0,.3); }
-  .status-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
-    font-size: 10px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; }
-  .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--dim); flex-shrink: 0; }
-  .status-dot.online { background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 2s infinite; }
-  .status-dot.offline { background: var(--red); box-shadow: 0 0 8px var(--red); }
-  .status-dot.checking { background: var(--amber); animation: pulse 0.8s infinite; }
-  @keyframes pulse { 50% { opacity: 0.4; } }
-  .status-text { font-size: 22px; font-weight: 600; letter-spacing: 2px; }
-  .status-text.online { color: var(--green); }
-  .status-text.offline { color: var(--red); }
-  .status-text.checking { color: var(--amber); }
-  .status-detail { color: var(--muted); font-size: 12px; margin-top: 8px; line-height: 1.5; }
-  .enter-btn { display: inline-block; margin-top: 18px; padding: 12px 22px;
-    background: var(--green); color: #000; text-decoration: none; border-radius: 4px;
-    font-weight: 700; letter-spacing: 3px; font-size: 12px; transition: filter .15s, transform .15s;
-    border: none; cursor: pointer; font-family: inherit; }
-  .enter-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
-  .enter-btn.disabled { background: var(--bg3); color: var(--dim);
-    cursor: not-allowed; pointer-events: none; }
+  .cta { margin-top: 28px; }
+  .btn { display: inline-block; padding: 12px 22px; background: var(--green); color: #000;
+    text-decoration: none; border-radius: 4px; font-weight: 700; letter-spacing: 2px;
+    font-size: 12px; transition: filter .15s, transform .15s; }
+  .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 14px; margin: 36px 0; }
-  .feature { background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 6px; padding: 16px 18px; }
-  .feature .step { display: inline-block; padding: 2px 6px; background: rgba(6, 182, 212, 0.1);
-    border: 1px solid var(--cyan); border-radius: 3px; font-size: 9px; color: var(--cyan);
-    letter-spacing: 1.5px; margin-bottom: 10px; }
-  .feature h3 { font-size: 12px; letter-spacing: 1px; color: var(--text); margin-bottom: 6px; }
-  .feature p { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-  .stack { margin: 36px 0; padding: 20px 22px; background: var(--bg2);
-    border: 1px solid var(--border); border-radius: 6px; }
-  .stack h3 { font-size: 10px; letter-spacing: 2px; color: var(--dim);
-    text-transform: uppercase; margin-bottom: 12px; }
-  .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 18px; }
-  .stack-item { font-size: 11px; }
-  .stack-item .k { color: var(--dim); }
-  .stack-item .v { color: var(--text); }
-
-  footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
-    display: flex; flex-wrap: wrap; gap: 14px; font-size: 10px; color: var(--dim); letter-spacing: 1px; }
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 11px; color: var(--dim); letter-spacing: 1px; }
   footer a { color: var(--cyan); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
   .flag-meaning { color: var(--muted); margin-left: auto; }
@@ -116,91 +62,25 @@
         <path d="M12 2v20M2 12h20" stroke="var(--green)" opacity="0.3"/>
       </svg>
       <h1>ROTATED <span class="c2">C2</span></h1>
-      <div class="header-meta">
-        <span>SITUATIONAL AWARENESS TERMINAL</span>
-        <span class="clock" id="clock">--:--:--Z</span>
-      </div>
     </header>
 
     <section class="hero">
-      <div class="award">★ 2ND PLACE · EDTH PARIS 2026 · CHALLENGE 04</div>
+      <div class="award">★ 2ND OF 28 · EDTH PARIS 2026 · CHALLENGE 04 (VOICE-TO-MAP)</div>
       <h2>Voice to <span class="accent">map</span>.<br>From the field to <span class="accent2">command</span>.</h2>
-      <p>Turn free-form spoken field reports into structured, mapped situational awareness — in real time. Field units carry phones and tap-and-speak natural-language reports; Whisper transcribes locally, Claude parses each report against the area-of-operations context, locations ground against OpenStreetMap, and trails follow real-world streets.</p>
-      <p>One operator, many units — hands-free and voice-only. Built in ~36 hours at the European Defense Tech Hackathon, Paris.</p>
-    </section>
+      <p>Turn free-form spoken field reports into structured, mapped situational awareness — in real time.</p>
 
-    <section class="demo" id="demo">
-      <div class="demo-head">
-        <span class="demo-tag">▶ RECORDED WALKTHROUGH</span>
-        <span class="demo-sub">field-to-command demo · ~2 min</span>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/e5lCxnZtcTE?rel=0"
+          title="ROTATED C2 — voice-to-map demo (EDTH Paris 2026)" loading="lazy" allowfullscreen
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
       </div>
-      <div class="video-wrap" id="video-wrap">
-        <div class="video-placeholder" id="video-placeholder">
-          <div class="vp-icon">▶</div>
-          <div class="vp-text">Demo video coming soon</div>
-        </div>
+
+      <div class="cta">
+        <a class="btn" href="https://github.com/juliusbijkerk/edth_argus" target="_blank" rel="noopener">VIEW ON GITHUB →</a>
       </div>
     </section>
-
-    <section class="status-card">
-      <div class="status-head">
-        <span class="status-dot checking" id="status-dot"></span>
-        <span>OPERATIONS TERMINAL STATUS</span>
-      </div>
-      <div class="status-text checking" id="status-text">CHECKING…</div>
-      <div class="status-detail" id="status-detail">Probing the operations server…</div>
-      <a href="#" id="enter-btn" class="enter-btn disabled">ENTER OPS CENTER →</a>
-    </section>
-
-    <div class="features">
-      <div class="feature">
-        <span class="step">① VOICE</span>
-        <h3>Push-to-talk capture</h3>
-        <p>Browser MediaRecorder buffers audio while you hold the button; sent on release.</p>
-      </div>
-      <div class="feature">
-        <span class="step">② TRANSCRIBE</span>
-        <h3>Whisper (on-device)</h3>
-        <p>OpenAI Whisper runs locally on Apple Silicon via mlx-whisper. No audio leaves the laptop.</p>
-      </div>
-      <div class="feature">
-        <span class="step">③ UNDERSTAND</span>
-        <h3>Claude with tool-use</h3>
-        <p>Sonnet 4.6 emits a structured location reference. Constrained schema — no hallucinated coordinates.</p>
-      </div>
-      <div class="feature">
-        <span class="step">④ GROUND</span>
-        <h3>Six-rung ladder</h3>
-        <p>POI → relative-to-POI → coordinate → MGRS → relative-to-unit → relative-to-self.</p>
-      </div>
-      <div class="feature">
-        <span class="step">⑤ ROUTE</span>
-        <h3>Street-following trails</h3>
-        <p>OSRM snaps each leg between fixes to the road network. No straight lines over buildings.</p>
-      </div>
-      <div class="feature">
-        <span class="step">⑥ DISPLAY</span>
-        <h3>3D command map</h3>
-        <p>MapLibre GL with NATO milsymbol, Overture POIs, extruded buildings, enemy contacts.</p>
-      </div>
-    </div>
-
-    <div class="stack">
-      <h3>Tech stack</h3>
-      <div class="stack-grid">
-        <div class="stack-item"><span class="k">Server · </span><span class="v">FastAPI / WebSockets</span></div>
-        <div class="stack-item"><span class="k">STT · </span><span class="v">mlx-whisper large-v3-turbo</span></div>
-        <div class="stack-item"><span class="k">LLM · </span><span class="v">Claude Sonnet 4.6 (tool-use)</span></div>
-        <div class="stack-item"><span class="k">Map · </span><span class="v">MapLibre GL + milsymbol</span></div>
-        <div class="stack-item"><span class="k">POIs · </span><span class="v">OpenStreetMap (Overpass) + Overture Maps</span></div>
-        <div class="stack-item"><span class="k">Tiles · </span><span class="v">Esri World Imagery</span></div>
-        <div class="stack-item"><span class="k">Routing · </span><span class="v">OSRM</span></div>
-        <div class="stack-item"><span class="k">Tunnel · </span><span class="v">Cloudflare (named)</span></div>
-      </div>
-    </div>
 
     <footer>
-      <span>EDTH PARIS 2026 · CHALLENGE 04 · VOICE-TO-MAP</span>
       <span>BUILT BY
         <a href="https://github.com/juliusbijkerk" target="_blank" rel="noopener">JULIUS BIJKERK</a> ·
         <a href="https://github.com/leonvanrooijen" target="_blank" rel="noopener">LEON VAN ROOIJEN</a></span>
@@ -211,62 +91,5 @@
       <span class="flag-meaning">🇳🇱 = 🇫🇷 rotated 90°</span>
     </footer>
   </div>
-
-  <script>
-    // The hostname where the live app is reachable behind the cloudflared tunnel.
-    // (Edit this once you've moved the tunnel from rotated.cc -> app.rotated.cc.)
-    var APP_HOST = 'app.rotated.cc';
-
-    // Paste your (unlisted) YouTube video ID here to embed the walkthrough — it's the
-    // part after "watch?v=" in the URL, e.g. for youtu.be/dQw4w9WgXcQ it's 'dQw4w9WgXcQ'.
-    // Leave '' to keep showing the placeholder.
-    var VIDEO_ID = '';
-    if (VIDEO_ID) {
-      document.getElementById('video-wrap').innerHTML =
-        '<iframe src="https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '" ' +
-        'title="ROTATED C2 — voice-to-map demo" loading="lazy" allowfullscreen ' +
-        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>';
-    }
-
-    var dot = document.getElementById('status-dot');
-    var text = document.getElementById('status-text');
-    var detail = document.getElementById('status-detail');
-    var btn = document.getElementById('enter-btn');
-
-    function setClock() {
-      var d = new Date();
-      document.getElementById('clock').textContent = d.toUTCString().slice(17, 25) + 'Z';
-    }
-    setInterval(setClock, 1000); setClock();
-
-    function setStatus(state, msg) {
-      dot.className = 'status-dot ' + state;
-      text.className = 'status-text ' + state;
-      text.textContent = { online: 'ONLINE', offline: 'OFFLINE', checking: 'CHECKING…' }[state];
-      detail.textContent = msg;
-    }
-
-    async function check() {
-      try {
-        var ctl = new AbortController();
-        var to = setTimeout(function () { ctl.abort(); }, 4000);
-        // /api/health is unauthenticated and CORS-friendly so we can probe it from here.
-        var r = await fetch('https://' + APP_HOST + '/api/health', { signal: ctl.signal, cache: 'no-store' });
-        clearTimeout(to);
-        if (!r.ok) throw new Error('non-200');
-        var j = await r.json();
-        if (!j || !j.ok) throw new Error('bad payload');
-        setStatus('online', 'Operations terminal is online. Authentication required.');
-        btn.classList.remove('disabled');
-        btn.href = 'https://' + APP_HOST + '/operator';
-      } catch (e) {
-        setStatus('offline', 'The live operations terminal is offline right now — it runs on-demand from a laptop. Watch the recorded walkthrough above for the full demo, or check back when the operator is online.');
-        btn.classList.add('disabled');
-        btn.removeAttribute('href');
-      }
-    }
-    check();
-    setInterval(check, 15000);
-  </script>
 </body>
 </html>
