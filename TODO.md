@@ -1,4 +1,4 @@
-# Argus — backlog / parked ideas
+# ROTATED — backlog / parked ideas
 
 Get the first working demo solid; these are deliberately deferred.
 

@@ -2398,7 +2398,7 @@ function initInteraction() {
 }
 </script>
 <script>
-/* ===== ARGUS live wiring: drive this C2 map from our FastAPI /ws/operator ===== */
+/* ===== ROTATED live wiring: drive this C2 map from our FastAPI /ws/operator ===== */
 (function () {
   var FRIENDLY = 'SFGPUCI----', HOSTILE = 'SHGPUCI----';
   var unitMarkers = {}, contactMarkers = {}, lastUnits = {}, lastContacts = [], aoBbox = null;
@@ -2533,23 +2533,23 @@ function initInteraction() {
   // BRIDGES layer — loads /api/bridges (GeoJSON of named bridges in the AO) and draws them
   function ensureBridges(visible) {
     if (!map || !map.isStyleLoaded()) { setTimeout(function(){ ensureBridges(visible); }, 300); return; }
-    if (!map.getSource('argus-bridges')) {
-      map.addSource('argus-bridges', { type: 'geojson', data: '/api/bridges' });
-      map.addLayer({ id: 'argus-bridges-line', type: 'line', source: 'argus-bridges',
+    if (!map.getSource('rotated-bridges')) {
+      map.addSource('rotated-bridges', { type: 'geojson', data: '/api/bridges' });
+      map.addLayer({ id: 'rotated-bridges-line', type: 'line', source: 'rotated-bridges',
         filter: ['==', ['geometry-type'], 'LineString'],
         paint: { 'line-color': '#facc15', 'line-width': 4, 'line-opacity': 0.85 } });
-      map.addLayer({ id: 'argus-bridges-fill', type: 'fill', source: 'argus-bridges',
+      map.addLayer({ id: 'rotated-bridges-fill', type: 'fill', source: 'rotated-bridges',
         filter: ['==', ['geometry-type'], 'Polygon'],
         paint: { 'fill-color': '#facc15', 'fill-opacity': 0.4, 'fill-outline-color': '#fde047' } });
-      map.addLayer({ id: 'argus-bridges-pt', type: 'circle', source: 'argus-bridges',
+      map.addLayer({ id: 'rotated-bridges-pt', type: 'circle', source: 'rotated-bridges',
         filter: ['==', ['geometry-type'], 'Point'],
         paint: { 'circle-radius': 5, 'circle-color': '#facc15', 'circle-stroke-width': 1, 'circle-stroke-color': '#000' } });
-      map.addLayer({ id: 'argus-bridges-label', type: 'symbol', source: 'argus-bridges',
+      map.addLayer({ id: 'rotated-bridges-label', type: 'symbol', source: 'rotated-bridges',
         minzoom: 13,
         layout: { 'text-field': ['get', 'name'], 'text-size': 11, 'text-offset': [0, 0.9] },
         paint: { 'text-color': '#facc15', 'text-halo-color': '#000', 'text-halo-width': 1.2 } });
     }
-    ['argus-bridges-line','argus-bridges-fill','argus-bridges-pt','argus-bridges-label'].forEach(function(id){
+    ['rotated-bridges-line','rotated-bridges-fill','rotated-bridges-pt','rotated-bridges-label'].forEach(function(id){
       if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
     });
   }

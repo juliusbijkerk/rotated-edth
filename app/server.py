@@ -24,21 +24,22 @@ DIST_DIR = PROJECT_ROOT / "web" / "dist"
 TMP_DIR = PROJECT_ROOT / "data" / "tmp"
 TMP_DIR.mkdir(parents=True, exist_ok=True)
 
-app = FastAPI(title="Argus")
+app = FastAPI(title="ROTATED")
 
 
 # ---------- Auth (HTTP Basic, covers HTTP + WebSocket handshakes) ----------
-# Set ARGUS_USER / ARGUS_PASS in .env to enable. Leave ARGUS_PASS unset to disable
+# Set ROTATED_USER / ROTATED_PASS in .env to enable. Leave ROTATED_PASS unset to disable
 # (the warning at startup will tell you it's open). Browsers prompt natively and
 # cache credentials per-origin, so phones auth once and reuse for WebSocket upgrades.
-_ARGUS_USER = os.environ.get("ARGUS_USER", "argus")
-_ARGUS_PASS = os.environ.get("ARGUS_PASS", "")
+# Legacy ARGUS_USER / ARGUS_PASS are still accepted so existing .env files keep working.
+_AUTH_USER = os.environ.get("ROTATED_USER") or os.environ.get("ARGUS_USER") or "rotated"
+_AUTH_PASS = os.environ.get("ROTATED_PASS") or os.environ.get("ARGUS_PASS") or ""
 
 
 def _check_basic_auth(authorization: str) -> bool:
     """Return True if the Authorization header carries the configured Basic creds.
-    Returns True when auth is disabled (no ARGUS_PASS set)."""
-    if not _ARGUS_PASS:
+    Returns True when auth is disabled (no password set)."""
+    if not _AUTH_PASS:
         return True
     if not authorization or not authorization.startswith("Basic "):
         return False
@@ -47,8 +48,8 @@ def _check_basic_auth(authorization: str) -> bool:
     except Exception:
         return False
     return (
-        secrets.compare_digest(user, _ARGUS_USER)
-        and secrets.compare_digest(pwd, _ARGUS_PASS)
+        secrets.compare_digest(user, _AUTH_USER)
+        and secrets.compare_digest(pwd, _AUTH_PASS)
     )
 
 
@@ -63,7 +64,7 @@ async def _basic_auth_middleware(request: Request, call_next):
     return Response(
         content="Unauthorized\n",
         status_code=401,
-        headers={"WWW-Authenticate": 'Basic realm="Argus"'},
+        headers={"WWW-Authenticate": 'Basic realm="ROTATED"'},
     )
 
 
@@ -173,7 +174,7 @@ def root():
 def _missing_dist_html(page: str) -> str:
     return (
         f"<!doctype html><html><body style='font-family:sans-serif;background:#0c1115;color:#e6edf2;padding:40px'>"
-        f"<h1>Argus</h1>"
+        f"<h1>ROTATED</h1>"
         f"<p>The frontend bundle is missing. Build it first:</p>"
         f"<pre>npm install\nnpm run build</pre>"
         f"<p>Then refresh this page.</p>"

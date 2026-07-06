@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-**Argus**: push-to-talk voice-to-map for tactical situational awareness. Built at EDTH Paris 2026 (June 12–14) for challenge #04 (Voice-to-Map) from Lysk. Hackathon code — **working > elegant**, in-place decisions over abstractions.
+**ROTATED**: push-to-talk voice-to-map for tactical situational awareness. Built at EDTH Paris 2026 (June 12–14) for challenge #04 (Voice-to-Map) from Lysk. Hackathon code — **working > elegant**, in-place decisions over abstractions.
 
 ## Run
 

@@ -23,7 +23,7 @@ def route(lat1: float, lon1: float, lat2: float, lon2: float,
     try:
         url = _OSRM.format(lon1=lon1, lat1=lat1, lon2=lon2, lat2=lat2)
         r = requests.get(url, params={"overview": "full", "geometries": "geojson"},
-                         headers={"User-Agent": "Argus/0.1 (EDTH Paris 2026)"}, timeout=timeout)
+                         headers={"User-Agent": "ROTATED/0.1 (EDTH Paris 2026)"}, timeout=timeout)
         r.raise_for_status()
         routes = r.json().get("routes") or []
         if not routes:

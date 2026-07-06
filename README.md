@@ -1,8 +1,8 @@
-# Argus · ROTATED
+# ROTATED
 
 **Push-to-talk situational awareness — from voice to map in seconds.**
 
-Field units carry phones, tap-and-hold, and speak natural-language reports. Argus
+Field units carry phones, tap-and-hold, and speak natural-language reports. ROTATED
 transcribes locally with Whisper, parses each report with Claude against the
 Area-of-Operations context, grounds the spoken location deterministically, and updates
 a live 3D command map with friendly units, enemy contacts, and street-following trails.
@@ -46,10 +46,10 @@ brew install uv ffmpeg          # system deps (one-time)
 uv sync                         # Python deps
 npm install                     # frontend deps
 
-cp .env.example .env            # then set ANTHROPIC_API_KEY (and ARGUS_PASS to lock the site)
+cp .env.example .env            # then set ANTHROPIC_API_KEY (and ROTATED_PASS to lock the site)
 
 npm run build                   # build the unit frontend
-ARGUS_PORT=8010 uv run python -m app
+ROTATED_PORT=8010 uv run python -m app
 ```
 
 The server prints its LAN IP and QR codes for the operator and unit URLs. The active AO

@@ -22,7 +22,7 @@ OVERPASS = [
     "https://lz4.overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
 ]
-UA = "Argus/0.1 (EDTH Paris 2026; juliusjacobbijkerk@gmail.com)"
+UA = "ROTATED/0.1 (EDTH Paris 2026; juliusjacobbijkerk@gmail.com)"
 
 
 def fetch(ao_id: str) -> dict:

@@ -12,7 +12,7 @@ Publish it **unlisted on YouTube**, then paste the video id into `VIDEO_ID` in
 ## Before you record (10 min)
 
 1. **Bring the system online** (your Mac):
-   - Tab 1: `cd ~/development/edth_argus && ARGUS_PORT=8010 uv run python -m app`
+   - Tab 1: `cd ~/development/edth_argus && ROTATED_PORT=8010 uv run python -m app`
    - Tab 2: `cloudflared tunnel run rotated`
 2. **Operator** open on the Mac: `https://app.rotated.cc/operator` (or `localhost:8010/operator`
    for a cleaner recording with no tunnel latency). Default view = 3D + FUSION, Kyiv AO.

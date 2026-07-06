@@ -34,11 +34,11 @@ def print_qr(url: str) -> None:
 
 def main():
     load_dotenv()
-    port = int(os.environ.get("ARGUS_PORT", "8000"))
+    port = int(os.environ.get("ROTATED_PORT") or os.environ.get("ARGUS_PORT") or "8000")
     ip = get_local_ip()
 
     if not (DIST_DIR / "operator.html").exists():
-        print("\n[argus] web/dist/operator.html is missing — run `npm run build` first.\n",
+        print("\n[rotated] web/dist/operator.html is missing — run `npm run build` first.\n",
               file=sys.stderr)
         # Continue anyway; the server's /operator route will report 503 with a helpful message.
 
@@ -48,7 +48,7 @@ def main():
     bar = "=" * 68
     print()
     print(bar)
-    print("  ARGUS · push-to-talk situational awareness")
+    print("  ROTATED · push-to-talk situational awareness")
     print(bar)
     print(f"  Operator:  {operator_url}")
     print(f"  Unit URL:  {unit_url}")

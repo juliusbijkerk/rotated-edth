@@ -69,7 +69,7 @@ Edit `landing/index.html`, then re-run the drag-and-drop upload (or
 `wrangler pages deploy landing --project-name rotated-landing`).
 
 ## Two things only you can decide
-- **GitHub link:** the landing footer links to `github.com/juliusbijkerk/edth_argus`,
+- **GitHub link:** the landing footer links to `github.com/juliusbijkerk/rotated-edth`,
   which is **private** — an employer would hit 404. Make the repo public, or remove the
   link. (I won't flip visibility for you.)
 - **The live app is still laptop-dependent.** Pages only makes the *landing* always-up.

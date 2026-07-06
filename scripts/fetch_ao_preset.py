@@ -29,7 +29,7 @@ OVERPASS_URLS = [
     "https://z.overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
 ]
-USER_AGENT = "Argus/0.1 (EDTH Paris 2026; juliusjacobbijkerk@gmail.com)"
+USER_AGENT = "ROTATED/0.1 (EDTH Paris 2026; juliusjacobbijkerk@gmail.com)"
 
 # AO definitions. bbox = [west_lon, south_lat, east_lon, north_lat].
 AO_DEFS = {
