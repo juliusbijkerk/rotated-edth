@@ -13,6 +13,9 @@ web/dist/
 # Env / secrets
 .env
 
+# Local-only working notes (kept on disk, not published)
+CLAUDE.md
+
 # Whisper model cache & audio samples
 app/models/
 data/audio_samples/

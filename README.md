@@ -63,8 +63,7 @@ The server prints its LAN IP and QR codes for the operator and unit URLs. The ac
   tap-and-hold to speak (e.g. *"Alpha, at Kyiv central railway station, over"*).
 - The marker + routed trail appear on the map within seconds.
 
-See [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for the walkthrough script and
-[DEPLOY.md](DEPLOY.md) for the always-up landing-page deployment.
+See [DEPLOY.md](DEPLOY.md) for the always-up landing-page deployment.
 
 ## Credits
 
@@ -73,4 +72,4 @@ Built in ~36 hours by **[Julius Bijkerk](https://github.com/juliusbijkerk)** and
 
 ## Status
 
-Hackathon code — **working > elegant**. See `CLAUDE.md` for development guidance.
+Hackathon code — **working > elegant**.
